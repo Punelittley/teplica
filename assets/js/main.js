@@ -370,10 +370,10 @@ function setupModelsSlider() {
   if (!prevBtn || !nextBtn || !track) return;
 
   nextBtn.addEventListener("click", () => {
-    track.scrollBy({ left: 320, behavior: "smooth" });
+    track.scrollBy({ left: 372, behavior: "smooth" });
   });
 
   prevBtn.addEventListener("click", () => {
-    track.scrollBy({ left: -320, behavior: "smooth" });
+    track.scrollBy({ left: -372, behavior: "smooth" });
   });
 }

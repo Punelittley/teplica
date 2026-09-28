@@ -745,15 +745,26 @@ button, input, select, textarea {
 }
 
 .models-slider-track {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  align-items: stretch;
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 10px 2px 22px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.models-slider-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 /* Карточка товара как в референсе 1 */
 .project-card-dark {
-  height: 440px;
+  flex: 0 0 350px;
+  min-width: 350px;
+  max-width: 350px;
+  height: 460px;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -763,6 +774,7 @@ button, input, select, textarea {
   background: #141916;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  scroll-snap-align: start;
 }
 
 .project-card-dark:hover {
@@ -782,7 +794,7 @@ button, input, select, textarea {
 }
 
 .project-card-dark:hover .project-card-bg {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .project-card-overlay {
@@ -796,11 +808,11 @@ button, input, select, textarea {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   color: var(--color-primary-dark);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   font-weight: 800;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: var(--radius-pill);
   z-index: 3;
   backdrop-filter: blur(4px);
@@ -809,16 +821,18 @@ button, input, select, textarea {
 .project-card-content {
   position: relative;
   z-index: 3;
-  padding: 20px;
+  padding: 22px 20px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
 }
 
 .project-card-info {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
 }
 
 .project-card-title {
@@ -833,31 +847,33 @@ button, input, select, textarea {
 }
 
 .project-card-specs {
-  font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
   margin: 0 0 6px;
   line-height: 1.3;
 }
 
 .project-card-price {
   font-family: var(--font-base);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 900;
   color: #ffffff;
   margin: 0;
+  white-space: nowrap;
 }
 
 .project-calc-btn {
   border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   border-radius: 8px;
-  padding: 9px 15px;
-  font-size: 0.82rem;
+  padding: 9px 18px;
+  font-size: 0.84rem;
   font-weight: 700;
   cursor: pointer;
   backdrop-filter: blur(6px);
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
   text-decoration: none;
   display: inline-flex;
@@ -873,11 +889,14 @@ button, input, select, textarea {
 
 /* Карточка 4 - стилистика сохранена в точности как на скриншоте 3 */
 .wish-card-slot {
-  height: 440px;
+  flex: 0 0 350px;
+  min-width: 350px;
+  max-width: 350px;
+  height: 460px;
   background: #f0f7f2;
   border: 2px dashed #95d5b2;
   border-radius: 20px;
-  padding: 26px 20px;
+  padding: 26px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -885,6 +904,7 @@ button, input, select, textarea {
   text-align: center;
   position: relative;
   overflow: hidden;
+  scroll-snap-align: start;
 }
 
 .wish-card-slot .hand-note {
@@ -903,14 +923,14 @@ button, input, select, textarea {
 }
 
 .wish-card-slot .wish-flowers-img {
-  width: 130px;
+  width: 140px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
 }
 
 .wish-card-slot .wish-desc {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: #4a5c50;
   line-height: 1.45;
   margin-top: 14px;

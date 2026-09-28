@@ -55,16 +55,17 @@ function setupFontSizeToggle() {
   const btn = document.getElementById("fontSizeToggleBtn");
   if (!btn) return;
 
+  const searchIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`;
   const isLarge = localStorage.getItem("teplici76_font_large") === "true";
   if (isLarge) {
     document.body.classList.add("font-large");
-    btn.innerHTML = `<span>🔍</span> Обычный шрифт`;
+    btn.innerHTML = `${searchIcon} Обычный шрифт`;
   }
 
   btn.addEventListener("click", () => {
     const active = document.body.classList.toggle("font-large");
     localStorage.setItem("teplici76_font_large", active ? "true" : "false");
-    btn.innerHTML = active ? `<span>🔍</span> Обычный шрифт` : `<span>🔍</span> Крупный шрифт`;
+    btn.innerHTML = active ? `${searchIcon} Обычный шрифт` : `${searchIcon} Крупный шрифт`;
   });
 }
 

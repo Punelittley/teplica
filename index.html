@@ -20,12 +20,13 @@
   <div class="top-notice">
     <div class="container top-notice-inner">
       <div class="top-notice-badge">
-        <span>🌱</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
         <span class="js-promo-text">Весенняя акция: бесплатное хранение теплицы на складе до начала дачного сезона!</span>
       </div>
       <div class="top-controls">
         <button type="button" class="font-size-btn" id="fontSizeToggleBtn" title="Изменить размер текста для комфортного чтения">
-          <span>🔍</span> Крупный шрифт
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+          <span class="font-size-text">Крупный шрифт</span>
         </button>
         <span style="opacity: 0.4;">|</span>
         <a href="admin/index.html" style="font-size: 0.8rem; color: var(--color-text-muted);">Панель управления</a>
@@ -228,57 +229,57 @@
           <div class="calc-controls-col">
             <!-- 1. Форма -->
             <div class="calc-field-group">
-              <label class="calc-label">1. Форма каркаса:</label>
+              <label class="calc-label">1. Форма теплицы:</label>
               <div class="calc-options-grid">
                 <button type="button" class="calc-option-btn active" data-calc-type="arch">
-                  🌱 Арочная (Классика)
+                  Арочная
                 </button>
                 <button type="button" class="calc-option-btn" data-calc-type="drop">
-                  💧 Каплевидная (Снег сходит сам)
+                  Каплевидная
                 </button>
               </div>
             </div>
 
             <!-- 2. Длина -->
             <div class="calc-field-group">
-              <label class="calc-label">2. Длина теплицы (ширина всегда 3.0 м):</label>
+              <label class="calc-label">2. Длина (ширина 3 м):</label>
               <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn" data-calc-length="4m">3 х 4 метра</button>
-                <button type="button" class="calc-option-btn active" data-calc-length="6m">3 х 6 метров (Хит)</button>
-                <button type="button" class="calc-option-btn" data-calc-length="8m">3 х 8 метров</button>
-                <button type="button" class="calc-option-btn" data-calc-length="10m">3 х 10 метров</button>
+                <button type="button" class="calc-option-btn" data-calc-length="4m">3 × 4 м</button>
+                <button type="button" class="calc-option-btn active" data-calc-length="6m">3 × 6 м (Хит)</button>
+                <button type="button" class="calc-option-btn" data-calc-length="8m">3 × 8 м</button>
+                <button type="button" class="calc-option-btn" data-calc-length="10m">3 × 10 м</button>
               </div>
             </div>
 
             <!-- 3. Шаг дуг -->
             <div class="calc-field-group">
-              <label class="calc-label">3. Шаг между дугами каркаса:</label>
+              <label class="calc-label">3. Шаг дуг:</label>
               <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn active" data-calc-step="100">Стандартный (1 метр)</button>
-                <button type="button" class="calc-option-btn" data-calc-step="65">Усиленный (0.65 м) +2 500 ₽</button>
+                <button type="button" class="calc-option-btn active" data-calc-step="100">Стандарт (1 м)</button>
+                <button type="button" class="calc-option-btn" data-calc-step="65">Усиленный (0.65 м)</button>
               </div>
             </div>
 
             <!-- 4. Поликарбонат -->
             <div class="calc-field-group">
-              <label class="calc-label">4. Поликарбонат с защитой от ультрафиолета:</label>
+              <label class="calc-label">4. Поликарбонат:</label>
               <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn active" data-calc-poly="eco4">4 мм Стандарт (с УФ-слоем)</button>
-                <button type="button" class="calc-option-btn" data-calc-poly="prem4">4 мм Премиум повышенной плотности</button>
-                <button type="button" class="calc-option-btn" data-calc-poly="prem6">6 мм Зимний усиленный</button>
+                <button type="button" class="calc-option-btn active" data-calc-poly="eco4">4 мм Стандарт</button>
+                <button type="button" class="calc-option-btn" data-calc-poly="prem4">4 мм Премиум</button>
+                <button type="button" class="calc-option-btn" data-calc-poly="prem6">6 мм Зимний</button>
               </div>
             </div>
 
             <!-- 5. Дополнительно -->
             <div class="calc-field-group">
-              <label class="calc-label">5. Дополнительные опции для долговечности:</label>
+              <label class="calc-label">5. Дополнительно:</label>
               <label class="calc-checkbox-label">
                 <input type="checkbox" id="calcOptionTimber">
-                <span>Пропитанный антисептиком брус 100х100 под основание (рекомендуется)</span>
+                <span>Фундамент из бруса 100×100</span>
               </label>
               <label class="calc-checkbox-label">
                 <input type="checkbox" id="calcOptionAssembly" checked>
-                <span>Профессиональная сборка нашими мастерами на участке</span>
+                <span>Сборка нашими мастерами</span>
               </label>
             </div>
           </div>
@@ -675,7 +676,7 @@
           Жду звонка мастера →
         </button>
         <div style="font-size: 0.78rem; color: var(--color-text-muted); text-align: center; margin-top: 10px;">
-          🔒 Ваши данные в безопасности и никогда не будут переданы третьим лицам
+          Конфиденциальность гарантируется. Ваши данные никогда не передаются третьим лицам.
         </div>
       </form>
     </div>

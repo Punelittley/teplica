@@ -607,118 +607,85 @@ button, input, select, textarea {
   margin-top: 8px;
 }
 
-.advantages-grid-modern {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+/* ==========================================================================
+   ADVANTAGES SECTION (COMPACT CARDS - MATCHING REFERENCE IMAGE 4)
+   ========================================================================== */
+.advantages-compact-section {
+  padding: 35px 0 45px;
+  background: #ffffff;
+}
+
+.advantages-compact-heading {
+  font-family: var(--font-base);
+  font-size: 1.85rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-primary-dark);
+  text-align: center;
   margin-bottom: 24px;
 }
 
-.adv-modern-card {
-  background: #ffffff;
-  border: 1px solid rgba(45, 106, 79, 0.14);
-  border-radius: 18px;
-  padding: 24px 22px;
-  box-shadow: 0 4px 16px rgba(45, 106, 79, 0.05);
+.advantages-compact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.adv-compact-card {
+  background: #eef3ef;
+  border-radius: 14px;
+  padding: 18px 20px;
+  border: none;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
-  position: relative;
+  transition: background-color 0.2s ease;
 }
 
-.adv-modern-card:hover {
-  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.12);
-  border-color: var(--color-primary);
+.adv-compact-card:hover {
+  background: #e4ebe5;
 }
 
-.adv-card-header {
+.adv-compact-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
-.adv-icon-badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #eef6f0;
+.adv-compact-icon {
+  width: 32px;
+  height: 32px;
   color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1px solid rgba(45, 106, 79, 0.1);
 }
 
-.adv-icon-badge svg {
-  width: 25px;
-  height: 25px;
+.adv-compact-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
-.adv-metric-pill {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--color-primary-dark);
-  background: #e8f4ec;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid rgba(45, 106, 79, 0.15);
-  letter-spacing: 0.2px;
-  white-space: nowrap;
-}
-
-.adv-title {
+.adv-compact-title {
   font-family: var(--font-base);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   color: var(--color-primary-dark);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.adv-desc {
-  font-size: 0.94rem;
-  color: #55675c;
-  line-height: 1.5;
   margin: 0;
+  line-height: 1.2;
 }
 
-/* Полоса доверия и гарантий */
-.advantages-trust-bar {
-  background: #f7faf8;
-  border: 1px solid rgba(45, 106, 79, 0.12);
-  border-radius: 16px;
-  padding: 16px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-primary-dark);
-}
-
-.trust-icon {
-  width: 22px;
-  height: 22px;
-  color: var(--color-accent);
-  flex-shrink: 0;
-}
-
-.trust-divider {
-  width: 1px;
-  height: 24px;
-  background: rgba(45, 106, 79, 0.18);
+.adv-compact-desc {
+  font-size: 0.88rem;
+  color: #4a5a50;
+  line-height: 1.4;
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -1501,12 +1468,9 @@ button, input, select, textarea {
    RESPONSIVE DESIGN (TABLET & MOBILE)
    ========================================================================== */
 @media (max-width: 1080px) {
-  .advantages-grid-modern {
+  .advantages-compact-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .advantages-trust-bar {
-    padding: 16px 20px;
+    gap: 14px;
   }
   .models-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1567,18 +1531,12 @@ button, input, select, textarea {
 }
 
 @media (max-width: 640px) {
-  .advantages-grid-modern {
+  .advantages-compact-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
-  .advantages-trust-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px;
-  }
-  .trust-divider {
-    display: none;
+  .advantages-compact-heading {
+    font-size: 1.45rem;
   }
   .models-grid {
     grid-template-columns: 1fr;

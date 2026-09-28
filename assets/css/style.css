@@ -3,7 +3,7 @@
    Светлый, лёгкий, воздушный стиль с заботой о садоводе
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Nunito:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --color-bg: #faf9f5;
@@ -22,7 +22,7 @@
   --color-shadow: rgba(43, 76, 56, 0.08);
 
   --font-base: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-hand: 'Caveat', cursive;
 
   --base-font-size: 17px;
@@ -440,21 +440,30 @@ button, input, select, textarea {
 }
 
 .hero-badge-tag {
-  display: inline-block;
-  font-family: var(--font-hand);
-  font-size: 1.45rem;
-  color: var(--color-primary);
-  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(45, 106, 79, 0.08);
+  border: 1px solid rgba(45, 106, 79, 0.18);
+  color: var(--color-primary-dark);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
   font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: 3.1rem;
-  line-height: 1.15;
+  font-size: 3.25rem;
+  line-height: 1.1;
   color: var(--color-primary-dark);
-  margin-bottom: 18px;
-  font-weight: 700;
+  margin-bottom: 20px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
 .hero-lead {
@@ -1062,24 +1071,34 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   TURNKEY ASSEMBLY & DELIVERY
+   TURNKEY ASSEMBLY & DELIVERY (Modern Zelenino / Wowdoma Style)
    ========================================================================== */
 .turnkey-section {
-  background: white;
+  margin: 50px 0;
+}
+
+.turnkey-card-modern {
+  background: #ffffff;
   border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: 0 10px 30px var(--color-shadow);
   border: 1px solid var(--color-border);
-  margin: 40px 0;
+  box-shadow: 0 16px 45px rgba(27, 67, 50, 0.07);
+  padding: 44px;
 }
 
 .turnkey-grid {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 46px;
+  align-items: center;
 }
 
 .turnkey-visual {
   position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 100%;
+  min-height: 460px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
   background: #f0f4f1;
 }
 
@@ -1087,47 +1106,160 @@ button, input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.turnkey-badge-floating {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-primary-dark);
+  z-index: 2;
+}
+
+.turnkey-badge-floating svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.turnkey-badge-top {
+  top: 20px;
+  left: 20px;
+}
+
+.turnkey-badge-bottom {
+  bottom: 20px;
+  right: 20px;
 }
 
 .turnkey-content {
-  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.turnkey-features-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 25px 0 30px;
+.turnkey-pill-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(45, 106, 79, 0.08);
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  color: var(--color-primary-dark);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  width: fit-content;
 }
 
-.turnkey-feat-item {
+.turnkey-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  line-height: 1.15;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.turnkey-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.turnkey-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.turnkey-step-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 0.88rem;
+  padding: 14px 20px;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.turnkey-feat-item svg {
-  width: 24px;
-  height: 24px;
+.turnkey-step-card:hover {
+  background: #ffffff;
+  border-color: var(--color-accent);
+}
+
+.turnkey-step-num {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 900;
   color: var(--color-primary);
+  background: rgba(45, 106, 79, 0.1);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.turnkey-feat-title {
+.turnkey-step-body {
+  flex: 1;
+}
+
+.turnkey-step-title {
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
   font-weight: 800;
   color: var(--color-primary-dark);
+  margin-bottom: 2px;
 }
 
-.turnkey-feat-desc {
+.turnkey-step-text {
+  font-size: 0.92rem;
   color: var(--color-text-muted);
-  font-size: 0.82rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.turnkey-action-wrap {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.turnkey-btn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.96rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+}
+
+.turnkey-hand-note {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  color: var(--color-text-main);
+  line-height: 1.2;
 }
 
 /* ==========================================================================
@@ -1563,6 +1695,14 @@ button, input, select, textarea {
   }
   .turnkey-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .turnkey-card-modern {
+    padding: 30px 24px;
+  }
+  .turnkey-visual {
+    min-height: 320px;
+    max-height: 400px;
   }
   .poly-reviews-grid {
     grid-template-columns: 1fr;
@@ -1655,7 +1795,28 @@ button, input, select, textarea {
   .footer-links-grid {
     grid-template-columns: 1fr;
   }
-  .turnkey-features-row {
-    grid-template-columns: 1fr;
+  .turnkey-card-modern {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
+  .turnkey-title {
+    font-size: 1.85rem;
+  }
+  .turnkey-visual {
+    min-height: 240px;
+    max-height: 280px;
+  }
+  .turnkey-badge-floating {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+  .turnkey-action-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .turnkey-btn {
+    text-align: center;
+    width: 100%;
   }
 }

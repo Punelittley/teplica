@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 7. Плавные анимации при скролле
   initScrollAnimations();
+
+  // 8. Слайдер готовых проектов
+  setupModelsSlider();
 });
 
 // Обновление контактов в DOM
@@ -356,5 +359,21 @@ function initScrollAnimations() {
 
   document.querySelectorAll("[data-aos]").forEach(el => {
     observer.observe(el);
+  });
+}
+
+// Слайдер проектов
+function setupModelsSlider() {
+  const prevBtn = document.getElementById("modelsPrevBtn");
+  const nextBtn = document.getElementById("modelsNextBtn");
+  const track = document.getElementById("modelsTrack");
+  if (!prevBtn || !nextBtn || !track) return;
+
+  nextBtn.addEventListener("click", () => {
+    track.scrollBy({ left: 320, behavior: "smooth" });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    track.scrollBy({ left: -320, behavior: "smooth" });
   });
 }

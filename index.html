@@ -333,99 +333,81 @@
     </div>
   </section>
 
-  <!-- Блок "Популярные модели" (Каталог) -->
+  <!-- Блок "Большая коллекция готовых проектов" (Каталог в стиле референса 1) -->
   <section class="section-padding">
     <div class="container">
-      <div class="section-head" data-aos="fade-up" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
-        <div>
-          <div class="section-label">Выберите свою теплицу</div>
-          <h2 class="section-title">Популярные модели</h2>
+      <div class="models-section-head" data-aos="fade-up">
+        <h2 class="models-section-title">БОЛЬШАЯ КОЛЛЕКЦИЯ ГОТОВЫХ ПРОЕКТОВ</h2>
+        <div class="models-slider-controls">
+          <button class="slider-arrow-btn prev" id="modelsPrevBtn" aria-label="Предыдущий проект">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="slider-arrow-btn next" id="modelsNextBtn" aria-label="Следующий проект">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
-        <a href="arochnye.html" style="font-weight: 700; color: var(--color-primary); display: inline-flex; align-items: center; gap: 5px;">
-          Смотреть все модели →
-        </a>
       </div>
 
-      <div class="models-grid">
-        <!-- Модель 1: Арочные -->
-        <div class="model-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="model-img-wrapper">
-            <span class="model-badge">Хит продаж</span>
-            <img src="assets/images/greenhouse_arch.jpg" alt="Арочные теплицы из поликарбоната" loading="lazy">
-          </div>
-          <div class="model-content">
-            <h3 class="model-name">Арочные теплицы</h3>
-            <p class="model-desc">Классика, проверенная временем. Идеальны для ранних огурцов, томатов и зелени на даче.</p>
-            <ul class="model-specs">
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Оцинкованный профиль 20х20 или 40х20</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> 2 двери и 2 форточки для проветривания</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Длина от 4 до 12 метров</li>
-            </ul>
-            <div class="model-price-box">
-              <div>
-                <span class="price-label">Цена от</span>
-                <span class="price-value">21 900 ₽</span>
-              </div>
-              <a href="arochnye.html" class="model-link">Подробнее →</a>
+      <div class="models-slider-track" id="modelsTrack">
+        <!-- Проект 1: Арочные -->
+        <div class="project-card-dark" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/images/greenhouse_arch.jpg" alt="Арочная теплица" class="project-card-bg" loading="lazy">
+          <div class="project-card-overlay"></div>
+          <span class="project-card-badge">Хит продаж</span>
+          <div class="project-card-content">
+            <div class="project-card-info">
+              <h3 class="project-card-title">АРОЧНАЯ ТЕПЛИЦА</h3>
+              <div class="project-card-specs">от 3х4 м • сталь 20х20 мм</div>
+              <div class="project-card-price">от 21 900 ₽</div>
             </div>
+            <button class="project-calc-btn" data-open-modal data-subject="Смета: Арочная теплица" data-title="Рассчитать смету" data-subtitle="Арочная теплица под ключ с доставкой и сборкой">
+              Рассчитать смету
+            </button>
           </div>
         </div>
 
-        <!-- Модель 2: Каплевидные -->
-        <div class="model-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="model-img-wrapper">
-            <span class="model-badge" style="background: #2b9348;">Выбор садоводов</span>
-            <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Каплевидные теплицы Стрела" loading="lazy">
-          </div>
-          <div class="model-content">
-            <h3 class="model-name">Каплевидные теплицы</h3>
-            <p class="model-desc">Эстетика и прочность. Острый конек заставляет снег сползать самостоятельно. Зимой можно не чистить!</p>
-            <ul class="model-specs">
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Стрельчатый конек сходит любой снег</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Высота 2.3 метра для высокорослых сортов</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Повышенная ветроустойчивость</li>
-            </ul>
-            <div class="model-price-box">
-              <div>
-                <span class="price-label">Цена от</span>
-                <span class="price-value">24 900 ₽</span>
-              </div>
-              <a href="kaplevidnye.html" class="model-link">Подробнее →</a>
+        <!-- Проект 2: Каплевидные -->
+        <div class="project-card-dark" data-aos="fade-up" data-aos-delay="200">
+          <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Каплевидная теплица" class="project-card-bg" loading="lazy">
+          <div class="project-card-overlay"></div>
+          <span class="project-card-badge">Снег сходит сам</span>
+          <div class="project-card-content">
+            <div class="project-card-info">
+              <h3 class="project-card-title">КАПЛЕВИДНАЯ ТРЕШКА</h3>
+              <div class="project-card-specs">высота 2.3 м • стрельчатая</div>
+              <div class="project-card-price">от 24 900 ₽</div>
             </div>
+            <button class="project-calc-btn" data-open-modal data-subject="Смета: Каплевидная теплица" data-title="Рассчитать смету" data-subtitle="Каплевидная теплица с усиленным каркасом">
+              Рассчитать смету
+            </button>
           </div>
         </div>
 
-        <!-- Модель 3: Грядки -->
-        <div class="model-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="model-img-wrapper">
-            <span class="model-badge" style="background: #e29578;">Для удобства спины</span>
-            <img src="assets/images/mockup_gryadki.jpg" alt="Оцинкованные грядки и клумбы" loading="lazy">
-          </div>
-          <div class="model-content">
-            <h3 class="model-name">Оцинкованные грядки</h3>
-            <p class="model-desc">Удобные, долговечные, эстетичные. Земля не осыпается, спина отдыхает, сорняки не прорастают.</p>
-            <ul class="model-specs">
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Высота борта 15, 20 или 35 см</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Завальцованные края (безопасно для рук)</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Срок службы более 15 лет</li>
-            </ul>
-            <div class="model-price-box">
-              <div>
-                <span class="price-label">Цена от</span>
-                <span class="price-value">1 450 ₽</span>
-              </div>
-              <a href="gryadki.html" class="model-link">Подробнее →</a>
+        <!-- Проект 3: Оцинкованные грядки -->
+        <div class="project-card-dark" data-aos="fade-up" data-aos-delay="300">
+          <img src="assets/images/mockup_gryadki.jpg" alt="Оцинкованные грядки" class="project-card-bg" loading="lazy">
+          <div class="project-card-overlay"></div>
+          <span class="project-card-badge">Для здоровья спины</span>
+          <div class="project-card-content">
+            <div class="project-card-info">
+              <h3 class="project-card-title">ОЦИНКОВАННЫЕ ГРЯДКИ</h3>
+              <div class="project-card-specs">борт 15/20/35 см • не гниют</div>
+              <div class="project-card-price">от 1 450 ₽</div>
             </div>
+            <button class="project-calc-btn" data-open-modal data-subject="Смета: Оцинкованные грядки" data-title="Рассчитать смету" data-subtitle="Комплект оцинкованных грядок для вашей теплицы">
+              Рассчитать смету
+            </button>
           </div>
         </div>
 
-        <!-- Карточка 4: Сердечное пожелание садоводам -->
-        <div class="wish-card" data-aos="fade-up" data-aos-delay="400">
+        <!-- Карточка 4: Сердечное пожелание садоводам (сохранена стилистика из скриншота 3) -->
+        <div class="wish-card-slot" data-aos="fade-up" data-aos-delay="400">
           <div class="hand-note">
-            «Пусть ваш урожай радует!» <br><span class="hand-note-heart">♡</span>
+            «Пусть ваш<br>урожай радует!»
           </div>
+          <div class="hand-note-heart">♡</div>
           <img src="assets/images/mockup_flowers.jpg" alt="Цветы и ромашки" class="wish-flowers-img" loading="lazy">
-          <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 15px;">
+          <p class="wish-desc">
             Создаем уют на вашей даче с душевной заботой и вниманием к каждой детали
           </p>
         </div>

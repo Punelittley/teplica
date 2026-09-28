@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <g transform="translate(6, 6)">
+    <!-- Leaf badge -->
+    <path d="M14 42C14 26 26 12 42 10c2 16-10 32-28 32z" fill="#386641"/>
+    <path d="M16 40c9-9 19-19 26-26" stroke="#f4f8f4" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M23 33c5-5 9-9 13-13" stroke="#e9f5ed" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="42" cy="12" r="3.5" fill="#a7c957"/>
+  </g>
+  <text x="64" y="30" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="22" fill="#1b4332">Теплицы 76</text>
+  <text x="64" y="47" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="500" font-size="12.5" fill="#52796f" letter-spacing="0.2">С заботой о вашем урожае</text>
+</svg>

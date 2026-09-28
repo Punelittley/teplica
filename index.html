@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Теплицы 76 — Теплицы из поликарбоната от производителя в Ярославле</title>
+  <meta name="description" content="Производство и продажа надежных теплиц из поликарбоната, оцинкованных грядок в Ярославле и области. Доставка и сборка под ключ. Гарантия до 10 лет.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Теплицы 76 — Надежные теплицы от производителя">
+  <meta property="og:description" content="С заботой о вашем урожае. Доставка и сборка под ключ по Ярославлю и области.">
+  <meta property="og:image" content="assets/images/hero_gardener.jpg">
+  <meta property="og:type" content="website">
+</head>
+<body>
+
+  <!-- Верхняя строка / Доступность -->
+  <div class="top-notice">
+    <div class="container top-notice-inner">
+      <div class="top-notice-badge">
+        <span>🌱</span>
+        <span class="js-promo-text">Весенняя акция: бесплатное хранение теплицы на складе до начала дачного сезона!</span>
+      </div>
+      <div class="top-controls">
+        <button type="button" class="font-size-btn" id="fontSizeToggleBtn" title="Изменить размер текста для комфортного чтения">
+          <span>🔍</span> Крупный шрифт
+        </button>
+        <span style="opacity: 0.4;">|</span>
+        <a href="admin/index.html" style="font-size: 0.8rem; color: var(--color-text-muted);">Панель управления</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Шапка сайта -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-wrapper">
+        <img src="assets/images/favicon.svg" alt="Теплицы 76" class="logo-img">
+        <div>
+          <div class="logo-text-title">Теплицы 76</div>
+          <div class="logo-text-sub">С заботой о вашем урожае</div>
+        </div>
+      </a>
+
+      <!-- Меню -->
+      <nav class="site-nav" id="siteNav">
+        <a href="index.html" class="nav-link active">Главная</a>
+        
+        <div class="nav-item-dropdown">
+          <a href="arochnye.html" class="nav-link dropdown-toggle">
+            Теплицы 
+            <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
+            <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
+          </div>
+        </div>
+
+        <a href="gryadki.html" class="nav-link">Грядки</a>
+        <a href="dostavka-sborka.html" class="nav-link">Доставка и сборка</a>
+        <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
+        <a href="otzyvy.html" class="nav-link">Отзывы</a>
+        <a href="kontakty.html" class="nav-link">Контакты</a>
+      </nav>
+
+      <!-- Телефон и кнопка -->
+      <div class="header-contacts">
+        <div class="contact-phone-block">
+          <a href="tel:+74852123456" class="phone-link js-phone-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/>
+            </svg>
+            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+          </a>
+          <div class="phone-hours js-hours-text">Звоните ежедневно с 8:00 до 20:00</div>
+        </div>
+
+        <button class="header-btn" data-open-modal data-subject="Заказ звонка из шапки" data-title="Заказать обратный звонок" data-subtitle="Мы перезвоним и вежливо ответим на любые вопросы">
+          Заказать звонок
+        </button>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Первый экран / Hero -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-text-col">
+        <span class="hero-badge-tag">Теплицы из поликарбоната от производителя</span>
+        <h1 class="hero-title">Ваш урожай начинается здесь!</h1>
+        <p class="hero-lead">
+          Надежные теплицы из сверхпрочной оцинкованной трубы и плотного поликарбоната с защитой от ультрафиолета. Созданы с любовью для тех, кто бережет здоровье и ценит щедрый урожай.
+        </p>
+
+        <!-- 5 преимуществ в строке -->
+        <div class="hero-badges-row">
+          <div class="hero-badge-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            <span>Собственное производство</span>
+          </div>
+          <div class="hero-badge-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3 4.42 0 8-3.58 8-8 0-.36-.03-.72-.08-1.07.72-.25 1.4-.6 2.08-1.03V8z"/></svg>
+            <span>Прочный каркас</span>
+          </div>
+          <div class="hero-badge-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>УФ-защита</span>
+          </div>
+          <div class="hero-badge-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            <span>Монтаж под ключ</span>
+          </div>
+          <div class="hero-badge-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>Гарантия до 10 лет</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#calculator" class="btn btn-primary">
+            Выбрать теплицу
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button type="button" class="btn-video-watch" id="heroVideoBtn">
+            <div class="video-play-icon">▶</div>
+            <span>Посмотрите видео о нас</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Фото героини и рукописная цитата -->
+      <div class="hero-visual">
+        <div class="hero-image-card">
+          <img src="assets/images/hero_gardener.jpg" alt="Счастливый садовод с урожаем в теплице" width="700" height="525" fetchpriority="high">
+        </div>
+        <div class="hero-floating-bubble">
+          <div class="hand-note">
+            «Свой огород — это счастье!» <span class="hand-note-heart">♡</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Блок "Наши преимущества" -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-head" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <div class="section-label">Почему выбирают нас</div>
+          <h2 class="section-title">Наши преимущества</h2>
+        </div>
+        <p class="section-desc">
+          Мы создаем теплицы, в которых вам будет комфортно и приятно работать, а растения будут радовать вас обильным и ранним урожаем.
+        </p>
+      </div>
+
+      <div class="advantages-grid">
+        <!-- 1 -->
+        <div class="advantage-card">
+          <div class="advantage-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M9 3l3-2 3 2v4H9V3z"/></svg>
+          </div>
+          <h3 class="advantage-title">Собственное производство</h3>
+          <p class="advantage-text">Контроль качества на каждом этапе резки и гибки профиля. Честные цены без наценок посредников.</p>
+          <div class="card-arrow-link">→</div>
+        </div>
+
+        <!-- 2 -->
+        <div class="advantage-card">
+          <div class="advantage-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M15 21V9"/></svg>
+          </div>
+          <h3 class="advantage-title">Прочный каркас</h3>
+          <p class="advantage-text">Оцинкованная замкнутая сталь 20х20 и 40х20 мм. Не ржавеет, легко выдерживает снеговые шапки до 240 кг/м².</p>
+          <div class="card-arrow-link">→</div>
+        </div>
+
+        <!-- 3 -->
+        <div class="advantage-card">
+          <div class="advantage-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <h3 class="advantage-title">Поликарбонат с УФ-защитой</h3>
+          <p class="advantage-text">Специальный УФ-слой 40 мкм. Не трескается, не желтеет от солнца и сохраняет светопропускание до 10-15 лет.</p>
+          <div class="card-arrow-link">→</div>
+        </div>
+
+        <!-- 4 -->
+        <div class="advantage-card">
+          <div class="advantage-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3 class="advantage-title">Доставка и монтаж</h3>
+          <p class="advantage-text">Привезем своим транспортом прямо на дачный участок в Ярославле и по области. Соберем под ключ за 3 часа.</p>
+          <div class="card-arrow-link">→</div>
+        </div>
+
+        <!-- 5 -->
+        <div class="advantage-card">
+          <div class="advantage-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="advantage-title">Гарантия до 10 лет</h3>
+          <p class="advantage-text">Официальная заводская гарантия по договору на каркас и поликарбонат. Спокойствие на многие дачные сезоны.</p>
+          <div class="card-arrow-link">→</div>
+        </div>
+
+        <!-- 6 -->
+        <div class="advantage-card">
+          <div class="advantage-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h3 class="advantage-title">Забота о клиентах</h3>
+          <p class="advantage-text">По-человечески поможем выбрать размер, подскажем лучший грунт и удобное расположение на участке.</p>
+          <div class="card-arrow-link">→</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Интерактивный калькулятор теплицы -->
+  <section class="section-padding" id="calculator" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <div class="section-head text-center" style="text-align: center; max-width: 700px; margin: 0 auto 35px;">
+        <div class="section-label">Простой и прозрачный расчет</div>
+        <h2 class="section-title">Калькулятор вашей идеальной теплицы</h2>
+        <p class="section-desc" style="margin: 8px auto 0;">
+          Выберите форму, длину и нужные опции — калькулятор сразу покажет честную фабричную цену без скрытых доплат.
+        </p>
+      </div>
+
+      <div class="calc-section" id="greenhouseCalculator">
+        <div class="calc-grid">
+          <!-- Левая колонка параметров -->
+          <div class="calc-controls-col">
+            <!-- 1. Форма -->
+            <div class="calc-field-group">
+              <label class="calc-label">1. Форма каркаса:</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn active" data-calc-type="arch">
+                  🌱 Арочная (Классика)
+                </button>
+                <button type="button" class="calc-option-btn" data-calc-type="drop">
+                  💧 Каплевидная (Снег сходит сам)
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Длина -->
+            <div class="calc-field-group">
+              <label class="calc-label">2. Длина теплицы (ширина всегда 3.0 м):</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn" data-calc-length="4m">3 х 4 метра</button>
+                <button type="button" class="calc-option-btn active" data-calc-length="6m">3 х 6 метров (Хит)</button>
+                <button type="button" class="calc-option-btn" data-calc-length="8m">3 х 8 метров</button>
+                <button type="button" class="calc-option-btn" data-calc-length="10m">3 х 10 метров</button>
+              </div>
+            </div>
+
+            <!-- 3. Шаг дуг -->
+            <div class="calc-field-group">
+              <label class="calc-label">3. Шаг между дугами каркаса:</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn active" data-calc-step="100">Стандартный (1 метр)</button>
+                <button type="button" class="calc-option-btn" data-calc-step="65">Усиленный (0.65 м) +2 500 ₽</button>
+              </div>
+            </div>
+
+            <!-- 4. Поликарбонат -->
+            <div class="calc-field-group">
+              <label class="calc-label">4. Поликарбонат с защитой от ультрафиолета:</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn active" data-calc-poly="eco4">4 мм Стандарт (с УФ-слоем)</button>
+                <button type="button" class="calc-option-btn" data-calc-poly="prem4">4 мм Премиум повышенной плотности</button>
+                <button type="button" class="calc-option-btn" data-calc-poly="prem6">6 мм Зимний усиленный</button>
+              </div>
+            </div>
+
+            <!-- 5. Дополнительно -->
+            <div class="calc-field-group">
+              <label class="calc-label">5. Дополнительные опции для долговечности:</label>
+              <label class="calc-checkbox-label">
+                <input type="checkbox" id="calcOptionTimber">
+                <span>Пропитанный антисептиком брус 100х100 под основание (рекомендуется)</span>
+              </label>
+              <label class="calc-checkbox-label">
+                <input type="checkbox" id="calcOptionAssembly" checked>
+                <span>Профессиональная сборка нашими мастерами на участке</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Правая колонка сметы -->
+          <div class="calc-summary-card">
+            <div>
+              <div class="calc-summary-title">Комплектация вашего заказа:</div>
+              <ul class="calc-breakdown-list">
+                <li class="calc-breakdown-item">
+                  <span>Модель:</span>
+                  <strong id="calcBreakdownType">Арочная теплица</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Размер:</span>
+                  <strong id="calcBreakdownSize">3х6 метров</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Шаг дуг:</span>
+                  <strong id="calcBreakdownStep">Шаг 1 метр</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Покрытие:</span>
+                  <strong id="calcBreakdownPoly">4 мм с УФ-защитой</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Доп. услуги:</span>
+                  <strong id="calcBreakdownExtra">Сборка мастерами</strong>
+                </li>
+                <li class="calc-breakdown-item" style="color: var(--color-primary); font-weight: 700;">
+                  <span>Подарок к заказу:</span>
+                  <span>2 форточки + крепеж + термошайбы</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="calc-total-box">
+              <div class="calc-total-label">Стоимость со скидкой производителя:</div>
+              <div style="text-decoration: line-through; color: #a0aab2; font-size: 1.1rem; font-weight: 600;" id="calcSumOld">35 500 ₽</div>
+              <div class="calc-total-sum" id="calcSumTotal">31 900 ₽</div>
+              
+              <button class="btn btn-primary" id="calcSubmitBtn" data-open-modal data-title="Зафиксировать цену по акции" data-subtitle="Мы забронируем за вами теплицу со скидкой и подарками" style="width: 100%; margin-top: 15px;">
+                Зафиксировать скидку и подарок →
+              </button>
+              <div style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center; margin-top: 8px;">
+                Оплата только после доставки и осмотра теплицы
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Блок "Популярные модели" (Каталог) -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-head" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <div class="section-label">Выберите свою теплицу</div>
+          <h2 class="section-title">Популярные модели</h2>
+        </div>
+        <a href="arochnye.html" style="font-weight: 700; color: var(--color-primary); display: inline-flex; align-items: center; gap: 5px;">
+          Смотреть все модели →
+        </a>
+      </div>
+
+      <div class="models-grid">
+        <!-- Модель 1: Арочные -->
+        <div class="model-card">
+          <div class="model-img-wrapper">
+            <span class="model-badge">Хит продаж</span>
+            <img src="assets/images/greenhouse_arch.jpg" alt="Арочные теплицы из поликарбоната" loading="lazy">
+          </div>
+          <div class="model-content">
+            <h3 class="model-name">Арочные теплицы</h3>
+            <p class="model-desc">Классика, проверенная временем. Идеальны для ранних огурцов, томатов и зелени на даче.</p>
+            <ul class="model-specs">
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Оцинкованный профиль 20х20 или 40х20</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> 2 двери и 2 форточки для проветривания</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Длина от 4 до 12 метров</li>
+            </ul>
+            <div class="model-price-box">
+              <div>
+                <span class="price-label">Цена от</span>
+                <span class="price-value">21 900 ₽</span>
+              </div>
+              <a href="arochnye.html" class="model-link">Подробнее →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Модель 2: Каплевидные -->
+        <div class="model-card">
+          <div class="model-img-wrapper">
+            <span class="model-badge" style="background: #2b9348;">Выбор садоводов</span>
+            <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Каплевидные теплицы Стрела" loading="lazy">
+          </div>
+          <div class="model-content">
+            <h3 class="model-name">Каплевидные теплицы</h3>
+            <p class="model-desc">Эстетика и прочность. Острый конек заставляет снег сползать самостоятельно. Зимой можно не чистить!</p>
+            <ul class="model-specs">
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Стрельчатый конек сходит любой снег</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Высота 2.3 метра для высокорослых сортов</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Повышенная ветроустойчивость</li>
+            </ul>
+            <div class="model-price-box">
+              <div>
+                <span class="price-label">Цена от</span>
+                <span class="price-value">24 900 ₽</span>
+              </div>
+              <a href="kaplevidnye.html" class="model-link">Подробнее →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Модель 3: Грядки -->
+        <div class="model-card">
+          <div class="model-img-wrapper">
+            <span class="model-badge" style="background: #e29578;">Для удобства спины</span>
+            <img src="assets/images/mockup_gryadki.jpg" alt="Оцинкованные грядки и клумбы" loading="lazy">
+          </div>
+          <div class="model-content">
+            <h3 class="model-name">Оцинкованные грядки</h3>
+            <p class="model-desc">Удобные, долговечные, эстетичные. Земля не осыпается, спина отдыхает, сорняки не прорастают.</p>
+            <ul class="model-specs">
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Высота борта 15, 20 или 35 см</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Завальцованные края (безопасно для рук)</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Срок службы более 15 лет</li>
+            </ul>
+            <div class="model-price-box">
+              <div>
+                <span class="price-label">Цена от</span>
+                <span class="price-value">1 450 ₽</span>
+              </div>
+              <a href="gryadki.html" class="model-link">Подробнее →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 4: Сердечное пожелание садоводам -->
+        <div class="wish-card">
+          <div class="hand-note">
+            «Пусть ваш урожай радует!» <br><span class="hand-note-heart">♡</span>
+          </div>
+          <img src="assets/images/mockup_flowers.jpg" alt="Цветы и ромашки" class="wish-flowers-img" loading="lazy">
+          <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 15px;">
+            Создаем уют на вашей даче с душевной заботой и вниманием к каждой детали
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Доставка и сборка "Теплица под ключ" -->
+  <section class="container">
+    <div class="turnkey-section">
+      <div class="turnkey-grid">
+        <div class="turnkey-visual">
+          <img src="assets/images/mockup_install.jpg" alt="Бригада монтажников собирает теплицу под ключ" loading="lazy">
+        </div>
+        <div class="turnkey-content">
+          <div class="section-label">Доставка и сборка</div>
+          <h2 class="section-title">Теплица под ключ</h2>
+          <p class="section-desc">
+            Мы привезем теплицу в удобный для вас день и аккуратно соберем ее на вашем дачном участке. Вам не придется носить тяжести и разбираться со схемами!
+          </p>
+
+          <div class="turnkey-features-row">
+            <div class="turnkey-feat-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <div class="turnkey-feat-title">Доставка по области</div>
+              <div class="turnkey-feat-desc">По Ярославлю, Рыбинску, Тутаеву и всем СНТ</div>
+            </div>
+            <div class="turnkey-feat-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              <div class="turnkey-feat-title">Опытные сборщики</div>
+              <div class="turnkey-feat-desc">Аккуратно и быстро смонтируют за 3-4 часа</div>
+            </div>
+            <div class="turnkey-feat-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div class="turnkey-feat-title">Договор и гарантия</div>
+              <div class="turnkey-feat-desc">Никаких предоплат — оплата по факту сборки</div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <a href="dostavka-sborka.html" class="btn btn-primary">Узнать стоимость доставки →</a>
+            <div class="hand-note" style="font-size: 1.35rem;">
+              Вам останется только наслаждаться результатом! <span class="hand-note-heart">♡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Сотовый поликарбонат и Отзывы -->
+  <section class="section-padding">
+    <div class="container poly-reviews-grid">
+      <!-- Поликарбонат -->
+      <div class="poly-banner-card">
+        <div class="poly-seal-badge">
+          <span>Гарантия</span>
+          <span class="poly-seal-years">10</span>
+          <span>лет</span>
+        </div>
+
+        <div>
+          <div class="section-label">Сотовый поликарбонат</div>
+          <h2 class="section-title" style="font-size: 2rem;">Надежная защита для ваших растений</h2>
+          <p class="section-desc">
+            Используем только первичный сертифицированный поликарбонат с нанесением защитного слоя от жестких солнечных лучей методом коэкструзии.
+          </p>
+
+          <ul class="poly-feature-bullets">
+            <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Высокая светопроницаемость до 86% без ожогов листьев</li>
+            <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Надежная УФ-защита от солнца — не желтеет и не крошится</li>
+            <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Морозостойкость и прочность к крупному граду</li>
+            <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Толщины 4 мм и 6 мм в наличии на складе</li>
+          </ul>
+        </div>
+
+        <div>
+          <a href="polikarbonat.html" class="btn btn-primary">Подробнее о поликарбонате →</a>
+        </div>
+      </div>
+
+      <!-- Отзыв садовода -->
+      <div class="review-card-wrapper">
+        <div class="section-label">Слово нашим садоводам</div>
+        <div class="review-quote">
+          «Теплица отличная! Заказывали арочную 3х6 с установкой на брус в поселок Заволжье. Приехали точно в назначенное время, ребята вежливые, не курили на участке, собрали буквально за 3.5 часа! Помидоры и перцы в этом году созрели на две недели раньше соседей. Очень довольна!»
+        </div>
+
+        <div>
+          <div class="review-author-row">
+            <img src="assets/images/mockup_reviewer.jpg" alt="Наталья Петровна" class="review-avatar">
+            <div>
+              <div class="review-author-name">Наталья Петровна</div>
+              <div class="review-author-city">г. Ярославль, СНТ «Садовод»</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="otzyvy.html" style="font-weight: 700; color: var(--color-primary); font-size: 0.95rem;">
+              Читать все 84 отзыва →
+            </a>
+            <button class="btn btn-light" data-open-modal data-subject="Хочу оставить отзыв" data-title="Оставить отзыв" data-subtitle="Поделитесь вашим урожаем!">
+              Оставить отзыв
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-row">
+        <!-- Логотип -->
+        <a href="index.html" class="logo-wrapper">
+          <img src="assets/images/favicon.svg" alt="Теплицы 76" class="logo-img">
+          <div>
+            <div class="logo-text-title">Теплицы 76</div>
+            <div class="logo-text-sub">С заботой о вашем урожае</div>
+          </div>
+        </a>
+
+        <!-- Рукописный слоган -->
+        <div style="text-align: center;">
+          <div class="hand-note" style="font-size: 1.8rem; color: var(--color-primary-dark);">
+            Дачный сезон начинается с нас! <span class="hand-note-heart">♡</span>
+          </div>
+        </div>
+
+        <!-- Контакты и кнопка -->
+        <div style="text-align: right;">
+          <div class="phone-link js-phone-link" style="justify-content: flex-end;">
+            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+          </div>
+          <div class="phone-hours js-hours-text">Звоните с 8:00 до 20:00 без выходных</div>
+          <div style="font-size: 0.82rem; color: var(--color-text-muted); margin: 4px 0 10px;" class="js-address-text">
+            г. Ярославль, ул. Промышленная, д. 12
+          </div>
+          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера" data-title="Оставить заявку на консультацию">
+            Оставить заявку →
+          </button>
+        </div>
+      </div>
+
+      <!-- Меню ссылок футера -->
+      <div class="footer-links-grid">
+        <div>
+          <div class="footer-col-title">Каталог теплиц</div>
+          <ul class="footer-nav-list">
+            <li><a href="arochnye.html">Арочные теплицы</a></li>
+            <li><a href="kaplevidnye.html">Каплевидные теплицы</a></li>
+            <li><a href="arochnye.html#usil">Усиленные теплицы</a></li>
+            <li><a href="gryadki.html">Оцинкованные грядки</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Материалы и услуги</div>
+          <ul class="footer-nav-list">
+            <li><a href="polikarbonat.html">Сотовый поликарбонат</a></li>
+            <li><a href="dostavka-sborka.html">Доставка по области</a></li>
+            <li><a href="dostavka-sborka.html#sborka">Монтаж и сборка</a></li>
+            <li><a href="dostavka-sborka.html#brus">Фундамент из бруса</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Покупателю</div>
+          <ul class="footer-nav-list">
+            <li><a href="otzyvy.html">Фотографии и отзывы</a></li>
+            <li><a href="#calculator">Калькулятор стоимости</a></li>
+            <li><a href="kontakty.html">Выставочная площадка</a></li>
+            <li><a href="admin/index.html">Вход для администратора</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Связь с нами</div>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 10px;">
+            Приезжайте на наше производство и выставочную площадку, чтобы лично оценить прочность каркаса!
+          </p>
+          <a href="https://vk.ru/tepliciotproizvoditelya76" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #4c75a3;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15.07 2H8.93C4.33 2 2 4.33 2 8.93v6.14C2 19.67 4.33 22 8.93 22h6.14c4.6 0 6.93-2.33 6.93-6.93V8.93C22 4.33 19.67 2 15.07 2zm3.38 13.91h-1.57c-.59 0-.77-.47-1.83-1.53-.93-.9-1.34-1.02-1.57-1.02-.32 0-.41.09-.41.53v1.44c0 .38-.12.58-1.12.58-1.65 0-3.48-.99-4.76-2.85-1.94-2.73-2.47-4.79-2.47-5.21 0-.23.09-.45.53-.45h1.57c.4 0 .55.18.7.6 0.77 2.23 2.06 4.19 2.59 4.19.2 0 .29-.09.29-.6V9.82c-.06-1.1-.64-1.19-.64-1.58 0-.19.16-.38.41-.38h2.46c.35 0 .47.18.47.6v3.23c0 .35.15.47.26.47.2 0 .38-.12.76-.5 1.19-1.33 2.04-3.37 2.04-3.37.11-.23.32-.47.72-.47h1.57c.47 0 .57.24.47.6-.26 1.19-2.76 4.74-2.88 4.93-.21.32-.29.47 0 .85.2.26.88.85 1.33 1.37.82.93 1.45 1.72 1.62 2.27.18.53-.09.79-.53.79z"/></svg>
+            Мы ВКонтакте
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copy">
+        <div>© 2026 Завод теплиц «Теплицы 76». Все права защищены. Производство в Ярославле.</div>
+        <div>Сайт оптимизирован для быстрой работы на компьютере и смартфоне</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модальное окно обратного звонка и расчета -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Закрыть">✕</button>
+      <div style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 6px;" id="modalTitle">
+        Заказ консультации
+      </div>
+      <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;" id="modalSubtitle">
+        Оставьте номер, наш мастер перезвонит и проконсультирует
+      </p>
+
+      <form class="js-lead-form">
+        <input type="hidden" name="subject" id="modalSubject" value="Заявка с сайта">
+
+        <div class="form-group">
+          <label class="form-label">Ваше имя:</label>
+          <input type="text" name="name" class="form-input" placeholder="Например: Надежда Ивановна" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Телефон для связи:</label>
+          <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Пожелания или вопрос (необязательно):</label>
+          <textarea name="comment" class="form-textarea" rows="3" placeholder="Например: нужна теплица 3х6 с доставкой в Тутаев"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+          Жду звонка мастера →
+        </button>
+        <div style="font-size: 0.78rem; color: var(--color-text-muted); text-align: center; margin-top: 10px;">
+          🔒 Ваши данные в безопасности и никогда не будут переданы третьим лицам
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Видео-модалка презентации производства -->
+  <div class="modal-overlay" id="videoModalOverlay">
+    <div class="modal-box" style="max-width: 680px; text-align: center;">
+      <button class="modal-close-btn" id="videoCloseBtn">✕</button>
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-primary-dark); margin-bottom: 12px;">
+        О нашем производстве теплиц
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 20px;">
+        Посмотрите, как мы изготавливаем каркасы из прочной оцинкованной стали на собственном высокоточном оборудовании.
+      </p>
+      
+      <!-- Интерактивное видео / имитация для демонстрации -->
+      <div style="position: relative; border-radius: 12px; overflow: hidden; background: #222; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+        <img src="assets/images/greenhouse_arch.jpg" alt="Производство" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.65;">
+        <div style="position: absolute; text-align: center; color: white; padding: 20px;">
+          <div style="width: 64px; height: 64px; background: rgba(45, 106, 79, 0.9); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 10px; cursor: pointer;">
+            ▶
+          </div>
+          <div style="font-weight: 700; font-size: 1.1rem;">Видеоэкскурсия по цеху «Теплицы 76»</div>
+          <div style="font-size: 0.85rem; opacity: 0.85;">Ярославль, ул. Промышленная, 12</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button class="btn btn-primary" data-open-modal data-subject="Запись на просмотр теплицы на выставочной площадке" data-title="Приехать на выставку">
+          Приехать и потрогать теплицу вживую →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Плавающая кнопка быстрой связи -->
+  <div class="floating-contact-btn" data-open-modal data-subject="Быстрый звонок с плавающей кнопки" title="Позвонить нам">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 00-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2a5 5 0 00-5-5v2a3 3 0 013 3z"/>
+    </svg>
+  </div>
+
+  <!-- Скрипты -->
+  <script src="assets/js/catalog-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

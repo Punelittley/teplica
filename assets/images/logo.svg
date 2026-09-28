@@ -1,11 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
-  <g transform="translate(6, 6)">
-    <!-- Leaf badge -->
-    <path d="M14 42C14 26 26 12 42 10c2 16-10 32-28 32z" fill="#386641"/>
-    <path d="M16 40c9-9 19-19 26-26" stroke="#f4f8f4" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M23 33c5-5 9-9 13-13" stroke="#e9f5ed" stroke-width="1.8" stroke-linecap="round"/>
-    <circle cx="42" cy="12" r="3.5" fill="#a7c957"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 64" fill="none">
+  <!-- Green Badge Emblem -->
+  <g transform="translate(2, 2)">
+    <rect width="60" height="60" rx="14" fill="#589e52"/>
+    <!-- Greenhouse contour -->
+    <path d="M 14 46 L 14 26 L 30 15 L 46 26 L 46 46 L 33.5 46 L 33.5 38 M 26.5 38 L 26.5 46 L 14 46" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Central stem -->
+    <path d="M 30 46 L 30 26" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Central Leaf -->
+    <path d="M 30 19 C 26.5 22.5 26.5 29 30 33 C 33.5 29 33.5 22.5 30 19 Z" fill="#ffffff"/>
+    <!-- Left Leaf -->
+    <path d="M 28.5 32.5 C 22 32.5 18.5 28.5 18.5 23.5 C 24 24 28.5 28 28.5 32.5 Z" fill="#ffffff"/>
+    <!-- Right Leaf -->
+    <path d="M 31.5 32.5 C 38 32.5 41.5 28.5 41.5 23.5 C 36 24 31.5 28 31.5 32.5 Z" fill="#ffffff"/>
   </g>
-  <text x="64" y="30" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="22" fill="#1b4332">Теплицы 76</text>
-  <text x="64" y="47" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="500" font-size="12.5" fill="#52796f" letter-spacing="0.2">С заботой о вашем урожае</text>
+
+  <!-- Typography -->
+  <text x="74" y="27" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="20" fill="#1b4332" letter-spacing="1.2">ТЕПЛИЦЫ</text>
+  <text x="74" y="46" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="18" fill="#589e52" letter-spacing="2">ТУТ</text>
+  <text x="135" y="44" font-family="'Nunito', 'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="11.5" fill="#607d6d">| от производителя</text>
 </svg>

@@ -111,26 +111,6 @@ function setupModals() {
       if (e.target === modalOverlay) closeModal();
     });
   }
-
-  // Видео модалка
-  const videoBtn = document.getElementById("heroVideoBtn");
-  const videoModal = document.getElementById("videoModalOverlay");
-  const videoCloseBtn = document.getElementById("videoCloseBtn");
-
-  if (videoBtn && videoModal) {
-    videoBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      videoModal.classList.add("active");
-    });
-  }
-  if (videoCloseBtn && videoModal) {
-    videoCloseBtn.addEventListener("click", () => videoModal.classList.remove("active"));
-  }
-  if (videoModal) {
-    videoModal.addEventListener("click", (e) => {
-      if (e.target === videoModal) videoModal.classList.remove("active");
-    });
-  }
 }
 
 // Калькулятор теплиц

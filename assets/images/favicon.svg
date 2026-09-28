@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <path d="M24 4C14 4 6 12 6 22c0 11 12 22 18 22s18-11 18-22c0-10-8-18-18-18z" fill="#2d6a4f" opacity="0.1"/>
-  <path d="M12 36C12 22 22 10 36 8c2 14-8 28-24 28z" fill="#386641"/>
-  <path d="M14 34c8-8 16-16 22-22" stroke="#e9f5ed" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M20 28c4-4 8-8 11-11" stroke="#e9f5ed" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M26 34c3-3 6-6 8-8" stroke="#a7c957" stroke-width="1.5" stroke-linecap="round"/>
-  <circle cx="36" cy="10" r="3" fill="#a7c957"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="28" fill="#589e52"/>
+  <!-- Greenhouse contour -->
+  <path d="M 28 92 L 28 52 L 60 30 L 92 52 L 92 92 L 67 92 L 67 76 M 53 76 L 53 92 L 28 92" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Central stem -->
+  <path d="M 60 92 L 60 52" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <!-- Central Leaf -->
+  <path d="M 60 38 C 53 45 53 58 60 66 C 67 58 67 45 60 38 Z" fill="#ffffff"/>
+  <!-- Left Leaf -->
+  <path d="M 57 65 C 44 65 37 57 37 47 C 48 48 57 56 57 65 Z" fill="#ffffff"/>
+  <!-- Right Leaf -->
+  <path d="M 63 65 C 76 65 83 57 83 47 C 72 48 63 56 63 65 Z" fill="#ffffff"/>
 </svg>

@@ -5,7 +5,7 @@
 
 const DEFAULT_CONFIG = {
   company: {
-    name: "Теплицы 76",
+    name: "Теплицы ТУТ",
     tagline: "С заботой о вашем урожае",
     phone: "+7 (4852) 123-45-67",
     phoneRaw: "+748521234567",

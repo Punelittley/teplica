@@ -313,8 +313,7 @@ button, input, select, textarea {
 
 .header-btn:hover {
   background: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(45, 106, 79, 0.35);
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.35);
 }
 
 .mobile-menu-btn {
@@ -352,7 +351,6 @@ button, input, select, textarea {
 
 .btn-primary:hover {
   background: var(--color-primary-dark);
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(45, 106, 79, 0.38);
 }
 
@@ -364,7 +362,6 @@ button, input, select, textarea {
 
 .btn-secondary:hover {
   background: var(--color-accent-soft);
-  transform: translateY(-2px);
 }
 
 .btn-light {
@@ -469,38 +466,6 @@ button, input, select, textarea {
   flex-wrap: wrap;
 }
 
-.btn-video-watch {
-  background: white;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  padding: 10px 20px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  color: var(--color-text-main);
-  box-shadow: 0 3px 12px var(--color-shadow);
-  transition: var(--transition);
-}
-
-.btn-video-watch:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  transform: translateY(-2px);
-}
-
-.video-play-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--color-accent-soft);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .hero-visual {
   position: relative;
 }
@@ -587,8 +552,7 @@ button, input, select, textarea {
 }
 
 .advantage-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(45, 106, 79, 0.14);
+  box-shadow: 0 6px 20px rgba(45, 106, 79, 0.12);
   border-color: var(--color-accent);
 }
 
@@ -665,8 +629,7 @@ button, input, select, textarea {
 }
 
 .model-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(45, 106, 79, 0.16);
+  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.14);
   border-color: var(--color-accent);
 }
 
@@ -681,11 +644,6 @@ button, input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.model-card:hover .model-img-wrapper img {
-  transform: scale(1.05);
 }
 
 .model-badge {
@@ -1303,7 +1261,6 @@ button, input, select, textarea {
 }
 
 .floating-contact-btn:hover {
-  transform: scale(1.08);
   background: var(--color-primary-dark);
 }
 

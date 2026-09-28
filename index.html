@@ -37,9 +37,9 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo-wrapper">
-        <img src="assets/images/logo.png" alt="Теплицы ТУТ" class="logo-img" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover;">
+        <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
         <div>
-          <div class="logo-text-title" style="letter-spacing: 0.5px;">ТЕПЛИЦЫ <span style="color: #489442;">ТУТ</span></div>
+          <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
           <div class="logo-text-sub">С заботой о вашем урожае</div>
         </div>
       </a>
@@ -92,7 +92,7 @@
   <!-- Первый экран / Hero -->
   <section class="hero-section">
     <div class="container hero-grid">
-      <div class="hero-text-col">
+      <div class="hero-text-col" data-aos="fade-right">
         <span class="hero-badge-tag">Теплицы из поликарбоната от производителя</span>
         <h1 class="hero-title">Ваш урожай начинается здесь!</h1>
         <p class="hero-lead">
@@ -132,7 +132,7 @@
       </div>
 
       <!-- Фото теплицы и рукописная цитата -->
-      <div class="hero-visual">
+      <div class="hero-visual" data-aos="fade-left">
         <div class="hero-image-card">
           <img src="assets/images/teplica.png" alt="Теплицы из поликарбоната от производителя" width="700" height="525" fetchpriority="high">
         </div>
@@ -145,78 +145,103 @@
     </div>
   </section>
 
-  <!-- Блок "Наши преимущества" -->
-  <section class="section-padding">
+  <!-- Блок преимуществ -->
+  <section class="section-padding" style="background: #ffffff;">
     <div class="container">
-      <div class="section-head" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
-        <div>
-          <div class="section-label">Почему выбирают нас</div>
-          <h2 class="section-title">Наши преимущества</h2>
-        </div>
-        <p class="section-desc">
-          Мы создаем теплицы, в которых вам будет комфортно и приятно работать, а растения будут радовать вас обильным и ранним урожаем.
+      <div class="section-head text-center" data-aos="fade-up" style="text-align: center; max-width: 680px; margin: 0 auto 36px;">
+        <div class="section-label">Почему выбирают нас</div>
+        <h2 class="section-title">Качество и забота в каждой детали</h2>
+        <p class="section-desc" style="margin: 8px auto 0;">
+          Создаем крепкие теплицы для богатого урожая — по честной цене производителя и с заботливой установкой на вашем участке.
         </p>
       </div>
 
-      <div class="advantages-grid">
-        <!-- 1 -->
-        <div class="advantage-card">
-          <div class="advantage-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M9 3l3-2 3 2v4H9V3z"/></svg>
+      <div class="advantages-grid-modern">
+        <!-- 1: Завод -->
+        <div class="adv-modern-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="adv-card-header">
+            <div class="adv-icon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20h20M4 20V8l6 4V8l6 4V4l4 4v12"/>
+              </svg>
+            </div>
+            <span class="adv-metric-pill">Без посредников</span>
           </div>
-          <h3 class="advantage-title">Собственное производство</h3>
-          <p class="advantage-text">Контроль качества на каждом этапе резки и гибки профиля. Честные цены без наценок посредников.</p>
-          <div class="card-arrow-link">→</div>
+          <h3 class="adv-title">Собственный завод</h3>
+          <p class="adv-desc">Честная фабричная цена без наценок магазинов. Контроль прочности и аккуратности каждого шва на производстве в Ярославле.</p>
         </div>
 
-        <!-- 2 -->
-        <div class="advantage-card">
-          <div class="advantage-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M15 21V9"/></svg>
+        <!-- 2: Каркас -->
+        <div class="adv-modern-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="adv-card-header">
+            <div class="adv-icon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M12 8v8M8 12h8"/>
+              </svg>
+            </div>
+            <span class="adv-metric-pill">240 кг/м²</span>
           </div>
-          <h3 class="advantage-title">Прочный каркас</h3>
-          <p class="advantage-text">Оцинкованная замкнутая сталь 20х20 и 40х20 мм. Не ржавеет, легко выдерживает снеговые шапки до 240 кг/м².</p>
-          <div class="card-arrow-link">→</div>
+          <h3 class="adv-title">Прочный каркас</h3>
+          <p class="adv-desc">Оцинкованная замкнутая сталь 20×20 и 40×20 мм. Не ржавеет в грунте и спокойно выдерживает суровые снежные шапки.</p>
         </div>
 
-        <!-- 3 -->
-        <div class="advantage-card">
-          <div class="advantage-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <!-- 3: Поликарбонат -->
+        <div class="adv-modern-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="adv-card-header">
+            <div class="adv-icon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              </svg>
+            </div>
+            <span class="adv-metric-pill">15 лет службы</span>
           </div>
-          <h3 class="advantage-title">Поликарбонат с УФ-защитой</h3>
-          <p class="advantage-text">Специальный УФ-слой 40 мкм. Не трескается, не желтеет от солнца и сохраняет светопропускание до 10-15 лет.</p>
-          <div class="card-arrow-link">→</div>
+          <h3 class="adv-title">УФ-поликарбонат</h3>
+          <p class="adv-desc">Защитный слой 40 мкм бережет растения от ожогов. Пластик не мутнеет, не трескается от града и служит до 15 лет.</p>
         </div>
 
-        <!-- 4 -->
-        <div class="advantage-card">
-          <div class="advantage-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <!-- 4: Монтаж -->
+        <div class="adv-modern-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="adv-card-header">
+            <div class="adv-icon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13" rx="1"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <span class="adv-metric-pill">За 3 часа</span>
           </div>
-          <h3 class="advantage-title">Доставка и монтаж</h3>
-          <p class="advantage-text">Привезем своим транспортом прямо на дачный участок в Ярославле и по области. Соберем под ключ за 3 часа.</p>
-          <div class="card-arrow-link">→</div>
+          <h3 class="adv-title">Сборка под ключ</h3>
+          <p class="adv-desc">Привезем своим транспортом прямо на дачный участок по области. Вежливые мастера соберут теплицу под ключ без мусора.</p>
         </div>
+      </div>
 
-        <!-- 5 -->
-        <div class="advantage-card">
-          <div class="advantage-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="advantage-title">Гарантия до 10 лет</h3>
-          <p class="advantage-text">Официальная заводская гарантия по договору на каркас и поликарбонат. Спокойствие на многие дачные сезоны.</p>
-          <div class="card-arrow-link">→</div>
+      <!-- Полоса гарантий и доверия -->
+      <div class="advantages-trust-bar" data-aos="fade-up" data-aos-delay="200">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+          <span>Официальный договор и гарантия до 10 лет</span>
         </div>
-
-        <!-- 6 -->
-        <div class="advantage-card">
-          <div class="advantage-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </div>
-          <h3 class="advantage-title">Забота о клиентах</h3>
-          <p class="advantage-text">По-человечески поможем выбрать размер, подскажем лучший грунт и удобное расположение на участке.</p>
-          <div class="card-arrow-link">→</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M12 8v8M8 12h8"/>
+          </svg>
+          <span>Оплата только при получении и проверке</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+          <span>Скидки пенсионерам и подарки к сезону</span>
         </div>
       </div>
     </div>
@@ -225,7 +250,7 @@
   <!-- Интерактивный калькулятор теплицы -->
   <section class="section-padding" id="calculator" style="background: var(--color-bg-alt);">
     <div class="container">
-      <div class="section-head text-center" style="text-align: center; max-width: 700px; margin: 0 auto 35px;">
+      <div class="section-head text-center" data-aos="fade-up" style="text-align: center; max-width: 700px; margin: 0 auto 35px;">
         <div class="section-label">Простой и прозрачный расчет</div>
         <h2 class="section-title">Калькулятор вашей идеальной теплицы</h2>
         <p class="section-desc" style="margin: 8px auto 0;">
@@ -233,7 +258,7 @@
         </p>
       </div>
 
-      <div class="calc-section" id="greenhouseCalculator">
+      <div class="calc-section" id="greenhouseCalculator" data-aos="zoom-in">
         <div class="calc-grid">
           <!-- Левая колонка параметров -->
           <div class="calc-controls-col">
@@ -347,7 +372,7 @@
   <!-- Блок "Популярные модели" (Каталог) -->
   <section class="section-padding">
     <div class="container">
-      <div class="section-head" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+      <div class="section-head" data-aos="fade-up" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
         <div>
           <div class="section-label">Выберите свою теплицу</div>
           <h2 class="section-title">Популярные модели</h2>
@@ -359,7 +384,7 @@
 
       <div class="models-grid">
         <!-- Модель 1: Арочные -->
-        <div class="model-card">
+        <div class="model-card" data-aos="fade-up" data-aos-delay="100">
           <div class="model-img-wrapper">
             <span class="model-badge">Хит продаж</span>
             <img src="assets/images/greenhouse_arch.jpg" alt="Арочные теплицы из поликарбоната" loading="lazy">
@@ -383,7 +408,7 @@
         </div>
 
         <!-- Модель 2: Каплевидные -->
-        <div class="model-card">
+        <div class="model-card" data-aos="fade-up" data-aos-delay="200">
           <div class="model-img-wrapper">
             <span class="model-badge" style="background: #2b9348;">Выбор садоводов</span>
             <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Каплевидные теплицы Стрела" loading="lazy">
@@ -407,7 +432,7 @@
         </div>
 
         <!-- Модель 3: Грядки -->
-        <div class="model-card">
+        <div class="model-card" data-aos="fade-up" data-aos-delay="300">
           <div class="model-img-wrapper">
             <span class="model-badge" style="background: #e29578;">Для удобства спины</span>
             <img src="assets/images/mockup_gryadki.jpg" alt="Оцинкованные грядки и клумбы" loading="lazy">
@@ -431,7 +456,7 @@
         </div>
 
         <!-- Карточка 4: Сердечное пожелание садоводам -->
-        <div class="wish-card">
+        <div class="wish-card" data-aos="fade-up" data-aos-delay="400">
           <div class="hand-note">
             «Пусть ваш урожай радует!» <br><span class="hand-note-heart">♡</span>
           </div>
@@ -446,7 +471,7 @@
 
   <!-- Доставка и сборка "Теплица под ключ" -->
   <section class="container">
-    <div class="turnkey-section">
+    <div class="turnkey-section" data-aos="fade-up">
       <div class="turnkey-grid">
         <div class="turnkey-visual">
           <img src="assets/images/mockup_install.jpg" alt="Бригада монтажников собирает теплицу под ключ" loading="lazy">
@@ -491,7 +516,7 @@
   <section class="section-padding">
     <div class="container poly-reviews-grid">
       <!-- Поликарбонат -->
-      <div class="poly-banner-card">
+      <div class="poly-banner-card" data-aos="fade-right">
         <div class="poly-seal-badge">
           <span>Гарантия</span>
           <span class="poly-seal-years">10</span>
@@ -519,7 +544,7 @@
       </div>
 
       <!-- Отзыв садовода -->
-      <div class="review-card-wrapper">
+      <div class="review-card-wrapper" data-aos="fade-left">
         <div class="section-label">Слово нашим садоводам</div>
         <div class="review-quote">
           «Теплица отличная! Заказывали арочную 3х6 с установкой на брус в поселок Заволжье. Приехали точно в назначенное время, ребята вежливые, не курили на участке, собрали буквально за 3.5 часа! Помидоры и перцы в этом году созрели на две недели раньше соседей. Очень довольна!»
@@ -554,12 +579,12 @@
       <div class="footer-top-row">
         <!-- Логотип -->
         <a href="index.html" class="logo-wrapper">
-          <img src="assets/images/logo.png" alt="Теплицы ТУТ" class="logo-img" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover;">
-          <div>
-            <div class="logo-text-title" style="letter-spacing: 0.5px;">ТЕПЛИЦЫ <span style="color: #489442;">ТУТ</span></div>
-            <div class="logo-text-sub">С заботой о вашем урожае</div>
-          </div>
-        </a>
+        <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+        <div>
+          <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
+          <div class="logo-text-sub">С заботой о вашем урожае</div>
+        </div>
+      </a>
 
         <!-- Рукописный слоган -->
         <div style="text-align: center;">

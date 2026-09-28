@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 6. Обработка всех форм заявок
   setupForms(config);
+
+  // 7. Плавные анимации при скролле
+  initScrollAnimations();
 });
 
 // Обновление контактов в DOM
@@ -329,4 +332,29 @@ function showToast(message) {
   setTimeout(() => {
     toast.classList.remove("show");
   }, 4500);
+}
+
+// Плавные анимации появления при скроллинге
+function initScrollAnimations() {
+  if (!("IntersectionObserver" in window)) {
+    // Фолбек для старых браузеров
+    document.querySelectorAll("[data-aos]").forEach(el => el.classList.add("aos-animate"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("aos-animate");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -40px 0px"
+  });
+
+  document.querySelectorAll("[data-aos]").forEach(el => {
+    observer.observe(el);
+  });
 }

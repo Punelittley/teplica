@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 8. Слайдер готовых проектов
   setupModelsSlider();
+
+  // 9. Счетчик "Успей к сезону"
+  setupSeasonCountdown();
 });
 
 // Обновление контактов в DOM
@@ -377,4 +380,54 @@ function setupModelsSlider() {
   prevBtn.addEventListener("click", () => {
     track.scrollBy({ left: -372, behavior: "smooth" });
   });
+}
+
+// 9. Счетчик "Успей к сезону"
+function setupSeasonCountdown() {
+  const daysEl = document.getElementById("seasonDays");
+  const hoursEl = document.getElementById("seasonHours");
+  const minEl = document.getElementById("seasonMinutes");
+  const secEl = document.getElementById("seasonSeconds");
+  if (!daysEl || !hoursEl || !minEl || !secEl) return;
+
+  function updateTimer() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    // Сезон высадки в закрытый грунт: 15 апреля
+    let target = new Date(currentYear, 3, 15, 0, 0, 0); // Месяц 3 = Апрель
+
+    // Если 15 апреля уже прошло в текущем году:
+    if (now > target) {
+      const springEnd = new Date(currentYear, 4, 31, 23, 59, 59); // 31 мая
+      if (now <= springEnd) {
+        // До окончания весенних посадок
+        target = springEnd;
+      } else {
+        // До сезона следующего года
+        target = new Date(currentYear + 1, 3, 15, 0, 0, 0);
+      }
+    }
+
+    const diff = target.getTime() - now.getTime();
+    if (diff <= 0) {
+      daysEl.textContent = "00";
+      hoursEl.textContent = "00";
+      minEl.textContent = "00";
+      secEl.textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    daysEl.textContent = String(days).padStart(2, "0");
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minEl.textContent = String(minutes).padStart(2, "0");
+    secEl.textContent = String(seconds).padStart(2, "0");
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
 }

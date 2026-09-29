@@ -1279,7 +1279,7 @@ button, input, select, textarea {
 /* Овощи ВНЕ блока: большие, сочные, объемные */
 .promo-outer-veg {
   position: absolute;
-  top: 10%;
+  top: 6%;
   z-index: 5;
   pointer-events: none;
   transition: transform 0.4s ease;
@@ -1289,18 +1289,18 @@ button, input, select, textarea {
   display: block;
   width: auto;
   height: auto;
-  max-height: 500px;
-  max-width: 420px;
+  max-height: 590px;
+  max-width: 490px;
   object-fit: contain;
-  filter: drop-shadow(0 24px 45px rgba(0, 0, 0, 0.22));
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.22));
 }
 
 .promo-outer-veg--left {
-  left: -370px;
+  left: -420px;
 }
 
 .promo-outer-veg--right {
-  right: -370px;
+  right: -420px;
 }
 
 .promo-banner-wrapper:hover .promo-outer-veg--left img {
@@ -1485,35 +1485,35 @@ button, input, select, textarea {
 }
 
 /* Адаптивность овощей и баннера */
-@media (max-width: 1600px) {
+@media (max-width: 1700px) {
+  .promo-outer-veg {
+    top: 10%;
+  }
+  .promo-outer-veg--left {
+    left: -330px;
+  }
+  .promo-outer-veg--right {
+    right: -330px;
+  }
+  .promo-outer-veg img {
+    max-height: 490px;
+    max-width: 410px;
+  }
+}
+
+@media (max-width: 1420px) {
   .promo-outer-veg {
     top: 14%;
   }
   .promo-outer-veg--left {
-    left: -290px;
+    left: -230px;
   }
   .promo-outer-veg--right {
-    right: -290px;
+    right: -230px;
   }
   .promo-outer-veg img {
-    max-height: 420px;
-    max-width: 350px;
-  }
-}
-
-@media (max-width: 1360px) {
-  .promo-outer-veg {
-    top: 18%;
-  }
-  .promo-outer-veg--left {
-    left: -190px;
-  }
-  .promo-outer-veg--right {
-    right: -190px;
-  }
-  .promo-outer-veg img {
-    max-height: 330px;
-    max-width: 270px;
+    max-height: 400px;
+    max-width: 330px;
   }
 }
 

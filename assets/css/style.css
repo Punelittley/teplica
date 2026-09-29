@@ -1542,6 +1542,16 @@ button, input, select, textarea {
   }
   .promo-banner-title {
     font-size: 1.75rem;
+    position: relative;
+    z-index: 3;
+  }
+  .promo-banner-btn-wrap {
+    position: relative;
+    z-index: 3;
+  }
+  .promo-banner-timer-box {
+    position: relative;
+    z-index: 3;
   }
   .promo-clock-num {
     font-size: 2.3rem;
@@ -1550,7 +1560,21 @@ button, input, select, textarea {
     font-size: 2rem;
   }
   .promo-outer-veg {
-    display: none;
+    display: block;
+    top: 15px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .promo-outer-veg--left {
+    left: -35px;
+  }
+  .promo-outer-veg--right {
+    right: -35px;
+  }
+  .promo-outer-veg img {
+    max-height: 140px;
+    max-width: 120px;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
   }
 }
 
@@ -1561,6 +1585,16 @@ button, input, select, textarea {
   }
   .promo-banner-title {
     font-size: 1.35rem;
+    position: relative;
+    z-index: 3;
+  }
+  .promo-banner-btn-wrap {
+    position: relative;
+    z-index: 3;
+  }
+  .promo-banner-timer-box {
+    position: relative;
+    z-index: 3;
   }
   .promo-clock-num {
     font-size: 1.85rem;
@@ -1577,6 +1611,27 @@ button, input, select, textarea {
   .promo-banner-red-btn {
     padding: 12px 28px;
     font-size: 1.05rem;
+  }
+  .promo-outer-veg {
+    display: block;
+    top: 10px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .promo-outer-veg--left {
+    left: -12px;
+  }
+  .promo-outer-veg--right {
+    right: -12px;
+  }
+  .promo-outer-veg img {
+    max-height: 88px;
+    max-width: 78px;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+  }
+  .promo-outer-veg:hover img,
+  .promo-banner-wrapper:hover .promo-outer-veg img {
+    transform: none;
   }
 }
 

@@ -9,51 +9,74 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-  <!-- Шапка -->
+  <!-- Шапка сайта -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo-wrapper">
-        <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
-        <div>
-          <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
-          <div class="logo-text-sub">С заботой о вашем урожае</div>
-        </div>
-      </a>
+    <div class="container">
 
-      <nav class="site-nav" id="siteNav">
-        <a href="index.html" class="nav-link">Главная</a>
-        <div class="nav-item-dropdown">
-          <a href="arochnye.html" class="nav-link dropdown-toggle">
-            Теплицы ▾
-          </a>
-          <div class="dropdown-menu">
-            <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
-            <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
+      <!-- Верхняя строка: [Город] | [Логотип по центру] | [Телефон + кнопка] -->
+      <div class="header-top-row">
+        <div class="header-top-left">
+          <div class="header-city-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+            </svg>
+            <span>Ярославль и область</span>
           </div>
         </div>
-        <a href="gryadki.html" class="nav-link active">Грядки</a>
-        <a href="dostavka-sborka.html" class="nav-link">Доставка и сборка</a>
-        <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
-        <a href="otzyvy.html" class="nav-link">Отзывы</a>
-        <a href="kontakty.html" class="nav-link">Контакты</a>
-      </nav>
 
-      <div class="header-contacts">
-        <div class="contact-phone-block">
-          <a href="tel:+74852123456" class="phone-link js-phone-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/>
-            </svg>
-            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+        <div class="header-top-center">
+          <a href="index.html" class="logo-wrapper">
+            <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+            <div>
+              <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
+              <div class="logo-text-sub">С заботой о вашем урожае</div>
+            </div>
           </a>
-          <div class="phone-hours js-hours-text">Звоните ежедневно с 8:00 до 20:00</div>
         </div>
-        <button class="header-btn" data-open-modal data-subject="Консультация по грядкам">
-          Заказать звонок
-        </button>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+        <div class="header-top-right">
+          <div class="contact-phone-block">
+            <a href="tel:+74852123456" class="phone-link js-phone-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/>
+              </svg>
+              <span class="js-phone-text">+7 (4852) 123-45-67</span>
+            </a>
+            <div class="phone-hours js-hours-text">Ежедневно с 8:00 до 20:00</div>
+          </div>
+          <button class="header-btn" data-open-modal data-subject="Консультация по грядкам" data-title="Заказать обратный звонок" data-subtitle="Мы перезвоним и вежливо ответим на любые вопросы">
+            Заказать звонок
+          </button>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">☰</button>
+        </div>
       </div>
+
+      <!-- Нижняя строка: навигация по центру -->
+      <div class="header-nav-row">
+        <nav class="site-nav" id="siteNav">
+          <a href="index.html" class="nav-link ">Главная</a>
+          
+          <div class="nav-item-dropdown">
+            <a href="arochnye.html" class="nav-link dropdown-toggle ">
+              Теплицы 
+              <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
+              <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
+            </div>
+          </div>
+
+          <a href="gryadki.html" class="nav-link active">Грядки</a>
+          <a href="dostavka-sborka.html" class="nav-link ">Доставка и сборка</a>
+          <a href="polikarbonat.html" class="nav-link ">Поликарбонат</a>
+          <a href="otzyvy.html" class="nav-link ">Отзывы</a>
+          <a href="kontakty.html" class="nav-link ">Контакты</a>
+        </nav>
+      </div>
+
     </div>
   </header>
 

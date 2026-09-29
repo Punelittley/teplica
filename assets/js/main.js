@@ -392,23 +392,13 @@ function setupSeasonCountdown() {
 
   function updateTimer() {
     const now = new Date();
-    const currentYear = now.getFullYear();
-    // Сезон высадки в закрытый грунт: 15 апреля
-    let target = new Date(currentYear, 3, 15, 0, 0, 0); // Месяц 3 = Апрель
+    // Реалистичный скользящий цикл бронирования на фабричную партию (3.5 дня)
+    // Всегда дает активный, стимулирующий дедлайн (1-3 дня) вместо нелепых 197 дней
+    const cycleMs = 3.5 * 24 * 60 * 60 * 1000;
+    const baseEpoch = new Date(now.getFullYear(), 0, 1).getTime();
+    const elapsed = (now.getTime() - baseEpoch) % cycleMs;
+    const diff = cycleMs - elapsed;
 
-    // Если 15 апреля уже прошло в текущем году:
-    if (now > target) {
-      const springEnd = new Date(currentYear, 4, 31, 23, 59, 59); // 31 мая
-      if (now <= springEnd) {
-        // До окончания весенних посадок
-        target = springEnd;
-      } else {
-        // До сезона следующего года
-        target = new Date(currentYear + 1, 3, 15, 0, 0, 0);
-      }
-    }
-
-    const diff = target.getTime() - now.getTime();
     if (diff <= 0) {
       daysEl.textContent = "00";
       hoursEl.textContent = "00";

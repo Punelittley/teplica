@@ -701,32 +701,31 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   SEASON URGENCY & PRODUCTION SCHEDULE ("УСПЕЙ К СЕЗОНУ")
+   SEASON URGENCY & PRODUCTION SCHEDULE ("УСПЕЙ К СЕЗОНУ" - СТИЛЬ WOWDOMA/ZELENINO)
    ========================================================================== */
 .season-urgency-section {
-  padding: 30px 0 45px;
+  padding: 40px 0 55px;
 }
 
 .season-card {
-  background: linear-gradient(145deg, #153828 0%, #1c4b36 50%, #266247 100%);
+  background: #ffffff;
   border-radius: var(--radius-xl);
-  padding: 46px 40px;
-  color: #ffffff;
-  box-shadow: 0 16px 45px rgba(21, 56, 40, 0.22);
+  padding: 48px 44px;
+  color: var(--color-text-main);
+  box-shadow: 0 16px 40px rgba(45, 106, 79, 0.08);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--color-border);
 }
 
 .season-card::before {
   content: "";
   position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(82, 183, 136, 0.22) 0%, rgba(82, 183, 136, 0) 70%);
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #2d6a4f 0%, #52b788 50%, #e29578 100%);
 }
 
 .season-head {
@@ -739,9 +738,9 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(82, 183, 136, 0.22);
-  border: 1px solid rgba(82, 183, 136, 0.4);
-  color: #95d5b2;
+  background: #eaf4ed;
+  border: 1px solid #cde3d4;
+  color: var(--color-primary-dark);
   font-family: var(--font-heading);
   font-size: 0.82rem;
   font-weight: 800;
@@ -756,14 +755,15 @@ button, input, select, textarea {
   font-family: var(--font-heading);
   font-size: 2.35rem;
   font-weight: 900;
-  color: #ffffff;
+  color: var(--color-primary-dark);
   line-height: 1.2;
   margin-bottom: 12px;
+  letter-spacing: -0.01em;
 }
 
 .season-lead {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-muted);
   line-height: 1.55;
   margin: 0 auto;
 }
@@ -771,20 +771,24 @@ button, input, select, textarea {
 .season-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 24px;
   margin-bottom: 34px;
 }
 
 .season-pillar-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #f8faf8;
+  border: 1px solid #e2ebe4;
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 26px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.season-pillar-card:hover {
+  border-color: #52b788;
+  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.08);
 }
 
 .season-pillar-header {
@@ -793,15 +797,15 @@ button, input, select, textarea {
   gap: 12px;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid #e6eee8;
 }
 
 .season-pillar-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(82, 183, 136, 0.25);
-  color: #95d5b2;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #eaf4ed;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -815,13 +819,14 @@ button, input, select, textarea {
 
 .season-pillar-title {
   font-family: var(--font-heading);
-  font-size: 1.12rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--color-primary-dark);
   margin: 0;
   line-height: 1.25;
 }
 
+/* 1. Timer */
 .season-timer-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -830,11 +835,12 @@ button, input, select, textarea {
 }
 
 .season-timer-box {
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #ffffff;
+  border: 1px solid #d8e5dc;
   border-radius: 10px;
   padding: 10px 4px;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .season-timer-val {
@@ -842,107 +848,113 @@ button, input, select, textarea {
   font-family: var(--font-heading);
   font-size: 1.85rem;
   font-weight: 900;
-  color: #ffffff;
+  color: var(--color-primary-dark);
   line-height: 1;
 }
 
 .season-timer-lbl {
   display: block;
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
+  font-weight: 600;
 }
 
 .season-pillar-desc {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.45;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
   margin: 0;
 }
 
+/* 2. Production Deadline & Queue */
 .season-queue-status {
-  background: rgba(0, 0, 0, 0.24);
+  background: #ffffff;
   border-radius: 12px;
-  padding: 14px;
+  padding: 14px 16px;
   margin-bottom: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #d8e5dc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .season-queue-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
+  color: var(--color-primary-dark);
   margin-bottom: 8px;
 }
 
 .season-queue-pct {
-  color: #f4a261;
+  color: #d97706;
+  font-weight: 800;
 }
 
 .season-progress-bar {
   width: 100%;
   height: 8px;
-  background: rgba(255, 255, 255, 0.15);
+  background: #e5ece7;
   border-radius: 999px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .season-progress-fill {
   width: 84%;
   height: 100%;
-  background: linear-gradient(90deg, #52b788 0%, #e76f51 100%);
+  background: linear-gradient(90deg, #52b788 0%, #e29578 100%);
   border-radius: 999px;
 }
 
 .season-deadline-tag {
   display: inline-block;
   font-size: 0.82rem;
-  background: rgba(231, 111, 81, 0.25);
-  border: 1px solid rgba(231, 111, 81, 0.5);
-  color: #f8ad9d;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  color: #92400e;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 6px;
-  margin-bottom: 4px;
 }
 
+/* 3. Logistics & Storage */
 .season-benefits-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 6px 0;
+  margin: 6px 0 14px;
 }
 
 .season-benefit-item {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.35;
+  font-size: 0.92rem;
+  color: var(--color-text-main);
+  line-height: 1.4;
 }
 
 .season-benefit-check {
-  color: #52b788;
+  color: var(--color-primary);
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 1.05rem;
   flex-shrink: 0;
 }
 
+/* Bottom Bar */
 .season-bottom-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 26px;
+  border-top: 1px solid #e2ebe4;
 }
 
 .season-actions {
@@ -953,11 +965,11 @@ button, input, select, textarea {
 }
 
 .season-cta-btn {
-  background: #52b788;
-  color: #0f2d1e;
+  background: var(--color-primary);
+  color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.98rem;
   padding: 13px 26px;
   border-radius: var(--radius-md);
   border: none;
@@ -967,18 +979,19 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  box-shadow: 0 6px 18px rgba(45, 106, 79, 0.25);
 }
 
 .season-cta-btn:hover {
-  background: #74c69d;
-  box-shadow: 0 8px 24px rgba(82, 183, 136, 0.35);
-  color: #082015;
+  background: var(--color-primary-dark);
+  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.35);
+  color: #ffffff;
 }
 
 .season-calc-btn {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: #ffffff;
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-border);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.92rem;
@@ -989,20 +1002,20 @@ button, input, select, textarea {
 }
 
 .season-calc-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #ffffff;
+  background: #f4f8f5;
+  border-color: var(--color-accent);
 }
 
 .season-trust-note {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .season-trust-note svg {
-  color: #52b788;
+  color: var(--color-primary);
   flex-shrink: 0;
 }
 

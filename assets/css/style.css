@@ -50,6 +50,7 @@ body.font-large {
 html {
   scroll-behavior: smooth;
   font-size: var(--base-font-size);
+  overflow-x: hidden;
 }
 
 body {
@@ -61,6 +62,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 img {
@@ -1277,8 +1279,7 @@ button, input, select, textarea {
 /* Овощи ВНЕ блока: большие, сочные, объемные */
 .promo-outer-veg {
   position: absolute;
-  top: 36%;
-  transform: translateY(-50%);
+  top: 10%;
   z-index: 5;
   pointer-events: none;
   transition: transform 0.4s ease;
@@ -1288,18 +1289,18 @@ button, input, select, textarea {
   display: block;
   width: auto;
   height: auto;
-  max-height: 380px;
-  max-width: 330px;
+  max-height: 500px;
+  max-width: 420px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.20));
+  filter: drop-shadow(0 24px 45px rgba(0, 0, 0, 0.22));
 }
 
 .promo-outer-veg--left {
-  left: -270px;
+  left: -370px;
 }
 
 .promo-outer-veg--right {
-  right: -270px;
+  right: -370px;
 }
 
 .promo-banner-wrapper:hover .promo-outer-veg--left img {
@@ -1484,7 +1485,26 @@ button, input, select, textarea {
 }
 
 /* Адаптивность овощей и баннера */
-@media (max-width: 1400px) {
+@media (max-width: 1600px) {
+  .promo-outer-veg {
+    top: 14%;
+  }
+  .promo-outer-veg--left {
+    left: -290px;
+  }
+  .promo-outer-veg--right {
+    right: -290px;
+  }
+  .promo-outer-veg img {
+    max-height: 420px;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .promo-outer-veg {
+    top: 18%;
+  }
   .promo-outer-veg--left {
     left: -190px;
   }
@@ -1492,22 +1512,25 @@ button, input, select, textarea {
     right: -190px;
   }
   .promo-outer-veg img {
-    max-height: 310px;
-    max-width: 260px;
+    max-height: 330px;
+    max-width: 270px;
   }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1140px) {
+  .promo-outer-veg {
+    top: 22%;
+  }
   .promo-outer-veg--left {
-    left: -110px;
-    opacity: 0.92;
+    left: -100px;
+    opacity: 0.88;
   }
   .promo-outer-veg--right {
-    right: -110px;
-    opacity: 0.92;
+    right: -100px;
+    opacity: 0.88;
   }
   .promo-outer-veg img {
-    max-height: 230px;
+    max-height: 240px;
     max-width: 190px;
   }
 }

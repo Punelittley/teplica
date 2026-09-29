@@ -1537,6 +1537,9 @@ button, input, select, textarea {
 }
 
 @media (max-width: 900px) {
+  .season-promo-section {
+    padding: 30px 0 20px;
+  }
   .promo-season-brief {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -1551,34 +1554,37 @@ button, input, select, textarea {
     font-size: 2rem;
   }
   .promo-outer-veg {
-    display: flex;
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
+    display: block;
+    position: absolute;
     z-index: 3;
     pointer-events: none;
     opacity: 1;
   }
   .promo-outer-veg--left {
-    justify-content: flex-start;
-    margin-left: 30px;
-    margin-bottom: -40px;
+    top: -40px;
+    left: -15px;
+    right: auto;
+    bottom: auto;
+    margin: 0;
   }
   .promo-outer-veg--right {
-    justify-content: flex-end;
-    margin-right: 30px;
-    margin-top: -35px;
+    bottom: -35px;
+    right: -15px;
+    top: auto;
+    left: auto;
+    margin: 0;
   }
   .promo-outer-veg img {
-    max-height: 150px;
-    max-width: 180px;
-    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.22));
+    max-height: 130px;
+    max-width: 150px;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
   }
 }
 
 @media (max-width: 600px) {
+  .season-promo-section {
+    padding: 20px 0 15px;
+  }
   .calc-promo-banner {
     padding: 28px 16px 22px;
     border-radius: 20px;
@@ -1605,30 +1611,30 @@ button, input, select, textarea {
     font-size: 1.05rem;
   }
   .promo-outer-veg {
-    display: flex;
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
+    display: block;
+    position: absolute;
     z-index: 3;
     pointer-events: none;
     opacity: 1;
   }
   .promo-outer-veg--left {
-    justify-content: flex-start;
-    margin-left: 15px;
-    margin-bottom: -32px;
+    top: -30px;
+    left: -10px;
+    right: auto;
+    bottom: auto;
+    margin: 0;
   }
   .promo-outer-veg--right {
-    justify-content: flex-end;
-    margin-right: 15px;
-    margin-top: -28px;
+    bottom: -25px;
+    right: -10px;
+    top: auto;
+    left: auto;
+    margin: 0;
   }
   .promo-outer-veg img {
-    max-height: 125px;
-    max-width: 150px;
-    filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.22));
+    max-height: 100px;
+    max-width: 120px;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.22));
   }
   .promo-outer-veg:hover img,
   .promo-banner-wrapper:hover .promo-outer-veg img {

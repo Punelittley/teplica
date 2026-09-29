@@ -219,6 +219,20 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
+.header-logo-image {
+  height: 72px;
+  width: auto;
+  border-radius: 14px;
+  display: block;
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.16);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logo-wrapper:hover .header-logo-image {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(45, 106, 79, 0.24);
+}
+
 .logo-img {
   width: 52px;
   height: 52px;
@@ -2787,6 +2801,10 @@ button, input, select, textarea {
   .logo-img {
     width: 44px;
     height: 44px;
+  }
+  .header-logo-image {
+    height: 52px;
+    border-radius: 10px;
   }
   .logo-text-title {
     font-size: 1.25rem;

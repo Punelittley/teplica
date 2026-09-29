@@ -435,8 +435,8 @@ function setupCalcPromoCountdown() {
 
   function update() {
     const now = new Date();
-    // 38-часовой цикл акции (1 день 14 часов), чтобы таймер естественно показывал 01 : 06 ...
-    const cycleMs = (1 * 24 + 14) * 60 * 60 * 1000;
+    // 24-часовой скользящий цикл акции (до конца суток, 00 дней)
+    const cycleMs = 24 * 60 * 60 * 1000;
     const baseEpoch = new Date(now.getFullYear(), 0, 1).getTime();
     const elapsed = (now.getTime() - baseEpoch) % cycleMs;
     const diff = cycleMs - elapsed;

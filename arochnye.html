@@ -369,17 +369,17 @@
           </div>
         </div>
 
-        <!-- Карточка 5 -->
-        <div class="cat-card" data-open-modal data-subject="Заказ: Усиленная 0.65 3×6" data-title="Арочная «Усиленная 0.65» 3×6 м" data-subtitle="Уточним наличие и сроки доставки">
-          <img src="assets/images/hero_gardener.jpg" alt="Арочная Усиленная 0.65 3×6" class="cat-card-img">
-          <span class="cat-card-badge badge-hit">Хит зимы</span>
-          <div class="cat-card-dot" style="background:#f6bd60;"></div>
+        <!-- Карточка 5: Сотовый поликарбонат 4мм -->
+        <div class="cat-card js-product-card" data-product-id="5">
+          <img src="assets/images/products/p5/1.jpg" alt="Сотовый поликарбонат 4мм" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">В наличии</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
-              <div class="cat-card-name">УСИЛЕННАЯ 3×6</div>
-              <div class="cat-card-size">от 29 900 ₽</div>
+              <div class="cat-card-name">Сотовый поликарбонат 4мм</div>
+              <div class="cat-card-size">3 500–5 100 ₽ • за 6 метров</div>
             </div>
-            <button class="cat-card-order-btn" title="Заказать">+</button>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
         </div>
 
@@ -778,6 +778,33 @@
             "assets/images/products/p4/4.jpg",
             "assets/images/products/p4/5.jpg"
           ]
+        },
+        5: {
+          id: 5,
+          badge: "🛡 С УФ-защитой • Прямые поставки",
+          title: "Сотовый поликарбонат 4мм",
+          price: "3 500–5 100 ₽",
+          lead: "Поликарбонат для теплиц и других конструкций. Подходит как для замены старого покрытия, так и для новых проектов. Поможем подобрать необходимую толщину и плотность.<br><strong>Закажите с доставкой и оплатите всё при получении!</strong>",
+          sizesTitle: "💰 Цены за 6 метров:",
+          sizes: "✓ 4 мм плотность 0,52 кг/кв.м — 3 500 ₽<br>✓ 4 мм плотность 0,65 кг/кв.м — 4 200 ₽<br>✓ 4 мм плотность 0,82 кг/кв.м — 5 200 ₽",
+          featuresTitle: "🔥 Особенности материала:",
+          features: [
+            "Качественное первичное сырье с гарантией завода до 15 лет;",
+            "Двойной УФ-защитный слой — не желтеет и не трескается на солнце;",
+            "Повышенная ударопрочность: выдерживает сильный град и давление снега;",
+            "Эластичный: легко монтируется на любые арочные и прямостенные каркасы;",
+            "0 ₽ предоплаты — оплата водителю при доставке на участок."
+          ],
+          packageTitle: "📦 Размеры листов:",
+          packageText: "Стандартные рулоны 2.1 х 6 м и 2.1 х 12 м. Возможен раскрой под ваши размеры.",
+          deliveryNote: "🚚 Бережная доставка собственным транспортом по всей области.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Заказ: Сотовый поликарбонат 4мм (3 500–5 100 ₽)",
+          images: [
+            "assets/images/products/p5/1.jpg",
+            "assets/images/products/p5/2.jpg",
+            "assets/images/products/p5/3.jpg"
+          ]
         }
       };
 
@@ -826,7 +853,7 @@
 
         // Размеры
         document.getElementById('prodModalSizesTitle').textContent = prod.sizesTitle || "📏 Размеры:";
-        document.getElementById('prodModalSizesVal').textContent = prod.sizes;
+        document.getElementById('prodModalSizesVal').innerHTML = prod.sizes;
 
         // Преимущества
         document.getElementById('prodModalFeaturesTitle').textContent = prod.featuresTitle || "🔥 Преимущества:";

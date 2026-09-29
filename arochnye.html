@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -7,6 +7,226 @@
   <meta name="description" content="Купить арочную теплицу из поликарбоната от завода «Теплицы ТУТ». Модели Стандарт, Усиленная 0.65м, Богатырь. Доставка и сборка на участке.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ===== Страница каталога ===== */
+    .catalog-page {
+      background: #f4f4f0;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    .catalog-breadcrumb {
+      font-size: 0.82rem;
+      color: #999;
+      padding: 18px 0 0;
+    }
+    .catalog-breadcrumb a { color: #999; text-decoration: none; }
+    .catalog-breadcrumb a:hover { color: #333; }
+    .catalog-breadcrumb span { margin: 0 5px; }
+
+    .catalog-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      text-align: center;
+      margin: 20px 0 28px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Фильтры */
+    .catalog-filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: #eaf4ed;
+    }
+    .filter-btn svg { opacity: 0.5; }
+
+    /* Сетка карточек */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+      border: 1.5px solid #ebebeb;
+    }
+    .cat-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+      transform: translateY(-4px);
+    }
+
+    .cat-card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: #f0f0ec;
+    }
+
+    .cat-card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .cat-card-badge.badge-hit { background: #e07b53; }
+    .cat-card-badge.badge-new { background: #6a5acd; }
+    .cat-card-badge.badge-pro { background: #2d6a4f; }
+
+    .cat-card-dot {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .cat-card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cat-card-info {}
+
+    .cat-card-name {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+
+    .cat-card-size {
+      font-size: 0.78rem;
+      color: #999;
+    }
+
+    .cat-card-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .cat-card-order-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .cat-card-order-btn:hover { background: var(--color-primary); }
+
+    /* Баннер консультации */
+    .catalog-consult-banner {
+      background: linear-gradient(135deg, #eaf4ed 0%, #d4ecda 100%);
+      border-radius: 20px;
+      padding: 40px 48px;
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .catalog-consult-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-bottom: 8px;
+    }
+    .catalog-consult-banner p {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      max-width: 480px;
+    }
+
+    /* Таблица цен */
+    .catalog-prices {
+      margin-top: 48px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 40px;
+      border: 1.5px solid #ebebeb;
+    }
+    .catalog-prices h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .catalog-prices p {
+      font-size: 0.9rem;
+      color: #999;
+      margin-bottom: 20px;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .catalog-grid { grid-template-columns: 1fr; }
+      .catalog-title { font-size: 1.7rem; }
+      .catalog-consult-banner { padding: 28px 24px; flex-direction: column; }
+      .catalog-prices { padding: 24px 20px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,7 +245,10 @@
         <a href="index.html" class="nav-link">Главная</a>
         <div class="nav-item-dropdown">
           <a href="arochnye.html" class="nav-link dropdown-toggle active">
-            Теплицы ▾
+            Теплицы
+            <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
           </a>
           <div class="dropdown-menu">
             <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
@@ -57,208 +280,268 @@
     </div>
   </header>
 
-  <!-- Подзаголовок страницы -->
-  <section class="subpage-hero">
+  <!-- Каталог -->
+  <main class="catalog-page">
     <div class="container">
-      <div class="breadcrumbs">
-        <a href="index.html">Главная</a>
-        <span class="breadcrumbs-sep">/</span>
-        <span>Теплицы</span>
-        <span class="breadcrumbs-sep">/</span>
+
+      <!-- Хлебные крошки -->
+      <div class="catalog-breadcrumb">
+        <a href="index.html">Главная страница</a>
+        <span>/</span>
         <span>Арочные теплицы</span>
       </div>
-      <h1 class="hero-title" style="font-size: 2.6rem; margin-bottom: 12px;">Арочные теплицы из поликарбоната</h1>
-      <p style="font-size: 1.15rem; color: var(--color-text-muted); max-width: 780px;">
-        Самая популярная и любимая дачниками форма теплицы. Классический полукруглый свод обеспечивает идеальное рассеивание солнечного света и быстрый прогрев почвы весной.
-      </p>
-    </div>
-  </section>
 
-  <!-- Каталог арочных моделей -->
-  <section class="section-padding">
-    <div class="container">
-      
-      <!-- Модель 1: Стандарт -->
-      <div class="product-card-horizontal">
-        <div class="product-thumb">
-          <img src="assets/images/greenhouse_arch.jpg" alt="Теплица Арочная Стандарт">
-        </div>
-        <div>
-          <span style="font-size: 0.8rem; font-weight: 800; color: var(--color-accent); text-transform: uppercase;">Базовая надежность</span>
-          <h2 style="font-size: 1.6rem; color: var(--color-primary-dark); margin: 4px 0 10px;">Теплица «Арочная Стандарт»</h2>
-          <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 14px;">
-            Проверенная дачная классика для сезонного выращивания томатов, огурцов и перцев. Оцинкованная труба 20х20 мм, шаг между дугами 1 метр. В комплекте 2 двери и 2 форточки в противоположных торцах.
-          </p>
-          <div style="display: flex; gap: 15px; flex-wrap: wrap; font-size: 0.88rem; font-weight: 600;">
-            <span>✓ Ширина: 3.0 м</span>
-            <span>✓ Высота: 2.05 м</span>
-            <span>✓ Длина: 4, 6, 8, 10 м</span>
-            <span>✓ Снеговая нагрузка: до 140 кг/м²</span>
-          </div>
-        </div>
-        <div style="text-align: right; border-left: 1px solid var(--color-border); padding-left: 20px;">
-          <div style="font-size: 0.85rem; color: var(--color-text-muted);">Цена за 3х4 м от:</div>
-          <div style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary-dark); margin-bottom: 15px;">21 900 ₽</div>
-          <button class="btn btn-primary" data-open-modal data-subject="Заказ Арочная Стандарт" data-title="Заказать Арочную Стандарт" style="width: 100%;">
-            Заказать
-          </button>
-        </div>
+      <!-- Заголовок -->
+      <h1 class="catalog-title">Арочные теплицы</h1>
+
+      <!-- Фильтры -->
+      <div class="catalog-filters">
+        <button class="filter-btn active">
+          Все модели
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Размер
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Модель
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Цена
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Сортировка
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
       </div>
 
-      <!-- Модель 2: Усиленная (Шаг 0.65м) -->
-      <div class="product-card-horizontal" id="usil" style="border-color: #74c69d; box-shadow: 0 6px 24px rgba(45,106,79,0.12);">
-        <div class="product-thumb">
-          <img src="assets/images/greenhouse_arch.jpg" alt="Теплица Арочная Усиленная">
-        </div>
-        <div>
-          <span style="background: #2d6a4f; color: white; padding: 3px 10px; border-radius: 999px; font-size: 0.76rem; font-weight: 800;">Хит продаж для Ярославской зимы</span>
-          <h2 style="font-size: 1.6rem; color: var(--color-primary-dark); margin: 6px 0 10px;">Теплица «Арочная Усиленная 0.65»</h2>
-          <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 14px;">
-            Уменьшенное расстояние между дугами (всего 65 см) повышает несущую способность каркаса более чем в 1.5 раза. Поликарбонат не провисает под тяжестью мокрого снега.
-          </p>
-          <div style="display: flex; gap: 15px; flex-wrap: wrap; font-size: 0.88rem; font-weight: 600;">
-            <span>✓ Шаг дуги: 0.65 м</span>
-            <span>✓ Труба 20х20 оцинкованная</span>
-            <span>✓ Не требует подпорок на зиму</span>
-            <span>✓ Гарантия 10 лет</span>
-          </div>
-        </div>
-        <div style="text-align: right; border-left: 1px solid var(--color-border); padding-left: 20px;">
-          <div style="font-size: 0.85rem; color: var(--color-text-muted);">Цена за 3х4 м от:</div>
-          <div style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary-dark); margin-bottom: 15px;">24 400 ₽</div>
-          <button class="btn btn-primary" data-open-modal data-subject="Заказ Арочная Усиленная" data-title="Заказать Арочную Усиленную" style="width: 100%;">
-            Заказать
-          </button>
-        </div>
-      </div>
+      <!-- Сетка товаров -->
+      <div class="catalog-grid">
 
-      <!-- Модель 3: Богатырь (Двойная дуга) -->
-      <div class="product-card-horizontal">
-        <div class="product-thumb">
-          <img src="assets/images/mockup_install.jpg" alt="Теплица Богатырь с двойной дугой">
-        </div>
-        <div>
-          <span style="font-size: 0.8rem; font-weight: 800; color: #b07d62; text-transform: uppercase;">Сверхпрочная ферма</span>
-          <h2 style="font-size: 1.6rem; color: var(--color-primary-dark); margin: 4px 0 10px;">Теплица «Богатырь / Двойная дуга»</h2>
-          <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 14px;">
-            Каркас выполнен в виде сварных ферм из двух параллельных труб. Способна выдержать любую метель и ледяной дождь. Идеальна для тех, кто не бывает на даче с ноября по апрель.
-          </p>
-          <div style="display: flex; gap: 15px; flex-wrap: wrap; font-size: 0.88rem; font-weight: 600;">
-            <span>✓ Двойная оцинкованная дуга</span>
-            <span>✓ Нагрузка до 380 кг/м²</span>
-            <span>✓ Срок службы каркаса 25+ лет</span>
+        <!-- Карточка 1 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Арочная Стандарт 3×4" data-title="Арочная «Стандарт» 3×4 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/greenhouse_arch.jpg" alt="Арочная Стандарт 3×4" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Арочная</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">СТАНДАРТ 3×4</div>
+              <div class="cat-card-size">от 21 900 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
           </div>
         </div>
-        <div style="text-align: right; border-left: 1px solid var(--color-border); padding-left: 20px;">
-          <div style="font-size: 0.85rem; color: var(--color-text-muted);">Цена за 3х4 м от:</div>
-          <div style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary-dark); margin-bottom: 15px;">28 900 ₽</div>
-          <button class="btn btn-primary" data-open-modal data-subject="Заказ Богатырь" data-title="Заказать теплицу Богатырь" style="width: 100%;">
-            Заказать
-          </button>
+
+        <!-- Карточка 2 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Арочная Стандарт 3×6" data-title="Арочная «Стандарт» 3×6 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/greenhouse_arch.jpg" alt="Арочная Стандарт 3×6" class="cat-card-img">
+          <span class="cat-card-badge badge-hit">Хит продаж</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">СТАНДАРТ 3×6</div>
+              <div class="cat-card-size">от 26 900 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
         </div>
+
+        <!-- Карточка 3 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Арочная Стандарт 3×8" data-title="Арочная «Стандарт» 3×8 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/greenhouse_arch.jpg" alt="Арочная Стандарт 3×8" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Арочная</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">СТАНДАРТ 3×8</div>
+              <div class="cat-card-size">от 32 400 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+        <!-- Карточка 4 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Усиленная 0.65 3×4" data-title="Арочная «Усиленная 0.65» 3×4 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/hero_gardener.jpg" alt="Арочная Усиленная 0.65 3×4" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Усиленная</span>
+          <div class="cat-card-dot" style="background:#f6bd60;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">УСИЛЕННАЯ 3×4</div>
+              <div class="cat-card-size">от 24 400 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+        <!-- Карточка 5 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Усиленная 0.65 3×6" data-title="Арочная «Усиленная 0.65» 3×6 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/hero_gardener.jpg" alt="Арочная Усиленная 0.65 3×6" class="cat-card-img">
+          <span class="cat-card-badge badge-hit">Хит зимы</span>
+          <div class="cat-card-dot" style="background:#f6bd60;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">УСИЛЕННАЯ 3×6</div>
+              <div class="cat-card-size">от 29 900 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+        <!-- Карточка 6 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Усиленная 0.65 3×8" data-title="Арочная «Усиленная 0.65» 3×8 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/hero_gardener.jpg" alt="Арочная Усиленная 0.65 3×8" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Усиленная</span>
+          <div class="cat-card-dot" style="background:#f6bd60;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">УСИЛЕННАЯ 3×8</div>
+              <div class="cat-card-size">от 35 900 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+        <!-- Карточка 7 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Богатырь 3×4" data-title="Теплица «Богатырь» 3×4 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/mockup_install.jpg" alt="Богатырь 3×4" class="cat-card-img">
+          <span class="cat-card-badge badge-new">Богатырь</span>
+          <div class="cat-card-dot" style="background:#9b7cdb;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">БОГАТЫРЬ 3×4</div>
+              <div class="cat-card-size">от 28 900 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+        <!-- Карточка 8 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Богатырь 3×6" data-title="Теплица «Богатырь» 3×6 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/mockup_install.jpg" alt="Богатырь 3×6" class="cat-card-img">
+          <span class="cat-card-badge badge-new">Богатырь</span>
+          <div class="cat-card-dot" style="background:#9b7cdb;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">БОГАТЫРЬ 3×6</div>
+              <div class="cat-card-size">от 35 500 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+        <!-- Карточка 9 -->
+        <div class="cat-card" data-open-modal data-subject="Заказ: Богатырь 3×8" data-title="Теплица «Богатырь» 3×8 м" data-subtitle="Уточним наличие и сроки доставки">
+          <img src="assets/images/mockup_install.jpg" alt="Богатырь 3×8" class="cat-card-img">
+          <span class="cat-card-badge badge-new">Богатырь</span>
+          <div class="cat-card-dot" style="background:#9b7cdb;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">БОГАТЫРЬ 3×8</div>
+              <div class="cat-card-size">от 42 900 ₽</div>
+            </div>
+            <button class="cat-card-order-btn" title="Заказать">+</button>
+          </div>
+        </div>
+
+      </div>
+      <!-- /catalog-grid -->
+
+      <!-- Баннер консультации -->
+      <div class="catalog-consult-banner">
+        <div>
+          <h3>Сомневаетесь, какую модель выбрать?</h3>
+          <p>Позвоните нашему мастеру или закажите обратный звонок. Честно подскажем оптимальный вариант под ваш участок и бюджет.</p>
+        </div>
+        <button class="btn btn-primary" data-open-modal data-subject="Консультация мастера по арочной теплице" data-title="Консультация мастера">
+          Спросить у мастера →
+        </button>
       </div>
 
       <!-- Таблица цен -->
-      <div style="margin-top: 50px;">
-        <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 15px;">
-          Сводная таблица цен на арочные теплицы
-        </h2>
-        <p style="color: var(--color-text-muted); margin-bottom: 20px;">
-          В стоимость комплекта входит: каркас с 2 дверьми и 2 форточками, сотовый поликарбонат с УФ-защитой, вся крепежная фурнитура, саморезы и подробная инструкция.
-        </p>
-
+      <div class="catalog-prices">
+        <h2>Сводная таблица цен</h2>
+        <p>В стоимость входит: каркас, 2 двери, 2 форточки, поликарбонат с УФ-защитой, крепёж, инструкция.</p>
         <div class="pricing-table-wrap">
           <table class="pricing-table">
             <thead>
               <tr>
-                <th>Размер (Ш х Д х В)</th>
-                <th>Модель «Стандарт» (шаг 1 м)</th>
-                <th>Модель «Усиленная» (шаг 0.65 м)</th>
-                <th>Модель «Богатырь» (двойная дуга)</th>
-                <th>Действие</th>
+                <th>Размер</th>
+                <th>«Стандарт» (шаг 1 м)</th>
+                <th>«Усиленная» (шаг 0.65 м)</th>
+                <th>«Богатырь» (двойная дуга)</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>3 х 4 х 2.05 м</strong></td>
+                <td><strong>3 × 4 м</strong></td>
                 <td>21 900 ₽</td>
                 <td>24 400 ₽</td>
                 <td>28 900 ₽</td>
-                <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ 3х4 арочная">Заказать</button></td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×4 арочная">Заказать</button></td>
               </tr>
               <tr>
-                <td><strong>3 х 6 х 2.05 м</strong> (Хит)</td>
+                <td><strong>3 × 6 м</strong> <span style="font-size:0.75rem;color:#e07b53;font-weight:700;">Хит</span></td>
                 <td>26 900 ₽</td>
                 <td>29 900 ₽</td>
                 <td>35 500 ₽</td>
-                <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ 3х6 арочная">Заказать</button></td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×6 арочная">Заказать</button></td>
               </tr>
               <tr>
-                <td><strong>3 х 8 х 2.05 м</strong></td>
+                <td><strong>3 × 8 м</strong></td>
                 <td>32 400 ₽</td>
                 <td>35 900 ₽</td>
                 <td>42 900 ₽</td>
-                <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ 3х8 арочная">Заказать</button></td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×8 арочная">Заказать</button></td>
               </tr>
               <tr>
-                <td><strong>3 х 10 х 2.05 м</strong></td>
+                <td><strong>3 × 10 м</strong></td>
                 <td>37 900 ₽</td>
                 <td>41 900 ₽</td>
                 <td>49 900 ₽</td>
-                <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ 3х10 арочная">Заказать</button></td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×10 арочная">Заказать</button></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Баннер консультации мастера -->
-      <div style="background: linear-gradient(135deg, #eaf4ed 0%, #d8ebd9 100%); border-radius: var(--radius-xl); padding: 40px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-        <div style="max-width: 600px;">
-          <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-primary-dark); margin-bottom: 10px;">
-            Сомневаетесь, какой шаг дуг выбрать?
-          </h3>
-          <p style="color: var(--color-text-main); font-size: 1.05rem;">
-            Позвоните нашему мастеру Николаю или закажите обратный звонок. Мы честно подскажем оптимальный вариант под розу ветров и расположение вашего участка.
-          </p>
-        </div>
-        <button class="btn btn-primary" data-open-modal data-subject="Консультация мастера по арочной теплице" data-title="Консультация мастера Николая">
-          Спросить у мастера →
-        </button>
-      </div>
-
     </div>
-  </section>
+  </main>
 
-  <!-- Подвал сайта -->
+  <!-- Подвал -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top-row">
         <a href="index.html" class="logo-wrapper">
-        <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
-        <div>
-          <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
-          <div class="logo-text-sub">С заботой о вашем урожае</div>
-        </div>
-      </a>
-        <div style="text-align: center;">
-          <div class="hand-note" style="font-size: 1.8rem;">
+          <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+          <div>
+            <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
+            <div class="logo-text-sub">С заботой о вашем урожае</div>
+          </div>
+        </a>
+        <div style="text-align:center;">
+          <div class="hand-note" style="font-size:1.8rem;">
             Дачный сезон начинается с нас! <span class="hand-note-heart">♡</span>
           </div>
         </div>
-        <div style="text-align: right;">
-          <div class="phone-link js-phone-link" style="justify-content: flex-end;">
+        <div style="text-align:right;">
+          <div class="phone-link js-phone-link" style="justify-content:flex-end;">
             <span class="js-phone-text">+7 (4852) 123-45-67</span>
           </div>
-          <div class="phone-hours js-hours-text">Звоните ежедневно с 8:00 до 20:00 без выходных</div>
-          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера" style="margin-top: 10px;">
+          <div class="phone-hours js-hours-text">Звоните ежедневно с 8:00 до 20:00</div>
+          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера" style="margin-top:10px;">
             Оставить заявку →
           </button>
         </div>
       </div>
       <div class="footer-bottom-copy">
         <div>© 2026 Завод теплиц «Теплицы ТУТ». Производство и доставка.</div>
-        <a href="index.html" style="color: var(--color-primary); font-weight: 700;">← Вернуться на главную</a>
+        <a href="index.html" style="color:var(--color-primary);font-weight:700;">← Вернуться на главную</a>
       </div>
     </div>
   </footer>
@@ -267,10 +550,10 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-box">
       <button class="modal-close-btn" id="modalCloseBtn">✕</button>
-      <div style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 6px;" id="modalTitle">
+      <div style="font-family:var(--font-heading);font-size:1.6rem;color:var(--color-primary-dark);font-weight:700;margin-bottom:6px;" id="modalTitle">
         Заказ консультации
       </div>
-      <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;" id="modalSubtitle">
+      <p style="font-size:0.92rem;color:var(--color-text-muted);margin-bottom:20px;" id="modalSubtitle">
         Оставьте номер, наш мастер перезвонит в течение 10 минут
       </p>
       <form class="js-lead-form">
@@ -285,20 +568,22 @@
         </div>
         <div class="form-group">
           <label class="form-label">Пожелания (длина, адрес доставки):</label>
-          <textarea name="comment" class="form-textarea" rows="3" placeholder="Например: хочу теплицу 3х6 с установкой на брус в Гаврилов-Ям"></textarea>
+          <textarea name="comment" class="form-textarea" rows="3" placeholder="Например: хочу теплицу 3×6 с установкой на брус в Гаврилов-Ям"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:10px;">
           Жду звонка мастера →
         </button>
       </form>
     </div>
   </div>
 
+  <div class="floating-contact-btn" data-open-modal data-subject="Заявка с плавающей кнопки">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 00-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2a5 5 0 00-5-5v2a3 3 0 013 3z"/>
+    </svg>
+  </div>
+
   <script src="assets/js/catalog-data.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-
-
-
-

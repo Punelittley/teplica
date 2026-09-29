@@ -308,125 +308,6 @@
     </div>
   </section>
 
-  <!-- Интерактивный калькулятор теплицы -->
-  <section class="section-padding" id="calculator" style="background: var(--color-bg-alt);">
-    <div class="container">
-
-      <div class="section-head text-center" data-aos="fade-up" style="text-align: center; max-width: 700px; margin: 40px auto 30px;">
-        <div class="section-label">Простой и прозрачный расчет</div>
-        <h2 class="section-title">Калькулятор вашей идеальной теплицы</h2>
-        <p class="section-desc" style="margin: 8px auto 0;">
-          Выберите форму, длину и нужные опции — калькулятор сразу покажет честную фабричную цену без скрытых доплат.
-        </p>
-      </div>
-
-      <div class="calc-section" id="greenhouseCalculator" data-aos="zoom-in">
-        <div class="calc-grid">
-          <!-- Левая колонка параметров -->
-          <div class="calc-controls-col">
-            <!-- 1. Форма -->
-            <div class="calc-field-group">
-              <label class="calc-label">1. Форма теплицы:</label>
-              <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn active" data-calc-type="arch">
-                  Арочная
-                </button>
-                <button type="button" class="calc-option-btn" data-calc-type="drop">
-                  Каплевидная
-                </button>
-              </div>
-            </div>
-
-            <!-- 2. Длина -->
-            <div class="calc-field-group">
-              <label class="calc-label">2. Длина (ширина 3 м):</label>
-              <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn" data-calc-length="4m">3 × 4 м</button>
-                <button type="button" class="calc-option-btn active" data-calc-length="6m">3 × 6 м (Хит)</button>
-                <button type="button" class="calc-option-btn" data-calc-length="8m">3 × 8 м</button>
-                <button type="button" class="calc-option-btn" data-calc-length="10m">3 × 10 м</button>
-              </div>
-            </div>
-
-            <!-- 3. Шаг дуг -->
-            <div class="calc-field-group">
-              <label class="calc-label">3. Шаг дуг:</label>
-              <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn active" data-calc-step="100">Стандарт (1 м)</button>
-                <button type="button" class="calc-option-btn" data-calc-step="65">Усиленный (0.65 м)</button>
-              </div>
-            </div>
-
-            <!-- 4. Поликарбонат -->
-            <div class="calc-field-group">
-              <label class="calc-label">4. Поликарбонат:</label>
-              <div class="calc-options-grid">
-                <button type="button" class="calc-option-btn active" data-calc-poly="eco4">4 мм Стандарт</button>
-                <button type="button" class="calc-option-btn" data-calc-poly="prem4">4 мм Премиум</button>
-                <button type="button" class="calc-option-btn" data-calc-poly="prem6">6 мм Зимний</button>
-              </div>
-            </div>
-
-            <!-- 5. Дополнительно -->
-            <div class="calc-field-group">
-              <label class="calc-label">5. Дополнительно:</label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionTimber">
-                <span>Фундамент из бруса 100×100</span>
-              </label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionAssembly" checked>
-                <span>Сборка нашими мастерами</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Правая колонка сметы -->
-          <div class="calc-summary-card">
-            <div>
-              <div class="calc-summary-title">Комплектация вашего заказа:</div>
-              <ul class="calc-breakdown-list">
-                <li class="calc-breakdown-item">
-                  <span>Модель:</span>
-                  <strong id="calcBreakdownType">Арочная теплица</strong>
-                </li>
-                <li class="calc-breakdown-item">
-                  <span>Размер:</span>
-                  <strong id="calcBreakdownSize">3х6 метров</strong>
-                </li>
-                <li class="calc-breakdown-item">
-                  <span>Шаг дуг:</span>
-                  <strong id="calcBreakdownStep">Шаг 1 метр</strong>
-                </li>
-                <li class="calc-breakdown-item">
-                  <span>Покрытие:</span>
-                  <strong id="calcBreakdownPoly">Поликарбонат 4 мм Стандарт (с УФ)</strong>
-                </li>
-                <li class="calc-breakdown-item">
-                  <span>Доп. услуги:</span>
-                  <strong id="calcBreakdownExtra">Сборка (5000 ₽)</strong>
-                </li>
-              </ul>
-            </div>
-
-            <div class="calc-total-box">
-              <div class="calc-total-label">Стоимость со скидкой производителя:</div>
-              <div style="text-decoration: line-through; color: #a0aab2; font-size: 1.1rem; font-weight: 600;" id="calcSumOld">35 500 ₽</div>
-              <div class="calc-total-sum" id="calcSumTotal">31 900 ₽</div>
-              
-              <button class="btn btn-primary" id="calcSubmitBtn" data-open-modal data-title="Зафиксировать цену со скидкой" data-subtitle="Мы забронируем за вами теплицу со скидкой по заводской цене" style="width: 100%; margin-top: 15px;">
-                Зафиксировать цену со скидкой →
-              </button>
-              <div style="font-size: 0.85rem; color: var(--color-text-muted); text-align: center; margin-top: 8px;">
-                Оплата только после доставки и осмотра теплицы
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Блок "Большая коллекция готовых проектов" (Галерея примеров) -->
   <section class="section-padding">
     <div class="container">
@@ -541,6 +422,125 @@
           <p class="wish-desc">
             Создаем уют на вашей даче с душевной заботой и вниманием к каждой детали
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Интерактивный калькулятор теплицы -->
+  <section class="section-padding" id="calculator" style="background: var(--color-bg-alt);">
+    <div class="container">
+
+      <div class="section-head text-center" data-aos="fade-up" style="text-align: center; max-width: 700px; margin: 40px auto 30px;">
+        <div class="section-label">Простой и прозрачный расчет</div>
+        <h2 class="section-title">Калькулятор вашей идеальной теплицы</h2>
+        <p class="section-desc" style="margin: 8px auto 0;">
+          Выберите форму, длину и нужные опции — калькулятор сразу покажет честную фабричную цену без скрытых доплат.
+        </p>
+      </div>
+
+      <div class="calc-section" id="greenhouseCalculator" data-aos="zoom-in">
+        <div class="calc-grid">
+          <!-- Левая колонка параметров -->
+          <div class="calc-controls-col">
+            <!-- 1. Форма -->
+            <div class="calc-field-group">
+              <label class="calc-label">1. Форма теплицы:</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn active" data-calc-type="arch">
+                  Арочная
+                </button>
+                <button type="button" class="calc-option-btn" data-calc-type="drop">
+                  Каплевидная
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Длина -->
+            <div class="calc-field-group">
+              <label class="calc-label">2. Длина (ширина 3 м):</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn" data-calc-length="4m">3 × 4 м</button>
+                <button type="button" class="calc-option-btn active" data-calc-length="6m">3 × 6 м (Хит)</button>
+                <button type="button" class="calc-option-btn" data-calc-length="8m">3 × 8 м</button>
+                <button type="button" class="calc-option-btn" data-calc-length="10m">3 × 10 м</button>
+              </div>
+            </div>
+
+            <!-- 3. Шаг дуг -->
+            <div class="calc-field-group">
+              <label class="calc-label">3. Шаг дуг:</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn active" data-calc-step="100">Стандарт (1 м)</button>
+                <button type="button" class="calc-option-btn" data-calc-step="65">Усиленный (0.65 м)</button>
+              </div>
+            </div>
+
+            <!-- 4. Поликарбонат -->
+            <div class="calc-field-group">
+              <label class="calc-label">4. Поликарбонат:</label>
+              <div class="calc-options-grid">
+                <button type="button" class="calc-option-btn active" data-calc-poly="eco4">4 мм Стандарт</button>
+                <button type="button" class="calc-option-btn" data-calc-poly="prem4">4 мм Премиум</button>
+                <button type="button" class="calc-option-btn" data-calc-poly="prem6">6 мм Зимний</button>
+              </div>
+            </div>
+
+            <!-- 5. Дополнительно -->
+            <div class="calc-field-group">
+              <label class="calc-label">5. Дополнительно:</label>
+              <label class="calc-checkbox-label">
+                <input type="checkbox" id="calcOptionTimber">
+                <span>Фундамент из бруса 100×100</span>
+              </label>
+              <label class="calc-checkbox-label">
+                <input type="checkbox" id="calcOptionAssembly" checked>
+                <span>Сборка нашими мастерами</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Правая колонка сметы -->
+          <div class="calc-summary-card">
+            <div>
+              <div class="calc-summary-title">Комплектация вашего заказа:</div>
+              <ul class="calc-breakdown-list">
+                <li class="calc-breakdown-item">
+                  <span>Модель:</span>
+                  <strong id="calcBreakdownType">Арочная теплица</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Размер:</span>
+                  <strong id="calcBreakdownSize">3х6 метров</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Шаг дуг:</span>
+                  <strong id="calcBreakdownStep">Шаг 1 метр</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Покрытие:</span>
+                  <strong id="calcBreakdownPoly">Поликарбонат 4 мм Стандарт (с УФ)</strong>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span>Доп. услуги:</span>
+                  <strong id="calcBreakdownExtra">Сборка (5000 ₽)</strong>
+                </li>
+              </ul>
+            </div>
+
+            <div class="calc-total-box">
+              <div class="calc-total-label">Стоимость со скидкой производителя:</div>
+              <div style="text-decoration: line-through; color: #a0aab2; font-size: 1.1rem; font-weight: 600;" id="calcSumOld">35 500 ₽</div>
+              <div class="calc-total-sum" id="calcSumTotal">31 900 ₽</div>
+              
+              <button class="btn btn-primary" id="calcSubmitBtn" data-open-modal data-title="Зафиксировать цену со скидкой" data-subtitle="Мы забронируем за вами теплицу со скидкой по заводской цене" style="width: 100%; margin-top: 15px;">
+                Зафиксировать цену со скидкой →
+              </button>
+              <div style="font-size: 0.85rem; color: var(--color-text-muted); text-align: center; margin-top: 8px;">
+                Оплата только после доставки и осмотра теплицы
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

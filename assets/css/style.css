@@ -1551,22 +1551,30 @@ button, input, select, textarea {
     font-size: 2rem;
   }
   .promo-outer-veg {
-    display: block;
-    top: -28px;
-    z-index: 1;
+    display: flex;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 3;
     pointer-events: none;
-    opacity: 0.95;
+    opacity: 1;
   }
   .promo-outer-veg--left {
-    left: -40px;
+    justify-content: flex-start;
+    margin-left: 30px;
+    margin-bottom: -40px;
   }
   .promo-outer-veg--right {
-    right: -40px;
+    justify-content: flex-end;
+    margin-right: 30px;
+    margin-top: -35px;
   }
   .promo-outer-veg img {
-    max-height: 220px;
-    max-width: 190px;
-    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
+    max-height: 150px;
+    max-width: 180px;
+    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.22));
   }
 }
 
@@ -1597,22 +1605,30 @@ button, input, select, textarea {
     font-size: 1.05rem;
   }
   .promo-outer-veg {
-    display: block;
-    top: -24px;
-    z-index: 1;
+    display: flex;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 3;
     pointer-events: none;
-    opacity: 0.96;
+    opacity: 1;
   }
   .promo-outer-veg--left {
-    left: -24px;
+    justify-content: flex-start;
+    margin-left: 15px;
+    margin-bottom: -32px;
   }
   .promo-outer-veg--right {
-    right: -24px;
+    justify-content: flex-end;
+    margin-right: 15px;
+    margin-top: -28px;
   }
   .promo-outer-veg img {
-    max-height: 165px;
-    max-width: 140px;
-    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
+    max-height: 125px;
+    max-width: 150px;
+    filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.22));
   }
   .promo-outer-veg:hover img,
   .promo-banner-wrapper:hover .promo-outer-veg img {

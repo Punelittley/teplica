@@ -1320,6 +1320,7 @@ button, input, select, textarea {
   padding: 42px 44px 34px;
   text-align: center;
   position: relative;
+  z-index: 2;
   overflow: hidden;
   background-image: radial-gradient(#e5f0e8 1.5px, transparent 1.5px);
   background-size: 18px 18px;
@@ -1550,7 +1551,22 @@ button, input, select, textarea {
     font-size: 2rem;
   }
   .promo-outer-veg {
-    display: none;
+    display: block;
+    top: -28px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.95;
+  }
+  .promo-outer-veg--left {
+    left: -40px;
+  }
+  .promo-outer-veg--right {
+    right: -40px;
+  }
+  .promo-outer-veg img {
+    max-height: 220px;
+    max-width: 190px;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
   }
 }
 
@@ -1558,6 +1574,8 @@ button, input, select, textarea {
   .calc-promo-banner {
     padding: 28px 16px 22px;
     border-radius: 20px;
+    position: relative;
+    z-index: 2;
   }
   .promo-banner-title {
     font-size: 1.35rem;
@@ -1579,7 +1597,26 @@ button, input, select, textarea {
     font-size: 1.05rem;
   }
   .promo-outer-veg {
-    display: none;
+    display: block;
+    top: -24px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.96;
+  }
+  .promo-outer-veg--left {
+    left: -24px;
+  }
+  .promo-outer-veg--right {
+    right: -24px;
+  }
+  .promo-outer-veg img {
+    max-height: 165px;
+    max-width: 140px;
+    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
+  }
+  .promo-outer-veg:hover img,
+  .promo-banner-wrapper:hover .promo-outer-veg img {
+    transform: none;
   }
 }
 

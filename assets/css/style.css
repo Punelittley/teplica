@@ -1259,6 +1259,202 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
+   PROMO BANNER WITH VEGETABLES (СКИДКА 20% И ЛЬГОТНАЯ ДОСТАВКА)
+   ========================================================================== */
+.calc-promo-banner {
+  background: #ffffff;
+  border: 1px solid #d5e5db;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 12px 35px rgba(45, 106, 79, 0.08);
+  padding: 34px 28px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(#e7f2ea 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+.promo-banner-veg {
+  flex-shrink: 0;
+  width: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.promo-banner-veg img {
+  max-width: 100%;
+  max-height: 195px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.16));
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.promo-banner-veg--left:hover img {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.promo-banner-veg--right:hover img {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.promo-banner-main {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+.promo-banner-title {
+  font-family: var(--font-heading);
+  font-size: 2.15rem;
+  font-weight: 900;
+  color: #1971c2;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.promo-banner-btn-wrap {
+  margin-bottom: 18px;
+}
+
+.promo-banner-red-btn {
+  background: #d90429;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding: 13px 38px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(217, 4, 41, 0.32);
+  transition: transform 0.15s, background-color 0.15s, box-shadow 0.15s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.promo-banner-red-btn:hover {
+  background: #b70422;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217, 4, 41, 0.44);
+}
+
+.promo-banner-timer-box {
+  display: inline-block;
+}
+
+.promo-timer-heading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 8px;
+}
+
+.promo-timer-clock {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+}
+
+.promo-clock-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 58px;
+}
+
+.promo-clock-num {
+  font-size: 2.85rem;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.promo-clock-colon {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.promo-clock-text {
+  font-size: 0.88rem;
+  color: #4b5563;
+  font-weight: 600;
+  margin-top: 6px;
+  text-transform: lowercase;
+}
+
+@media (max-width: 992px) {
+  .promo-banner-veg {
+    width: 130px;
+  }
+  .promo-banner-veg img {
+    max-height: 150px;
+  }
+  .promo-banner-title {
+    font-size: 1.75rem;
+  }
+  .promo-clock-num {
+    font-size: 2.3rem;
+  }
+  .promo-clock-colon {
+    font-size: 2.1rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .calc-promo-banner {
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 14px;
+  }
+  .promo-banner-veg {
+    width: 100%;
+  }
+  .promo-banner-veg img {
+    max-height: 110px;
+  }
+  .promo-banner-veg--left {
+    order: 1;
+  }
+  .promo-banner-main {
+    order: 2;
+    padding: 0;
+  }
+  .promo-banner-veg--right {
+    order: 3;
+  }
+  .promo-banner-title {
+    font-size: 1.35rem;
+  }
+  .promo-clock-num {
+    font-size: 1.85rem;
+  }
+  .promo-clock-colon {
+    font-size: 1.6rem;
+  }
+  .promo-clock-unit {
+    min-width: 42px;
+  }
+  .promo-timer-clock {
+    gap: 6px;
+  }
+}
+
+/* ==========================================================================
    INTERACTIVE CALCULATOR
    ========================================================================== */
 .calc-section {

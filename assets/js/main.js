@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 9. Счетчик "Успей к сезону"
   setupSeasonCountdown();
+
+  // 10. Счетчик промо-акции со скидкой 20%
+  setupCalcPromoCountdown();
 });
 
 // Обновление контактов в DOM
@@ -421,3 +424,43 @@ function setupSeasonCountdown() {
   updateTimer();
   setInterval(updateTimer, 1000);
 }
+
+// 10. Счетчик промо-акции "Скидка 20% и льготная доставка"
+function setupCalcPromoCountdown() {
+  const daysEl = document.getElementById("calcPromoDays");
+  const hoursEl = document.getElementById("calcPromoHours");
+  const minEl = document.getElementById("calcPromoMin");
+  const secEl = document.getElementById("calcPromoSec");
+  if (!daysEl || !hoursEl || !minEl || !secEl) return;
+
+  function update() {
+    const now = new Date();
+    // 38-часовой цикл акции (1 день 14 часов), чтобы таймер естественно показывал 01 : 06 ...
+    const cycleMs = (1 * 24 + 14) * 60 * 60 * 1000;
+    const baseEpoch = new Date(now.getFullYear(), 0, 1).getTime();
+    const elapsed = (now.getTime() - baseEpoch) % cycleMs;
+    const diff = cycleMs - elapsed;
+
+    if (diff <= 0) {
+      daysEl.textContent = "00";
+      hoursEl.textContent = "00";
+      minEl.textContent = "00";
+      secEl.textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    daysEl.textContent = String(days).padStart(2, "0");
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minEl.textContent = String(minutes).padStart(2, "0");
+    secEl.textContent = String(seconds).padStart(2, "0");
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+

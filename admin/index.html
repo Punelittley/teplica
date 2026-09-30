@@ -306,13 +306,38 @@
             </div>
 
             <div class="form-group-admin">
-              <label>Ваш личный ID ВКонтакте (Николай Макаров):</label>
-              <input type="text" id="vk_user_id" class="form-input-admin" value="550394386" placeholder="550394386">
+              <label>ID получателей ВКонтакте (через запятую):</label>
+              <input type="text" id="vk_user_id" class="form-input-admin" value="550394386" placeholder="550394386, 123456789">
+              <small style="color: var(--admin-muted); display: block; margin-top: 4px;">
+                Заявки будут приходить одновременно всем указанным пользователям.
+              </small>
+            </div>
+
+            <!-- Быстрое добавление по команде /add -->
+            <div style="background: #f7faf8; border: 1.5px dashed #b7e4c7; border-radius: 10px; padding: 16px; margin: 18px 0;">
+              <label style="font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                ⚡ Быстрое добавление человека по команде /add:
+              </label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="vk_add_command_input" class="form-input-admin" placeholder="/add 123456789 или числовой ID" style="margin: 0;">
+                <button type="button" class="btn-admin btn-admin-primary" id="vkAddUserBtn" style="white-space: nowrap;">
+                  Добавить
+                </button>
+              </div>
+              <div id="vkAddStatus" style="font-size: 0.88rem; margin-top: 8px; display: none;"></div>
+            </div>
+
+            <!-- Список получателей -->
+            <div style="margin-bottom: 20px;">
+              <label style="font-weight: 700; color: #1b4332; display: block; margin-bottom: 8px;">
+                Подключенные получатели:
+              </label>
+              <div id="vkRecipientsList" style="display: flex; flex-direction: column; gap: 8px;"></div>
             </div>
 
             <div style="display: flex; gap: 12px; margin-top: 20px;">
               <button type="submit" class="btn-admin btn-admin-primary">Сохранить настройки ВК</button>
-              <button type="button" class="btn-admin btn-admin-light" id="vkTestBtn">Отправить тестовую заявку в ВК</button>
+              <button type="button" class="btn-admin btn-admin-light" id="vkTestBtn">Отправить тестовую заявку всем получателям</button>
             </div>
           </form>
         </div>

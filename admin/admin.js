@@ -239,85 +239,370 @@ function loadContactsForm() {
   });
 }
 
+// Хелпер вызова VK API через JSONP
+function callVkApi(method, params, timeout = 7000) {
+  return new Promise((resolve, reject) => {
+    const randomId = Math.floor(Math.random() * 100000000);
+    const cbName = `vkJsonpCb_${Date.now()}_${randomId}`;
+    const query = new URLSearchParams(params);
+    query.set("callback", cbName);
+    query.set("v", "5.131");
+
+    const script = document.createElement("script");
+    script.src = `https://api.vk.com/method/${method}?${query.toString()}`;
+
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error("Таймаут запроса к ВКонтакте (проверьте интернет или блокировщики)"));
+    }, timeout);
+
+    function cleanup() {
+      clearTimeout(timer);
+      if (window[cbName]) delete window[cbName];
+      if (script.parentNode) script.remove();
+    }
+
+    window[cbName] = function(res) {
+      cleanup();
+      if (res && res.response !== undefined) {
+        resolve(res.response);
+      } else if (res && res.error) {
+        reject(res.error);
+      } else {
+        reject(new Error("Некорректный ответ от ВКонтакте"));
+      }
+    };
+
+    script.onerror = function() {
+      cleanup();
+      reject(new Error("Не удалось загрузить скрипт VK API"));
+    };
+
+    document.head.appendChild(script);
+  });
+}
+
 // 4. ВКонтакте бот (Группа https://vk.ru/club241898656)
 function loadVkSettings() {
   const config = getSiteConfig();
-  const vk = config.vkNotify || { enabled: true, groupId: "241898656", groupToken: "", userId: "" };
+  const vk = config.vkNotify || { enabled: true, groupId: "241898656", groupToken: "", userId: "550394386", userIds: ["550394386"] };
 
   const enabledCheck = document.getElementById("vk_enabled");
   const groupIdInput = document.getElementById("vk_group_id");
   const tokenInput = document.getElementById("vk_token");
   const userInput = document.getElementById("vk_user_id");
+  const addCommandInput = document.getElementById("vk_add_command_input");
+  const addUserBtn = document.getElementById("vkAddUserBtn");
+  const addStatus = document.getElementById("vkAddStatus");
+  const recipientsListEl = document.getElementById("vkRecipientsList");
 
   if (!enabledCheck || !tokenInput || !userInput) return;
 
-  enabledCheck.checked = vk.enabled;
+  // Парсинг текущих ID получателей
+  let currentRecipients = [];
+  if (Array.isArray(vk.userIds) && vk.userIds.length > 0) {
+    currentRecipients = vk.userIds.map(id => String(id).trim()).filter(Boolean);
+  } else if (vk.userId) {
+    currentRecipients = String(vk.userId).split(/[\s,;]+/).map(id => String(id).trim()).filter(Boolean);
+  }
+  if (!currentRecipients.length) {
+    currentRecipients = ["550394386"];
+  }
+  // Убираем дубли
+  currentRecipients = Array.from(new Set(currentRecipients));
+
+  enabledCheck.checked = vk.enabled !== false;
   if (groupIdInput) groupIdInput.value = vk.groupId || "241898656";
   tokenInput.value = vk.groupToken || "";
-  userInput.value = vk.userId || "";
+  userInput.value = currentRecipients.join(", ");
 
-  document.getElementById("vkForm").addEventListener("submit", (e) => {
-    e.preventDefault();
+  // Функция отрисовки списка получателей с проверкой прав
+  async function renderRecipientsList() {
+    if (!recipientsListEl) return;
+    recipientsListEl.innerHTML = "";
+
+    if (!currentRecipients.length) {
+      recipientsListEl.innerHTML = '<div style="color: var(--admin-muted); font-size: 0.88rem; font-style: italic;">Список получателей пуст. Добавьте хотя бы одного человека через команду /add выше.</div>';
+      return;
+    }
+
+    const token = tokenInput.value.trim();
+    const groupId = (groupIdInput ? groupIdInput.value.trim() : "") || "241898656";
+
+    for (const uid of currentRecipients) {
+      const card = document.createElement("div");
+      card.style.cssText = "display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #d8f3dc; border-radius: 8px; padding: 10px 14px; gap: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);";
+
+      const left = document.createElement("div");
+      left.style.cssText = "display: flex; align-items: center; gap: 10px; flex-wrap: wrap;";
+
+      const idLink = document.createElement("a");
+      idLink.href = `https://vk.ru/id${uid}`;
+      idLink.target = "_blank";
+      idLink.rel = "noopener noreferrer";
+      idLink.style.cssText = "font-weight: 700; color: #1b4332; text-decoration: underline; font-size: 0.95rem;";
+      idLink.innerHTML = `👤 ID: ${uid}`;
+
+      const badge = document.createElement("span");
+      badge.style.cssText = "font-size: 0.8rem; padding: 3px 8px; border-radius: 12px; background: #e9ecef; color: #495057; font-weight: 500;";
+      badge.textContent = "Проверка разрешения...";
+
+      left.appendChild(idLink);
+      left.appendChild(badge);
+
+      const delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.innerHTML = "✕ Удалить";
+      delBtn.style.cssText = "background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 6px; padding: 4px 10px; font-size: 0.82rem; cursor: pointer; font-weight: 600;";
+      delBtn.addEventListener("click", () => {
+        currentRecipients = currentRecipients.filter(id => id !== uid);
+        userInput.value = currentRecipients.join(", ");
+        saveCurrentConfig();
+        renderRecipientsList();
+      });
+
+      card.appendChild(left);
+      card.appendChild(delBtn);
+      recipientsListEl.appendChild(card);
+
+      // Фоновая проверка разрешений через VK API
+      if (token && groupId) {
+        callVkApi("messages.isMessagesFromGroupAllowed", {
+          group_id: groupId,
+          user_id: uid,
+          access_token: token
+        }).then(res => {
+          if (res && res.is_allowed === 1) {
+            badge.style.background = "#e8f5e9";
+            badge.style.color = "#2e7d32";
+            badge.innerHTML = "✅ Разрешено (получает заявки)";
+          } else {
+            badge.style.background = "#fff3e0";
+            badge.style.color = "#d97706";
+            badge.innerHTML = `⚠️ <a href="https://vk.me/club${groupId}" target="_blank" style="color: inherit; text-decoration: underline;">Нужно написать в лс группы vk.me/club${groupId}</a>`;
+          }
+        }).catch(() => {
+          badge.style.background = "#f1f3f5";
+          badge.style.color = "#6c757d";
+          badge.textContent = "Статус неизвестен (проверьте токен)";
+        });
+
+        // Запрос имени пользователя
+        callVkApi("users.get", {
+          user_ids: uid,
+          access_token: token
+        }).then(res => {
+          if (Array.isArray(res) && res[0]) {
+            idLink.innerHTML = `👤 ${res[0].first_name} ${res[0].last_name} <span style="font-weight: 400; color: #666; font-size: 0.85rem;">(id${uid})</span>`;
+          }
+        }).catch(() => {});
+      }
+    }
+  }
+
+  function saveCurrentConfig() {
     config.vkNotify = {
       enabled: enabledCheck.checked,
       groupId: groupIdInput ? groupIdInput.value.trim() : "241898656",
       groupToken: tokenInput.value.trim(),
-      userId: userInput.value.trim()
+      userId: currentRecipients.join(", "),
+      userIds: currentRecipients
     };
     saveSiteConfig(config);
+  }
+
+  // Обработчик команды /add
+  async function executeAddCommand() {
+    if (!addCommandInput) return;
+    const rawVal = addCommandInput.value.trim();
+    if (!rawVal) {
+      if (addStatus) {
+        addStatus.style.display = "block";
+        addStatus.style.color = "#dc2626";
+        addStatus.textContent = "Введите команду в формате /add <id_пользователя>";
+      }
+      return;
+    }
+
+    // Очистка ввода от команды /add, url, префиксов id, @
+    let cleanVal = rawVal;
+    if (cleanVal.toLowerCase().startsWith("/add")) {
+      cleanVal = cleanVal.slice(4).trim();
+    }
+    cleanVal = cleanVal.replace(/^https?:\/\/(www\.)?vk\.(com|ru)\//i, "");
+    cleanVal = cleanVal.replace(/^@/, "");
+
+    if (!cleanVal) {
+      if (addStatus) {
+        addStatus.style.display = "block";
+        addStatus.style.color = "#dc2626";
+        addStatus.textContent = "Не указан ID пользователя.";
+      }
+      return;
+    }
+
+    const token = tokenInput.value.trim();
+    const groupId = (groupIdInput ? groupIdInput.value.trim() : "") || "241898656";
+
+    if (addStatus) {
+      addStatus.style.display = "block";
+      addStatus.style.color = "#2563eb";
+      addStatus.textContent = "🔍 Поиск пользователя и проверка прав в VK...";
+    }
+
+    try {
+      let resolvedId = cleanVal;
+      let userName = "";
+
+      if (token) {
+        try {
+          const userRes = await callVkApi("users.get", {
+            user_ids: cleanVal,
+            access_token: token
+          });
+          if (Array.isArray(userRes) && userRes.length > 0) {
+            resolvedId = String(userRes[0].id);
+            userName = `${userRes[0].first_name} ${userRes[0].last_name}`;
+          }
+        } catch (e) {
+          console.warn("User lookup warning:", e);
+        }
+      }
+
+      // Проверка на числовой ID
+      if (!/^\d+$/.test(resolvedId)) {
+        if (addStatus) {
+          addStatus.style.color = "#dc2626";
+          addStatus.textContent = `❌ Не удалось определить числовой ID для «${cleanVal}». Укажите числовой ID, например /add 550394386`;
+        }
+        return;
+      }
+
+      // Добавляем ID в список, если его там еще нет
+      if (!currentRecipients.includes(resolvedId)) {
+        currentRecipients.push(resolvedId);
+        userInput.value = currentRecipients.join(", ");
+        saveCurrentConfig();
+      }
+
+      addCommandInput.value = "";
+
+      // Проверяем, разрешил ли пользователь сообщения от группы
+      let isAllowed = false;
+      if (token && groupId) {
+        try {
+          const checkRes = await callVkApi("messages.isMessagesFromGroupAllowed", {
+            group_id: groupId,
+            user_id: resolvedId,
+            access_token: token
+          });
+          isAllowed = checkRes && checkRes.is_allowed === 1;
+        } catch (e) {}
+      }
+
+      renderRecipientsList();
+
+      if (addStatus) {
+        addStatus.style.display = "block";
+        const displayName = userName ? `${userName} (id${resolvedId})` : `ID ${resolvedId}`;
+        if (isAllowed) {
+          addStatus.style.color = "#16a34a";
+          addStatus.innerHTML = `✅ <strong>${displayName}</strong> успешно добавлен! Сообщения группе разрешены — заявки будут приходить.`;
+        } else {
+          addStatus.style.color = "#d97706";
+          addStatus.innerHTML = `⚠️ <strong>${displayName}</strong> добавлен в список получателей! Но по правилам безопасности ВК он <strong>должен первым написать любое слово в группу</strong> <a href="https://vk.me/club${groupId}" target="_blank" style="text-decoration:underline; font-weight:700;">vk.me/club${groupId}</a>, иначе ВК не разрешит доставку.`;
+        }
+      }
+    } catch (err) {
+      if (addStatus) {
+        addStatus.style.color = "#dc2626";
+        addStatus.textContent = `Ошибка: ${err.message || err}`;
+      }
+    }
+  }
+
+  if (addUserBtn) {
+    addUserBtn.addEventListener("click", executeAddCommand);
+  }
+  if (addCommandInput) {
+    addCommandInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        executeAddCommand();
+      }
+    });
+  }
+
+  // Ручное сохранение формы
+  document.getElementById("vkForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const parsedIds = userInput.value
+      .split(/[\s,;]+/)
+      .map(id => String(id).trim())
+      .filter(Boolean);
+    currentRecipients = Array.from(new Set(parsedIds));
+    userInput.value = currentRecipients.join(", ");
+    saveCurrentConfig();
+    renderRecipientsList();
     alert("Настройки ВКонтакте успешно сохранены!");
   });
 
-  document.getElementById("vkTestBtn").addEventListener("click", () => {
+  // Отправка тестовой заявки всем получателям
+  document.getElementById("vkTestBtn").addEventListener("click", async () => {
     const token = tokenInput.value.trim();
-    const userId = userInput.value.trim();
-    if (!token || !userId) {
-      alert("Укажите токен группы и ваш личный ID ВКонтакте!");
+    if (!token) {
+      alert("Укажите токен группы ВКонтакте!");
+      return;
+    }
+    if (!currentRecipients.length) {
+      alert("Добавьте хотя бы одного получателя через /add!");
       return;
     }
 
     const testBtn = document.getElementById("vkTestBtn");
     testBtn.disabled = true;
-    testBtn.textContent = "Отправка...";
+    testBtn.textContent = "Отправка тестовых заявок...";
 
-    const randomId = Math.floor(Math.random() * 100000000);
-    const text = encodeURIComponent("🌱 Тестовое оповещение из админ-панели завода «Теплицы ТУТ»!\nГруппа https://vk.ru/club241898656 успешно подключена к сайту.");
-    const cbName = `vkTestCb_${Date.now()}_${randomId}`;
-    const script = document.createElement("script");
-    script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(userId)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(token)}&callback=${cbName}`;
+    let successCount = 0;
+    let failCount = 0;
+    const errors = [];
 
-    const timer = setTimeout(() => {
-      testBtn.disabled = false;
-      testBtn.textContent = "Отправить тестовую заявку в ВК";
-      alert("Время ожидания ответа истекло. Проверьте правильность токена и ID.");
-      if (window[cbName]) {
-        delete window[cbName];
-        script.remove();
-      }
-    }, 8000);
+    for (const uid of currentRecipients) {
+      const randomId = Math.floor(Math.random() * 100000000);
+      const text = `🌱 Тестовое оповещение из админ-панели завода «Теплицы ТУТ»!\nГруппа https://vk.ru/club241898656 успешно подключена.\nВаш ID (${uid}) авторизован для получения заявок с сайта.`;
 
-    window[cbName] = function(res) {
-      clearTimeout(timer);
-      testBtn.disabled = false;
-      testBtn.textContent = "Отправить тестовую заявку в ВК";
-      script.remove();
-      delete window[cbName];
-
-      if (res && res.response) {
-        alert("Успешно! Бот группы отправил тестовое сообщение вам в ЛС ВКонтакте.");
-      } else if (res && res.error) {
-        let msg = res.error.error_msg;
-        if (res.error.error_code === 901) {
-          msg = "Ошибка 901: Вы еще не писали в сообщения своей группы! Зайдите в https://vk.ru/club241898656 и напишите в сообщения группы любое слово (например, «Привет»), после чего повторите тест.";
+      try {
+        await callVkApi("messages.send", {
+          user_id: uid,
+          message: text,
+          random_id: randomId,
+          access_token: token
+        });
+        successCount++;
+      } catch (err) {
+        failCount++;
+        let errMsg = err.error_msg || err.message || "Ошибка";
+        if (err.error_code === 901) {
+          errMsg = `ID ${uid}: пользователь еще не написал в лс группы vk.me/club241898656 (ошибка 901)`;
         }
-        alert("Ошибка VK API: " + msg);
-      } else {
-        alert("Неизвестный ответ от ВКонтакте.");
+        errors.push(errMsg);
       }
-    };
+      // Небольшая задержка между отправками
+      await new Promise(r => setTimeout(r, 350));
+    }
 
-    document.head.appendChild(script);
+    testBtn.disabled = false;
+    testBtn.textContent = "Отправить тестовую заявку всем получателям";
+
+    if (failCount === 0) {
+      alert(`Успешно! Тестовое сообщение доставлено всем получателям (${successCount} чел.).`);
+    } else {
+      alert(`Результат отправки:\nУспешно доставлено: ${successCount}\nОшибок: ${failCount}\n\nПодробности:\n${errors.join("\n")}`);
+    }
   });
+
+  // Первоначальная отрисовка
+  renderRecipientsList();
 }
 
 // 5. Telegram

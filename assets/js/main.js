@@ -340,7 +340,18 @@ function saveLeadToStorage(lead) {
 // Отправка заявки в ЛС ВКонтакте через API группы (https://vk.ru/club241898656)
 function sendVkLeadNotification(vkConfig, lead) {
   try {
-    const randomId = Math.floor(Math.random() * 100000000);
+    let ids = [];
+    if (Array.isArray(vkConfig.userIds)) {
+      ids = vkConfig.userIds;
+    } else if (vkConfig.userIds) {
+      ids = String(vkConfig.userIds).split(/[\s,;]+/).filter(Boolean);
+    } else if (vkConfig.userId) {
+      ids = String(vkConfig.userId).split(/[\s,;]+/).filter(Boolean);
+    }
+    ids = Array.from(new Set(ids.map(id => String(id).trim()).filter(Boolean)));
+
+    if (!ids.length) return;
+
     const text = encodeURIComponent(
       `🌱 Новая заявка с сайта «Теплицы ТУТ»!\n` +
       `👤 Имя: ${lead.name}\n` +
@@ -349,28 +360,34 @@ function sendVkLeadNotification(vkConfig, lead) {
       `💬 Детали: ${lead.comment || 'нет'}\n` +
       `⏰ Дата: ${lead.date}`
     );
-    const cbName = `vkLeadCb_${Date.now()}_${randomId}`;
-    const script = document.createElement("script");
-    script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(vkConfig.userId)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(vkConfig.groupToken)}&callback=${cbName}`;
 
-    window[cbName] = function(res) {
-      if (res && res.error) {
-        console.warn("VK Notification Error:", res.error);
-      } else {
-        console.log("VK Notification Sent:", res);
-      }
-      script.remove();
-      delete window[cbName];
-    };
+    ids.forEach((uid, idx) => {
+      setTimeout(() => {
+        const randomId = Math.floor(Math.random() * 100000000);
+        const cbName = `vkLeadCb_${Date.now()}_${randomId}`;
+        const script = document.createElement("script");
+        script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(uid)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(vkConfig.groupToken)}&callback=${cbName}`;
 
-    setTimeout(() => {
-      if (window[cbName]) {
-        delete window[cbName];
-        script.remove();
-      }
-    }, 10000);
+        window[cbName] = function(res) {
+          if (res && res.error) {
+            console.warn(`VK Notification Error for user ${uid}:`, res.error);
+          } else {
+            console.log(`VK Notification Sent to user ${uid}:`, res);
+          }
+          script.remove();
+          delete window[cbName];
+        };
 
-    document.head.appendChild(script);
+        setTimeout(() => {
+          if (window[cbName]) {
+            delete window[cbName];
+            script.remove();
+          }
+        }, 10000);
+
+        document.head.appendChild(script);
+      }, idx * 300);
+    });
   } catch (err) {
     console.warn("VK Send exception:", err);
   }

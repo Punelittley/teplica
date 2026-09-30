@@ -67,7 +67,8 @@ const DEFAULT_CONFIG = {
     enabled: true,
     groupId: "241898656",
     groupToken: "vk1.a.xRWV8ieGHWaPOgj1-i0khjmtKvYXST0ETsbS9D-i0VlulXupgmBDJcN2TnGzLpux-p1pQTLEl6sa1OArZKdHc7IVL9hBpmW4u40G2u3m731-uT43jh0LFHucdqRhPN70MXWrRTECz-aJfowJUCdMpr7_Ja817EIO2n77upSKuLiAOj5CRJSZOIRxpC7mAnGhJkr-9CUQHdzbz67zPTBN2A",
-    userId: "550394386"
+    userId: "550394386",
+    userIds: ["550394386"]
   },
   telegramNotify: {
     enabled: false,

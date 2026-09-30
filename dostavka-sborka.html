@@ -436,89 +436,6 @@
       color: var(--color-primary-dark);
     }
 
-    /* Региональные карточки доставки из ВК */
-    .region-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 24px 0 28px;
-    }
-    .region-card {
-      background: #f8faf8;
-      border: 1.5px solid #e0eae2;
-      border-radius: 16px;
-      padding: 22px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.2s ease;
-    }
-    .region-card:hover {
-      border-color: #52b788;
-      background: #ffffff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    }
-    .region-card-title {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .region-card-title svg {
-      color: #2d6a4f;
-      flex-shrink: 0;
-    }
-    .region-card-cities {
-      font-size: 0.85rem;
-      color: #555555;
-      line-height: 1.45;
-      margin-bottom: 16px;
-    }
-    .region-card-bottom {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px dashed #d5ded8;
-    }
-    .region-card-price {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: #2d6a4f;
-    }
-    .region-card-term {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #52b788;
-    }
-
-    .delivery-trust-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 22px;
-      padding-top: 20px;
-      border-top: 1.5px dashed #e2e8e4;
-    }
-    .delivery-trust-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.86rem;
-      color: #2d4a3a;
-      line-height: 1.4;
-    }
-    .delivery-trust-item svg {
-      flex-shrink: 0;
-      color: #2d6a4f;
-      margin-top: 1px;
-    }
-
     /* Фотогалерея работ */
     .gallery-grid {
       display: grid;
@@ -643,8 +560,6 @@
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .timeline-header-row { flex-wrap: wrap; }
       .timeline-arrow-line { display: none; }
-      .region-cards-grid { grid-template-columns: 1fr; }
-      .delivery-trust-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -933,193 +848,58 @@
         </div>
       </div>
 
-      <!-- ГЕОГРАФИЯ И СТОИМОСТЬ ДОСТАВКИ (НА ОСНОВЕ ОФИЦИАЛЬНЫХ ТАРИФОВ ИЗ ВК) -->
+      <!-- КОМПАКТНЫЙ БЛОК СТОИМОСТИ ДОСТАВКИ -->
       <div class="delivery-calc-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px;">
           <div>
-            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: #1a1a1a; margin-bottom: 6px;">
-              География и стоимость доставки
+            <h2 style="font-family: var(--font-heading); font-size: 1.65rem; color: #1a1a1a; margin-bottom: 4px;">
+              Стоимость доставки по областям
             </h2>
-            <p style="color: #666; font-size: 0.95rem; max-width: 650px; margin: 0;">
-              Осуществляем доставку собственным спецтранспортом по Ярославской, Ивановской и Костромской областям. Фиксированный тариф от <strong>1 500 до 2 500 ₽</strong>.
+            <p style="color: #666; font-size: 0.92rem; margin: 0;">
+              Ярославская, Ивановская и Костромская области • Доставка уже завтра • 0 ₽ предоплаты
             </p>
           </div>
-          <div style="background:#eaf4ed; border:1.5px solid #b7e4c7; padding:8px 16px; border-radius:999px; font-size:0.85rem; font-weight:800; color:#2d6a4f; display:flex; align-items:center; gap:6px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            0 ₽ предоплаты — расчет при получении
+          <div style="font-family:var(--font-heading); font-size:1.5rem; font-weight:900; color:var(--color-primary-dark); background:#eaf4ed; padding:6px 16px; border-radius:12px; border:1px solid #b7e4c7;">
+            от 1 500 ₽
           </div>
-        </div>
-
-        <!-- 3 Региона обслуживания по данным ВК -->
-        <div class="region-cards-grid">
-          
-          <div class="region-card">
-            <div>
-              <div class="region-card-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                Ярославская область
-              </div>
-              <div class="region-card-cities">
-                Ярославль, Тутаев, Рыбинск, Гаврилов-Ям, Ростов, Некрасовское, Данилов, Переславль, Углич и все дачные СНТ
-              </div>
-            </div>
-            <div class="region-card-bottom">
-              <div>
-                <div class="region-card-price">1 500 – 2 500 ₽</div>
-                <div style="font-size:0.75rem; color:#888;">зависит от удаленности участка</div>
-              </div>
-              <div class="region-card-term">уже завтра</div>
-            </div>
-          </div>
-
-          <div class="region-card">
-            <div>
-              <div class="region-card-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                Ивановская область
-              </div>
-              <div class="region-card-cities">
-                Иваново, Тейково, Шуя, Фурманов, Приволжск, Комсомольск, Кинешма и близлежащие садоводства
-              </div>
-            </div>
-            <div class="region-card-bottom">
-              <div>
-                <div class="region-card-price">2 000 – 2 500 ₽</div>
-                <div style="font-size:0.75rem; color:#888;">до дачного участка</div>
-              </div>
-              <div class="region-card-term">1–2 дня</div>
-            </div>
-          </div>
-
-          <div class="region-card">
-            <div>
-              <div class="region-card-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                Костромская область
-              </div>
-              <div class="region-card-cities">
-                Кострома, Нерехта, Волгореченск, Красное-на-Волге, Судиславль и дачные массивы направления
-              </div>
-            </div>
-            <div class="region-card-bottom">
-              <div>
-                <div class="region-card-price">2 000 – 2 500 ₽</div>
-                <div style="font-size:0.75rem; color:#888;">до дачного участка</div>
-              </div>
-              <div class="region-card-term">1–2 дня</div>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="font-weight:700; font-size:1rem; color:#1a1a1a; margin-bottom:10px;">
-          Выберите ваш населенный пункт для предварительного расчета:
         </div>
 
         <div class="dest-chips-grid" id="destChipsRow">
-          <button type="button" class="dest-chip active" data-dest="г. Ярославль (все районы)" data-price="1 500 ₽" data-term="уже завтра (1–2 дня)" data-note="Дзержинский, Заволжский, Кировский, Красноперекопский, Ленинский, Фрунзенский районы">
+          <button type="button" class="dest-chip active" data-dest="г. Ярославль (все районы)" data-price="1 500 ₽" data-term="уже завтра" data-note="Все районы города и пригород">
             г. Ярославль
           </button>
-          <button type="button" class="dest-chip" data-dest="Тутаев и Тутаевский район" data-price="1 800 – 2 000 ₽" data-term="1–2 дня" data-note="Правый и левый берег Волги, прилегающие дачные поселки">
-            Тутаев
+          <button type="button" class="dest-chip" data-dest="Тутаев / Гаврилов-Ям" data-price="1 800 – 2 000 ₽" data-term="1–2 дня" data-note="Города и прилегающие дачные массивы">
+            Тутаев / Гаврилов-Ям
           </button>
-          <button type="button" class="dest-chip" data-dest="Гаврилов-Ям и район" data-price="2 000 ₽" data-term="1–2 дня" data-note="Город и прилегающие дачные товарищества">
-            Гаврилов-Ям
+          <button type="button" class="dest-chip" data-dest="Рыбинск / Ростов / Углич" data-price="2 500 ₽" data-term="1–2 дня" data-note="Города и дачные массивы районов">
+            Рыбинск / Ростов / Углич
           </button>
-          <button type="button" class="dest-chip" data-dest="Некрасовское и район" data-price="1 800 – 2 000 ₽" data-term="1–2 дня" data-note="Некрасовский район и берег Волги">
-            Некрасовское
+          <button type="button" class="dest-chip" data-dest="Ивановская область" data-price="2 000 – 2 500 ₽" data-term="1–2 дня" data-note="Иваново, Шуя, Тейково и близлежащие СНТ">
+            Ивановская обл.
           </button>
-          <button type="button" class="dest-chip" data-dest="Рыбинск и Рыбинский район" data-price="2 500 ₽" data-term="1–2 дня" data-note="Рыбинск, район водохранилища и прилегающие СНТ">
-            Рыбинск
+          <button type="button" class="dest-chip" data-dest="Костромская область" data-price="2 000 – 2 500 ₽" data-term="1–2 дня" data-note="Кострома, Нерехта, Волгореченск и СНТ">
+            Костромская обл.
           </button>
-          <button type="button" class="dest-chip" data-dest="Ростов Великий и район" data-price="2 500 ₽" data-term="1–2 дня" data-note="Ростов и район озера Неро">
-            Ростов Великий
-          </button>
-          <button type="button" class="dest-chip" data-dest="Данилов и район" data-price="2 400 – 2 500 ₽" data-term="1–2 дня" data-note="Даниловский район">
-            Данилов
-          </button>
-          <button type="button" class="dest-chip" data-dest="Переславль-Залесский и район" data-price="2 500 ₽" data-term="1–2 дня" data-note="Переславский район и окрестности">
-            Переславль-Залесский
-          </button>
-          <button type="button" class="dest-chip" data-dest="Углич и Угличский район" data-price="2 500 ₽" data-term="1–2 дня" data-note="Угличский район">
-            Углич
-          </button>
-          <button type="button" class="dest-chip" data-dest="Ивановская область (Иваново, Шуя, Тейково)" data-price="2 000 – 2 500 ₽" data-term="1–2 дня" data-note="Любые населенные пункты и СНТ Ивановской области">
-            Ивановская область
-          </button>
-          <button type="button" class="dest-chip" data-dest="Костромская область (Кострома, Нерехта)" data-price="2 000 – 2 500 ₽" data-term="1–2 дня" data-note="Любые населенные пункты и СНТ Костромской области">
-            Костромская область
-          </button>
-          <button type="button" class="dest-chip" data-dest="Дачный поселок / СНТ в области" data-price="1 500 – 2 500 ₽" data-term="В удобный вам день" data-note="Точный расчет по километражу до ворот вашего участка">
-            Любое СНТ в области
+          <button type="button" class="dest-chip" data-dest="Любое СНТ в области" data-price="1 500 – 2 500 ₽" data-term="В удобный день" data-note="Расчет по километражу прямо до ворот вашего участка">
+            Любое СНТ
           </button>
         </div>
 
         <div class="dest-info-panel">
           <div class="dest-info-left">
-            <h4 id="destInfoTitle">г. Ярославль (все районы)</h4>
-            <p id="destInfoNote">Дзержинский, Заволжский, Кировский, Красноперекопский, Ленинский, Фрунзенский районы</p>
-            <div style="font-size:0.85rem; color:#2d6a4f; margin-top:6px; font-weight:700;">
-              Срок: <span id="destInfoTerm">уже завтра (1–2 дня)</span> • 0 ₽ предоплаты • Оплата при выгрузке
+            <h4 id="destInfoTitle" style="margin-bottom:2px;">г. Ярославль (все районы)</h4>
+            <p id="destInfoNote" style="font-size:0.88rem; color:#406050;">Все районы города и пригород</p>
+            <div style="font-size:0.84rem; color:#2d6a4f; margin-top:4px; font-weight:700;">
+              Срок: <span id="destInfoTerm">уже завтра</span> • Оплата при выгрузке (0 ₽ предоплаты)
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
             <div class="dest-info-price" id="destInfoPrice">1 500 ₽</div>
             <button class="btn btn-primary" id="destOrderBtn" data-open-modal data-subject="Заказ доставки: г. Ярославль (1 500 ₽)" data-title="Рассчитать доставку">
-              Выбрать это направление →
+              Рассчитать доставку →
             </button>
           </div>
         </div>
-
-        <!-- Гарантии и прозрачные условия доставки -->
-        <div class="delivery-trust-row">
-          <div class="delivery-trust-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <polyline points="9 12 11 14 15 10"/>
-            </svg>
-            <div>
-              <strong>0 ₽ предоплаты</strong><br>
-              Сначала осмотр целостности теплицы и комплектации на участке — только потом оплата.
-            </div>
-          </div>
-
-          <div class="delivery-trust-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="3" width="15" height="13"/>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/>
-              <circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-            <div>
-              <strong>Спецтранспорт с пирамидой</strong><br>
-              Поликарбонат перевозится бережно, оцинкованные дуги не деформируются и не царапаются.
-            </div>
-          </div>
-
-          <div class="delivery-trust-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            <div>
-              <strong>Точное согласование времени</strong><br>
-              Логист согласует удобный день и интервал. Водитель предупреждает звонком за 1 час.
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <!-- Фотогалерея реальных работ -->

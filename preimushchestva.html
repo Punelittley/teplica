@@ -175,77 +175,167 @@
 
       <!-- ==========================================
            2. БЛОК «ПОЧЕМУ МЫ?» 03
-           (в точности по скриншоту 1 пользователя)
+           (полукруглая дуга в точности по референсу 1)
            ========================================== -->
-      <div class="arc-why-wrapper">
-        <div class="arc-why-header">
-          <h2 class="arc-why-title">ПОЧЕМУ МЫ?</h2>
-          <span class="arc-why-number">03</span>
+      <div class="arc-diagram-card">
+        <div class="arc-diagram-header">
+          <h2 class="arc-diagram-title">ПОЧЕМУ МЫ?</h2>
+          <span class="arc-diagram-big-num">03</span>
         </div>
 
-        <div class="arc-track-container">
+        <!-- Десктопная сцена с дугой SVG и выносными карточками -->
+        <div class="arc-stage">
+          <svg class="arc-svg-track" viewBox="0 0 960 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Путь для текста "приоритет на Вас" -->
+              <path id="pathSector1" d="M 115 450 A 350 300 0 0 1 290 240" fill="none" />
+              <!-- Путь для текста "организация" -->
+              <path id="pathSector2" d="M 310 220 A 350 300 0 0 1 540 185" fill="none" />
+              <!-- Путь для текста "качество" -->
+              <path id="pathSector3" d="M 570 190 A 350 300 0 0 1 760 300" fill="none" />
+              <!-- Путь для текста "гарантии" -->
+              <path id="pathSector4" d="M 780 320 A 350 300 0 0 1 855 460" fill="none" />
+            </defs>
 
-          <!-- Шаг 1 -->
-          <div class="arc-track-item">
-            <div class="arc-track-bubble-box">
-              <ul class="arc-track-bullets">
-                <li>работа в удобное для Вас время и дату</li>
-                <li>учет всех пожеланий по расположению дверей</li>
-                <li>впишемся в ваш бюджет без скрытых доплат</li>
-              </ul>
-            </div>
-            <div class="arc-track-segment">
-              <span class="arc-track-badge-num">1</span>
-              <span class="arc-track-badge-title">приоритет на Вас</span>
-            </div>
+            <!-- Основная черная дуга -->
+            <path d="M 110 460 A 370 310 0 0 1 850 460" stroke="#111111" stroke-width="84" stroke-linecap="round" fill="none" />
+
+            <!-- Разделители секторов (белые радиальные засечки) -->
+            <!-- Разделитель между 1 и 2 -->
+            <line x1="285" y1="205" x2="330" y2="280" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+            <!-- Разделитель между 2 и 3 -->
+            <line x1="550" y1="135" x2="550" y2="225" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+            <!-- Разделитель между 3 и 4 -->
+            <line x1="755" y1="270" x2="695" y2="335" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+
+            <!-- Текст внутри секторов дуги -->
+            <text fill="#ffffff" font-size="15" font-weight="800" font-family="'Inter', sans-serif" letter-spacing="0.5">
+              <textPath href="#pathSector1" startOffset="50%" text-anchor="middle">приоритет на Вас</textPath>
+            </text>
+            <text fill="#ffffff" font-size="16" font-weight="800" font-family="'Inter', sans-serif" letter-spacing="0.5">
+              <textPath href="#pathSector2" startOffset="50%" text-anchor="middle">организация</textPath>
+            </text>
+            <text fill="#ffffff" font-size="16" font-weight="800" font-family="'Inter', sans-serif" letter-spacing="0.5">
+              <textPath href="#pathSector3" startOffset="50%" text-anchor="middle">качество</textPath>
+            </text>
+            <text fill="#ffffff" font-size="16" font-weight="800" font-family="'Inter', sans-serif" letter-spacing="0.5">
+              <textPath href="#pathSector4" startOffset="50%" text-anchor="middle">гарантии</textPath>
+            </text>
+
+            <!-- Круглые узлы-бейджи с цифрами (точно по скриншоту референса) -->
+            <!-- Узел 1 (слева вверху сектора 1) -->
+            <g class="arc-badge-group">
+              <circle cx="160" cy="275" r="23" fill="#d4f455" stroke="#ffffff" stroke-width="3" />
+              <text x="160" y="276" text-anchor="middle" dominant-baseline="central" fill="#111111" font-size="20" font-weight="900" font-family="'Inter', sans-serif">1</text>
+            </g>
+
+            <!-- Узел 2 (наверху по центру, перед сектором организация) -->
+            <g class="arc-badge-group">
+              <circle cx="395" cy="145" r="23" fill="#d4f455" stroke="#ffffff" stroke-width="3" />
+              <text x="395" y="146" text-anchor="middle" dominant-baseline="central" fill="#111111" font-size="20" font-weight="900" font-family="'Inter', sans-serif">2</text>
+            </g>
+
+            <!-- Узел 3 (справа вверху, перед качеством) -->
+            <g class="arc-badge-group">
+              <circle cx="685" cy="245" r="23" fill="#d4f455" stroke="#ffffff" stroke-width="3" />
+              <text x="685" y="246" text-anchor="middle" dominant-baseline="central" fill="#111111" font-size="20" font-weight="900" font-family="'Inter', sans-serif">3</text>
+            </g>
+
+            <!-- Узел 4 (справа внизу, перед гарантиями) -->
+            <g class="arc-badge-group">
+              <circle cx="680" cy="405" r="23" fill="#d4f455" stroke="#ffffff" stroke-width="3" />
+              <text x="680" y="406" text-anchor="middle" dominant-baseline="central" fill="#111111" font-size="20" font-weight="900" font-family="'Inter', sans-serif">4</text>
+            </g>
+          </svg>
+
+          <!-- Выносная карточка 1 (к сектору 1) -->
+          <div class="arc-floating-card arc-floating-card--1">
+            <ul>
+              <li>работа в удобное для Вас время и дату</li>
+              <li>учет всех пожеланий по расположению дверей</li>
+              <li>впишемся в ваш бюджет без скрытых доплат</li>
+            </ul>
           </div>
 
-          <!-- Шаг 2 -->
-          <div class="arc-track-item">
-            <div class="arc-track-bubble-box">
-              <ul class="arc-track-bullets">
-                <li>контроль за каждым этапом сборки мастером</li>
-                <li>работа строго в указанные договором сроки</li>
-                <li>бережная доставка спецтранспортом завода</li>
-              </ul>
-            </div>
-            <div class="arc-track-segment">
-              <span class="arc-track-badge-num">2</span>
-              <span class="arc-track-badge-title">организация</span>
-            </div>
+          <!-- Выносная карточка 2 (к сектору 2) -->
+          <div class="arc-floating-card arc-floating-card--2">
+            <ul>
+              <li>контроль за каждым этапом сборки мастером</li>
+              <li>работа строго в указанные договором сроки</li>
+              <li>бережная доставка спецтранспортом завода</li>
+            </ul>
           </div>
 
-          <!-- Шаг 3 -->
-          <div class="arc-track-item">
-            <div class="arc-track-bubble-box">
-              <ul class="arc-track-bullets">
-                <li>работа с проверенными материалами по ГОСТ</li>
-                <li>опыт работы завода в данной сфере более 8 лет</li>
-                <li>цельногнутые заводские дуги высокой точности</li>
-              </ul>
-            </div>
-            <div class="arc-track-segment">
-              <span class="arc-track-badge-num">3</span>
-              <span class="arc-track-badge-title">качество</span>
-            </div>
+          <!-- Выносная карточка 3 (к сектору 3) -->
+          <div class="arc-floating-card arc-floating-card--3">
+            <ul>
+              <li>работа с проверенными материалами по ГОСТ</li>
+              <li>опыт работы завода в данной сфере более 8 лет</li>
+              <li>цельногнутые заводские дуги высокой точности</li>
+            </ul>
           </div>
 
-          <!-- Шаг 4 -->
-          <div class="arc-track-item">
-            <div class="arc-track-bubble-box">
-              <ul class="arc-track-bullets">
-                <li>заключение официального договора с печатью</li>
-                <li>прием работы клиентом по Акту приема-сдачи</li>
-                <li>гарантия результата работы и каркаса до 10 лет</li>
-              </ul>
-            </div>
-            <div class="arc-track-segment">
-              <span class="arc-track-badge-num">4</span>
-              <span class="arc-track-badge-title">гарантии</span>
-            </div>
+          <!-- Выносная карточка 4 (к сектору 4) -->
+          <div class="arc-floating-card arc-floating-card--4">
+            <ul>
+              <li>заключение официального договора с печатью</li>
+              <li>прием работы клиентом по Акту приема-сдачи</li>
+              <li>гарантия результата работы и каркаса до 10 лет</li>
+            </ul>
           </div>
-
         </div>
+
+        <!-- Адаптивный мобильный список шагов (для экранов <= 850px) -->
+        <div class="arc-mobile-timeline">
+          <div class="arc-mobile-step">
+            <div class="arc-mobile-step-header">
+              <span class="arc-mobile-num">1</span>
+              <span class="arc-mobile-name">приоритет на Вас</span>
+            </div>
+            <ul>
+              <li>работа в удобное для Вас время и дату</li>
+              <li>учет всех пожеланий по расположению дверей</li>
+              <li>впишемся в ваш бюджет без скрытых доплат</li>
+            </ul>
+          </div>
+
+          <div class="arc-mobile-step">
+            <div class="arc-mobile-step-header">
+              <span class="arc-mobile-num">2</span>
+              <span class="arc-mobile-name">организация</span>
+            </div>
+            <ul>
+              <li>контроль за каждым этапом сборки мастером</li>
+              <li>работа строго в указанные договором сроки</li>
+              <li>бережная доставка спецтранспортом завода</li>
+            </ul>
+          </div>
+
+          <div class="arc-mobile-step">
+            <div class="arc-mobile-step-header">
+              <span class="arc-mobile-num">3</span>
+              <span class="arc-mobile-name">качество</span>
+            </div>
+            <ul>
+              <li>работа с проверенными материалами по ГОСТ</li>
+              <li>опыт работы завода в данной сфере более 8 лет</li>
+              <li>цельногнутые заводские дуги высокой точности</li>
+            </ul>
+          </div>
+
+          <div class="arc-mobile-step">
+            <div class="arc-mobile-step-header">
+              <span class="arc-mobile-num">4</span>
+              <span class="arc-mobile-name">гарантии</span>
+            </div>
+            <ul>
+              <li>заключение официального договора с печатью</li>
+              <li>прием работы клиентом по Акту приема-сдачи</li>
+              <li>гарантия результата работы и каркаса до 10 лет</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <!-- ==========================================
@@ -266,19 +356,13 @@
             Снегостойкость до 240 кг/м² — теплица зимует без подпорок
           </div>
           <div class="pill-tile pill-tile--white">
-            Урожай на 3–4 недели раньше за счёт герметичного микроклимата
+            Залог безопасности урожая — герметичный микроклимат без сквозняков
           </div>
           <div class="pill-tile pill-tile--white">
-            Бесплатное хранение купленной теплицы на складе завода до весны
+            Создание комфортной среды — сбор урожая на 3–4 недели раньше
           </div>
           <div class="pill-tile pill-tile--dark">
-            Оцинковка внутри и снаружи — каркас не ржавеет более 15 лет
-          </div>
-          <div class="pill-tile pill-tile--lime">
-            Двойная дуга-ферма 40х20 мм выдерживает любые бури и ураганы
-          </div>
-          <div class="pill-tile pill-tile--white">
-            УФ-защитный слой 50 мкм — томаты и перцы защищены от ожогов
+            Долговечность на 15+ лет — честная труба ГОСТ с оцинковкой
           </div>
         </div>
       </div>
@@ -387,6 +471,26 @@
 
       </div>
 
+      <!-- Статистическая строка под табами (в стиле референса) -->
+      <div class="adv-stats-strip">
+        <div class="adv-stat-unit">
+          <span class="adv-stat-num">98%</span>
+          <span class="adv-stat-text">Довольных садоводов</span>
+        </div>
+        <div class="adv-stat-unit">
+          <span class="adv-stat-num">24/7</span>
+          <span class="adv-stat-text">Консультация мастера</span>
+        </div>
+        <div class="adv-stat-unit">
+          <span class="adv-stat-num">2 400+</span>
+          <span class="adv-stat-text">Установленных теплиц</span>
+        </div>
+        <div class="adv-stat-unit">
+          <span class="adv-stat-num">0 ₽</span>
+          <span class="adv-stat-text">Предоплаты до осмотра</span>
+        </div>
+      </div>
+
       <!-- ==========================================
            5. СРАВНЕНИЕ: ЗАВОД VS РЫНОК
            ========================================== -->
@@ -465,11 +569,11 @@
            ========================================== -->
       <div class="works-cta-banner" style="background: linear-gradient(135deg, #111111 0%, #1b4332 100%);">
         <div>
-          <span style="background: #a7f300; color: #111; padding: 4px 14px; border-radius: 999px; font-weight: 800; font-size: 0.85rem; margin-bottom: 12px; display: inline-block;">
+          <span style="background: #d8f3dc; color: #1b4332; padding: 6px 16px; border-radius: 999px; font-weight: 800; font-size: 0.85rem; margin-bottom: 12px; display: inline-block;">
             Сезонная акция 2026
           </span>
-          <h2 style="font-size: 2rem;">Хотите теплицу заводского качества?</h2>
-          <p>
+          <h2 style="font-size: 2rem; color: #ffffff !important;">Хотите теплицу заводского качества?</h2>
+          <p style="color: #d8f3dc !important;">
             Оставьте номер телефона — наш старший мастер бесплатно проконсультирует, рассчитает точную стоимость под ваш участок и зафиксирует скидку без предоплаты!
           </p>
         </div>

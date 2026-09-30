@@ -1,12 +1,523 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Доставка и сборка теплиц в Ярославле и области под ключ — Теплицы 76</title>
-  <meta name="description" content="Бережная доставка и профессиональная сборка теплиц из поликарбоната за 3 часа. По Ярославлю и всей Ярославской области. Оплата после приемки работы.">
+  <title>Доставка и сборка теплиц под ключ — Теплицы ТУТ</title>
+  <meta name="description" content="Бережная доставка и профессиональная сборка теплиц из поликарбоната за 3–4 часа по Ярославской, Ивановской и Костромской областям. 0 ₽ предоплаты, оплата строго после приемки!">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ===== Стили страницы доставки и сборки ===== */
+    .delivery-page {
+      background: #f4f4f0;
+      min-height: 100vh;
+      padding-bottom: 70px;
+    }
+
+    .delivery-breadcrumb {
+      font-size: 0.82rem;
+      color: #999;
+      padding: 18px 0 0;
+    }
+    .delivery-breadcrumb a { color: #999; text-decoration: none; }
+    .delivery-breadcrumb a:hover { color: #333; }
+    .delivery-breadcrumb span { margin: 0 5px; }
+
+    /* Hero секция страницы */
+    .delivery-hero-box {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 44px 48px;
+      margin: 24px 0 40px;
+      border: 1.5px solid #ebebeb;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .delivery-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eaf4ed;
+      color: var(--color-primary-dark);
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 5px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .delivery-hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+
+    .delivery-hero-title span {
+      color: var(--color-primary);
+    }
+
+    .delivery-hero-lead {
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 26px;
+    }
+
+    .delivery-badges-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .delivery-mini-badge {
+      background: #f8faf8;
+      border: 1px solid #e2ebe4;
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+    }
+
+    .delivery-mini-badge svg {
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .delivery-hero-img-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+    }
+
+    .delivery-hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .delivery-hero-floating-tag {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    /* Две главные услуги: Карточки */
+    .services-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+
+    .service-big-card {
+      background: #ffffff;
+      border-radius: 22px;
+      border: 1.5px solid #ebebeb;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-big-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      background: #ecece8;
+    }
+
+    .service-big-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-card-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    .service-big-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .service-big-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .service-big-price {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+    }
+
+    .service-big-desc {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .service-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: #333;
+    }
+
+    .service-features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .service-features-list li svg {
+      color: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Интерактивный калькулятор тарифов */
+    .delivery-calc-card {
+      background: #ffffff;
+      border-radius: 22px;
+      border: 1.5px solid #ebebeb;
+      padding: 38px 42px;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    }
+
+    .dest-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 28px;
+    }
+
+    .dest-chip {
+      background: #f8faf8;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dest-chip:hover,
+    .dest-chip.active {
+      background: #eaf4ed;
+      border-color: var(--color-primary);
+      color: var(--color-primary-dark);
+    }
+
+    .dest-info-panel {
+      background: linear-gradient(135deg, #eaf4ed 0%, #d8f3dc 100%);
+      border-radius: 16px;
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dest-info-left h4 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .dest-info-left p {
+      font-size: 0.92rem;
+      color: #406050;
+      margin: 0;
+    }
+
+    .dest-info-price {
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--color-primary-dark);
+    }
+
+    /* Шаги процесса */
+    .steps-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .steps-section-sub {
+      text-align: center;
+      color: #777;
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1.5px solid #ebebeb;
+      padding: 28px 22px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      position: relative;
+    }
+
+    .step-num {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+
+    .step-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Блок фундаментов с фото */
+    .foundations-card {
+      background: #ffffff;
+      border-radius: 22px;
+      border: 1.5px solid #ebebeb;
+      padding: 38px 42px;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    }
+
+    .foundations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .foundation-item {
+      background: #f8faf8;
+      border: 1.5px solid #e0ebe3;
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .foundation-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+    }
+
+    .foundation-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .foundation-body {
+      padding: 22px;
+      flex-grow: 1;
+    }
+
+    .foundation-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .foundation-text {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    /* Фотогалерея работ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 50px;
+    }
+
+    .gallery-item {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid #ebebeb;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+
+    .gallery-img-wrap {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      position: relative;
+    }
+
+    .gallery-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* FAQ */
+    .faq-accordion-box {
+      max-width: 860px;
+      margin: 0 auto 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-acc-item {
+      background: #ffffff;
+      border: 1.5px solid #ebebeb;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-acc-header {
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      transition: background 0.2s;
+    }
+
+    .faq-acc-header:hover {
+      background: #f8faf8;
+    }
+
+    .faq-acc-icon {
+      font-size: 1.3rem;
+      color: var(--color-primary);
+      transition: transform 0.2s ease;
+      font-weight: 400;
+    }
+
+    .faq-acc-item.active .faq-acc-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-acc-body {
+      padding: 0 22px 18px;
+      color: #555;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-acc-item.active .faq-acc-body {
+      display: block;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 960px) {
+      .delivery-hero-box { grid-template-columns: 1fr; padding: 32px 24px; }
+      .services-split-grid { grid-template-columns: 1fr; }
+      .foundations-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .delivery-badges-strip { grid-template-columns: 1fr; }
+      .dest-info-panel { flex-direction: column; align-items: flex-start; }
+      .delivery-calc-card { padding: 24px 18px; }
+      .foundations-card { padding: 24px 18px; }
+    }
+  </style>
 </head>
 <body>
   <!-- Шапка сайта -->
@@ -26,10 +537,10 @@
       <!-- Нижняя строка: навигация по центру -->
       <div class="header-nav-row">
         <nav class="site-nav" id="siteNav">
-          <a href="index.html" class="nav-link ">Главная</a>
+          <a href="index.html" class="nav-link">Главная</a>
           
           <div class="nav-item-dropdown">
-            <a href="arochnye.html" class="nav-link dropdown-toggle ">
+            <a href="arochnye.html" class="nav-link dropdown-toggle">
               Теплицы 
               <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9l6 6 6-6"/>
@@ -41,202 +552,434 @@
             </div>
           </div>
 
-          <a href="gryadki.html" class="nav-link ">Грядки</a>
+          <a href="gryadki.html" class="nav-link">Грядки</a>
           <a href="dostavka-sborka.html" class="nav-link active">Доставка и сборка</a>
-          <a href="polikarbonat.html" class="nav-link ">Поликарбонат</a>
-          <a href="otzyvy.html" class="nav-link ">Отзывы</a>
-          <a href="kontakty.html" class="nav-link ">Контакты</a>
+          <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
+          <a href="otzyvy.html" class="nav-link">Отзывы</a>
+          <a href="kontakty.html" class="nav-link">Контакты</a>
         </nav>
       </div>
 
     </div>
   </header>
 
-  <!-- Подзаголовок страницы -->
-  <section class="subpage-hero">
+  <!-- Главное содержимое -->
+  <main class="delivery-page">
     <div class="container">
-      <div class="breadcrumbs">
-        <a href="index.html">Главная</a>
-        <span class="breadcrumbs-sep">/</span>
-        <span>Доставка и сборка под ключ</span>
-      </div>
-      <h1 class="hero-title" style="font-size: 2.6rem; margin-bottom: 12px;">Доставка и сборка теплиц под ключ</h1>
-      <p style="font-size: 1.15rem; color: var(--color-text-muted); max-width: 820px;">
-        Мы берем на себя все хлопоты: бережно привезем комплект собственным грузовым транспортом, аккуратно разгрузим прямо на ваш участок и смонтируем надежную теплицу за 3-4 часа. Без предоплаты!
-      </p>
-    </div>
-  </section>
 
-  <!-- Процесс работы под ключ -->
-  <section class="section-padding">
-    <div class="container">
-      
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 50px;">
-        <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 25px; box-shadow: 0 4px 15px var(--color-shadow);">
-          <div style="font-size: 2rem; color: var(--color-primary); font-weight: 900; margin-bottom: 10px;">01</div>
-          <h3 style="font-size: 1.2rem; color: var(--color-primary-dark); margin-bottom: 8px;">Согласование даты</h3>
-          <p style="color: var(--color-text-muted); font-size: 0.92rem;">
-            Выбираем удобный для вас день недели (работаем в выходные и праздники). За день звоним и подтверждаем время.
-          </p>
-        </div>
-
-        <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 25px; box-shadow: 0 4px 15px var(--color-shadow);">
-          <div style="font-size: 2rem; color: var(--color-primary); font-weight: 900; margin-bottom: 10px;">02</div>
-          <h3 style="font-size: 1.2rem; color: var(--color-primary-dark); margin-bottom: 8px;">Бережная доставка</h3>
-          <p style="color: var(--color-text-muted); font-size: 0.92rem;">
-            Поликарбонат перевозится без перегибов и заломов. Водитель и сборщики сами разгрузят каркас к месту монтажа.
-          </p>
-        </div>
-
-        <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 25px; box-shadow: 0 4px 15px var(--color-shadow);">
-          <div style="font-size: 2rem; color: var(--color-primary); font-weight: 900; margin-bottom: 10px;">03</div>
-          <h3 style="font-size: 1.2rem; color: var(--color-primary-dark); margin-bottom: 8px;">Сборка за 3-4 часа</h3>
-          <p style="color: var(--color-text-muted); font-size: 0.92rem;">
-            Опытная русская бригада по уровню выставит основание, протянет все узлы, закрепит поликарбонат и настроит двери.
-          </p>
-        </div>
-
-        <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 25px; box-shadow: 0 4px 15px var(--color-shadow);">
-          <div style="font-size: 2rem; color: var(--color-primary); font-weight: 900; margin-bottom: 10px;">04</div>
-          <h3 style="font-size: 1.2rem; color: var(--color-primary-dark); margin-bottom: 8px;">Приемка и оплата</h3>
-          <p style="color: var(--color-text-muted); font-size: 0.92rem;">
-            Вы лично осматриваете готовую теплицу, проверяете форточки, подписываете договор и только тогда производите оплату.
-          </p>
-        </div>
+      <!-- Хлебные крошки -->
+      <div class="delivery-breadcrumb">
+        <a href="index.html">Главная страница</a>
+        <span>/</span>
+        <span>Доставка и сборка</span>
       </div>
 
-      <!-- Секция фундаментов -->
-      <div id="brus" style="background: white; border-radius: var(--radius-xl); border: 1px solid var(--color-border); padding: 35px; margin-bottom: 50px; box-shadow: 0 6px 20px var(--color-shadow);">
-        <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 12px;">
-          Варианты установки теплицы на участке
+      <!-- Hero Showcase -->
+      <div class="delivery-hero-box">
+        <div>
+          <div class="delivery-hero-badge">
+            🚚 БЕРЕЖНО • ТОЧНО В СРОК • ПОД КЛЮЧ
+          </div>
+          <h1 class="delivery-hero-title">
+            Доставка и профессиональная сборка теплиц <span>за 1 день</span>
+          </h1>
+          <p class="delivery-hero-lead">
+            Мы берем на себя все заботы: привезем теплицу собственным оборудованным транспортом прямо на дачный участок, бережно разгрузим и смонтируем надежную конструкцию за 3–4 часа.
+          </p>
+
+          <div class="delivery-badges-strip">
+            <div class="delivery-mini-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>0 ₽ предоплаты (оплата по факту)</span>
+            </div>
+            <div class="delivery-mini-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Сборка за 3–4 часа под ключ</span>
+            </div>
+            <div class="delivery-mini-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Выезд по всей области и в СНТ</span>
+            </div>
+            <div class="delivery-mini-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Мусор за собой убираем</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="delivery-hero-img-wrap">
+          <img src="assets/images/products/p4/1.jpg" alt="Доставка теплиц транспортом завода">
+          <div class="delivery-hero-floating-tag">
+            🚚 Спецтранспорт с пирамидой: дуги и поликарбонат без заломов!
+          </div>
+        </div>
+      </div>
+
+      <!-- Две главные услуги (Сплит) -->
+      <div class="services-split-grid">
+        
+        <!-- Услуга 1: Доставка -->
+        <div class="service-big-card">
+          <div class="service-big-img-wrap">
+            <img src="assets/images/products/p4/2.jpg" alt="Бережная доставка теплиц">
+            <span class="service-card-tag">Доставка</span>
+          </div>
+          <div class="service-big-body">
+            <h3 class="service-big-title">Доставка теплиц и комплектующих</h3>
+            <div class="service-big-price">1 500 – 2 500 ₽ • по области</div>
+            <p class="service-big-desc">
+              Осуществляем доставку теплиц, сотового поликарбоната, грядок и бруса по всей Ярославской, Ивановской и Костромской областям. Согласовываем точный день и удобное время.
+            </p>
+            <ul class="service-features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Специально оборудованный грузовой транспорт для дуг и рулонов;</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Бережная фиксация мягкими стяжными ремнями — никаких заломов;</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Разгрузка на вашем дачном участке включена;</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Доставляем в любые СНТ, деревни и дачные поселки.</span>
+              </li>
+            </ul>
+            <button class="btn btn-primary" style="margin-top: auto;" data-open-modal data-subject="Заказ услуги: Доставка теплицы" data-title="Заказать доставку теплицы">
+              Заказать доставку →
+            </button>
+          </div>
+        </div>
+
+        <!-- Услуга 2: Сборка -->
+        <div class="service-big-card">
+          <div class="service-big-img-wrap">
+            <img src="assets/images/products/p2/1.jpg" alt="Профессиональная сборка теплиц">
+            <span class="service-card-tag" style="background:#2b9348;">Сборка под ключ</span>
+          </div>
+          <div class="service-big-body">
+            <h3 class="service-big-title">Профессиональная сборка теплиц</h3>
+            <div class="service-big-price">6 500 – 8 000 ₽ • за 3–4 часа</div>
+            <p class="service-big-desc">
+              Выполняем качественную сборку теплиц под ключ. Работаем аккуратно, соблюдаем диагонали и уровень, гарантируем прочность конструкции при снегопадах.
+            </p>
+            <ul class="service-features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Опытная штатная бригада с профессиональным электроинструментом;</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Устанавливаем как наши теплицы, так и теплицы других производителей;</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Точная регулировка дверей, ручек, форточек и крепления СПК;</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Мусор за собой убираем, оставляем участок в чистоте.</span>
+              </li>
+            </ul>
+            <button class="btn btn-primary" style="margin-top: auto;" data-open-modal data-subject="Заказ услуги: Сборка теплицы под ключ" data-title="Заказать сборку теплицы">
+              Заказать сборку →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Интерактивный калькулятор тарифов по городам -->
+      <div class="delivery-calc-card">
+        <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: #1a1a1a; margin-bottom: 6px;">
+          Тарифы доставки по направлениям
         </h2>
-        <p style="color: var(--color-text-muted); margin-bottom: 25px;">
-          Правильно установленная теплица простоит десятки лет и не перекосится от подвижек грунта весной.
+        <p style="color: #666; font-size: 0.95rem;">
+          Нажмите на ваш город или район, чтобы узнать ориентировочную стоимость и срок доставки:
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-          <div style="background: var(--color-bg); border-radius: var(--radius-lg); padding: 25px; border: 1px solid var(--color-border);">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-              <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(45,106,79,0.12); color: var(--color-primary-dark); flex-shrink: 0;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18"/></svg>
-              </span>
-              <h3 style="font-size: 1.25rem; color: var(--color-primary-dark); margin: 0;">Фундамент из бруса 100х100 мм (Рекомендуем!)</h3>
-            </div>
-            <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 14px;">
-              Мы привозим сухой строганый сосновый брус сечением 100х100 мм, запиливаем углы «в полдерева» и тщательно пропитываем глубоким антисептиком от гниения и жучков.
-            </p>
-            <ul style="list-style: none; font-size: 0.9rem; color: var(--color-text-main);">
-              <li style="margin-bottom: 6px;">✓ Идеально ровная геометрия основания теплицы</li>
-              <li style="margin-bottom: 6px;">✓ Защита от проникновения сорняков и вредителей снизу</li>
-              <li style="margin-bottom: 6px;">✓ При необходимости теплицу можно переставить на другое место</li>
-            </ul>
-          </div>
+        <div class="dest-chips-grid" id="destChipsRow">
+          <button type="button" class="dest-chip active" data-dest="г. Ярославль (все районы)" data-price="1 500 ₽" data-term="1–2 дня" data-note="Дзержинский, Заволжский, Кировский, Красноперекопский, Ленинский, Фрунзенский районы">
+            г. Ярославль
+          </button>
+          <button type="button" class="dest-chip" data-dest="Тутаев" data-price="2 200 ₽" data-term="1–2 дня" data-note="Правый и левый берег, СНТ вокруг Тутаева">
+            Тутаев
+          </button>
+          <button type="button" class="dest-chip" data-dest="Гаврилов-Ям" data-price="2 400 ₽" data-term="1–2 дня" data-note="Город и прилегающие дачные массивы">
+            Гаврилов-Ям
+          </button>
+          <button type="button" class="dest-chip" data-dest="Некрасовское" data-price="2 300 ₽" data-term="1–2 дня" data-note="Некрасовский район и берег Волги">
+            Некрасовское
+          </button>
+          <button type="button" class="dest-chip" data-dest="Рыбинск" data-price="3 200 ₽" data-term="1–3 дня" data-note="Рыбинск и Рыбинский район">
+            Рыбинск
+          </button>
+          <button type="button" class="dest-chip" data-dest="Ростов Великий" data-price="3 200 ₽" data-term="1–3 дня" data-note="Ростов и район озера Неро">
+            Ростов Великий
+          </button>
+          <button type="button" class="dest-chip" data-dest="Данилов" data-price="3 400 ₽" data-term="2–3 дня" data-note="Даниловский район">
+            Данилов
+          </button>
+          <button type="button" class="dest-chip" data-dest="Переславль-Залесский" data-price="3 900 ₽" data-term="2–3 дня" data-note="Переславский район и окрестности">
+            Переславль-Залесский
+          </button>
+          <button type="button" class="dest-chip" data-dest="Углич" data-price="4 200 ₽" data-term="2–3 дня" data-note="Угличский район">
+            Углич
+          </button>
+          <button type="button" class="dest-chip" data-dest="Дачный поселок / СНТ в области" data-price="1 500 ₽ + 40 ₽/км" data-term="В удобный день" data-note="Расчет от черты города, точную сумму назовет диспетчер">
+            Любое СНТ в области
+          </button>
+        </div>
 
-          <div style="background: var(--color-bg); border-radius: var(--radius-lg); padding: 25px; border: 1px solid var(--color-border);">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-              <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(45,106,79,0.12); color: var(--color-primary-dark); flex-shrink: 0;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
-              </span>
-              <h3 style="font-size: 1.25rem; color: var(--color-primary-dark); margin: 0;">Установка на грунтозацепы в землю</h3>
+        <div class="dest-info-panel">
+          <div class="dest-info-left">
+            <h4 id="destInfoTitle">г. Ярославль (все районы)</h4>
+            <p id="destInfoNote">Дзержинский, Заволжский, Кировский, Красноперекопский, Ленинский, Фрунзенский районы</p>
+            <div style="font-size:0.85rem; color:#2d6a4f; margin-top:6px; font-weight:700;">
+              Срок: <span id="destInfoTerm">1–2 дня</span> • Оплата при выгрузке
             </div>
-            <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 14px;">
-              Экономичный вариант без закупки пиломатериалов. Каркас крепится на Т-образные оцинкованные окончания каждой стойки, которые закапываются в плотный грунт на глубину 25-35 см.
-            </p>
-            <ul style="list-style: none; font-size: 0.9rem; color: var(--color-text-main);">
-              <li style="margin-bottom: 6px;">✓ Входит в стандартный базовый комплект поставки</li>
-              <li style="margin-bottom: 6px;">✓ Подходит для тяжелых суглинистых почв</li>
-              <li style="margin-bottom: 6px;">✓ Быстрый монтаж без дополнительных расходов</li>
-            </ul>
+          </div>
+          <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+            <div class="dest-info-price" id="destInfoPrice">1 500 ₽</div>
+            <button class="btn btn-primary" id="destOrderBtn" data-open-modal data-subject="Заказ доставки в г. Ярославль (1 500 ₽)" data-title="Рассчитать доставку">
+              Выбрать этот город →
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Стоимость доставки по городам области -->
-      <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 15px;">
-        География и тарифы доставки
-      </h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 20px;">
-        Доставляем в любой населенный пункт, дачный поселок или СНТ Ярославской области собственным транспортом:
-      </p>
+      <!-- Как мы работаем (4 шага) -->
+      <div style="margin-bottom: 50px;">
+        <h2 class="steps-section-title">Как проходит доставка и сборка</h2>
+        <p class="steps-section-sub">Простой, понятный и прозрачный процесс без предоплаты</p>
 
-      <div class="pricing-table-wrap">
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Направление / Город</th>
-              <th>Ориентировочная стоимость доставки</th>
-              <th>Сроки</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>г. Ярославль</strong> (все районы: Дзержинский, Заволжский, Кировский, Красноперекопский, Ленинский, Фрунзенский)</td>
-              <td><strong>1 500 ₽</strong> (или бесплатно по сезонным акциям)</td>
-              <td>1-2 дня</td>
-            </tr>
-            <tr>
-              <td><strong>Тутаев, Гаврилов-Ям, Некрасовское</strong></td>
-              <td>2 200 – 2 600 ₽</td>
-              <td>1-3 дня</td>
-            </tr>
-            <tr>
-              <td><strong>Рыбинск, Ростов Великий, Данилов</strong></td>
-              <td>3 200 – 3 800 ₽</td>
-              <td>2-3 дня</td>
-            </tr>
-            <tr>
-              <td><strong>Переславль-Залесский, Углич, Мышкин, Пошехонье</strong></td>
-              <td>3 900 – 4 800 ₽</td>
-              <td>По графику выездов (2 раза в неделю)</td>
-            </tr>
-            <tr>
-              <td><strong>Любое дачное СНТ в области</strong></td>
-              <td>1 500 ₽ + 40 ₽/км от черты города</td>
-              <td>В удобный день</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3 class="step-title">Согласование даты</h3>
+            <p class="step-desc">
+              Выбираем удобный для вас день недели (работаем без выходных). За день до выезда логист подтверждает точное время прибытия.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3 class="step-title">Бережная доставка</h3>
+            <p class="step-desc">
+              Спецтранспорт с пирамидой доставит дуги и рулоны поликарбоната без перегибов. Водитель и грузчик аккуратно перенесут всё к месту монтажа.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3 class="step-title">Сборка за 3–4 часа</h3>
+            <p class="step-desc">
+              Опытные русские мастера по лазерному уровню соберут каркас, раскроят и закрепят поликарбонат с термошайбами, настроят двери и форточки.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h3 class="step-title">Приемка и расчет</h3>
+            <p class="step-desc">
+              Вы лично проверяете готовую теплицу, устойчивость и работу дверей, подписываете акт и только после этого производите оплату водителю.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <!-- Кнопка заявки на расчет -->
-      <div style="text-align: center; margin-top: 40px;">
-        <button class="btn btn-primary" data-open-modal data-subject="Расчет доставки в мой СНТ" data-title="Рассчитать доставку на ваш участок" data-subtitle="Назовите ваш населенный пункт или СНТ — диспетчер назовет точную сумму">
-          Рассчитать точную доставку до моего участка →
+      <!-- Варианты фундамента -->
+      <div class="foundations-card">
+        <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: #1a1a1a; margin-bottom: 6px;">
+          Варианты установки теплицы на участке
+        </h2>
+        <p style="color: #666; font-size: 0.95rem;">
+          Правильно выбранное основание гарантирует долговечность конструкции и защиту от весенних перекосов
+        </p>
+
+        <div class="foundations-grid">
+          
+          <div class="foundation-item">
+            <div class="foundation-img-wrap">
+              <img src="assets/images/products/p6/1.jpg" alt="Фундамент из бруса 100х100">
+            </div>
+            <div class="foundation-body">
+              <div class="foundation-name">1. Фундамент из бруса 100х100 мм (Рекомендуем)</div>
+              <p class="foundation-text">
+                Мы привозим сухой брус, запиливаем углы в замок «в полдерева» и пропитываем трудновымываемым антисептиком. Основание выставляется строго по диагоналям и лазерному уровню.
+              </p>
+              <ul style="list-style:none; padding:0; margin:0 0 16px 0; font-size:0.88rem; color:#406050; display:flex; flex-direction:column; gap:6px;">
+                <li>✓ Поднимает теплицу на 10 см (больше полезной высоты);</li>
+                <li>✓ Предохраняет оцинкованный металл от сырости почвы;</li>
+                <li>✓ При необходимости теплицу можно переставить на новое место.</li>
+              </ul>
+              <div style="font-size:1.1rem; font-weight:800; color:var(--color-primary);">6 000 – 9 000 ₽ под ключ</div>
+            </div>
+          </div>
+
+          <div class="foundation-item">
+            <div class="foundation-img-wrap">
+              <img src="assets/images/products/p2/3.jpg" alt="Установка на грунтозацепы">
+            </div>
+            <div class="foundation-body">
+              <div class="foundation-name">2. Установка на грунтозацепы прямо в землю</div>
+              <p class="foundation-text">
+                Экономичный вариант без закупки пиломатериалов. Каркас фиксируется на Т-образные оцинкованные окончания каждой стойки, которые закапываются в грунт на глубину 25–35 см.
+              </p>
+              <ul style="list-style:none; padding:0; margin:0 0 16px 0; font-size:0.88rem; color:#406050; display:flex; flex-direction:column; gap:6px;">
+                <li>✓ Входит в стандартную базовую комплектацию;</li>
+                <li>✓ Отлично подходит для тяжелых глинистых почв;</li>
+                <li>✓ Быстрый монтаж без дополнительных затрат.</li>
+              </ul>
+              <div style="font-size:1.1rem; font-weight:800; color:#555;">0 ₽ дополнительно (в комплекте)</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Фотогалерея реальных работ -->
+      <div style="margin-bottom: 50px;">
+        <h2 class="steps-section-title">Фотографии доставки и сборки</h2>
+        <p class="steps-section-sub">Реальные фото выездов наших бригад на дачные участки</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/products/p4/1.jpg" alt="Спецтранспорт с теплицами">
+            </div>
+            <div class="gallery-caption">Бережная погрузка и транспортировка</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/products/p6/2.jpg" alt="Монтаж бруса на участке">
+            </div>
+            <div class="gallery-caption">Выставка бруса 100х100 по лазерному уровню</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/products/p2/2.jpg" alt="Сборка металлокаркаса">
+            </div>
+            <div class="gallery-caption">Сборка цельногнутых оцинкованных дуг</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/products/p2/4.jpg" alt="Крепление поликарбоната">
+            </div>
+            <div class="gallery-caption">Крепление поликарбоната 4 мм с УФ-защитой</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/products/p4/3.jpg" alt="Выгрузка на участке">
+            </div>
+            <div class="gallery-caption">Разгрузка непосредственно к месту посадки</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/products/p2/5.jpg" alt="Готовая теплица под ключ">
+            </div>
+            <div class="gallery-caption">Сдача готовой теплицы за 3,5 часа</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Вопрос-ответ (FAQ) -->
+      <div style="margin-bottom: 50px;">
+        <h2 class="steps-section-title">Часто задаваемые вопросы</h2>
+        <p class="steps-section-sub">Всё, что важно знать о доставке и монтаже</p>
+
+        <div class="faq-accordion-box">
+          
+          <div class="faq-acc-item active">
+            <div class="faq-acc-header">
+              <span>Нужно ли электричество на дачном участке для сборки?</span>
+              <span class="faq-acc-icon">+</span>
+            </div>
+            <div class="faq-acc-body">
+              Нет, электричество не обязательно. Наши монтажные бригады полностью автономны — мы привозим свой аккумуляторный и профессиональный бензоинструмент.
+            </div>
+          </div>
+
+          <div class="faq-acc-item">
+            <div class="faq-acc-header">
+              <span>Как подготовить участок к приезду сборщиков?</span>
+              <span class="faq-acc-icon">+</span>
+            </div>
+            <div class="faq-acc-body">
+              Достаточно освободить площадку от крупного мусора, кустов и скосить высокую траву на месте установки теплицы (с запасом 1 метр по периметру). Идеально выравнивать грунт не нужно — основание мы нивелируем брусом и подкладками.
+            </div>
+          </div>
+
+          <div class="faq-acc-item">
+            <div class="faq-acc-header">
+              <span>Что делать, если в назначенный день пойдет дождь?</span>
+              <span class="faq-acc-icon">+</span>
+            </div>
+            <div class="faq-acc-body">
+              Небольшой дождь сборке не мешает. Если же ожидается сильный затяжной ливень или штормовой ветер, логист заранее свяжется с вами и перенесет сборку на ближайший удобный для вас сухой день.
+            </div>
+          </div>
+
+          <div class="faq-acc-item">
+            <div class="faq-acc-header">
+              <span>Убирают ли сборщики за собой мусор?</span>
+              <span class="faq-acc-icon">+</span>
+            </div>
+            <div class="faq-acc-body">
+              Да, обязательно! Обрезки поликарбоната, упаковочную пленку, стяжки и коробки от крепежа мы собираем в мешки и оставляем участок чистым и аккуратным.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Финальный баннер консультации -->
+      <div class="catalog-consult-banner">
+        <div>
+          <h3>Хотите узнать точную стоимость доставки в ваш СНТ?</h3>
+          <p>Позвоните нашему диспетчеру или оставьте заявку. Рассчитаем расстояние по навигатору и забронируем удобную дату монтажа.</p>
+        </div>
+        <button class="btn btn-primary" data-open-modal data-subject="Расчет доставки и сборки" data-title="Рассчитать доставку и сборку" data-subtitle="Назовите ваш населенный пункт или СНТ">
+          Рассчитать доставку →
         </button>
       </div>
 
     </div>
-  </section>
+  </main>
 
-  <!-- Подвал -->
+  <!-- Подвал сайта -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top-row">
         <a href="index.html" class="logo-wrapper">
-        <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
-        <div>
-          <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
-          <div class="logo-text-sub">С заботой о вашем урожае</div>
-        </div>
-      </a>
-        <div style="text-align: center;">
-          <div class="hand-note" style="font-size: 1.8rem;">
+          <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+          <div>
+            <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
+            <div class="logo-text-sub">С заботой о вашем урожае</div>
+          </div>
+        </a>
+        <div style="text-align:center;">
+          <div class="hand-note" style="font-size:1.8rem;">
             Дачный сезон начинается с нас! <span class="hand-note-heart">♡</span>
           </div>
         </div>
-        <div style="text-align: right;">
-          <div class="phone-link js-phone-link" style="justify-content: flex-end;">
-            <span class="js-phone-text">+7 (4852) 123-45-67</span>
-          </div>
-          <div class="phone-hours js-hours-text">Звоните ежедневно с 8:00 до 20:00 без выходных</div>
-          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера доставка" style="margin-top: 10px;">
+        <div style="text-align:right;">
+          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера доставка" style="margin-top:10px;">
             Оставить заявку →
           </button>
         </div>
       </div>
       <div class="footer-bottom-copy">
-        <div>© 2026 Завод теплиц «Теплицы ТУТ». Ярославль.</div>
-        <a href="index.html" style="color: var(--color-primary); font-weight: 700;">← Вернуться на главную</a>
+        <div>© 2026 Завод теплиц «Теплицы ТУТ». Ярославская область.</div>
+        <a href="index.html" style="color:var(--color-primary);font-weight:700;">← Вернуться на главную</a>
       </div>
     </div>
   </footer>
@@ -245,11 +988,11 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-box">
       <button class="modal-close-btn" id="modalCloseBtn">✕</button>
-      <div style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 6px;" id="modalTitle">
+      <div style="font-family:var(--font-heading);font-size:1.6rem;color:var(--color-primary-dark);font-weight:700;margin-bottom:6px;" id="modalTitle">
         Расчет доставки
       </div>
-      <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;" id="modalSubtitle">
-        Укажите ваш район или СНТ, мастер перезвонит с точной стоимостью
+      <p style="font-size:0.92rem;color:var(--color-text-muted);margin-bottom:20px;" id="modalSubtitle">
+        Укажите ваш район или СНТ, диспетчер перезвонит с точной стоимостью
       </p>
       <form class="js-lead-form">
         <input type="hidden" name="subject" id="modalSubject" value="Заявка расчет доставки">
@@ -265,18 +1008,65 @@
           <label class="form-label">Куда везти (город, СНТ, деревня):</label>
           <input type="text" name="comment" class="form-input" placeholder="Например: Тутаевский район, СНТ Восход">
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:10px;">
           Рассчитать стоимость →
         </button>
       </form>
     </div>
   </div>
 
+  <div class="floating-contact-btn" data-open-modal data-subject="Заявка с плавающей кнопки">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 00-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2a5 5 0 00-5-5v2a3 3 0 013 3z"/>
+    </svg>
+  </div>
+
   <script src="assets/js/catalog-data.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <script>
+    (function() {
+      // Интерактивный переключатель городов доставки
+      const chips = document.querySelectorAll('.dest-chip');
+      const infoTitle = document.getElementById('destInfoTitle');
+      const infoNote = document.getElementById('destInfoNote');
+      const infoPrice = document.getElementById('destInfoPrice');
+      const infoTerm = document.getElementById('destInfoTerm');
+      const orderBtn = document.getElementById('destOrderBtn');
+
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+
+          const dest = chip.getAttribute('data-dest');
+          const price = chip.getAttribute('data-price');
+          const note = chip.getAttribute('data-note');
+          const term = chip.getAttribute('data-term');
+
+          if (infoTitle) infoTitle.textContent = dest;
+          if (infoNote) infoNote.textContent = note;
+          if (infoPrice) infoPrice.textContent = price;
+          if (infoTerm) infoTerm.textContent = term;
+
+          if (orderBtn) {
+            orderBtn.setAttribute('data-subject', 'Заказ доставки: ' + dest + ' (' + price + ')');
+            orderBtn.setAttribute('data-title', 'Заказ доставки: ' + dest);
+          }
+        });
+      });
+
+      // FAQ аккордеон
+      const faqHeaders = document.querySelectorAll('.faq-acc-header');
+      faqHeaders.forEach(function(header) {
+        header.addEventListener('click', function() {
+          const item = header.parentElement;
+          const isActive = item.classList.contains('active');
+          document.querySelectorAll('.faq-acc-item').forEach(i => i.classList.remove('active'));
+          if (!isActive) item.classList.add('active');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
-
-
-
-

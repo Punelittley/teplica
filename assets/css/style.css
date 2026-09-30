@@ -2472,37 +2472,37 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   FOOTER — Премиальный темно-хвойный стиль завода
+   FOOTER — Свежий светлый стиль завода
    ========================================================================== */
 .site-footer {
-  background: linear-gradient(180deg, #112e21 0%, #0a1f16 100%);
-  color: #e5f2eb;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f4f8f5;
+  color: #2d3748;
+  border-top: 1.5px solid #d8f3dc;
   padding: 56px 0 36px;
   margin-top: auto;
   position: relative;
 }
 
 .site-footer .logo-text-title {
-  color: #ffffff;
+  color: #1b4332;
 }
 
 .site-footer .logo-text-title .logo-highlight {
-  color: #52b788;
+  color: #2d6a4f;
 }
 
 .site-footer .logo-text-sub {
-  color: #9ec2af;
+  color: #52796f;
 }
 
 .footer-top-row {
   display: grid;
-  grid-template-columns: 1.1fr 1fr 1fr;
+  grid-template-columns: 1.15fr 1fr 1fr;
   gap: 36px;
-  align-items: start;
+  align-items: center;
   margin-bottom: 40px;
   padding-bottom: 36px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #d8f3dc;
 }
 
 .footer-brand-col {
@@ -2512,8 +2512,8 @@ button, input, select, textarea {
 
 .footer-brand-desc {
   font-size: 0.88rem;
-  color: #a4c4b3;
-  line-height: 1.5;
+  color: #4a5568;
+  line-height: 1.55;
   margin-top: 14px;
   max-width: 320px;
 }
@@ -2529,9 +2529,9 @@ button, input, select, textarea {
   display: inline-block;
   font-size: 0.76rem;
   font-weight: 600;
-  color: #74c69d;
-  background: rgba(82, 183, 136, 0.12);
-  border: 1px solid rgba(82, 183, 136, 0.25);
+  color: #1b4332;
+  background: #e8f5e9;
+  border: 1px solid #b7e4c7;
   padding: 3px 10px;
   border-radius: var(--radius-pill);
 }
@@ -2541,41 +2541,49 @@ button, input, select, textarea {
   justify-content: center;
 }
 
+/* Переработанная надпись сезона (в виде стильной лаконичной надписи без тяжелой темной рамки) */
 .footer-season-badge {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg);
-  padding: 22px 20px;
-  text-align: center;
+  background: transparent;
+  border: none;
+  border-left: 3px solid #2d6a4f;
+  border-radius: 0;
+  padding: 6px 0 6px 18px;
+  text-align: left;
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
+  box-shadow: none;
 }
 
 .footer-season-tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #74c69d;
-  background: rgba(82, 183, 136, 0.15);
-  padding: 3px 12px;
+  letter-spacing: 0.08em;
+  color: #2d6a4f;
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  padding: 2px 10px;
   border-radius: var(--radius-pill);
-  margin-bottom: 10px;
-}
-
-.footer-season-title {
-  font-family: var(--font-hand);
-  font-size: 1.65rem;
-  color: #ffffff;
-  line-height: 1.25;
   margin-bottom: 8px;
 }
 
+.footer-season-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b4332;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
 .footer-season-sub {
-  font-size: 0.82rem;
-  color: #a4c4b3;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  color: #4a5568;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -2595,7 +2603,7 @@ button, input, select, textarea {
 
 .footer-contact-label {
   font-size: 0.8rem;
-  color: #a4c4b3;
+  color: #718096;
   display: block;
 }
 
@@ -2603,7 +2611,7 @@ button, input, select, textarea {
   font-family: var(--font-heading);
   font-size: 1.45rem;
   font-weight: 900;
-  color: #ffffff !important;
+  color: #1b4332 !important;
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: color 0.2s ease;
@@ -2611,38 +2619,38 @@ button, input, select, textarea {
 }
 
 .footer-phone-link:hover {
-  color: #52b788 !important;
+  color: #2d6a4f !important;
 }
 
 .footer-hours-text {
   font-size: 0.84rem;
-  color: #a4c4b3;
+  color: #4a5568;
 }
 
 .footer-address-text {
   font-size: 0.84rem;
-  color: #a4c4b3;
+  color: #4a5568;
   margin-bottom: 6px;
 }
 
 .footer-cta-btn {
   background: #2d6a4f;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: none;
   padding: 12px 22px;
   font-size: 0.92rem;
   font-weight: 700;
   border-radius: var(--radius-pill);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.22);
   transition: all 0.25s ease;
   margin-top: 4px;
 }
 
 .footer-cta-btn:hover {
-  background: #52b788;
-  color: #081c15 !important;
+  background: #1b4332;
+  color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(82, 183, 136, 0.35);
+  box-shadow: 0 6px 20px rgba(27, 67, 50, 0.3);
 }
 
 .footer-links-grid {
@@ -2655,7 +2663,7 @@ button, input, select, textarea {
 .footer-col-title {
   font-weight: 800;
   font-size: 1.05rem;
-  color: #ffffff;
+  color: #1b4332;
   margin-bottom: 16px;
   font-family: var(--font-heading);
   letter-spacing: 0.01em;
@@ -2669,8 +2677,8 @@ button, input, select, textarea {
   left: 0;
   bottom: 0;
   width: 28px;
-  height: 2px;
-  background: #52b788;
+  height: 2.5px;
+  background: #2d6a4f;
   border-radius: 2px;
 }
 
@@ -2686,20 +2694,21 @@ button, input, select, textarea {
 
 .footer-nav-list a {
   font-size: 0.92rem;
-  color: #b7d5c3;
+  color: #4a5568;
   text-decoration: none;
   display: inline-block;
   transition: all 0.2s ease;
 }
 
 .footer-nav-list a:hover {
-  color: #ffffff;
+  color: #1b4332;
+  font-weight: 600;
   transform: translateX(4px);
 }
 
 .footer-social-text {
   font-size: 0.88rem;
-  color: #a4c4b3;
+  color: #4a5568;
   line-height: 1.5;
   margin-bottom: 14px;
 }
@@ -2708,15 +2717,16 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff !important;
+  background: #ffffff;
+  border: 1.5px solid #0077ff;
+  color: #0077ff !important;
   padding: 10px 18px;
   border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.9rem;
   transition: all 0.25s ease;
   text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 119, 255, 0.1);
 }
 
 .footer-vk-btn:hover {
@@ -2724,7 +2734,7 @@ button, input, select, textarea {
   border-color: #0077ff;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 119, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 119, 255, 0.35);
 }
 
 .footer-bottom-copy {
@@ -2732,16 +2742,16 @@ button, input, select, textarea {
   justify-content: space-between;
   align-items: center;
   font-size: 0.84rem;
-  color: #88aa97;
+  color: #718096;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #d8f3dc;
   flex-wrap: wrap;
   gap: 14px;
 }
 
 .footer-safe-note {
-  color: #a4c4b3;
-  font-weight: 500;
+  color: #2d6a4f;
+  font-weight: 600;
 }
 
 /* ==========================================================================
@@ -3592,6 +3602,13 @@ textarea {
   .footer-brand-tags {
     justify-content: center;
   }
+  .footer-season-badge {
+    border-left: none;
+    border-top: 2px solid #d8f3dc;
+    padding: 16px 0 0 0;
+    text-align: center;
+    margin: 0 auto;
+  }
   .footer-contact-col {
     align-items: center;
     text-align: center;
@@ -3641,7 +3658,7 @@ textarea {
   .footer-social-col {
     grid-column: span 2;
     padding-top: 14px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.12);
+    border-top: 1px dashed #d8f3dc;
   }
   .footer-col-title {
     font-size: 0.96rem;

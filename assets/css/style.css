@@ -5063,6 +5063,588 @@ textarea {
   }
 }
 
+/* ==========================================================================
+   Стили страницы «Преимущества» (preimushchestva.html)
+   ========================================================================== */
+
+/* Общие контейнеры секций */
+.adv-section {
+  padding: 40px 0;
+}
+.adv-section-title-wrap {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 40px;
+}
+.adv-section-tag {
+  display: inline-block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  background: #e8f5ec;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.adv-section-title {
+  font-family: var(--font-heading);
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.adv-section-sub {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+/* 1. Блок Bento Grid (как в референсах 3 и 4) */
+.bento-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.9fr;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+.bento-card-featured {
+  background: linear-gradient(145deg, #1b4332 0%, #2d6a4f 100%);
+  border-radius: 24px;
+  padding: 40px 32px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 36px rgba(27, 67, 50, 0.22);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.bento-card-featured::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(167, 243, 208, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.bento-featured-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.bento-featured-badge {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #d8f3dc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.bento-toggle-switch {
+  width: 44px;
+  height: 24px;
+  background: #52b788;
+  border-radius: 12px;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+}
+.bento-toggle-switch::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+.bento-featured-title {
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.bento-featured-desc {
+  font-size: 1.05rem;
+  color: #d8f3dc;
+  line-height: 1.55;
+  margin-bottom: 28px;
+}
+.bento-featured-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bento-featured-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+.bento-featured-list svg {
+  color: #74c69d;
+  flex-shrink: 0;
+}
+.bento-featured-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bento-featured-cta {
+  background: #fff;
+  color: #1b4332;
+  font-weight: 800;
+  padding: 10px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+.bento-featured-cta:hover {
+  background: #e8f5ec;
+  transform: translateY(-2px);
+}
+
+/* Сетка 2х2 карточек справа */
+.bento-quad-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.bento-card-mini {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  border: 1.5px solid #e3ede5;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.bento-card-mini:hover {
+  border-color: #2d6a4f;
+  box-shadow: 0 10px 24px rgba(45, 106, 79, 0.12);
+}
+.bento-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.bento-card-num {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #74c69d;
+  letter-spacing: 1px;
+}
+.bento-card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #edf7ef;
+  color: #1b4332;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bento-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.bento-card-text {
+  font-size: 0.94rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* 2. Блок «ПОЧЕМУ МЫ?» 03 (в точности по скриншоту 1) */
+.arc-why-wrapper {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 45px 40px;
+  border: 1.5px solid #e3ede5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 60px;
+  position: relative;
+}
+.arc-why-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #edf4ef;
+  padding-bottom: 24px;
+  margin-bottom: 40px;
+}
+.arc-why-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.arc-why-number {
+  font-family: var(--font-heading);
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #111111;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+
+/* Арка-трек со ступенями 1 - 2 - 3 - 4 */
+.arc-track-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+  margin-top: 15px;
+}
+.arc-track-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.arc-track-bubble-box {
+  background: #ffffff;
+  border: 1.5px solid #e2ede5;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  margin-bottom: 24px;
+  min-height: 140px;
+}
+.arc-track-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.arc-track-bullets li {
+  font-size: 0.88rem;
+  color: #2b3a31;
+  line-height: 1.45;
+  position: relative;
+  padding-left: 14px;
+}
+.arc-track-bullets li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #2d6a4f;
+  font-weight: bold;
+}
+.arc-track-segment {
+  background: #111111;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.arc-track-badge-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #a7f300;
+  color: #111111;
+  font-weight: 900;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(167, 243, 0, 0.4);
+}
+.arc-track-badge-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+/* 3. Блок Bento-пилюль «Зачем необходима теплица?» 02 (в точности по скриншоту 2) */
+.pills-block-wrapper {
+  background: #f8faf8;
+  border-radius: 28px;
+  padding: 45px 40px;
+  border: 1.5px solid #d8f3dc;
+  margin-bottom: 60px;
+  position: relative;
+}
+.pills-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+.pills-heading-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.pills-lime-tag {
+  background: #a7f300;
+  color: #111111;
+  font-size: 1.7rem;
+  font-weight: 900;
+  padding: 6px 20px;
+  border-radius: 16px;
+  letter-spacing: -0.3px;
+  display: inline-block;
+}
+.pills-heading-text {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #111111;
+  letter-spacing: -0.5px;
+}
+.pills-block-num {
+  font-family: var(--font-heading);
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #111111;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+
+.pills-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.pill-tile {
+  padding: 24px 28px;
+  border-radius: 20px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease;
+}
+.pill-tile:hover {
+  transform: translateY(-2px);
+}
+.pill-tile--lime {
+  background: #a7f300;
+  color: #111111;
+}
+.pill-tile--white {
+  background: #ffffff;
+  color: #111111;
+  border: 1.5px solid #e2ede5;
+}
+.pill-tile--dark {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* 4. Блок горизонтальных карточек-табов (в стиле скриншота 5) */
+.tech-tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 60px;
+}
+.tech-tab-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 28px 24px;
+  border: 1.5px solid #e3ede5;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+.tech-tab-card:hover {
+  border-color: #2d6a4f;
+  box-shadow: 0 10px 24px rgba(45, 106, 79, 0.12);
+}
+.tech-tab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.tech-tab-pill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tech-tab-tag {
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eef7f0;
+  color: #2d6a4f;
+}
+.tech-tab-index {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #a7f300;
+  background: #111111;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tech-tab-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 10px;
+}
+.tech-tab-desc {
+  font-size: 0.93rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 5. Сравнение "Завод vs Рынок" */
+.compare-box-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+.compare-col {
+  border-radius: 24px;
+  padding: 36px 30px;
+}
+.compare-col--bad {
+  background: #fff8f8;
+  border: 1.5px solid #fed7d7;
+}
+.compare-col--good {
+  background: #f4fbf6;
+  border: 2px solid #52b788;
+  position: relative;
+  box-shadow: 0 10px 28px rgba(45, 106, 79, 0.1);
+}
+.compare-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.compare-col-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+.compare-col--bad .compare-col-title { color: #9b2c2c; }
+.compare-col--good .compare-col-title { color: #1b4332; }
+.compare-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.compare-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.compare-icon-cross {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fed7d7;
+  color: #c53030;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.compare-icon-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #d8f3dc;
+  color: #1b4332;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 991px) {
+  .bento-hero-grid { grid-template-columns: 1fr; }
+  .arc-track-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .tech-tabs-grid { grid-template-columns: repeat(2, 1fr); }
+  .compare-box-wrapper { grid-template-columns: 1fr; }
+  .pills-tiles-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .bento-quad-grid { grid-template-columns: 1fr; }
+  .arc-track-container { grid-template-columns: 1fr; }
+  .tech-tabs-grid { grid-template-columns: 1fr; }
+  .arc-why-wrapper, .pills-block-wrapper { padding: 28px 18px; }
+  .arc-why-header, .pills-block-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .arc-why-number, .pills-block-num { font-size: 3rem; align-self: flex-end; }
+  .pills-lime-tag { font-size: 1.25rem; }
+  .pills-heading-text { font-size: 1.6rem; }
+}
+
 
 
  

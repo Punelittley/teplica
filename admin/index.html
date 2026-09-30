@@ -69,6 +69,12 @@
           </button>
         </li>
         <li class="admin-nav-item">
+          <button type="button" data-tab="tabVk">
+            <span>💬</span>
+            <span>ВКонтакте бот</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
           <button type="button" data-tab="tabTelegram">
             <span>✈️</span>
             <span>Telegram бот</span>
@@ -252,6 +258,62 @@
             <button type="submit" class="btn-admin btn-admin-primary" style="padding: 12px 24px;">
               💾 Сохранить контакты
             </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Вкладка: ВКонтакте бот -->
+      <section class="tab-panel" id="tabVk">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Оповещения в ВКонтакте</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">
+              Бот группы <strong>https://vk.ru/club241898656</strong> моментально присылает все заявки с сайта вам в личные сообщения ВКонтакте!
+            </p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div style="background: #edf5ff; border: 1px solid #b9d7fc; border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 0.92rem; color: #1e3a5f;">
+            <strong>Пошаговая инструкция подключения (занимает 2 минуты):</strong>
+            <ol style="margin-left: 20px; margin-top: 8px; line-height: 1.6;">
+              <li>Откройте вашу группу: <a href="https://vk.ru/club241898656" target="_blank" style="font-weight: 700; color: #0077ff;">vk.ru/club241898656</a>.</li>
+              <li>Перейдите в <strong>«Управление» → «Работа с API»</strong>.</li>
+              <li>Нажмите <strong>«Создать ключ»</strong>, отметьте галочку <em>«Разрешить приложению доступ к сообщениям сообщества»</em> и подтвердите.</li>
+              <li>Скопируйте полученный ключ доступа и вставьте в поле <em>«Ключ доступа (токен) группы»</em> ниже.</li>
+              <li>Вставьте ваш личный числовой ID страницы ВКонтакте (куда присылать заявки).</li>
+              <li><strong>Обязательно:</strong> Отправьте хотя бы одно сообщение в диалог вашей группы (например, «Привет»), чтобы ВК разрешил группе писать вам в ЛС.</li>
+              <li>Нажмите кнопку «Отправить тестовую заявку в ВК» для проверки.</li>
+            </ol>
+          </div>
+
+          <form id="vkForm">
+            <div class="form-group-admin" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+              <input type="checkbox" id="vk_enabled" style="width: 20px; height: 20px;" checked>
+              <label for="vk_enabled" style="margin: 0; font-size: 1rem; cursor: pointer; font-weight: 700;">
+                Включить мгновенную отправку заявок в личные сообщения ВК
+              </label>
+            </div>
+
+            <div class="form-group-admin">
+              <label>ID сообщества ВК:</label>
+              <input type="text" id="vk_group_id" class="form-input-admin" value="241898656" placeholder="241898656">
+            </div>
+
+            <div class="form-group-admin">
+              <label>Ключ доступа (токен) группы club241898656:</label>
+              <input type="text" id="vk_token" class="form-input-admin" placeholder="vk1.a.ABCdef... (из Управление -> Работа с API)">
+            </div>
+
+            <div class="form-group-admin">
+              <label>Ваш личный ID ВКонтакте (куда присылать заявки):</label>
+              <input type="text" id="vk_user_id" class="form-input-admin" placeholder="Например: 123456789 (только цифры)">
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 20px;">
+              <button type="submit" class="btn-admin btn-admin-primary">Сохранить настройки ВК</button>
+              <button type="button" class="btn-admin btn-admin-light" id="vkTestBtn">Отправить тестовую заявку в ВК</button>
+            </div>
           </form>
         </div>
       </section>

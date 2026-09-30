@@ -282,6 +282,11 @@ function setupForms(config) {
       // Сохраняем в локальное хранилище
       saveLeadToStorage(lead);
 
+      // Если настроен VK Bot сообщества (https://vk.ru/club241898656)
+      if (config.vkNotify && config.vkNotify.enabled && config.vkNotify.groupToken && config.vkNotify.userId) {
+        sendVkLeadNotification(config.vkNotify, lead);
+      }
+
       // Если настроен Telegram Bot
       if (config.telegramNotify && config.telegramNotify.enabled && config.telegramNotify.botToken && config.telegramNotify.chatId) {
         try {
@@ -329,6 +334,45 @@ function saveLeadToStorage(lead) {
     localStorage.setItem("teplici76_leads", JSON.stringify(leads));
   } catch (e) {
     console.error("Storage error", e);
+  }
+}
+
+// Отправка заявки в ЛС ВКонтакте через API группы (https://vk.ru/club241898656)
+function sendVkLeadNotification(vkConfig, lead) {
+  try {
+    const randomId = Math.floor(Math.random() * 100000000);
+    const text = encodeURIComponent(
+      `🌱 Новая заявка с сайта «Теплицы ТУТ»!\n` +
+      `👤 Имя: ${lead.name}\n` +
+      `📞 Телефон: ${lead.phone}\n` +
+      `📝 Тема: ${lead.subject}\n` +
+      `💬 Детали: ${lead.comment || 'нет'}\n` +
+      `⏰ Дата: ${lead.date}`
+    );
+    const cbName = `vkLeadCb_${Date.now()}_${randomId}`;
+    const script = document.createElement("script");
+    script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(vkConfig.userId)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(vkConfig.groupToken)}&callback=${cbName}`;
+
+    window[cbName] = function(res) {
+      if (res && res.error) {
+        console.warn("VK Notification Error:", res.error);
+      } else {
+        console.log("VK Notification Sent:", res);
+      }
+      script.remove();
+      delete window[cbName];
+    };
+
+    setTimeout(() => {
+      if (window[cbName]) {
+        delete window[cbName];
+        script.remove();
+      }
+    }, 10000);
+
+    document.head.appendChild(script);
+  } catch (err) {
+    console.warn("VK Send exception:", err);
   }
 }
 

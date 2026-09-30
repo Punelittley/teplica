@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLeads();
   loadPricesForm();
   loadContactsForm();
+  loadVkSettings();
   loadTelegramSettings();
   setupExportImport();
 });
@@ -238,7 +239,88 @@ function loadContactsForm() {
   });
 }
 
-// 4. Telegram
+// 4. ВКонтакте бот (Группа https://vk.ru/club241898656)
+function loadVkSettings() {
+  const config = getSiteConfig();
+  const vk = config.vkNotify || { enabled: true, groupId: "241898656", groupToken: "", userId: "" };
+
+  const enabledCheck = document.getElementById("vk_enabled");
+  const groupIdInput = document.getElementById("vk_group_id");
+  const tokenInput = document.getElementById("vk_token");
+  const userInput = document.getElementById("vk_user_id");
+
+  if (!enabledCheck || !tokenInput || !userInput) return;
+
+  enabledCheck.checked = vk.enabled;
+  if (groupIdInput) groupIdInput.value = vk.groupId || "241898656";
+  tokenInput.value = vk.groupToken || "";
+  userInput.value = vk.userId || "";
+
+  document.getElementById("vkForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    config.vkNotify = {
+      enabled: enabledCheck.checked,
+      groupId: groupIdInput ? groupIdInput.value.trim() : "241898656",
+      groupToken: tokenInput.value.trim(),
+      userId: userInput.value.trim()
+    };
+    saveSiteConfig(config);
+    alert("Настройки ВКонтакте успешно сохранены!");
+  });
+
+  document.getElementById("vkTestBtn").addEventListener("click", () => {
+    const token = tokenInput.value.trim();
+    const userId = userInput.value.trim();
+    if (!token || !userId) {
+      alert("Укажите токен группы и ваш личный ID ВКонтакте!");
+      return;
+    }
+
+    const testBtn = document.getElementById("vkTestBtn");
+    testBtn.disabled = true;
+    testBtn.textContent = "Отправка...";
+
+    const randomId = Math.floor(Math.random() * 100000000);
+    const text = encodeURIComponent("🌱 Тестовое оповещение из админ-панели завода «Теплицы ТУТ»!\nГруппа https://vk.ru/club241898656 успешно подключена к сайту.");
+    const cbName = `vkTestCb_${Date.now()}_${randomId}`;
+    const script = document.createElement("script");
+    script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(userId)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(token)}&callback=${cbName}`;
+
+    const timer = setTimeout(() => {
+      testBtn.disabled = false;
+      testBtn.textContent = "Отправить тестовую заявку в ВК";
+      alert("Время ожидания ответа истекло. Проверьте правильность токена и ID.");
+      if (window[cbName]) {
+        delete window[cbName];
+        script.remove();
+      }
+    }, 8000);
+
+    window[cbName] = function(res) {
+      clearTimeout(timer);
+      testBtn.disabled = false;
+      testBtn.textContent = "Отправить тестовую заявку в ВК";
+      script.remove();
+      delete window[cbName];
+
+      if (res && res.response) {
+        alert("Успешно! Бот группы отправил тестовое сообщение вам в ЛС ВКонтакте.");
+      } else if (res && res.error) {
+        let msg = res.error.error_msg;
+        if (res.error.error_code === 901) {
+          msg = "Ошибка 901: Вы еще не писали в сообщения своей группы! Зайдите в https://vk.ru/club241898656 и напишите в сообщения группы любое слово (например, «Привет»), после чего повторите тест.";
+        }
+        alert("Ошибка VK API: " + msg);
+      } else {
+        alert("Неизвестный ответ от ВКонтакте.");
+      }
+    };
+
+    document.head.appendChild(script);
+  });
+}
+
+// 5. Telegram
 function loadTelegramSettings() {
   const config = getSiteConfig();
   const tg = config.telegramNotify || { enabled: false, botToken: "", chatId: "" };

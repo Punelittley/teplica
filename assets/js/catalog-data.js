@@ -62,6 +62,17 @@ const DEFAULT_CONFIG = {
       baseYar: 1500, // По Ярославлю
       perKm: 40 // За км от черты города
     }
+  },
+  vkNotify: {
+    enabled: true,
+    groupId: "241898656",
+    groupToken: "", // Токен сообщества (https://vk.ru/club241898656) с доступом к сообщениям
+    userId: ""      // Числовой ID страницы ВКонтакте (кому слать заявки в ЛС)
+  },
+  telegramNotify: {
+    enabled: false,
+    botToken: "",
+    chatId: ""
   }
 };
 

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ===== Стили страницы доставки и сборки ===== */
+    /* ===== Базовые стили страницы доставки и сборки ===== */
     .delivery-page {
       background: #f4f4f0;
       min-height: 100vh;
@@ -24,232 +24,374 @@
     .delivery-breadcrumb a:hover { color: #333; }
     .delivery-breadcrumb span { margin: 0 5px; }
 
-    /* Hero секция страницы */
-    .delivery-hero-box {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 44px 48px;
-      margin: 24px 0 40px;
-      border: 1.5px solid #ebebeb;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .delivery-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #eaf4ed;
-      color: var(--color-primary-dark);
-      font-weight: 800;
-      font-size: 0.8rem;
-      padding: 5px 14px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-    }
-
-    .delivery-hero-title {
+    /* Заголовок страницы */
+    .delivery-main-title {
       font-family: var(--font-heading);
       font-size: clamp(2rem, 3.2vw, 2.7rem);
       font-weight: 800;
       color: #1a1a1a;
       line-height: 1.18;
-      margin-bottom: 16px;
+      text-align: center;
+      margin: 20px 0 10px;
     }
-
-    .delivery-hero-title span {
-      color: var(--color-primary);
-    }
-
-    .delivery-hero-lead {
+    .delivery-main-sub {
+      text-align: center;
       font-size: 1.05rem;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 26px;
+      color: #666;
+      max-width: 760px;
+      margin: 0 auto 40px;
+      line-height: 1.55;
     }
 
-    .delivery-badges-strip {
+    /* ==========================================================================
+       ДИЗАЙН БЛОКА 2 (ИЗ РЕФЕРЕНСА): АРОЧНЫЕ КАРТОЧКИ С КРУГЛОЙ ИЛЛЮСТРАЦИЕЙ ВНУТРИ
+       ========================================================================== */
+    .arch-cards-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .delivery-mini-badge {
-      background: #f8faf8;
-      border: 1px solid #e2ebe4;
-      border-radius: 12px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--color-primary-dark);
-    }
-
-    .delivery-mini-badge svg {
-      color: var(--color-accent);
-      flex-shrink: 0;
-    }
-
-    .delivery-hero-img-wrap {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
-    }
-
-    .delivery-hero-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .delivery-hero-floating-tag {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      right: 16px;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(10px);
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--color-primary-dark);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-
-    /* Две главные услуги: Карточки */
-    .services-split-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       margin-bottom: 50px;
     }
 
-    .service-big-card {
+    .arch-card {
+      border-radius: 130px 130px 20px 20px;
+      padding: 18px 18px 28px;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1.5px solid rgba(255,255,255,0.06);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+    .arch-card.dark {
+      background: #18221c;
+    }
+    .arch-card.green {
+      background: #235d43;
+    }
+
+    .arch-circle-wrap {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
       background: #ffffff;
-      border-radius: 22px;
-      border: 1.5px solid #ebebeb;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      color: #1b4332;
+      font-size: 2.5rem;
+      flex-shrink: 0;
     }
 
-    .service-big-img-wrap {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      position: relative;
-      background: #ecece8;
-    }
-
-    .service-big-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .service-card-tag {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: var(--color-primary);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 999px;
-      letter-spacing: 0.5px;
-    }
-
-    .service-big-body {
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .service-big-title {
+    .arch-card-text {
       font-family: var(--font-heading);
-      font-size: 1.4rem;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #ffffff;
+      padding: 0 8px;
+    }
+
+    /* ==========================================================================
+       ДИЗАЙН БЛОКА 4 (ИЗ РЕФЕРЕНСА): СЦЕПЛЕННЫЙ ТРЕК ШАГОВ (OVERLAPPING PILLS)
+       ========================================================================== */
+    .timeline-wrap-box {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 34px 38px;
+      border: 1.5px solid #ebebeb;
+      margin-bottom: 50px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.04);
+    }
+
+    .timeline-header-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .timeline-header-main {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .timeline-arrow-line {
+      flex-grow: 1;
+      height: 2px;
+      background: #1a1a1a;
+      position: relative;
+      margin: 0 8px;
+    }
+    .timeline-arrow-line::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -4px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #1a1a1a;
+      border-right: 2px solid #1a1a1a;
+      transform: rotate(45deg);
+    }
+
+    .timeline-header-sub {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #2d6a4f;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .pill-steps-track {
+      display: flex;
+      align-items: stretch;
+      overflow-x: auto;
+      padding: 6px 2px 14px;
+    }
+
+    .pill-step {
+      flex: 1 1 0;
+      min-width: 220px;
+      background: #ffffff;
+      border: 1.5px solid #222222;
+      border-radius: 999px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      margin-right: -20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      z-index: 1;
+    }
+    .pill-step:nth-child(2) { z-index: 2; }
+    .pill-step:nth-child(3) { z-index: 3; }
+    .pill-step:nth-child(4) { z-index: 4; margin-right: 0; }
+
+    .pill-step.active {
+      background: #2d6a4f;
+      border-color: #2d6a4f;
+      color: #ffffff;
+      z-index: 5;
+      box-shadow: 0 8px 25px rgba(45,106,79,0.32);
+    }
+
+    .pill-step-num {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .pill-step.active .pill-step-num {
+      color: #95d5b2;
+    }
+
+    .pill-step-text {
+      font-size: 0.86rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    /* ==========================================================================
+       ДИЗАЙН БЛОКА 1 (ИЗ РЕФЕРЕНСА): ТЕМНЫЕ КАРТОЧКИ С ВЫРЕЗАННЫМ УГЛОМ И СТРЕЛКОЙ
+       ========================================================================== */
+    .notched-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
       font-weight: 800;
       color: #1a1a1a;
       margin-bottom: 8px;
+      text-align: center;
     }
-
-    .service-big-price {
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: var(--color-primary);
-      margin-bottom: 16px;
-    }
-
-    .service-big-desc {
-      font-size: 0.95rem;
+    .notched-section-sub {
+      text-align: center;
       color: #666;
-      line-height: 1.55;
-      margin-bottom: 18px;
+      font-size: 0.95rem;
+      margin-bottom: 26px;
     }
 
-    .service-features-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 24px 0;
+    .notched-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 50px;
+    }
+
+    .notched-card {
+      background: #1c2420;
+      border-radius: 28px;
+      padding: 34px 26px 28px;
+      color: #ffffff;
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      font-size: 0.92rem;
-      color: #333;
+      justify-content: flex-end;
+      min-height: 220px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .notched-card:hover {
+      box-shadow: 0 12px 35px rgba(0,0,0,0.16);
+      border-color: #52b788;
     }
 
-    .service-features-list li {
+    .notched-corner-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #52b788;
+      color: #0d281a;
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.4;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 900;
+      box-shadow: 0 4px 16px rgba(82, 183, 136, 0.35);
+      transition: background 0.2s;
+    }
+    .notched-card:hover .notched-corner-btn {
+      background: #74c69d;
     }
 
-    .service-features-list li svg {
-      color: var(--color-accent);
-      flex-shrink: 0;
-      margin-top: 2px;
+    .notched-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #ffffff;
+      margin-bottom: 8px;
     }
 
-    /* Интерактивный калькулятор тарифов */
+    .notched-card-sub {
+      font-size: 0.88rem;
+      color: #a7bcaf;
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       ДИЗАЙН БЛОКА 3 (ИЗ РЕФЕРЕНСА): БЕНТО-ГРИД (BENTO GRID С ЦИФРАМИ И ИКОНКАМИ)
+       ========================================================================== */
+    .bento-section {
+      margin-bottom: 50px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 18px;
+    }
+
+    .bento-box {
+      background: #ffffff;
+      border-radius: 22px;
+      border: 1.5px solid #ebebeb;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+      position: relative;
+    }
+    .bento-box.dark {
+      background: #18221c;
+      color: #ffffff;
+      border-color: #26362d;
+    }
+    .bento-box.green {
+      background: #235d43;
+      color: #ffffff;
+      border-color: #317c5b;
+    }
+    .bento-box.span-2 {
+      grid-column: span 2;
+    }
+
+    .bento-tag-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      color: var(--color-primary);
+    }
+    .bento-box.dark .bento-tag-check,
+    .bento-box.green .bento-tag-check {
+      color: #95d5b2;
+    }
+
+    .bento-stat-val {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .bento-stat-lbl {
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .bento-desc-p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    .bento-icon-float {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    /* Интерактивный калькулятор тарифов по городам */
     .delivery-calc-card {
       background: #ffffff;
       border-radius: 22px;
       border: 1.5px solid #ebebeb;
-      padding: 38px 42px;
+      padding: 34px 38px;
       margin-bottom: 50px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.04);
     }
 
     .dest-chips-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 20px 0 28px;
+      margin: 18px 0 24px;
     }
 
     .dest-chip {
       background: #f8faf8;
       border: 1.5px solid #e0e0e0;
       border-radius: 999px;
-      padding: 10px 20px;
-      font-size: 0.92rem;
+      padding: 9px 18px;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #333;
       cursor: pointer;
@@ -266,7 +408,7 @@
     .dest-info-panel {
       background: linear-gradient(135deg, #eaf4ed 0%, #d8f3dc 100%);
       border-radius: 16px;
-      padding: 24px 30px;
+      padding: 22px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -276,137 +418,22 @@
 
     .dest-info-left h4 {
       font-family: var(--font-heading);
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       color: var(--color-primary-dark);
       margin-bottom: 4px;
     }
 
     .dest-info-left p {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: #406050;
       margin: 0;
     }
 
     .dest-info-price {
       font-family: var(--font-heading);
-      font-size: 1.9rem;
-      font-weight: 900;
-      color: var(--color-primary-dark);
-    }
-
-    /* Шаги процесса */
-    .steps-section-title {
-      font-family: var(--font-heading);
       font-size: 1.85rem;
-      font-weight: 800;
-      color: #1a1a1a;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .steps-section-sub {
-      text-align: center;
-      color: #777;
-      font-size: 1rem;
-      margin-bottom: 32px;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-
-    .step-card {
-      background: #ffffff;
-      border-radius: 18px;
-      border: 1.5px solid #ebebeb;
-      padding: 28px 22px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-      position: relative;
-    }
-
-    .step-num {
-      font-family: var(--font-heading);
-      font-size: 2.2rem;
       font-weight: 900;
-      color: var(--color-accent);
-      line-height: 1;
-      margin-bottom: 12px;
-      opacity: 0.9;
-    }
-
-    .step-title {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-    }
-
-    .step-desc {
-      font-size: 0.88rem;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    /* Блок фундаментов с фото */
-    .foundations-card {
-      background: #ffffff;
-      border-radius: 22px;
-      border: 1.5px solid #ebebeb;
-      padding: 38px 42px;
-      margin-bottom: 50px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-    }
-
-    .foundations-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-top: 24px;
-    }
-
-    .foundation-item {
-      background: #f8faf8;
-      border: 1.5px solid #e0ebe3;
-      border-radius: 18px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .foundation-img-wrap {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      position: relative;
-    }
-
-    .foundation-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .foundation-body {
-      padding: 22px;
-      flex-grow: 1;
-    }
-
-    .foundation-name {
-      font-family: var(--font-heading);
-      font-size: 1.2rem;
-      font-weight: 800;
       color: var(--color-primary-dark);
-      margin-bottom: 8px;
-    }
-
-    .foundation-text {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.55;
-      margin-bottom: 14px;
     }
 
     /* Фотогалерея работ */
@@ -422,7 +449,7 @@
       border-radius: 16px;
       overflow: hidden;
       border: 1.5px solid #ebebeb;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
     }
 
     .gallery-img-wrap {
@@ -439,7 +466,7 @@
 
     .gallery-caption {
       padding: 12px 16px;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
       color: #333;
     }
@@ -500,22 +527,48 @@
       display: block;
     }
 
+    /* Баннер консультации */
+    .catalog-consult-banner {
+      background: linear-gradient(135deg, #eaf4ed 0%, #d4ecda 100%);
+      border-radius: 20px;
+      padding: 38px 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .catalog-consult-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-bottom: 8px;
+    }
+    .catalog-consult-banner p {
+      font-size: 0.98rem;
+      color: var(--color-text-muted);
+      max-width: 480px;
+    }
+
     /* Адаптивность */
     @media (max-width: 960px) {
-      .delivery-hero-box { grid-template-columns: 1fr; padding: 32px 24px; }
-      .services-split-grid { grid-template-columns: 1fr; }
-      .foundations-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .arch-cards-row { grid-template-columns: repeat(2, 1fr); }
+      .notched-cards-grid { grid-template-columns: 1fr; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-box.span-2 { grid-column: span 1; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .timeline-header-row { flex-wrap: wrap; }
+      .timeline-arrow-line { display: none; }
     }
 
     @media (max-width: 600px) {
-      .steps-grid { grid-template-columns: 1fr; }
+      .arch-cards-row { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
-      .delivery-badges-strip { grid-template-columns: 1fr; }
       .dest-info-panel { flex-direction: column; align-items: flex-start; }
-      .delivery-calc-card { padding: 24px 18px; }
-      .foundations-card { padding: 24px 18px; }
+      .timeline-wrap-box { padding: 22px 16px; }
+      .delivery-calc-card { padding: 22px 16px; }
+      .catalog-consult-banner { padding: 24px 18px; flex-direction: column; }
     }
   </style>
 </head>
@@ -574,138 +627,206 @@
         <span>Доставка и сборка</span>
       </div>
 
-      <!-- Hero Showcase -->
-      <div class="delivery-hero-box">
-        <div>
-          <div class="delivery-hero-badge">
-            🚚 БЕРЕЖНО • ТОЧНО В СРОК • ПОД КЛЮЧ
-          </div>
-          <h1 class="delivery-hero-title">
-            Доставка и профессиональная сборка теплиц <span>за 1 день</span>
-          </h1>
-          <p class="delivery-hero-lead">
-            Мы берем на себя все заботы: привезем теплицу собственным оборудованным транспортом прямо на дачный участок, бережно разгрузим и смонтируем надежную конструкцию за 3–4 часа.
-          </p>
+      <!-- Заголовок страницы -->
+      <h1 class="delivery-main-title">Доставка и сборка теплиц под ключ</h1>
+      <p class="delivery-main-sub">
+        Привезем собственным спецтранспортом в любой район Ярославской, Ивановской и Костромской областей и профессионально соберем надежную теплицу за 3–4 часа!
+      </p>
 
-          <div class="delivery-badges-strip">
-            <div class="delivery-mini-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>0 ₽ предоплаты (оплата по факту)</span>
-            </div>
-            <div class="delivery-mini-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Сборка за 3–4 часа под ключ</span>
-            </div>
-            <div class="delivery-mini-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Выезд по всей области и в СНТ</span>
-            </div>
-            <div class="delivery-mini-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Мусор за собой убираем</span>
-            </div>
+      <!-- БЛОК 2: АРОЧНЫЕ КАРТОЧКИ С КРУГЛОЙ ИЛЛЮСТРАЦИЕЙ ВНУТРИ -->
+      <div class="arch-cards-row">
+        
+        <div class="arch-card dark">
+          <div class="arch-circle-wrap">
+            🛡
+          </div>
+          <div class="arch-card-text">
+            Гарантия на все виды работ и целостность каркаса
           </div>
         </div>
 
-        <div class="delivery-hero-img-wrap">
-          <img src="assets/images/products/p4/1.jpg" alt="Доставка теплиц транспортом завода">
-          <div class="delivery-hero-floating-tag">
-            🚚 Спецтранспорт с пирамидой: дуги и поликарбонат без заломов!
+        <div class="arch-card green">
+          <div class="arch-circle-wrap">
+            🚚
           </div>
+          <div class="arch-card-text">
+            Собственный спецтранспорт и штатные мастера
+          </div>
+        </div>
+
+        <div class="arch-card dark">
+          <div class="arch-circle-wrap">
+            📋
+          </div>
+          <div class="arch-card-text">
+            Работаем строго по договору и в срок
+          </div>
+        </div>
+
+        <div class="arch-card green">
+          <div class="arch-circle-wrap">
+            💰
+          </div>
+          <div class="arch-card-text">
+            0 ₽ предоплаты — оплата только после сборки
+          </div>
+        </div>
+
+      </div>
+
+      <!-- БЛОК 4: СЦЕПЛЕННЫЙ ТРЕК ШАГОВ (OVERLAPPING PILLS) -->
+      <div class="timeline-wrap-box">
+        <div class="timeline-header-row">
+          <div class="timeline-header-main">ЧЕТЫРЕ ШАГА</div>
+          <div class="timeline-arrow-line"></div>
+          <div class="timeline-header-sub">К ВАШЕЙ НОВОЙ ТЕПЛИЦЕ</div>
+        </div>
+
+        <div class="pill-steps-track">
+          
+          <div class="pill-step">
+            <div class="pill-step-num">1</div>
+            <div class="pill-step-text">Согласование удобной даты выезда</div>
+          </div>
+
+          <div class="pill-step">
+            <div class="pill-step-num">2</div>
+            <div class="pill-step-text">Бережная доставка спецтранспортом</div>
+          </div>
+
+          <div class="pill-step active">
+            <div class="pill-step-num">3</div>
+            <div class="pill-step-text">Профессиональная сборка за 3–4 часа</div>
+          </div>
+
+          <div class="pill-step">
+            <div class="pill-step-num">4</div>
+            <div class="pill-step-text">Приемка работы и оплата по факту</div>
+          </div>
+
         </div>
       </div>
 
-      <!-- Две главные услуги (Сплит) -->
-      <div class="services-split-grid">
-        
-        <!-- Услуга 1: Доставка -->
-        <div class="service-big-card">
-          <div class="service-big-img-wrap">
-            <img src="assets/images/products/p4/2.jpg" alt="Бережная доставка теплиц">
-            <span class="service-card-tag">Доставка</span>
-          </div>
-          <div class="service-big-body">
-            <h3 class="service-big-title">Доставка теплиц и комплектующих</h3>
-            <div class="service-big-price">1 500 – 2 500 ₽ • по области</div>
-            <p class="service-big-desc">
-              Осуществляем доставку теплиц, сотового поликарбоната, грядок и бруса по всей Ярославской, Ивановской и Костромской областям. Согласовываем точный день и удобное время.
-            </p>
-            <ul class="service-features-list">
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Специально оборудованный грузовой транспорт для дуг и рулонов;</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Бережная фиксация мягкими стяжными ремнями — никаких заломов;</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Разгрузка на вашем дачном участке включена;</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Доставляем в любые СНТ, деревни и дачные поселки.</span>
-              </li>
-            </ul>
-            <button class="btn btn-primary" style="margin-top: auto;" data-open-modal data-subject="Заказ услуги: Доставка теплицы" data-title="Заказать доставку теплицы">
-              Заказать доставку →
-            </button>
-          </div>
-        </div>
+      <!-- БЛОК 1: ТЕМНЫЕ КАРТОЧКИ С ВЫРЕЗАННЫМ УГЛОМ И СТРЕЛКОЙ -->
+      <div>
+        <h2 class="notched-section-title">Комплекс услуг завода «Теплицы ТУТ»</h2>
+        <p class="notched-section-sub">Нажмите на услугу, чтобы рассчитать точную стоимость под ваш участок</p>
 
-        <!-- Услуга 2: Сборка -->
-        <div class="service-big-card">
-          <div class="service-big-img-wrap">
-            <img src="assets/images/products/p2/1.jpg" alt="Профессиональная сборка теплиц">
-            <span class="service-card-tag" style="background:#2b9348;">Сборка под ключ</span>
+        <div class="notched-cards-grid">
+          
+          <div class="notched-card" data-open-modal data-subject="Заказ услуги: Доставка теплицы" data-title="Доставка теплицы">
+            <div class="notched-corner-btn">↗</div>
+            <div class="notched-card-title">Бережная доставка теплиц</div>
+            <div class="notched-card-sub">Перевозка на спецтранспорте с пирамидой без перегиба дуг и заломов поликарбоната. Разгрузка включена.</div>
           </div>
-          <div class="service-big-body">
-            <h3 class="service-big-title">Профессиональная сборка теплиц</h3>
-            <div class="service-big-price">6 500 – 8 000 ₽ • за 3–4 часа</div>
-            <p class="service-big-desc">
-              Выполняем качественную сборку теплиц под ключ. Работаем аккуратно, соблюдаем диагонали и уровень, гарантируем прочность конструкции при снегопадах.
-            </p>
-            <ul class="service-features-list">
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Опытная штатная бригада с профессиональным электроинструментом;</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Устанавливаем как наши теплицы, так и теплицы других производителей;</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Точная регулировка дверей, ручек, форточек и крепления СПК;</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Мусор за собой убираем, оставляем участок в чистоте.</span>
-              </li>
-            </ul>
-            <button class="btn btn-primary" style="margin-top: auto;" data-open-modal data-subject="Заказ услуги: Сборка теплицы под ключ" data-title="Заказать сборку теплицы">
-              Заказать сборку →
-            </button>
-          </div>
-        </div>
 
+          <div class="notched-card" data-open-modal data-subject="Заказ услуги: Сборка теплицы" data-title="Сборка теплицы под ключ">
+            <div class="notched-corner-btn">↗</div>
+            <div class="notched-card-title">Сборка под ключ за 3–4 часа</div>
+            <div class="notched-card-sub">Опытные мастера с лазерным уровнем. Крепление поликарбоната, диагонали, регулировка дверей и форточек.</div>
+          </div>
+
+          <div class="notched-card" data-open-modal data-subject="Заказ услуги: Монтаж фундамента из бруса" data-title="Фундамент для теплицы">
+            <div class="notched-corner-btn">↗</div>
+            <div class="notched-card-title">Фундамент из бруса 100х100</div>
+            <div class="notched-card-sub">Сухой брус с запилом в полдерева, пропитка антисептиком, точная диагональ и защита от сырости почвы.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- БЛОК 3: БЕНТО-ГРИД (BENTO GRID С ЦИФРАМИ И ИКОНКАМИ) -->
+      <div class="bento-section">
+        <h2 class="notched-section-title">Факты и гарантии в цифрах</h2>
+        <p class="notched-section-sub">Почему дачники доверяют нам уже больше 12 лет</p>
+
+        <div class="bento-grid">
+          
+          <!-- Bento 1 (Белая с галочкой) -->
+          <div class="bento-box">
+            <div>
+              <div class="bento-tag-check">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Заводская гарантия
+              </div>
+              <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
+                Официальный договор
+              </div>
+              <p class="bento-desc-p">
+                «Теплицы ТУТ» является непосредственным производителем. Предоставляем письменную гарантию на металлокаркас, монтаж и сотовый поликарбонат с УФ-защитой.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bento 2 (Темная со статом 14 000) -->
+          <div class="bento-box dark">
+            <div>
+              <div class="bento-stat-val" style="color:#95d5b2;">14 000+</div>
+              <div class="bento-stat-lbl">Теплиц успешно установлено</div>
+            </div>
+            <p class="bento-desc-p">
+              по всей Ярославской, Ивановской и Костромской областям
+            </p>
+            <div class="bento-icon-float">🌱</div>
+          </div>
+
+          <!-- Bento 3 (Белая со сроком) -->
+          <div class="bento-box">
+            <div>
+              <div class="bento-stat-val" style="color:var(--color-primary-dark);">1–2 дня</div>
+              <div class="bento-stat-lbl">Срок доставки с момента звонка</div>
+            </div>
+            <p class="bento-desc-p">
+              Большой склад готовой продукции позволяет привезти теплицу уже на следующий день после заявки.
+            </p>
+            <div class="bento-icon-float">⏱</div>
+          </div>
+
+          <!-- Bento 4 (Зеленая со статом 12 лет) -->
+          <div class="bento-box green">
+            <div>
+              <div class="bento-stat-val" style="color:#ffffff;">12 лет</div>
+              <div class="bento-stat-lbl" style="color:#d8f3dc;">Успешного производства</div>
+            </div>
+            <p class="bento-desc-p" style="color:#d8f3dc;">
+              Собственные станки лазерного раскроя и профилегибы. Полный контроль качества.
+            </p>
+            <div class="bento-icon-float">📅</div>
+          </div>
+
+          <!-- Bento 5 (Белая широкая на 2 колонки) -->
+          <div class="bento-box span-2">
+            <div>
+              <div class="bento-tag-check">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Прозрачные условия
+              </div>
+              <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
+                0 ₽ предоплаты — сначала осмотр, затем оплата
+              </div>
+              <p class="bento-desc-p">
+                Никаких скрытых надбавок, платных подъемов или неожиданных платежей. Сумма, согласованная с логистом при оформлении заказа, фиксируется в договоре и не меняется на участке.
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <!-- Интерактивный калькулятор тарифов по городам -->
       <div class="delivery-calc-card">
         <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: #1a1a1a; margin-bottom: 6px;">
-          Тарифы доставки по направлениям
+          Тарифы доставки по городам области
         </h2>
         <p style="color: #666; font-size: 0.95rem;">
-          Нажмите на ваш город или район, чтобы узнать ориентировочную стоимость и срок доставки:
+          Нажмите на ваш населенный пункт, чтобы увидеть точную стоимость и ориентировочный срок прибытия:
         </p>
 
         <div class="dest-chips-grid" id="destChipsRow">
           <button type="button" class="dest-chip active" data-dest="г. Ярославль (все районы)" data-price="1 500 ₽" data-term="1–2 дня" data-note="Дзержинский, Заволжский, Кировский, Красноперекопский, Ленинский, Фрунзенский районы">
             г. Ярославль
           </button>
-          <button type="button" class="dest-chip" data-dest="Тутаев" data-price="2 200 ₽" data-term="1–2 дня" data-note="Правый и левый берег, СНТ вокруг Тутаева">
+          <button type="button" class="dest-chip" data-dest="Тутаев" data-price="2 200 ₽" data-term="1–2 дня" data-note="Правый и левый берег, дачные поселки вокруг Тутаева">
             Тутаев
           </button>
           <button type="button" class="dest-chip" data-dest="Гаврилов-Ям" data-price="2 400 ₽" data-term="1–2 дня" data-note="Город и прилегающие дачные массивы">
@@ -729,7 +850,7 @@
           <button type="button" class="dest-chip" data-dest="Углич" data-price="4 200 ₽" data-term="2–3 дня" data-note="Угличский район">
             Углич
           </button>
-          <button type="button" class="dest-chip" data-dest="Дачный поселок / СНТ в области" data-price="1 500 ₽ + 40 ₽/км" data-term="В удобный день" data-note="Расчет от черты города, точную сумму назовет диспетчер">
+          <button type="button" class="dest-chip" data-dest="Дачный поселок / СНТ в области" data-price="1 500 ₽ + 40 ₽/км" data-term="В удобный день" data-note="Расчет от границы города, точную сумму назовет логист">
             Любое СНТ в области
           </button>
         </div>
@@ -744,107 +865,17 @@
           </div>
           <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
             <div class="dest-info-price" id="destInfoPrice">1 500 ₽</div>
-            <button class="btn btn-primary" id="destOrderBtn" data-open-modal data-subject="Заказ доставки в г. Ярославль (1 500 ₽)" data-title="Рассчитать доставку">
+            <button class="btn btn-primary" id="destOrderBtn" data-open-modal data-subject="Заказ доставки: г. Ярославль (1 500 ₽)" data-title="Рассчитать доставку">
               Выбрать этот город →
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Как мы работаем (4 шага) -->
-      <div style="margin-bottom: 50px;">
-        <h2 class="steps-section-title">Как проходит доставка и сборка</h2>
-        <p class="steps-section-sub">Простой, понятный и прозрачный процесс без предоплаты</p>
-
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">01</div>
-            <h3 class="step-title">Согласование даты</h3>
-            <p class="step-desc">
-              Выбираем удобный для вас день недели (работаем без выходных). За день до выезда логист подтверждает точное время прибытия.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-num">02</div>
-            <h3 class="step-title">Бережная доставка</h3>
-            <p class="step-desc">
-              Спецтранспорт с пирамидой доставит дуги и рулоны поликарбоната без перегибов. Водитель и грузчик аккуратно перенесут всё к месту монтажа.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-num">03</div>
-            <h3 class="step-title">Сборка за 3–4 часа</h3>
-            <p class="step-desc">
-              Опытные русские мастера по лазерному уровню соберут каркас, раскроят и закрепят поликарбонат с термошайбами, настроят двери и форточки.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-num">04</div>
-            <h3 class="step-title">Приемка и расчет</h3>
-            <p class="step-desc">
-              Вы лично проверяете готовую теплицу, устойчивость и работу дверей, подписываете акт и только после этого производите оплату водителю.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Варианты фундамента -->
-      <div class="foundations-card">
-        <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: #1a1a1a; margin-bottom: 6px;">
-          Варианты установки теплицы на участке
-        </h2>
-        <p style="color: #666; font-size: 0.95rem;">
-          Правильно выбранное основание гарантирует долговечность конструкции и защиту от весенних перекосов
-        </p>
-
-        <div class="foundations-grid">
-          
-          <div class="foundation-item">
-            <div class="foundation-img-wrap">
-              <img src="assets/images/products/p6/1.jpg" alt="Фундамент из бруса 100х100">
-            </div>
-            <div class="foundation-body">
-              <div class="foundation-name">1. Фундамент из бруса 100х100 мм (Рекомендуем)</div>
-              <p class="foundation-text">
-                Мы привозим сухой брус, запиливаем углы в замок «в полдерева» и пропитываем трудновымываемым антисептиком. Основание выставляется строго по диагоналям и лазерному уровню.
-              </p>
-              <ul style="list-style:none; padding:0; margin:0 0 16px 0; font-size:0.88rem; color:#406050; display:flex; flex-direction:column; gap:6px;">
-                <li>✓ Поднимает теплицу на 10 см (больше полезной высоты);</li>
-                <li>✓ Предохраняет оцинкованный металл от сырости почвы;</li>
-                <li>✓ При необходимости теплицу можно переставить на новое место.</li>
-              </ul>
-              <div style="font-size:1.1rem; font-weight:800; color:var(--color-primary);">6 000 – 9 000 ₽ под ключ</div>
-            </div>
-          </div>
-
-          <div class="foundation-item">
-            <div class="foundation-img-wrap">
-              <img src="assets/images/products/p2/3.jpg" alt="Установка на грунтозацепы">
-            </div>
-            <div class="foundation-body">
-              <div class="foundation-name">2. Установка на грунтозацепы прямо в землю</div>
-              <p class="foundation-text">
-                Экономичный вариант без закупки пиломатериалов. Каркас фиксируется на Т-образные оцинкованные окончания каждой стойки, которые закапываются в грунт на глубину 25–35 см.
-              </p>
-              <ul style="list-style:none; padding:0; margin:0 0 16px 0; font-size:0.88rem; color:#406050; display:flex; flex-direction:column; gap:6px;">
-                <li>✓ Входит в стандартную базовую комплектацию;</li>
-                <li>✓ Отлично подходит для тяжелых глинистых почв;</li>
-                <li>✓ Быстрый монтаж без дополнительных затрат.</li>
-              </ul>
-              <div style="font-size:1.1rem; font-weight:800; color:#555;">0 ₽ дополнительно (в комплекте)</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
       <!-- Фотогалерея реальных работ -->
       <div style="margin-bottom: 50px;">
-        <h2 class="steps-section-title">Фотографии доставки и сборки</h2>
-        <p class="steps-section-sub">Реальные фото выездов наших бригад на дачные участки</p>
+        <h2 class="notched-section-title">Фотографии доставки и сборки</h2>
+        <p class="notched-section-sub">Реальные выезды наших бригад на дачные участки</p>
 
         <div class="gallery-grid">
           <div class="gallery-item">
@@ -893,8 +924,8 @@
 
       <!-- Вопрос-ответ (FAQ) -->
       <div style="margin-bottom: 50px;">
-        <h2 class="steps-section-title">Часто задаваемые вопросы</h2>
-        <p class="steps-section-sub">Всё, что важно знать о доставке и монтаже</p>
+        <h2 class="notched-section-title">Часто задаваемые вопросы</h2>
+        <p class="notched-section-sub">Всё, что важно знать о доставке и монтаже</p>
 
         <div class="faq-accordion-box">
           

@@ -298,6 +298,14 @@
       margin-bottom: 50px;
     }
 
+    .bento-scroll-wrap {
+      width: 100%;
+    }
+
+    .bento-mobile-hint {
+      display: none;
+    }
+
     .bento-grid {
       display: grid;
       grid-template-columns: 1.15fr 1fr 1fr;
@@ -581,8 +589,38 @@
         font-size: 0.92rem;
       }
       .notched-cards-grid { grid-template-columns: 1fr; }
-      .bento-grid { grid-template-columns: 1fr; }
-      .bento-box.span-2 { grid-column: span 1; }
+      .bento-mobile-hint {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #2d6a4f;
+        margin-bottom: 12px;
+      }
+      .bento-scroll-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 12px;
+        margin: 0 -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        scrollbar-width: none;
+      }
+      .bento-scroll-wrap::-webkit-scrollbar {
+        display: none;
+      }
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 280px 220px 220px;
+        grid-template-rows: 1fr 1fr;
+        gap: 14px;
+        width: max-content;
+      }
+      .bento-box.span-2 {
+        grid-column: span 2;
+      }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .timeline-header-row { flex-wrap: wrap; }
       .timeline-arrow-line { display: none; }
@@ -677,33 +715,39 @@
         font-size: 0.82rem;
       }
 
-      /* Бенто-грид */
+      /* Бенто-грид на смартфонах */
       .bento-section {
         margin-bottom: 30px;
       }
       .bento-grid {
-        gap: 12px;
+        grid-template-columns: 260px 190px 190px;
+        gap: 10px;
+        width: max-content;
       }
       .bento-box {
-        padding: 20px 18px;
+        padding: 18px 16px;
         border-radius: 18px;
       }
+      .bento-box.span-2 {
+        grid-column: span 2;
+      }
       .bento-stat-val {
-        font-size: 2rem;
+        font-size: 2.1rem;
       }
       .bento-stat-lbl {
         font-size: 0.88rem;
       }
       .bento-desc-p {
         font-size: 0.82rem;
+        line-height: 1.45;
       }
       .bento-icon-float {
-        right: 16px;
-        bottom: 16px;
+        right: 14px;
+        bottom: 14px;
       }
       .bento-icon-float svg {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
       }
 
       /* Калькулятор тарифов */
@@ -966,93 +1010,100 @@
         <h2 class="notched-section-title">Факты и гарантии в цифрах</h2>
         <p class="notched-section-sub">Почему дачники доверяют нам уже больше 12 лет</p>
 
-        <div class="bento-grid">
-          
-          <!-- Bento 1 (Белая с галочкой) -->
-          <div class="bento-box">
-            <div>
-              <div class="bento-tag-check">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                Заводская гарантия
+        <div class="bento-mobile-hint">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Листайте карточки вправо →
+        </div>
+
+        <div class="bento-scroll-wrap">
+          <div class="bento-grid">
+            
+            <!-- Bento 1 (Белая с галочкой) -->
+            <div class="bento-box">
+              <div>
+                <div class="bento-tag-check">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Заводская гарантия
+                </div>
+                <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
+                  Официальный договор
+                </div>
+                <p class="bento-desc-p">
+                  «Теплицы ТУТ» является непосредственным производителем. Предоставляем письменную гарантию на металлокаркас, монтаж и сотовый поликарбонат с УФ-защитой.
+                </p>
               </div>
-              <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
-                Официальный договор
-              </div>
-              <p class="bento-desc-p">
-                «Теплицы ТУТ» является непосредственным производителем. Предоставляем письменную гарантию на металлокаркас, монтаж и сотовый поликарбонат с УФ-защитой.
-              </p>
             </div>
-          </div>
 
-          <!-- Bento 2 (Темная со статом 14 000) -->
-          <div class="bento-box dark">
-            <div>
-              <div class="bento-stat-val" style="color:#95d5b2;">14 000+</div>
-              <div class="bento-stat-lbl">Теплиц успешно установлено</div>
-            </div>
-            <p class="bento-desc-p">
-              по всей Ярославской, Ивановской и Костромской областям
-            </p>
-            <div class="bento-icon-float">
-              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#95d5b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21h18"/>
-                <path d="M5 21V11l7-7 7 7v10"/>
-                <path d="M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/>
-                <line x1="5" y1="11" x2="19" y2="11"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Bento 3 (Белая со сроком) -->
-          <div class="bento-box">
-            <div>
-              <div class="bento-stat-val" style="color:var(--color-primary-dark);">1–2 дня</div>
-              <div class="bento-stat-lbl">Срок доставки с момента звонка</div>
-            </div>
-            <p class="bento-desc-p">
-              Большой склад готовой продукции позволяет привезти теплицу уже на следующий день после заявки.
-            </p>
-            <div class="bento-icon-float">
-              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Bento 4 (Зеленая со статом 12 лет) -->
-          <div class="bento-box green">
-            <div>
-              <div class="bento-stat-val" style="color:#ffffff;">12 лет</div>
-              <div class="bento-stat-lbl" style="color:#d8f3dc;">Успешного производства</div>
-            </div>
-            <p class="bento-desc-p" style="color:#d8f3dc;">
-              Собственные станки лазерного раскроя и профилегибы. Полный контроль качества.
-            </p>
-            <div class="bento-icon-float">
-              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#d8f3dc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="6"/>
-                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Bento 5 (Белая широкая на 2 колонки) -->
-          <div class="bento-box span-2">
-            <div>
-              <div class="bento-tag-check">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                Прозрачные условия
-              </div>
-              <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
-                0 ₽ предоплаты — сначала осмотр, затем оплата
+            <!-- Bento 2 (Темная со статом 14 000) -->
+            <div class="bento-box dark">
+              <div>
+                <div class="bento-stat-val" style="color:#95d5b2;">14 000+</div>
+                <div class="bento-stat-lbl">Теплиц успешно установлено</div>
               </div>
               <p class="bento-desc-p">
-                Никаких скрытых надбавок, платных подъемов или неожиданных платежей. Сумма, согласованная с логистом при оформлении заказа, фиксируется в договоре и не меняется на участке.
+                по всей Ярославской, Ивановской и Костромской областям
               </p>
+              <div class="bento-icon-float">
+                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#95d5b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18"/>
+                  <path d="M5 21V11l7-7 7 7v10"/>
+                  <path d="M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/>
+                  <line x1="5" y1="11" x2="19" y2="11"/>
+                </svg>
+              </div>
             </div>
-          </div>
 
+            <!-- Bento 3 (Белая со сроком) -->
+            <div class="bento-box">
+              <div>
+                <div class="bento-stat-val" style="color:var(--color-primary-dark);">1–2 дня</div>
+                <div class="bento-stat-lbl">Срок доставки с момента звонка</div>
+              </div>
+              <p class="bento-desc-p">
+                Большой склад готовой продукции позволяет привезти теплицу уже на следующий день после заявки.
+              </p>
+              <div class="bento-icon-float">
+                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Bento 4 (Зеленая со статом 12 лет) -->
+            <div class="bento-box green">
+              <div>
+                <div class="bento-stat-val" style="color:#ffffff;">12 лет</div>
+                <div class="bento-stat-lbl" style="color:#d8f3dc;">Успешного производства</div>
+              </div>
+              <p class="bento-desc-p" style="color:#d8f3dc;">
+                Собственные станки лазерного раскроя и профилегибы. Полный контроль качества.
+              </p>
+              <div class="bento-icon-float">
+                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#d8f3dc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6"/>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Bento 5 (Белая широкая на 2 колонки) -->
+            <div class="bento-box span-2">
+              <div>
+                <div class="bento-tag-check">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Прозрачные условия
+                </div>
+                <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
+                  0 ₽ предоплаты — сначала осмотр, затем оплата
+                </div>
+                <p class="bento-desc-p">
+                  Никаких скрытых надбавок, платных подъемов или неожиданных платежей. Сумма, согласованная с логистом при оформлении заказа, фиксируется в договоре и не меняется на участке.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 

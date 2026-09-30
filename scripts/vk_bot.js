@@ -151,6 +151,12 @@ async function handleMessage(msg) {
   const text = (msg.text || "").trim();
   const lowerText = text.toLowerCase();
 
+  // Отмечаем диалог как прочитанный сообществом
+  const peerId = msg.peer_id || msg.from_id;
+  if (peerId) {
+    vkApi("messages.markAsRead", { peer_id: peerId }).catch(() => {});
+  }
+
   console.log(`[Сообщение] От id${senderId}: "${text}"`);
 
   // Проверяем, является ли отправитель администратором
@@ -370,8 +376,26 @@ async function handleMessage(msg) {
   }
 }
 
+// Проверка и обработка сообщений, поступивших пока бот был выключен
+async function processUnreadOnStartup() {
+  try {
+    const res = await vkApi("messages.getConversations", { filter: "unread", count: 20 });
+    if (res && Array.isArray(res.items) && res.items.length) {
+      console.log(`[VK Bot] Найдено ${res.items.length} непрочитанных диалогов. Обрабатываем...`);
+      for (const item of res.items) {
+        if (item.last_message && item.last_message.out === 0) {
+          await handleMessage(item.last_message);
+        }
+      }
+    }
+  } catch (err) {
+    console.warn("[VK Bot] Проверка непрочитанных при запуске:", err.message || err);
+  }
+}
+
 // Запуск LongPoll цикла
 async function startLongPoll() {
+  await processUnreadOnStartup();
   console.log("[VK Bot] Подключение к LongPoll серверу ВКонтакте...");
 
   while (true) {

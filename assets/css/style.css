@@ -5369,7 +5369,7 @@ textarea {
   background: #f8faf8;
   border: 1.5px solid #e3ede5;
   border-radius: 20px;
-  padding: 24px 20px;
+  padding: 18px 18px 22px;
   width: 100%;
   box-sizing: border-box;
   height: 100%;
@@ -5383,12 +5383,21 @@ textarea {
   box-shadow: 0 10px 24px rgba(45, 106, 79, 0.08);
   transform: translateY(-3px);
 }
+.step-photo-preview {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
 .step-card-name {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 800;
   color: #1b4332;
-  margin: 0 0 14px 0;
+  margin: 0 0 12px 0;
   text-transform: capitalize;
 }
 .step-card-list {
@@ -5397,12 +5406,12 @@ textarea {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
 }
 .step-card-list li {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: #3b4a40;
-  line-height: 1.45;
+  line-height: 1.4;
   position: relative;
   padding-left: 18px;
   font-weight: 500;
@@ -5414,6 +5423,99 @@ textarea {
   color: #2d6a4f;
   font-weight: 800;
   font-size: 0.95rem;
+}
+
+/* Сплит-сетка блока Зачем теплица */
+.pills-split-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+.pills-photo-card {
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  min-height: 240px;
+}
+.pills-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pills-photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 30, 23, 0.9) 100%);
+  padding: 24px 20px 18px;
+  color: #ffffff;
+}
+.pills-photo-title {
+  font-weight: 800;
+  font-size: 1.15rem;
+  margin: 0 0 4px;
+}
+.pills-photo-sub {
+  font-size: 0.86rem;
+  color: #d8f3dc;
+  margin: 0;
+}
+
+/* Фото для карточек инженерных стандартов */
+.tech-tab-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Мини-фото для Bento-карточек */
+.bento-card-thumb {
+  width: 100%;
+  height: 95px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: block;
+}
+.bento-featured-img-wrap {
+  margin-top: 15px;
+  text-align: center;
+}
+.bento-featured-img {
+  max-width: 270px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+  display: inline-block;
+}
+
+/* CTA Баннер с фото теплицы */
+.works-cta-banner-v2 {
+  background: linear-gradient(135deg, #111111 0%, #1b4332 100%);
+  border-radius: 28px;
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+.works-cta-v2-img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+  display: block;
 }
 
 /* 3. Блок Bento-пилюль «Зачем необходима теплица?» 02 (мягкие благородные цвета) */

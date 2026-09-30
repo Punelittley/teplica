@@ -5287,13 +5287,13 @@ textarea {
   margin: 0;
 }
 
-/* 2. Блок «ПОЧЕМУ МЫ?» 03 (полукруглая дуга в точности по референсу 1) */
+/* 2. Блок «ПОЧЕМУ МЫ?» 03 (Современная горизонтальная процесс-сетка без нагромождений) */
 .arc-diagram-card {
   background: #ffffff;
   border-radius: 32px;
-  padding: 45px 50px 50px;
+  padding: 45px 45px 50px;
   border: 1.5px solid #e3ede5;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.04);
   margin-bottom: 60px;
   position: relative;
 }
@@ -5303,11 +5303,11 @@ textarea {
   justify-content: space-between;
   border-bottom: 2px solid #edf4ef;
   padding-bottom: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 .arc-diagram-title {
   font-family: var(--font-heading);
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 900;
   color: #111111;
   margin: 0;
@@ -5315,84 +5315,105 @@ textarea {
 }
 .arc-diagram-big-num {
   font-family: var(--font-heading);
-  font-size: 5rem;
+  font-size: 4.8rem;
   font-weight: 900;
   color: #111111;
   line-height: 0.85;
   letter-spacing: -2px;
 }
 
-.arc-stage {
+.steps-row-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   position: relative;
-  width: 100%;
-  max-width: 960px;
-  height: 520px;
-  margin: 0 auto;
 }
-.arc-svg-track {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Выносные белые карточки вокруг дуги */
-.arc-floating-card {
+.steps-row-grid::before {
+  content: '';
   position: absolute;
-  background: #ffffff;
-  border: 1.5px solid #e2ede5;
-  border-radius: 18px;
-  padding: 16px 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  z-index: 10;
-  max-width: 275px;
+  top: 36px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: #e2ede5;
+  z-index: 1;
 }
-.arc-floating-card ul {
+.step-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.step-badge-node {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #111111;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  border: 4px solid #ffffff;
+  transition: all 0.25s ease;
+}
+.step-column:hover .step-badge-node {
+  background: #2d6a4f;
+  transform: scale(1.08);
+}
+.step-card-box {
+  background: #f8faf8;
+  border: 1.5px solid #e3ede5;
+  border-radius: 20px;
+  padding: 24px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+.step-column:hover .step-card-box {
+  background: #ffffff;
+  border-color: #b7e4c7;
+  box-shadow: 0 10px 24px rgba(45, 106, 79, 0.08);
+  transform: translateY(-3px);
+}
+.step-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin: 0 0 14px 0;
+  text-transform: capitalize;
+}
+.step-card-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 10px;
 }
-.arc-floating-card li {
-  font-size: 0.86rem;
-  color: #2b3a31;
-  line-height: 1.4;
+.step-card-list li {
+  font-size: 0.9rem;
+  color: #3b4a40;
+  line-height: 1.45;
   position: relative;
-  padding-left: 14px;
+  padding-left: 18px;
   font-weight: 500;
 }
-.arc-floating-card li::before {
-  content: '•';
+.step-card-list li::before {
+  content: '✓';
   position: absolute;
   left: 0;
   color: #2d6a4f;
-  font-weight: bold;
-}
-
-/* Позиционирование 4 карточек вокруг арки */
-.arc-floating-card--1 {
-  top: 15px;
-  left: 15px;
-}
-.arc-floating-card--2 {
-  top: 0px;
-  left: 360px;
-}
-.arc-floating-card--3 {
-  top: 15px;
-  right: 15px;
-}
-.arc-floating-card--4 {
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 330px;
-}
-
-/* Мобильный вид арки (вертикальный таймлайн) */
-.arc-mobile-timeline {
-  display: none;
+  font-weight: 800;
+  font-size: 0.95rem;
 }
 
 /* 3. Блок Bento-пилюль «Зачем необходима теплица?» 02 (мягкие благородные цвета) */
@@ -5666,80 +5687,16 @@ textarea {
 /* Адаптивность */
 @media (max-width: 991px) {
   .bento-hero-grid { grid-template-columns: 1fr; }
+  .steps-row-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .steps-row-grid::before { display: none; }
   .tech-tabs-grid { grid-template-columns: repeat(2, 1fr); }
   .compare-box-wrapper { grid-template-columns: 1fr; }
   .pills-tiles-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 850px) {
-  .arc-stage {
-    display: none;
-  }
-  .arc-mobile-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 20px;
-  }
-  .arc-mobile-step {
-    background: #ffffff;
-    border: 1.5px solid #e2ede5;
-    border-radius: 18px;
-    padding: 20px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
-  }
-  .arc-mobile-step-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #edf4ef;
-  }
-  .arc-mobile-num {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #d4f455;
-    color: #111111;
-    font-weight: 900;
-    font-size: 1.15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .arc-mobile-name {
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: #111111;
-  }
-  .arc-mobile-step ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .arc-mobile-step li {
-    font-size: 0.9rem;
-    color: #2b3a31;
-    position: relative;
-    padding-left: 14px;
-    line-height: 1.4;
-  }
-  .arc-mobile-step li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: #2d6a4f;
-    font-weight: bold;
-  }
-}
-
 @media (max-width: 600px) {
   .bento-quad-grid { grid-template-columns: 1fr; }
+  .steps-row-grid { grid-template-columns: 1fr; gap: 20px; }
   .tech-tabs-grid { grid-template-columns: 1fr; }
   .arc-diagram-card, .pills-block-wrapper { padding: 28px 18px; }
   .arc-diagram-header, .pills-block-header { flex-direction: column; align-items: flex-start; gap: 10px; }

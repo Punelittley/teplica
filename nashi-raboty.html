@@ -68,24 +68,24 @@
 
     .works-item {
       position: relative;
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
-      background: #e9ecef;
-      aspect-ratio: 4 / 3;
+      background: #fff;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       transition: box-shadow 0.25s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
     .works-item:hover {
       transform: none;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
     }
 
     .works-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
+      border-radius: 18px;
     }
     .works-item:hover img {
       transform: none;
@@ -330,187 +330,46 @@
   <main class="section-padding">
     <div class="container">
 
-      <!-- Фильтры по категориям теплиц -->
+      <!-- Фильтры по направлениям работ -->
       <div class="works-filter-nav">
-        <button class="works-filter-btn active" data-filter="all">Все работы (38)</button>
-        <button class="works-filter-btn" data-filter="arch">Арочные теплицы</button>
-        <button class="works-filter-btn" data-filter="drop">Каплевидные</button>
-        <button class="works-filter-btn" data-filter="usil">Усиленные (0.65 м)</button>
-        <button class="works-filter-btn" data-filter="timber">На брусе</button>
+        <button class="works-filter-btn active" data-filter="all">Все работы</button>
+        <button class="works-filter-btn" data-filter="teplica">Продажа теплиц</button>
+        <button class="works-filter-btn" data-filter="ustanovka">Установка</button>
+        <button class="works-filter-btn" data-filter="remont">Ремонт</button>
+        <button class="works-filter-btn" data-filter="dostavka">Доставка</button>
+        <button class="works-filter-btn" data-filter="polikarbonat">Поликарбонат</button>
       </div>
 
       <!-- Сетка картинок -->
       <div class="works-gallery-grid" id="worksGrid">
 
-        <!-- Группа p1: Арочные теплицы -->
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p1/1.jpg" data-title="Арочная теплица 3х6 м на брусе 100х100">
-          <img src="assets/images/products/p1/1.jpg" alt="Теплица на участке" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p1/2.jpg" data-title="Арочная усиленная теплица 3х4 м">
-          <img src="assets/images/products/p1/2.jpg" alt="Теплица на участке" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p1/3.jpg" data-title="Теплица с поликарбонатом 4 мм Премиум">
-          <img src="assets/images/products/p1/3.jpg" alt="Теплица на участке" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch" data-src="assets/images/products/p1/4.jpg" data-title="Сборка теплицы на дачном участке">
-          <img src="assets/images/products/p1/4.jpg" alt="Теплица на участке" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p1/5.jpg" data-title="Арочная теплица 3х8 м под ключ">
-          <img src="assets/images/products/p1/5.jpg" alt="Теплица на участке" loading="lazy">
+        <!-- 1. Продажа теплиц -->
+        <div class="works-item" data-category="teplica" data-src="assets/images/works/work_1_prodazha.png" data-title="Продажа теплиц от производителя">
+          <img src="assets/images/works/work_1_prodazha.png" alt="Продажа теплиц" loading="lazy">
           <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
         </div>
 
-        <!-- Группа p2: Каплевидные теплицы -->
-        <div class="works-item" data-category="drop usil" data-src="assets/images/products/p2/1.jpg" data-title="Каплевидная теплица Капля 3х6 м">
-          <img src="assets/images/products/p2/1.jpg" alt="Каплевидная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="drop timber" data-src="assets/images/products/p2/2.jpg" data-title="Каплевидная теплица на фундаменте из бруса">
-          <img src="assets/images/products/p2/2.jpg" alt="Каплевидная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="drop" data-src="assets/images/products/p2/3.jpg" data-title="Каплевидная теплица — снегосброс">
-          <img src="assets/images/products/p2/3.jpg" alt="Каплевидная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="drop usil" data-src="assets/images/products/p2/4.jpg" data-title="Усиленная каплевидная теплица 3х4 м">
-          <img src="assets/images/products/p2/4.jpg" alt="Каплевидная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="drop timber" data-src="assets/images/products/p2/5.jpg" data-title="Каплевидная теплица 3х8 м">
-          <img src="assets/images/products/p2/5.jpg" alt="Каплевидная теплица" loading="lazy">
+        <!-- 2. Установка теплиц -->
+        <div class="works-item" data-category="ustanovka" data-src="assets/images/works/work_2_ustanovka.png" data-title="Профессиональная установка теплиц">
+          <img src="assets/images/works/work_2_ustanovka.png" alt="Установка теплиц" loading="lazy">
           <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
         </div>
 
-        <!-- Группа p3: Усиленные теплицы (шаг 0.65 м) -->
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p3/1.jpg" data-title="Усиленный каркас, шаг дуг 0.65 м">
-          <img src="assets/images/products/p3/1.jpg" alt="Усиленная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p3/2.jpg" data-title="Теплица на участке в Ярославском районе">
-          <img src="assets/images/products/p3/2.jpg" alt="Усиленная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p3/3.jpg" data-title="Двойная дуга ферма 40х20 мм">
-          <img src="assets/images/products/p3/3.jpg" alt="Усиленная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p3/4.jpg" data-title="Сверхпрочная теплица 3х6 м">
-          <img src="assets/images/products/p3/4.jpg" alt="Усиленная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p3/5.jpg" data-title="Готовая теплица с двумя форточками">
-          <img src="assets/images/products/p3/5.jpg" alt="Усиленная теплица" loading="lazy">
+        <!-- 3. Ремонт теплиц -->
+        <div class="works-item" data-category="remont" data-src="assets/images/works/work_3_remont.png" data-title="Ремонт теплиц и замена поликарбоната">
+          <img src="assets/images/works/work_3_remont.png" alt="Ремонт теплиц" loading="lazy">
           <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
         </div>
 
-        <!-- Группа p4: Монтаж на брус -->
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p4/1.jpg" data-title="Установка теплицы на пропитанный брус">
-          <img src="assets/images/products/p4/1.jpg" alt="Теплица на брусе" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p4/2.jpg" data-title="Теплица 3х4 м на брусовом основании">
-          <img src="assets/images/products/p4/2.jpg" alt="Теплица на брусе" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p4/3.jpg" data-title="Идеальная геометрия и крепление к брусу">
-          <img src="assets/images/products/p4/3.jpg" alt="Теплица на брусе" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber usil" data-src="assets/images/products/p4/4.jpg" data-title="Арочная теплица 3х6 м в СНТ">
-          <img src="assets/images/products/p4/4.jpg" alt="Теплица на брусе" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p4/5.jpg" data-title="Завершенный монтаж бригадой за 3 часа">
-          <img src="assets/images/products/p4/5.jpg" alt="Теплица на брусе" loading="lazy">
+        <!-- 4. Доставка теплиц -->
+        <div class="works-item" data-category="dostavka" data-src="assets/images/works/work_4_dostavka.png" data-title="Бережная доставка теплиц спецтранспортом">
+          <img src="assets/images/works/work_4_dostavka.png" alt="Доставка теплиц" loading="lazy">
           <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
         </div>
 
-        <!-- Группа p5: Качественный сотовый поликарбонат -->
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p5/1.jpg" data-title="Обшивка теплицы поликарбонатом с УФ-защитой">
-          <img src="assets/images/products/p5/1.jpg" alt="Теплица с поликарбонатом" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch" data-src="assets/images/products/p5/2.jpg" data-title="Прозрачный сотовый поликарбонат 4 мм">
-          <img src="assets/images/products/p5/2.jpg" alt="Теплица с поликарбонатом" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p5/3.jpg" data-title="Теплица с широкими дверями для тачки">
-          <img src="assets/images/products/p5/3.jpg" alt="Теплица с поликарбонатом" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-
-        <!-- Группа p6: Большие теплицы 3х8 и 3х10 -->
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p6/1.jpg" data-title="Просторная теплица 3х8 м">
-          <img src="assets/images/products/p6/1.jpg" alt="Большая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p6/2.jpg" data-title="Теплица на две просторные гряды">
-          <img src="assets/images/products/p6/2.jpg" alt="Большая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p6/3.jpg" data-title="Усиленный конёк и стяжки каркаса">
-          <img src="assets/images/products/p6/3.jpg" alt="Большая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p6/4.jpg" data-title="Теплица 3х10 м для богатого урожая">
-          <img src="assets/images/products/p6/4.jpg" alt="Большая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p6/5.jpg" data-title="Готовая теплица перед сдачей заказчику">
-          <img src="assets/images/products/p6/5.jpg" alt="Большая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-
-        <!-- Группа p7: Монтажные работы -->
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p7/1.jpg" data-title="Сборка каркаса штатной бригадой">
-          <img src="assets/images/products/p7/1.jpg" alt="Монтаж теплицы" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch" data-src="assets/images/products/p7/2.jpg" data-title="Проверка дверей и форточек">
-          <img src="assets/images/products/p7/2.jpg" alt="Монтаж теплицы" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-
-        <!-- Группа p8: Каплевидная теплица -->
-        <div class="works-item" data-category="drop usil" data-src="assets/images/products/p8/1.jpg" data-title="Каплевидная теплица на дачном участке">
-          <img src="assets/images/products/p8/1.jpg" alt="Каплевидная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-
-        <!-- Группа p9: Выставочные и клиентские образцы -->
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/products/p9/1.jpg" data-title="Теплица Арочная Премиум 3х6 м">
-          <img src="assets/images/products/p9/1.jpg" alt="Готовая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch usil" data-src="assets/images/products/p9/2.png" data-title="Оцинкованная труба 40х20 мм">
-          <img src="assets/images/products/p9/2.png" alt="Готовая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch" data-src="assets/images/products/p9/3.jpg" data-title="Теплица на открытом солнечном участке">
-          <img src="assets/images/products/p9/3.jpg" alt="Готовая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/products/p9/4.jpg" data-title="Установка теплицы на выровненный брус">
-          <img src="assets/images/products/p9/4.jpg" alt="Готовая теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-
-        <!-- Дополнительные реальные фото -->
-        <div class="works-item" data-category="arch usil timber" data-src="assets/images/greenhouse_arch.jpg" data-title="Арочная усиленная теплица завода «Теплицы ТУТ»">
-          <img src="assets/images/greenhouse_arch.jpg" alt="Арочная теплица" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="arch timber" data-src="assets/images/mockup_install.jpg" data-title="Профессиональный монтаж за 3–4 часа">
-          <img src="assets/images/mockup_install.jpg" alt="Монтаж теплицы" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
-        </div>
-        <div class="works-item" data-category="drop usil" data-src="assets/images/mockup_kaplevidnaya.jpg" data-title="Каплевидная теплица — надежность зимой">
-          <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Каплевидная теплица" loading="lazy">
+        <!-- 5. Продажа поликарбоната -->
+        <div class="works-item" data-category="polikarbonat" data-src="assets/images/works/work_5_polikarbonat.png" data-title="Продажа сотового поликарбоната с честной УФ-защитой">
+          <img src="assets/images/works/work_5_polikarbonat.png" alt="Продажа поликарбоната" loading="lazy">
           <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
         </div>
 

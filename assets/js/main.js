@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 10. Счетчик промо-акции со скидкой 20%
   setupCalcPromoCountdown();
+
+  // 11. Умный FAQ чат-бот консультант
+  setupFaqChatbot();
 });
 
 // Обновление контактов в DOM
@@ -462,5 +465,218 @@ function setupCalcPromoCountdown() {
 
   update();
   setInterval(update, 1000);
+}
+
+// 11. Умный FAQ чат-бот консультант
+function setupFaqChatbot() {
+  const widget = document.getElementById("faqChatWidget");
+  const triggerBtn = document.getElementById("faqChatTriggerBtn");
+  const chatWindow = document.getElementById("faqChatWindow");
+  const closeBtn = document.getElementById("faqChatCloseBtn");
+  const chatBody = document.getElementById("faqChatBody");
+  const chatForm = document.getElementById("faqChatForm");
+  const chatInput = document.getElementById("faqChatInput");
+  const chipsContainer = document.getElementById("faqQuickChips");
+
+  if (!widget || !triggerBtn || !chatWindow || !chatForm || !chatInput) return;
+
+  // База знаний бота (вопросы, ключевые слова, ответы и действия)
+  const knowledgeBase = [
+    {
+      keywords: ["доставк", "привез", "тариф", "яросл", "рыбинск", "тутаев", "ростов", "переславл", "углич", "данилов", "гаврилов", "костром", "иванов", "снт", "област", "километр", "км", "куда"],
+      answer: "🚚 <strong>Доставка собственным спецтранспортом завода:</strong><br>• По Ярославлю и пригороду — от 1 500 ₽<br>• По Ярославской, Ивановской и Костромской областям — от 1 500 до 2 500 ₽.<br>• Привозим прямо до калитки вашего СНТ или участка!<br>• Срок: 1–2 дня или к нужной дате. <strong>0 ₽ предоплаты — расчет при получении!</strong>",
+      action: { text: "Подробнее о доставке", link: "dostavka-sborka.html" }
+    },
+    {
+      keywords: ["предоплат", "оплат", "деньг", "расчет", "картой", "наличн", "перевод", "договор", "чек"],
+      answer: "💰 <strong>Честные условия без риска:</strong><br>Мы работаем <strong>БЕЗ ПРЕДОПЛАТЫ (0 ₽)</strong>!<br>Вы рассчитываетесь с водителем или бригадой (наличными или переводом) строго по факту выгрузки и проверки всех элементов теплицы.",
+    },
+    {
+      keywords: ["поликарбонат", "толщин", "4мм", "6мм", "4 мм", "6 мм", "уф", "солнц", "град", "желте", "пластик", "sabic", "bayer"],
+      answer: "☀️ <strong>Какой поликарбонат выбрать:</strong><br>• <strong>4 мм с УФ-защитой (Стандарт / Премиум):</strong> оптимальный выбор для большинства дачных теплиц. Срок службы 10–12 лет, не мутнеет и выдерживает град.<br>• <strong>6 мм (Зимний / Сверхпрочный):</strong> для круглогодичного выращивания и повышенной теплоизоляции (до 15 лет гарантии).<br>Используем только первичное сырье Sabic и Bayer с защитой от выгорания!",
+      action: { text: "Каталог поликарбоната", link: "polikarbonat.html" }
+    },
+    {
+      keywords: ["снег", "зим", "нагрузк", "выдерж", "прочност", "слома", "рухнет", "дуг", "труб", "чистит", "подпорк"],
+      answer: "❄️ <strong>Снеговая нагрузка и прочность:</strong><br>• Каркас из цельной оцинкованной трубы 20×20 или 40×20 мм выдерживает до <strong>180–240 кг/м²</strong> снега.<br>• Шаг дуг 0.65 м (усиленный) исключает провисание поликарбоната.<br>• А <strong>каплевидные теплицы</strong> вообще сбрасывают снег за счет острого конька — подпорки на зиму не требуются!",
+      action: { text: "Каплевидные теплицы", link: "kaplevidnye.html" }
+    },
+    {
+      keywords: ["фундамент", "брус", "сва", "грунтозацеп", "основан", "на что ставит", "пропитк", "антисептик"],
+      answer: "🪵 <strong>Нужен ли фундамент?</strong><br>Мы рекомендуем установку на <strong>пропитанный антисептиком брус 100×100 мм</strong>. Он защищает каркас от влажной земли, выравнивает рельеф и надежно держит теплицу при сильных ветрах. Также возможен монтаж на оцинкованные сваи/грунтозацепы прямо в грунт.",
+      action: { text: "Фундамент и монтаж", link: "dostavka-sborka.html#brus" }
+    },
+    {
+      keywords: ["сборк", "монтаж", "собрат", "установк", "бригад", "время", "быстро", "скольк по времени", "мастер"],
+      answer: "🛠️ <strong>Сборка и монтаж:</strong><br>• Сборку производит штатная бригада мастеров с опытом от 5 лет.<br>• Время установки стандартной теплицы под ключ — всего <strong>3–4 часа</strong>!<br>• Оплата работы строго после того, как вы лично проверите открывание дверей и форточек.<br>• Если хотите собрать сами — в комплекте есть понятная инструкция и весь крепеж.",
+      action: { text: "Услуги сборки", link: "dostavka-sborka.html#sborka" }
+    },
+    {
+      keywords: ["цен", "стоимост", "прайс", "скольк стоит", "купит", "размер", "3х4", "3х6", "3х8", "3*4", "3*6", "3*8", "4 метр", "6 метр", "8 метр"],
+      answer: "🏷️ <strong>Цены на теплицы от завода:</strong><br>• <strong>3 × 4 м:</strong> от 18 900 ₽<br>• <strong>3 × 6 м:</strong> от 23 900 ₽ (Хит)<br>• <strong>3 × 8 м:</strong> от 28 900 ₽<br>В комплект входят: оцинкованный каркас, 2 двери, 2 форточки, фурнитура и поликарбонат с УФ-защитой.",
+      action: { text: "Рассчитать в калькуляторе", link: "#calculator" }
+    },
+    {
+      keywords: ["адрес", "где", "производств", "завод", "площадк", "самовывоз", "телефон", "посмотрет", "приехат", "режим", "работ"],
+      answer: "📍 <strong>Контакты и производство:</strong><br>• Ярославль, ул. Промышленная, д. 12.<br>• Телефон: <strong>+7 (4852) 123-45-67</strong><br>• Работаем ежедневно с 8:00 до 20:00 без выходных.<br>На нашей выставочной площадке можно лично потрогать каркас и убедиться в прочности металла!",
+      action: { text: "Схема проезда", link: "kontakty.html" }
+    },
+    {
+      keywords: ["скидк", "акци", "пенсионер", "дешевл", "подарок", "хранен"],
+      answer: "🎁 <strong>Акции и спецпредложения:</strong><br>1. Скидка до 20% к началу сезона!<br>2. Специальная скидка для пенсионеров по удостоверению.<br>3. <strong>Бесплатное хранение</strong> купленной теплицы на сухом складе завода до дня, когда вам удобно её принять.",
+      action: { text: "Забронировать по акции", modal: true }
+    },
+    {
+      keywords: ["грядк", "оцинкован", "клумб", "бортик"],
+      answer: "🌱 <strong>Оцинкованные грядки:</strong><br>Изготавливаем долговечные грядки высотой 20 см с завальцованными безопасными краями. Не ржавеют и служат от 15 лет. Ширина 0.65–1 м, длина от 2 до 8 метров. Идеально подходят в теплицу!",
+      action: { text: "Каталог грядок", link: "gryadki.html" }
+    },
+    {
+      keywords: ["привет", "здравствуй", "добрый день", "добрый вечер", "доброе утро"],
+      answer: "Здравствуйте! 👋 Рад помочь вам. Чем я могу быть полезен? Могу рассказать о ценах на теплицы, поликарбонате, доставке по Ярославской области или помочь с расчетом размера."
+    },
+    {
+      keywords: ["спасибо", "благодар", "отлично", "понятно", "супер", "хорошо"],
+      answer: "Всегда пожалуйста! Рад был помочь. 😊 Если понадобится консультация инженера или захотите оформить доставку без предоплаты — обращайтесь в любое время!"
+    },
+    {
+      keywords: ["человек", "менеджер", "оператор", "перезвон", "позвон", "связат", "живой", "номер"],
+      answer: "📞 Вы можете заказать обратный звонок мастера завода — он перезвонит в течение 10 минут и ответит на все детали!",
+      action: { text: "Заказать звонок инженера", modal: true }
+    }
+  ];
+
+  function toggleChat(open) {
+    const isOpen = open !== undefined ? open : !chatWindow.classList.contains("active");
+    if (isOpen) {
+      chatWindow.classList.add("active");
+      chatWindow.setAttribute("aria-hidden", "false");
+      const badge = widget.querySelector(".faq-chat-trigger-badge");
+      if (badge) badge.style.display = "none";
+      const tooltip = widget.querySelector(".faq-chat-tooltip");
+      if (tooltip) tooltip.style.display = "none";
+      setTimeout(() => chatInput.focus(), 200);
+    } else {
+      chatWindow.classList.remove("active");
+      chatWindow.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  triggerBtn.addEventListener("click", () => toggleChat());
+  closeBtn.addEventListener("click", () => toggleChat(false));
+
+  function appendMessage(text, sender = "bot", action = null) {
+    const msgEl = document.createElement("div");
+    msgEl.className = `faq-chat-msg ${sender}`;
+
+    const bubbleEl = document.createElement("div");
+    bubbleEl.className = "faq-chat-bubble";
+    bubbleEl.innerHTML = text;
+
+    msgEl.appendChild(bubbleEl);
+
+    if (action) {
+      const actionEl = document.createElement("a");
+      actionEl.className = "faq-chat-action-btn";
+      actionEl.innerHTML = `${action.text} →`;
+      if (action.modal) {
+        actionEl.href = "#";
+        actionEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          toggleChat(false);
+          const modal = document.querySelector(".modal-overlay");
+          if (modal) modal.classList.add("active");
+        });
+      } else {
+        actionEl.href = action.link;
+        if (action.link.startsWith("#")) {
+          actionEl.addEventListener("click", () => toggleChat(false));
+        }
+      }
+      msgEl.appendChild(actionEl);
+    }
+
+    const timeEl = document.createElement("div");
+    timeEl.className = "faq-chat-time";
+    const now = new Date();
+    timeEl.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    msgEl.appendChild(timeEl);
+
+    chatBody.appendChild(msgEl);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function showTypingIndicator() {
+    const typingEl = document.createElement("div");
+    typingEl.className = "faq-chat-typing";
+    typingEl.id = "chatTypingIndicator";
+    typingEl.innerHTML = "<span></span><span></span><span></span>";
+    chatBody.appendChild(typingEl);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    const el = document.getElementById("chatTypingIndicator");
+    if (el) el.remove();
+  }
+
+  function handleUserQuery(query) {
+    if (!query || !query.trim()) return;
+    const cleanQ = query.trim();
+    appendMessage(cleanQ, "user");
+
+    showTypingIndicator();
+
+    setTimeout(() => {
+      removeTypingIndicator();
+      const qLower = cleanQ.toLowerCase();
+
+      // Поиск наилучшего совпадения по ключевым словам
+      let bestMatch = null;
+      let maxScore = 0;
+
+      knowledgeBase.forEach(item => {
+        let score = 0;
+        item.keywords.forEach(kw => {
+          if (qLower.includes(kw)) {
+            score += kw.length;
+          }
+        });
+        if (score > maxScore) {
+          maxScore = score;
+          bestMatch = item;
+        }
+      });
+
+      if (bestMatch && maxScore > 0) {
+        appendMessage(bestMatch.answer, "bot", bestMatch.action);
+      } else {
+        // Ответ при нераспознанном запросе
+        appendMessage(
+          "Спасибо за вопрос! 🌿 Чтобы дать точный расчет под особенности вашего участка, я могу передать ваш вопрос нашему старшему мастеру производства. Оставьте номер телефона или позвоните нам прямо сейчас:",
+          "bot",
+          { text: "Связаться с мастером", modal: true }
+        );
+      }
+    }, 450);
+  }
+
+  // Обработка клика по чипсам быстрых вопросов
+  if (chipsContainer) {
+    chipsContainer.addEventListener("click", (e) => {
+      const chip = e.target.closest(".faq-chip");
+      if (!chip) return;
+      const question = chip.getAttribute("data-q") || chip.textContent;
+      handleUserQuery(question);
+    });
+  }
+
+  // Отправка формы
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = chatInput.value;
+    chatInput.value = "";
+    handleUserQuery(val);
+  });
 }
 

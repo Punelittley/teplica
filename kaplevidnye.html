@@ -3,10 +3,228 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Каплевидные теплицы в Ярославле — Теплица Капелька / Стрелка от производителя</title>
-  <meta name="description" content="Купить каплевидную теплицу «Капелька / Стрелка» в Ярославле от производителя. Снег скатывается сам под собственным весом. Увеличенная высота 2.4 м. Доставка и сборка за 1 день.">
+  <title>Каплевидные теплицы из поликарбоната — Теплицы ТУТ</title>
+  <meta name="description" content="Купить каплевидную теплицу (Капелька / Стрелка) из поликарбоната от завода «Теплицы ТУТ». Снег скатывается сам! Модели Стандарт, Усиленная 0.65м, Богатырь. Доставка и сборка на участке.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ===== Страница каталога ===== */
+    .catalog-page {
+      background: #f4f4f0;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    .catalog-breadcrumb {
+      font-size: 0.82rem;
+      color: #999;
+      padding: 18px 0 0;
+    }
+    .catalog-breadcrumb a { color: #999; text-decoration: none; }
+    .catalog-breadcrumb a:hover { color: #333; }
+    .catalog-breadcrumb span { margin: 0 5px; }
+
+    .catalog-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      text-align: center;
+      margin: 20px 0 28px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Фильтры */
+    .catalog-filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: #eaf4ed;
+    }
+    .filter-btn svg { opacity: 0.5; }
+
+    /* Сетка карточек */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+      border: 1.5px solid #ebebeb;
+    }
+    .cat-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+      transform: translateY(-4px);
+    }
+
+    .cat-card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: #f0f0ec;
+    }
+
+    .cat-card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .cat-card-badge.badge-hit { background: #e07b53; }
+    .cat-card-badge.badge-new { background: #6a5acd; }
+    .cat-card-badge.badge-pro { background: #2d6a4f; }
+
+    .cat-card-dot {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .cat-card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cat-card-name {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+
+    .cat-card-size {
+      font-size: 0.78rem;
+      color: #999;
+    }
+
+    .cat-card-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .cat-card-order-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .cat-card-order-btn:hover { background: var(--color-primary); }
+
+    /* Баннер консультации */
+    .catalog-consult-banner {
+      background: linear-gradient(135deg, #eaf4ed 0%, #d4ecda 100%);
+      border-radius: 20px;
+      padding: 40px 48px;
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .catalog-consult-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-bottom: 8px;
+    }
+    .catalog-consult-banner p {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      max-width: 480px;
+    }
+
+    /* Таблица цен */
+    .catalog-prices {
+      margin-top: 48px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 40px;
+      border: 1.5px solid #ebebeb;
+    }
+    .catalog-prices h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .catalog-prices p {
+      font-size: 0.9rem;
+      color: #999;
+      margin-bottom: 20px;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .catalog-grid { grid-template-columns: 1fr; }
+      .catalog-title { font-size: 1.7rem; }
+      .catalog-consult-banner { padding: 28px 24px; flex-direction: column; }
+      .catalog-prices { padding: 24px 20px; }
+    }
+  </style>
 </head>
 <body>
   <!-- Шапка сайта -->
@@ -36,8 +254,8 @@
               </svg>
             </a>
             <div class="dropdown-menu">
-              <a href="arochnye.html" class="dropdown-item">Арочные теплицы</a>
-              <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы (Хит зимы)</a>
+              <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
+              <a href="kaplevidnye.html" class="dropdown-item active">Каплевидные теплицы</a>
             </div>
           </div>
 
@@ -52,585 +270,240 @@
     </div>
   </header>
 
-  <!-- Уникальный Hero Showcase -->
-  <section class="kaplya-hero">
+  <!-- Каталог -->
+  <main class="catalog-page">
     <div class="container">
-      <div class="breadcrumbs" style="margin-bottom: 20px;">
-        <a href="index.html" style="color: #95d5b2;">Главная</a>
-        <span class="breadcrumbs-sep" style="color: rgba(255,255,255,0.4);">/</span>
-        <span style="color: rgba(255,255,255,0.6);">Теплицы</span>
-        <span class="breadcrumbs-sep" style="color: rgba(255,255,255,0.4);">/</span>
-        <span style="color: #ffffff; font-weight: 700;">Каплевидные</span>
+
+      <!-- Хлебные крошки -->
+      <div class="catalog-breadcrumb">
+        <a href="index.html">Главная страница</a>
+        <span>/</span>
+        <span>Каплевидные теплицы</span>
       </div>
 
-      <div class="kaplya-hero-grid">
+      <!-- Заголовок -->
+      <h1 class="catalog-title">Каплевидные теплицы</h1>
+
+      <!-- Фильтры -->
+      <div class="catalog-filters">
+        <button class="filter-btn active">
+          Все модели
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Размер
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Модель
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Цена
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <button class="filter-btn">
+          Сортировка
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- Сетка товаров -->
+      <div class="catalog-grid">
+
+        <!-- Карточка 1: Каплевидные теплицы от производителя -->
+        <div class="cat-card js-product-card" data-product-id="1">
+          <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Каплевидные теплицы от производителя" class="cat-card-img">
+          <span class="cat-card-badge badge-hit">От производителя</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Каплевидные теплицы</div>
+              <div class="cat-card-size">от 24 900 ₽ • 3х4...3х10 м</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 2: Сборка теплиц -->
+        <div class="cat-card js-product-card" data-product-id="2">
+          <img src="assets/images/products/p2/1.jpg" alt="Сборка теплиц" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Профессионально</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Сборка теплиц</div>
+              <div class="cat-card-size">6 500–8 000 ₽ • под ключ</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 3: Ремонт теплиц — замена поликарбоната -->
+        <div class="cat-card js-product-card" data-product-id="3">
+          <img src="assets/images/products/p3/1.jpg" alt="Ремонт теплиц — замена поликарбоната" class="cat-card-img">
+          <span class="cat-card-badge badge-hit">Ремонт и замена</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Ремонт теплиц</div>
+              <div class="cat-card-size">6 500–9 500 ₽ • замена СПК</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 4: Доставка теплиц -->
+        <div class="cat-card js-product-card" data-product-id="4">
+          <img src="assets/images/products/p4/1.jpg" alt="Доставка теплиц" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Доставка</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Доставка теплиц</div>
+              <div class="cat-card-size">1 500–2 500 ₽ • по области</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 5: Сотовый поликарбонат 4мм -->
+        <div class="cat-card js-product-card" data-product-id="5">
+          <img src="assets/images/products/p5/1.jpg" alt="Сотовый поликарбонат 4мм" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">В наличии</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Сотовый поликарбонат 4мм</div>
+              <div class="cat-card-size">3 500–5 100 ₽ • за 6 метров</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 6: Фундамент для теплиц -->
+        <div class="cat-card js-product-card" data-product-id="6">
+          <img src="assets/images/products/p6/1.jpg" alt="Фундамент для теплиц" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Основание</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Фундамент для теплиц</div>
+              <div class="cat-card-size">6 000–9 000 ₽ • под ключ</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 7: Грядки для теплиц оцинкованные -->
+        <div class="cat-card js-product-card" data-product-id="7">
+          <img src="assets/images/products/p7/1.jpg" alt="Грядки для теплиц оцинкованные" class="cat-card-img">
+          <span class="cat-card-badge badge-pro">Комплект</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Грядки оцинкованные</div>
+              <div class="cat-card-size">6 000–9 500 ₽ • комплект 3 шт</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 8: Грядки оцинкованные (поштучно) -->
+        <div class="cat-card js-product-card" data-product-id="8">
+          <img src="assets/images/products/p8/1.jpg" alt="Грядки оцинкованные для дачи" class="cat-card-img">
+          <span class="cat-card-badge badge-hit">Поштучно</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Грядки оцинкованные (поштучно)</div>
+              <div class="cat-card-size">1 250–2 300 ₽ • для сада и огорода</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+        <!-- Карточка 9: Клумбы металлические -->
+        <div class="cat-card js-product-card" data-product-id="9">
+          <img src="assets/images/products/p9/1.jpg" alt="Клумбы металлические" class="cat-card-img">
+          <span class="cat-card-badge badge-new">Новинка</span>
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">Клумбы металлические</div>
+              <div class="cat-card-size">1 700–3 500 ₽ • для цветников</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+
+      </div>
+      <!-- /catalog-grid -->
+
+      <!-- Баннер консультации -->
+      <div class="catalog-consult-banner">
         <div>
-          <div class="kaplya-badge">
-            ❄ СНЕГ СХОДИТ САМ • ЗИМНИЙ РЕКОРДСМЕН
-          </div>
-          <h1 class="kaplya-title">
-            Каплевидная теплица <span>«Капелька»</span> — теплица, которая не боится снега
-          </h1>
-          <p class="kaplya-lead">
-            Забудьте о зимних поездках на дачу с лопатой! Стрельчатый купол под углом 65° не дает снегу закрепиться на поликарбонате. Сугробы скатываются сами под собственным весом даже в самые лютые метели.
-          </p>
-          
-          <div class="kaplya-hero-cta">
-            <a href="#calcSection" class="kaplya-btn-glow">
-              Рассчитать цену онлайн ↓
-            </a>
-            <button class="kaplya-btn-outline" data-open-modal data-subject="Консультация по Капельке" data-title="Консультация мастера по Капельке">
-              Спросить у мастера →
-            </button>
-          </div>
-
-          <div class="kaplya-stats-strip">
-            <div class="kaplya-stat-card">
-              <div class="kaplya-stat-num">2.40 м</div>
-              <div class="kaplya-stat-lbl">Высота в коньке (+35 см к арке)</div>
-            </div>
-            <div class="kaplya-stat-card">
-              <div class="kaplya-stat-num">450 кг</div>
-              <div class="kaplya-stat-lbl">Снеговая нагрузка на м²</div>
-            </div>
-            <div class="kaplya-stat-card">
-              <div class="kaplya-stat-num">0 ₽</div>
-              <div class="kaplya-stat-lbl">Затрат на зимние подпорки</div>
-            </div>
-            <div class="kaplya-stat-card">
-              <div class="kaplya-stat-num">15 лет</div>
-              <div class="kaplya-stat-lbl">Гарантия завода на каркас</div>
-            </div>
-          </div>
+          <h3>Сомневаетесь, какую модель выбрать?</h3>
+          <p>Позвоните нашему мастеру или закажите обратный звонок. Честно подскажем оптимальный вариант под ваш участок и бюджет.</p>
         </div>
+        <button class="btn btn-primary" data-open-modal data-subject="Консультация мастера по каплевидной теплице" data-title="Консультация мастера">
+          Спросить у мастера →
+        </button>
+      </div>
 
-        <div class="kaplya-showcase-box">
-          <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Теплица Капелька" class="kaplya-showcase-img">
-          <div class="kaplya-float-tag tag-top">
-            ⚡ <strong>100% сход снега</strong> без вмешательства
-          </div>
-          <div class="kaplya-float-tag tag-bot">
-            📐 <strong>Высота 2.4 м</strong> — удобно в полный рост
-          </div>
+      <!-- Таблица цен -->
+      <div class="catalog-prices">
+        <h2>Сводная таблица цен</h2>
+        <p>В стоимость входит: каркас с коньковым профилем, 2 двери, 2 форточки, поликарбонат с УФ-защитой, крепёж, инструкция.</p>
+        <div class="pricing-table-wrap">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Размер</th>
+                <th>«Стандарт» (шаг 1 м)</th>
+                <th>«Усиленная» (шаг 0.65 м)</th>
+                <th>«Богатырь» (двойная дуга)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>3 × 4 м</strong></td>
+                <td>21 900 ₽</td>
+                <td>24 900 ₽</td>
+                <td>32 900 ₽</td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×4 каплевидная">Заказать</button></td>
+              </tr>
+              <tr>
+                <td><strong>3 × 6 м</strong> <span style="font-size:0.75rem;color:#e07b53;font-weight:700;">Хит</span></td>
+                <td>26 900 ₽</td>
+                <td>30 900 ₽</td>
+                <td>39 900 ₽</td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×6 каплевидная">Заказать</button></td>
+              </tr>
+              <tr>
+                <td><strong>3 × 8 м</strong></td>
+                <td>32 400 ₽</td>
+                <td>37 400 ₽</td>
+                <td>47 900 ₽</td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×8 каплевидная">Заказать</button></td>
+              </tr>
+              <tr>
+                <td><strong>3 × 10 м</strong></td>
+                <td>38 500 ₽</td>
+                <td>43 900 ₽</td>
+                <td>55 500 ₽</td>
+                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×10 каплевидная">Заказать</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
     </div>
-  </section>
+  </main>
 
-  <!-- Сравнение: Капелька против Арочной -->
-  <section class="section-padding" style="background: var(--color-bg);">
-    <div class="container">
-      <div class="text-center" style="max-width: 820px; margin: 0 auto 30px;">
-        <span class="badge" style="background:#eaf4ed; color:var(--color-primary-dark); font-weight:800; padding:6px 14px; border-radius:999px;">НАГЛЯДНОЕ СРАВНЕНИЕ</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-primary-dark); margin: 12px 0 10px;">
-          Почему садоводы выбирают «Капельку» вместо обычной арки?
-        </h2>
-        <p style="color: var(--color-text-muted); font-size: 1.05rem;">
-          Честный технический разбор двух популярных форм теплиц перед покупкой
-        </p>
-      </div>
-
-      <div class="kaplya-compare-wrap">
-        
-        <!-- Обычная арочная -->
-        <div class="compare-card">
-          <div class="compare-header">
-            <div class="compare-icon standard">✕</div>
-            <div>
-              <div class="compare-title">Обычная арочная теплица</div>
-              <div style="font-size:0.85rem; color:var(--color-text-muted);">Классическая полукруглая форма</div>
-            </div>
-          </div>
-          <ul class="compare-list">
-            <li class="compare-item">
-              <span class="compare-sign minus">−</span>
-              <span><strong>Пологий верх крыши:</strong> мокрый снег скапливается в шапку до 40–60 см и давит на поликарбонат.</span>
-            </li>
-            <li class="compare-item">
-              <span class="compare-sign minus">−</span>
-              <span><strong>Требует ухода зимой:</strong> нужно регулярно приезжать на дачу, счищать снег лопатой и ставить деревянные подпорки.</span>
-            </li>
-            <li class="compare-item">
-              <span class="compare-sign minus">−</span>
-              <span><strong>Высота 2.0–2.05 м:</strong> возле боковых стенок купол резко снижается, высокорослые томаты упираются в потолок.</span>
-            </li>
-            <li class="compare-item">
-              <span class="compare-sign minus">−</span>
-              <span><strong>Риск продавливания:</strong> при обледенении весной поликарбонат часто трескается и прогибается внутрь.</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Каплевидная теплица (Победитель) -->
-        <div class="compare-card winner">
-          <span class="compare-winner-badge">⭐ ВЫБОР ДЛЯ НАШИХ ЗИМ</span>
-          <div class="compare-header">
-            <div class="compare-icon kaplya">✓</div>
-            <div>
-              <div class="compare-title" style="color:#1b4332;">Каплевидная теплица «Капелька»</div>
-              <div style="font-size:0.85rem; color:#2d6a4f; font-weight:700;">Стрельчатый острый купол 65°</div>
-            </div>
-          </div>
-          <ul class="compare-list">
-            <li class="compare-item">
-              <span class="compare-sign plus">+</span>
-              <span><strong>Снег скатывается сам:</strong> за счет острого угла конька сугробы физически не могут удержаться на крыше.</span>
-            </li>
-            <li class="compare-item">
-              <span class="compare-sign plus">+</span>
-              <span><strong>Полная автономность зимой:</strong> никаких поездок с лопатой и подпорок. Спокойно зимует без вашего участия.</span>
-            </li>
-            <li class="compare-item">
-              <span class="compare-sign plus">+</span>
-              <span><strong>Увеличенная высота 2.35–2.40 м:</strong> комфортно работать в полный рост, простор для высокорослых сортов огурцов и томатов.</span>
-            </li>
-            <li class="compare-item">
-              <span class="compare-sign plus">+</span>
-              <span><strong>Аэродинамика:</strong> стреловидная форма мягко рассекает порывы шквалистого ветра до 25 м/с.</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Интерактивный калькулятор Капельки -->
-  <section class="section-padding" id="calcSection" style="background: #ffffff;">
-    <div class="container">
-      <div class="text-center" style="max-width: 800px; margin: 0 auto 10px;">
-        <span class="badge" style="background:#d8f3dc; color:#1b4332; font-weight:800; padding:6px 14px; border-radius:999px;">ОНЛАЙН-РАСЧЕТ</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-primary-dark); margin: 12px 0 10px;">
-          Интерактивный конфигуратор «Капельки»
-        </h2>
-        <p style="color: var(--color-text-muted); font-size: 1.05rem;">
-          Выберите нужные параметры и сразу узнайте точную цену теплицы со скидкой завода
-        </p>
-      </div>
-
-      <div class="kaplya-calc-box">
-        <div class="calc-grid-wrap">
-          
-          <!-- Шаги конфигуратора -->
-          <div>
-            <!-- Шаг 1 -->
-            <div class="calc-step-title">
-              <span class="calc-step-num">1</span>
-              <span>Выберите длину теплицы (ширина 3.0 м, высота 2.4 м):</span>
-            </div>
-            <div class="calc-options-row" id="calcSizeRow">
-              <button type="button" class="calc-opt-btn active" data-size="4" data-price="24900" data-old="28500">
-                3 × 4 метра
-                <small>Хит для 6 соток</small>
-              </button>
-              <button type="button" class="calc-opt-btn" data-size="6" data-price="30900" data-old="35900">
-                3 × 6 метров
-                <small>Самый популярный</small>
-              </button>
-              <button type="button" class="calc-opt-btn" data-size="8" data-price="37400" data-old="43500">
-                3 × 8 метров
-                <small>Большой урожай</small>
-              </button>
-              <button type="button" class="calc-opt-btn" data-size="10" data-price="43900" data-old="51000">
-                3 × 10 метров
-                <small>Максимум простора</small>
-              </button>
-            </div>
-
-            <!-- Шаг 2 -->
-            <div class="calc-step-title">
-              <span class="calc-step-num">2</span>
-              <span>Шаг между дугами (прочность каркаса):</span>
-            </div>
-            <div class="calc-options-row" id="calcStepRow">
-              <button type="button" class="calc-opt-btn active" data-step="0.65" data-cost="0">
-                0.65 м (Усиленная)
-                <small>Рекомендуем для зимы</small>
-              </button>
-              <button type="button" class="calc-opt-btn" data-step="1.0" data-cost="-2000">
-                1.0 м (Стандарт)
-                <small>Экономный вариант</small>
-              </button>
-            </div>
-
-            <!-- Шаг 3 -->
-            <div class="calc-step-title">
-              <span class="calc-step-num">3</span>
-              <span>Качество сотового поликарбоната:</span>
-            </div>
-            <div class="calc-options-row" id="calcSpkRow">
-              <button type="button" class="calc-opt-btn active" data-spk="standard" data-cost="0">
-                4 мм Стандарт (0.52 кг/м²)
-                <small>УФ-защита, срок 10 лет</small>
-              </button>
-              <button type="button" class="calc-opt-btn" data-spk="pro" data-cost="1800">
-                4 мм Плотный (0.65 кг/м²)
-                <small>Выдерживает град +1 800 ₽</small>
-              </button>
-              <button type="button" class="calc-opt-btn" data-spk="premium" data-cost="3400">
-                4 мм Премиум (0.82 кг/м²)
-                <small>Срок до 15 лет +3 400 ₽</small>
-              </button>
-            </div>
-
-            <!-- Шаг 4: Дополнения -->
-            <div class="calc-step-title">
-              <span class="calc-step-num">4</span>
-              <span>Дополнительные услуги и комплектующие:</span>
-            </div>
-            <div>
-              <label class="calc-addon-label">
-                <input type="checkbox" id="addonBase" data-cost="5500">
-                <span>Фундамент из бруса 100х100 с антисептиком <strong>(+5 500 ₽)</strong></span>
-              </label>
-              <label class="calc-addon-label">
-                <input type="checkbox" id="addonAssembly" data-cost="6500">
-                <span>Профессиональная сборка бригадой под ключ <strong>(+6 500 ₽)</strong></span>
-              </label>
-              <label class="calc-addon-label">
-                <input type="checkbox" id="addonBeds" data-cost="6000">
-                <span>Комплект из 3-х оцинкованных грядок <strong>(+6 000 ₽)</strong></span>
-              </label>
-            </div>
-
-          </div>
-
-          <!-- Итоговая карточка расчета -->
-          <div class="calc-summary-card">
-            <div>
-              <div class="calc-summary-head">Ваша комплектация:</div>
-              <div class="calc-summary-item">
-                <span>Модель:</span>
-                <strong id="sumModel">Капелька 3×4 м</strong>
-              </div>
-              <div class="calc-summary-item">
-                <span>Шаг дуг:</span>
-                <strong id="sumStep">0.65 м (Усиленная)</strong>
-              </div>
-              <div class="calc-summary-item">
-                <span>Поликарбонат:</span>
-                <strong id="sumSpk">4 мм Стандарт</strong>
-              </div>
-              <div class="calc-summary-item">
-                <span>Двери и форточки:</span>
-                <strong>2 двери, 2 форточки</strong>
-              </div>
-              <div class="calc-summary-item" id="sumAddonsWrap" style="display:none;">
-                <span>Дополнительно:</span>
-                <strong id="sumAddonsList">—</strong>
-              </div>
-              <div class="calc-summary-item">
-                <span>Оплата:</span>
-                <strong style="color:#95d5b2;">0 ₽ предоплаты</strong>
-              </div>
-            </div>
-
-            <div class="calc-price-area">
-              <div style="font-size:0.85rem; color:#d8f3dc;">Итоговая стоимость со скидкой:</div>
-              <div class="calc-old-price" id="calcOldPriceVal">28 500 ₽</div>
-              <div class="calc-final-price" id="calcFinalPriceVal">24 900 ₽</div>
-              <button class="calc-order-submit-btn" id="calcOrderBtn">
-                Заказать этот комплект →
-              </button>
-              <div style="font-size:0.75rem; text-align:center; color:#d8f3dc; margin-top:8px;">
-                🚚 Доставка и сборка уже на следующий день
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Инженерные преимущества конструкции -->
-  <section class="section-padding" style="background: var(--color-bg);">
-    <div class="container">
-      <div class="text-center" style="max-width: 820px; margin: 0 auto 30px;">
-        <span class="badge" style="background:#eaf4ed; color:var(--color-primary-dark); font-weight:800; padding:6px 14px; border-radius:999px;">АНАТОМИЯ КАПЕЛЬКИ</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-primary-dark); margin: 12px 0 10px;">
-          Инженерный шедевр для северного климата
-        </h2>
-        <p style="color: var(--color-text-muted); font-size: 1.05rem;">
-          Каждая деталь каплевидного каркаса рассчитана на экстремальные снеговые и ветровые нагрузки
-        </p>
-      </div>
-
-      <div class="kaplya-features-grid">
-        
-        <div class="kaplya-feature-card">
-          <div class="kaplya-feature-icon">🏔</div>
-          <div class="kaplya-feature-title">Стрельчатый конёк 65°</div>
-          <div class="kaplya-feature-desc">
-            Специальный оцинкованный коньковый профиль надёжно соединяет скаты и предотвращает излом поликарбоната на вершине.
-          </div>
-        </div>
-
-        <div class="kaplya-feature-card">
-          <div class="kaplya-feature-icon">📐</div>
-          <div class="kaplya-feature-title">Высота 2.4 метра</div>
-          <div class="kaplya-feature-desc">
-            Объем воздуха в куполе на 25% больше, чем в арке. Растениям не душно в июльский зной, а высокорослые сорта растут без ограничений.
-          </div>
-        </div>
-
-        <div class="kaplya-feature-card">
-          <div class="kaplya-feature-icon">🛡</div>
-          <div class="kaplya-feature-title">Оцинковка Zn 140 мкм</div>
-          <div class="kaplya-feature-desc">
-            Замкнутая профильная труба горячего цинкования внутри и снаружи. Не ржавеет от влажности и не требует ежегодной подкраски.
-          </div>
-        </div>
-
-        <div class="kaplya-feature-card">
-          <div class="kaplya-feature-icon">💨</div>
-          <div class="kaplya-feature-title">Сквозной обдув</div>
-          <div class="kaplya-feature-desc">
-            В базовую комплектацию входят 2 широкие двери и 2 большие форточки в противоположных торцах для идеального микроклимата.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Модельный ряд Капелек -->
-  <section class="section-padding" style="background: #ffffff;">
-    <div class="container">
-      <div class="text-center" style="max-width: 820px; margin: 0 auto 30px;">
-        <span class="badge" style="background:#d8f3dc; color:#1b4332; font-weight:800; padding:6px 14px; border-radius:999px;">МОДЕЛЬНЫЙ РЯД</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-primary-dark); margin: 12px 0 10px;">
-          Готовые комплектации теплицы «Капелька»
-        </h2>
-        <p style="color: var(--color-text-muted); font-size: 1.05rem;">
-          Выберите модификацию под ваш участок или нажмите «Подробнее», чтобы посмотреть реальные фото и комплектацию
-        </p>
-      </div>
-
-      <div class="kaplya-models-grid">
-
-        <!-- Модель 1: Стандарт -->
-        <div class="kaplya-model-card">
-          <span class="kaplya-model-badge" style="background:#52b788;">Экономный выбор</span>
-          <div class="kaplya-model-img-wrap">
-            <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Теплица Капелька Стандарт">
-          </div>
-          <div class="kaplya-model-body">
-            <div class="kaplya-model-name">Капелька «Стандарт»</div>
-            <div class="kaplya-model-desc">
-              Классическая каплевидная форма с шагом дуг 1.0 метр. Отличный бюджетный вариант для дачных участков с естественным скатом снега.
-            </div>
-            <div class="kaplya-model-specs">
-              <div>📏 Ширина: 3.0 м • Высота: 2.35 м</div>
-              <div>⚡ Шаг между дугами: 1.0 метр</div>
-              <div>🌿 СПК 4 мм с УФ-защитой в комплекте</div>
-              <div>🚪 2 двери + 2 форточки в торцах</div>
-            </div>
-            <div class="kaplya-model-price-row">
-              <div>
-                <span style="font-size:0.8rem; color:var(--color-text-muted);">Цена за 3×4 м:</span>
-                <div class="kaplya-model-price">от 21 900 ₽</div>
-              </div>
-            </div>
-            <div class="kaplya-model-actions">
-              <button class="btn btn-secondary js-open-kaplya-modal" data-product-id="k1">
-                👁 Фото и инфо
-              </button>
-              <button class="btn btn-primary" data-open-modal data-subject="Заказ: Капелька Стандарт" data-title="Заказать Капельку Стандарт">
-                Заказать
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Модель 2: Усиленная (ХИТ) -->
-        <div class="kaplya-model-card featured">
-          <span class="kaplya-model-badge" style="background:#2b9348;">🔥 ХИТ ПРОДАЖ</span>
-          <div class="kaplya-model-img-wrap">
-            <img src="assets/images/mockup_install.jpg" alt="Теплица Капелька Усиленная">
-          </div>
-          <div class="kaplya-model-body">
-            <div class="kaplya-model-name">Капелька «Усиленная 0.65»</div>
-            <div class="kaplya-model-desc">
-              Уменьшенный шаг дуг 65 см и замкнутый коньковый замок. Самая популярная модель в Ярославской области — выдерживает снежные сугробы любой плотности.
-            </div>
-            <div class="kaplya-model-specs" style="background:#eaf4ed;">
-              <div>📏 Ширина: 3.0 м • Высота: 2.40 м</div>
-              <div>⚡ Шаг дуг: 0.65 м (усиленная дуга)</div>
-              <div>❄ Снеговая нагрузка: до 350 кг/м²</div>
-              <div>🚪 2 двери + 2 форточки + фурнитура</div>
-            </div>
-            <div class="kaplya-model-price-row">
-              <div>
-                <span style="font-size:0.8rem; color:var(--color-text-muted);">Цена за 3×4 м:</span>
-                <div class="kaplya-model-price" style="color:#2d6a4f;">от 24 900 ₽</div>
-              </div>
-            </div>
-            <div class="kaplya-model-actions">
-              <button class="btn btn-secondary js-open-kaplya-modal" data-product-id="k2">
-                👁 Фото и инфо
-              </button>
-              <button class="btn btn-primary" data-open-modal data-subject="Заказ: Капелька Усиленная 0.65" data-title="Заказать Капельку Усиленную">
-                Заказать
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Модель 3: Богатырь (Двойная дуга) -->
-        <div class="kaplya-model-card">
-          <span class="kaplya-model-badge" style="background:#1b4332;">🛡 МАКСИМУМ ПРОЧНОСТИ</span>
-          <div class="kaplya-model-img-wrap">
-            <img src="assets/images/products/p1/1.jpg" alt="Теплица Капелька Богатырь">
-          </div>
-          <div class="kaplya-model-body">
-            <div class="kaplya-model-name">Капелька «Богатырь»</div>
-            <div class="kaplya-model-desc">
-              Ферменная сдвоенная дуга с мощной диагональной обвязкой. Снеговая нагрузка до 450 кг/м² — создана для открытых ветреных участков и суровых зим.
-            </div>
-            <div class="kaplya-model-specs">
-              <div>📏 Ширина: 3.0 м • Высота: 2.45 м</div>
-              <div>⚡ Сдвоенная ферменная дуга «Богатырь»</div>
-              <div>❄ Снеговая нагрузка: до 450 кг/м²</div>
-              <div>🚪 Усиленные петли и двухсторонние ручки</div>
-            </div>
-            <div class="kaplya-model-price-row">
-              <div>
-                <span style="font-size:0.8rem; color:var(--color-text-muted);">Цена за 3×4 м:</span>
-                <div class="kaplya-model-price">от 32 900 ₽</div>
-              </div>
-            </div>
-            <div class="kaplya-model-actions">
-              <button class="btn btn-secondary js-open-kaplya-modal" data-product-id="k3">
-                👁 Фото и инфо
-              </button>
-              <button class="btn btn-primary" data-open-modal data-subject="Заказ: Капелька Богатырь" data-title="Заказать Капельку Богатырь">
-                Заказать
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Сводная таблица цен -->
-  <section class="section-padding" style="background: var(--color-bg);">
-    <div class="container">
-      <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 8px;">
-        Сводная таблица цен на каплевидные теплицы
-      </h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 24px;">
-        Все цены включают: оцинкованный металлокаркас, сотовый поликарбонат 4 мм с УФ-защитой, 2 двери, 2 форточки, полный комплект крепежа и инструкцию.
-      </p>
-
-      <div class="pricing-table-wrap">
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Размер теплицы</th>
-              <th>«Стандарт» (шаг 1 м)</th>
-              <th>«Усиленная» (шаг 0.65 м, Хит)</th>
-              <th>«Богатырь» (двойная дуга)</th>
-              <th>Заказ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>3 × 4 м</strong> (высота 2.4 м)</td>
-              <td>21 900 ₽</td>
-              <td><strong style="color:#2d6a4f;">24 900 ₽</strong></td>
-              <td>32 900 ₽</td>
-              <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ Капелька 3×4">Заказать</button></td>
-            </tr>
-            <tr>
-              <td><strong>3 × 6 м</strong> <span style="background:#52b788;color:#fff;font-size:0.75rem;padding:2px 8px;border-radius:99px;font-weight:700;">Популярная</span></td>
-              <td>26 900 ₽</td>
-              <td><strong style="color:#2d6a4f;">30 900 ₽</strong></td>
-              <td>39 900 ₽</td>
-              <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ Капелька 3×6">Заказать</button></td>
-            </tr>
-            <tr>
-              <td><strong>3 × 8 м</strong> (высота 2.4 м)</td>
-              <td>32 400 ₽</td>
-              <td><strong style="color:#2d6a4f;">37 400 ₽</strong></td>
-              <td>47 900 ₽</td>
-              <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ Капелька 3×8">Заказать</button></td>
-            </tr>
-            <tr>
-              <td><strong>3 × 10 м</strong> (высота 2.4 м)</td>
-              <td>38 500 ₽</td>
-              <td><strong style="color:#2d6a4f;">43 900 ₽</strong></td>
-              <td>55 500 ₽</td>
-              <td><button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" data-open-modal data-subject="Заказ Капелька 3×10">Заказать</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Частые вопросы (FAQ) -->
-  <section class="section-padding" style="background: #ffffff;">
-    <div class="container">
-      <div class="text-center" style="max-width: 800px; margin: 0 auto 30px;">
-        <span class="badge" style="background:#eaf4ed; color:var(--color-primary-dark); font-weight:800; padding:6px 14px; border-radius:999px;">ВОПРОС — ОТВЕТ</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-primary-dark); margin: 12px 0 10px;">
-          Отвечаем на частые вопросы о Капельках
-        </h2>
-        <p style="color: var(--color-text-muted); font-size: 1.05rem;">
-          Всё, что нужно знать перед выбором каплевидной формы
-        </p>
-      </div>
-
-      <div class="kaplya-faq-list">
-
-        <div class="kaplya-faq-item active">
-          <div class="kaplya-faq-header">
-            <span>Правда ли, что снег с Капельки сходит сам без помощи?</span>
-            <span class="kaplya-faq-icon">+</span>
-          </div>
-          <div class="kaplya-faq-body">
-            Да, абсолютно! Угол наклона в верхней части ската составляет более 65 градусов. Снег физически не может образовать шапку на остром гребне и при малейшем повышении температуры или дуновении ветра сползает вниз. За 7 лет установок в Ярославской области не было ни одного случая обрушения нашей «Капельки».
-          </div>
-        </div>
-
-        <div class="kaplya-faq-item">
-          <div class="kaplya-faq-header">
-            <span>Сложно ли согнуть поликарбонат на острый конёк?</span>
-            <span class="kaplya-faq-icon">+</span>
-          </div>
-          <div class="kaplya-faq-body">
-            В наших теплицах продуман специальный оцинкованный коньковый элемент. Листы сотового поликарбоната монтируются по скатам и соединяются в замке через верхнюю защитную планку, поэтому перелома листа не происходит.
-          </div>
-        </div>
-
-        <div class="kaplya-faq-item">
-          <div class="kaplya-faq-header">
-            <span>Нужен ли фундамент под каплевидную теплицу?</span>
-            <span class="kaplya-faq-icon">+</span>
-          </div>
-          <div class="kaplya-faq-body">
-            Теплицу можно установить прямо на грунт с помощью грунтозацепов (Т-образных ножек). Однако мы рекомендуем установку на обработанный антисептиком брус 100х100 мм: это поднимает теплицу еще на 10 см, защищает каркас от сырости и обеспечивает идеальную диагональ.
-          </div>
-        </div>
-
-        <div class="kaplya-faq-item">
-          <div class="kaplya-faq-header">
-            <span>Сколько времени занимает профессиональная сборка?</span>
-            <span class="kaplya-faq-icon">+</span>
-          </div>
-          <div class="kaplya-faq-body">
-            Наша штатная бригада с профессиональным инструментом собирает теплицу 3х4 или 3х6 м «под ключ» всего за 3–4 часа. Вам останется только принять готовую работу и высадить рассаду.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Подвал сайта -->
+  <!-- Подвал -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top-row">
@@ -641,84 +514,104 @@
             <div class="logo-text-sub">С заботой о вашем урожае</div>
           </div>
         </a>
-        <div style="text-align: center;">
-          <div class="hand-note" style="font-size: 1.8rem;">
+        <div style="text-align:center;">
+          <div class="hand-note" style="font-size:1.8rem;">
             Дачный сезон начинается с нас! <span class="hand-note-heart">♡</span>
           </div>
         </div>
-        <div style="text-align: right;">
-          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера Капелька" style="margin-top: 10px;">
+        <div style="text-align:right;">
+          <div class="phone-link js-phone-link" style="justify-content:flex-end;">
+            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+          </div>
+          <div class="phone-hours js-hours-text">Звоните ежедневно с 8:00 до 20:00</div>
+          <button class="btn btn-primary" data-open-modal data-subject="Заявка из футера" style="margin-top:10px;">
             Оставить заявку →
           </button>
         </div>
       </div>
       <div class="footer-bottom-copy">
-        <div>© 2026 Завод теплиц «Теплицы ТУТ». Ярославль и область.</div>
-        <a href="index.html" style="color: var(--color-primary); font-weight: 700;">← Вернуться на главную</a>
+        <div>© 2026 Завод теплиц «Теплицы ТУТ». Производство и доставка.</div>
+        <a href="index.html" style="color:var(--color-primary);font-weight:700;">← Вернуться на главную</a>
       </div>
     </div>
   </footer>
 
-  <!-- Интерактивное модальное окно товара со слайдером -->
-  <div class="prod-modal-overlay" id="productModalOverlay">
+  <!-- Модальное окно просмотра товара со слайдером фото -->
+  <div class="prod-modal-overlay" id="productModalOverlay" aria-hidden="true">
     <div class="prod-modal-card">
-      <button class="prod-modal-close" id="productModalCloseBtn" aria-label="Закрыть модальное окно">✕</button>
+      <button class="prod-modal-close" id="productModalCloseBtn" aria-label="Закрыть">✕</button>
+
       <div class="prod-modal-scroll">
-        
-        <!-- Колонка со слайдером -->
+        <!-- Колонка со слайдером фото -->
         <div class="prod-slider-col">
           <div class="prod-slider-main-wrap">
-            <img src="" alt="Фото товара" id="prodSliderMainImg" class="prod-slider-main-img">
-            <button class="prod-slider-nav prev" id="prodSliderPrevBtn" aria-label="Предыдущее фото">‹</button>
-            <button class="prod-slider-nav next" id="prodSliderNextBtn" aria-label="Следующее фото">›</button>
-            <div class="prod-slider-counter" id="prodSliderCounter">1 / 1</div>
+            <img src="assets/images/mockup_kaplevidnaya.jpg" alt="Фото товара" class="prod-slider-img" id="prodSliderMainImg">
+            <button class="prod-slider-nav-btn prev" id="prodSliderPrevBtn" aria-label="Предыдущее фото">‹</button>
+            <button class="prod-slider-nav-btn next" id="prodSliderNextBtn" aria-label="Следующее фото">›</button>
+            <div class="prod-slider-counter" id="prodSliderCounter">1 / 5</div>
           </div>
-          <div class="prod-slider-thumbs" id="prodThumbsRow">
-            <!-- Миниатюры генерируются JS -->
+
+          <!-- Миниатюры (превью) -->
+          <div class="prod-thumbs-row" id="prodThumbsRow">
           </div>
         </div>
 
-        <!-- Колонка с информацией -->
+        <!-- Колонка с подробной информацией -->
         <div class="prod-info-col">
-          <div class="prod-info-badge" id="prodModalBadge">❄ СНЕГ НЕ ЗАДЕРЖИВАЕТСЯ</div>
-          <h2 class="prod-info-title" id="prodModalTitle">Каплевидная теплица</h2>
-          <div class="prod-info-price">
-            <span class="prod-info-price-lbl">Стоимость:</span>
-            <span class="prod-info-price-val" id="prodModalPrice">от 24 900 ₽</span>
+          <div class="prod-info-badge" id="prodModalBadge">❄ Снег сходит сам • От производителя</div>
+          
+          <h2 class="prod-info-title" id="prodModalTitle">Каплевидные теплицы от производителя</h2>
+
+          <div class="prod-info-price-box">
+            <span class="prod-info-price-label">Цена:</span>
+            <strong class="prod-info-price-val" id="prodModalPrice">от 24 900 ₽</strong>
           </div>
 
-          <div class="prod-info-lead" id="prodModalLead"></div>
-
-          <!-- Размеры -->
-          <div class="prod-spec-box">
-            <div class="prod-spec-title" id="prodModalSizesTitle">📏 Размеры:</div>
-            <div class="prod-spec-val" id="prodModalSizesVal">3х4, 3х6, 3х8, 3х10 м</div>
+          <div class="prod-info-lead" id="prodModalLead">
+            Стрельчатые каплевидные теплицы под ключ — сборка и доставка уже завтра.<br>
+            <strong>Ярославская, Ивановская, Костромская области.</strong>
           </div>
 
-          <!-- Преимущества -->
-          <div class="prod-features-box">
-            <div class="prod-features-title" id="prodModalFeaturesTitle">🔥 Преимущества:</div>
-            <ul class="prod-features-list" id="prodModalFeaturesList"></ul>
+          <!-- Размеры / Параметры -->
+          <div class="prod-info-block" id="prodModalSizesBlock">
+            <div class="prod-info-block-title" id="prodModalSizesTitle">📏 Размеры:</div>
+            <p style="margin: 0; font-weight: 700; color: var(--color-primary-dark); font-size: 1rem;" id="prodModalSizesVal">
+              3х4, 3х6, 3х8, 3х10 м (высота 2.35–2.40 м)
+            </p>
           </div>
 
-          <!-- Комплектация -->
-          <div class="prod-package-box">
-            <div class="prod-package-title" id="prodModalPackageTitle">📦 В комплекте:</div>
-            <div class="prod-package-text" id="prodModalPackageText"></div>
-            <div class="prod-delivery-note" id="prodModalDeliveryNote"></div>
+          <!-- Преимущества / Как работаем -->
+          <div class="prod-info-block" id="prodModalFeaturesBlock">
+            <div class="prod-info-block-title" id="prodModalFeaturesTitle">🔥 Наши преимущества:</div>
+            <ul class="prod-info-list" id="prodModalFeaturesList">
+            </ul>
           </div>
 
-          <!-- Примечание -->
-          <div class="prod-info-note" id="prodModalNote"></div>
+          <!-- В комплекте / Что входит -->
+          <div class="prod-info-block" id="prodModalPackageBlock">
+            <div class="prod-info-block-title" id="prodModalPackageTitle">📦 В комплекте:</div>
+            <p style="margin-bottom: 8px; font-size: 0.92rem; color: var(--color-text-main);" id="prodModalPackageText">
+            </p>
+            <div style="font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);" id="prodModalDeliveryNote">
+            </div>
+          </div>
 
-          <!-- Кнопки заказа -->
+          <!-- Сноска -->
+          <div class="prod-callout-note" id="prodModalNote">
+          </div>
+
+          <!-- Кнопки действий -->
           <div class="prod-modal-actions">
-            <button class="btn btn-primary" id="prodModalOrderBtn" data-open-modal data-title="Заказать теплицу" data-subject="Заказ Капелька">
-              Заказать консультацию →
+            <button type="button" class="btn btn-primary" id="prodModalOrderBtn" data-open-modal data-title="Каплевидные теплицы от производителя" data-subtitle="Подскажем точную стоимость под ваши размеры и ответим на вопросы" data-subject="Заказ: Каплевидные теплицы от производителя (от 24 900 ₽)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Написать
             </button>
+            <a href="tel:+74852123456" class="btn btn-secondary" style="background:#eaf4ed; color:var(--color-primary); border: 1.5px solid var(--color-border); text-decoration: none;">
+              📞 Позвонить
+            </a>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
@@ -727,241 +620,297 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-box">
       <button class="modal-close-btn" id="modalCloseBtn">✕</button>
-      <div style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 6px;" id="modalTitle">
+      <div style="font-family:var(--font-heading);font-size:1.6rem;color:var(--color-primary-dark);font-weight:700;margin-bottom:6px;" id="modalTitle">
         Заказ консультации
       </div>
-      <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;" id="modalSubtitle">
+      <p style="font-size:0.92rem;color:var(--color-text-muted);margin-bottom:20px;" id="modalSubtitle">
         Оставьте номер, наш мастер перезвонит в течение 10 минут
       </p>
       <form class="js-lead-form">
         <input type="hidden" name="subject" id="modalSubject" value="Заявка каплевидные теплицы">
         <div class="form-group">
           <label class="form-label">Ваше имя:</label>
-          <input type="text" name="name" class="form-input" placeholder="Например: Любовь Васильевна" required>
+          <input type="text" name="name" class="form-input" placeholder="Например: Надежда Ивановна" required>
         </div>
         <div class="form-group">
           <label class="form-label">Телефон для связи:</label>
           <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+        <div class="form-group">
+          <label class="form-label">Пожелания (длина, адрес доставки):</label>
+          <textarea name="comment" class="form-textarea" rows="3" placeholder="Например: хочу теплицу Капелька 3×6 с установкой на брус"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:10px;">
           Жду звонка мастера →
         </button>
       </form>
     </div>
   </div>
 
+  <div class="floating-contact-btn" data-open-modal data-subject="Заявка с плавающей кнопки">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 00-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2a5 5 0 00-5-5v2a3 3 0 013 3z"/>
+    </svg>
+  </div>
+
   <script src="assets/js/catalog-data.js"></script>
   <script src="assets/js/main.js"></script>
 
+  <!-- Скрипт слайдера и модального окна товара -->
   <script>
     (function() {
-      // 1. Интерактивный калькулятор Капельки
-      const sizeBtns = document.querySelectorAll('#calcSizeRow .calc-opt-btn');
-      const stepBtns = document.querySelectorAll('#calcStepRow .calc-opt-btn');
-      const spkBtns = document.querySelectorAll('#calcSpkRow .calc-opt-btn');
-      const addonBase = document.getElementById('addonBase');
-      const addonAssembly = document.getElementById('addonAssembly');
-      const addonBeds = document.getElementById('addonBeds');
-
-      const sumModel = document.getElementById('sumModel');
-      const sumStep = document.getElementById('sumStep');
-      const sumSpk = document.getElementById('sumSpk');
-      const sumAddonsWrap = document.getElementById('sumAddonsWrap');
-      const sumAddonsList = document.getElementById('sumAddonsList');
-      const calcOldPriceVal = document.getElementById('calcOldPriceVal');
-      const calcFinalPriceVal = document.getElementById('calcFinalPriceVal');
-      const calcOrderBtn = document.getElementById('calcOrderBtn');
-
-      let currentBasePrice = 24900;
-      let currentOldPrice = 28500;
-      let currentSizeText = '3×4 м';
-      let currentStepDiff = 0;
-      let currentStepText = '0.65 м (Усиленная)';
-      let currentSpkDiff = 0;
-      let currentSpkText = '4 мм Стандарт';
-
-      function recalc() {
-        let baseDiff = (addonBase && addonBase.checked) ? parseInt(addonBase.getAttribute('data-cost')) : 0;
-        let assDiff = (addonAssembly && addonAssembly.checked) ? parseInt(addonAssembly.getAttribute('data-cost')) : 0;
-        let bedsDiff = (addonBeds && addonBeds.checked) ? parseInt(addonBeds.getAttribute('data-cost')) : 0;
-
-        let totalFinal = currentBasePrice + currentStepDiff + currentSpkDiff + baseDiff + assDiff + bedsDiff;
-        let totalOld = currentOldPrice + currentStepDiff + currentSpkDiff + baseDiff + assDiff + bedsDiff;
-
-        calcOldPriceVal.textContent = totalOld.toLocaleString('ru-RU') + ' ₽';
-        calcFinalPriceVal.textContent = totalFinal.toLocaleString('ru-RU') + ' ₽';
-
-        sumModel.textContent = 'Капелька ' + currentSizeText;
-        sumStep.textContent = currentStepText;
-        sumSpk.textContent = currentSpkText;
-
-        let addonsArr = [];
-        if (addonBase && addonBase.checked) addonsArr.push('Брус');
-        if (addonAssembly && addonAssembly.checked) addonsArr.push('Сборка');
-        if (addonBeds && addonBeds.checked) addonsArr.push('Грядки');
-
-        if (addonsArr.length > 0) {
-          sumAddonsWrap.style.display = 'flex';
-          sumAddonsList.textContent = addonsArr.join(', ');
-        } else {
-          sumAddonsWrap.style.display = 'none';
-        }
-
-        if (calcOrderBtn) {
-          let orderSubj = 'Расчет Капелька ' + currentSizeText + ' (шаг ' + currentStepText + ', СПК ' + currentSpkText + (addonsArr.length ? ', допы: ' + addonsArr.join('+') : '') + ') = ' + totalFinal.toLocaleString('ru-RU') + ' ₽';
-          calcOrderBtn.setAttribute('data-subject', orderSubj);
-          calcOrderBtn.setAttribute('data-title', 'Заказ: Капелька ' + currentSizeText);
-        }
-      }
-
-      // Выбор размера
-      sizeBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          sizeBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentBasePrice = parseInt(btn.getAttribute('data-price'));
-          currentOldPrice = parseInt(btn.getAttribute('data-old'));
-          currentSizeText = '3×' + btn.getAttribute('data-size') + ' м';
-          recalc();
-        });
-      });
-
-      // Выбор шага дуг
-      stepBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          stepBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentStepDiff = parseInt(btn.getAttribute('data-cost'));
-          currentStepText = btn.getAttribute('data-step') === '0.65' ? '0.65 м (Усиленная)' : '1.0 м (Стандарт)';
-          recalc();
-        });
-      });
-
-      // Выбор СПК
-      spkBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          spkBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentSpkDiff = parseInt(btn.getAttribute('data-cost'));
-          const spkType = btn.getAttribute('data-spk');
-          if (spkType === 'standard') currentSpkText = '4 мм Стандарт';
-          else if (spkType === 'pro') currentSpkText = '4 мм Плотный (+1 800 ₽)';
-          else currentSpkText = '4 мм Премиум (+3 400 ₽)';
-          recalc();
-        });
-      });
-
-      [addonBase, addonAssembly, addonBeds].forEach(function(cb) {
-        if (cb) cb.addEventListener('change', recalc);
-      });
-
-      if (calcOrderBtn) {
-        calcOrderBtn.addEventListener('click', function() {
-          const modal = document.getElementById('modalOverlay');
-          const subject = calcOrderBtn.getAttribute('data-subject') || 'Заказ Капелька по расчету';
-          const title = calcOrderBtn.getAttribute('data-title') || 'Заказ Капельки';
-          
-          const modalTitle = document.getElementById('modalTitle');
-          const modalSubject = document.getElementById('modalSubject');
-          if (modalTitle) modalTitle.textContent = title;
-          if (modalSubject) modalSubject.value = subject;
-          if (modal) modal.classList.add('active');
-        });
-      }
-
-      recalc();
-
-      // 2. FAQ аккордеон
-      const faqHeaders = document.querySelectorAll('.kaplya-faq-header');
-      faqHeaders.forEach(function(header) {
-        header.addEventListener('click', function() {
-          const item = header.parentElement;
-          const isActive = item.classList.contains('active');
-          document.querySelectorAll('.kaplya-faq-item').forEach(i => i.classList.remove('active'));
-          if (!isActive) item.classList.add('active');
-        });
-      });
-
-      // 3. Данные для модального окна и слайдера моделей Капельки
-      const kaplyaData = {
-        'k1': {
-          badge: "❄ ЭКОНОМНЫЙ ВЫБОР • СХОД СНЕГА 100%",
-          title: "Теплица Капелька «Стандарт 1.0м»",
-          price: "от 21 900 ₽",
-          lead: "Классическая каплевидная теплица с шагом дуг 1.0 метр. Острый стрельчатый купол 65° гарантирует самостоятельный сход снежных шапок зимой без регулярных выездов на участок.",
-          sizesTitle: "📏 Доступные размеры:",
-          sizes: "3х4 м (21 900 ₽)<br>3х6 м (26 900 ₽)<br>3х8 м (32 400 ₽)<br>3х10 м (38 500 ₽)",
-          featuresTitle: "🔥 Особенности модели:",
-          features: [
-            "Оцинкованный каркас из профильной трубы 20х20 мм;",
-            "Острый коньковый профиль — снег не задерживается на крыше;",
-            "Высота в коньке 2.35 м — простор для высокорослых овощей;",
-            "Сотовый поликарбонат 4 мм с двойной защитой от УФ-лучей;",
-            "2 двери и 2 форточки в противоположных торцах."
-          ],
-          packageTitle: "📦 В комплекте:",
-          packageText: "Каркас, поликарбонат 4 мм, коньковая планка, 2 двери с форточками, фурнитура, кровельные саморезы, инструкция.",
-          deliveryNote: "🚚 Быстрая доставка по Ярославлю и всей области без предоплаты!",
-          note: "Оплата строго при получении после осмотра. Гарантия завода 10 лет.",
-          orderSubject: "Заказ: Капелька Стандарт (от 21 900 ₽)",
-          images: [
-            "assets/images/mockup_kaplevidnaya.jpg",
-            "assets/images/products/p1/2.jpg",
-            "assets/images/products/p1/3.jpg"
-          ]
-        },
-        'k2': {
-          badge: "🔥 ХИТ ПРОДАЖ • УСИЛЕННАЯ СТРЕЛКА",
-          title: "Теплица Капелька «Усиленная 0.65м»",
+      // База данных товаров
+      const productsData = {
+        1: {
+          id: 1,
+          badge: "❄ Снег сходит сам • От производителя",
+          title: "Каплевидные теплицы от производителя",
           price: "от 24 900 ₽",
-          lead: "Лидер продаж в Ярославской и соседних областях! Уменьшенный шаг дуг 65 см и замкнутый коньковый замок обеспечивают двойной запас прочности при снегопадах и шквальном ветре.",
-          sizesTitle: "📏 Доступные размеры:",
-          sizes: "3х4 м (24 900 ₽)<br>3х6 м (30 900 ₽ — Самый популярный)<br>3х8 м (37 400 ₽)<br>3х10 м (43 900 ₽)",
-          featuresTitle: "🔥 Преимущества «Усиленной»:",
+          lead: "Стрельчатые каплевидные теплицы под ключ — сборка и доставка уже завтра.<br><strong>Ярославская, Ивановская, Костромская области.</strong>",
+          sizesTitle: "📏 Размеры:",
+          sizes: "3х4, 3х6, 3х8, 3х10 м (высота 2.35–2.40 м)",
+          featuresTitle: "🔥 Наши преимущества:",
           features: [
-            "Усиленный шаг дуг 0.65 м — максимальная жесткость свода;",
-            "Выдерживает снеговую нагрузку до 350 кг/м² — подпорки не нужны;",
-            "Высота в коньке 2.40 м — удобно работать не сгибая спину;",
-            "Качественная оцинковка Zn 140 мкм снаружи и внутри трубы;",
-            "0 ₽ предоплаты — оплата водителю при доставке на участок."
+            "стрельчатый острый конек под углом 65° — снег скатывается сам под собственным весом;",
+            "увеличенная высота 2.40 м (+35 см к арочным) — комфортно в полный рост и больше урожая;",
+            "снеговая нагрузка до 450 кг/м² — подпорки на зиму не нужны;",
+            "усиленный каркас (профтруба, оцинковка Zn 140 мкм снаружи и внутри);",
+            "поликарбонат 4 мм (Россия) с УФ-защитой, служит до 15 лет;",
+            "работаем без предоплаты: сначала установка — потом оплата."
           ],
           packageTitle: "📦 В комплекте:",
-          packageText: "Цельносварные торцы, усиленные дуги с шагом 0.65 м, коньковый замок, сотовый поликарбонат 4 мм, 2 двери, 2 форточки, полный крепеж.",
-          deliveryNote: "🚚 Доставка собственным транспортом. При заказе сегодня — подарок!",
-          note: "Нажмите «Заказать консультацию», чтобы рассчитать точную стоимость с доставкой в ваш район!",
-          orderSubject: "Заказ: Капелька Усиленная 0.65м (от 24 900 ₽)",
+          packageText: "каркас с коньковым замком, поликарбонат, 2 двери с форточками, крепёж, инструкция.",
+          deliveryNote: "🚚 <strong>Быстрая доставка и установка.</strong><br>📸 Перед отправкой — фото вашей теплицы!",
+          note: "Нажмите «Написать», подскажем стоимость под необходимые размеры и ответим на все вопросы!",
+          orderSubject: "Заказ: Каплевидные теплицы от производителя (от 24 900 ₽)",
           images: [
-            "assets/images/mockup_install.jpg",
             "assets/images/mockup_kaplevidnaya.jpg",
             "assets/images/products/p1/1.jpg",
+            "assets/images/products/p1/2.jpg",
+            "assets/images/products/p1/3.jpg",
             "assets/images/products/p1/4.jpg"
           ]
         },
-        'k3': {
-          badge: "🛡 СВЕРХПРОЧНОСТЬ • СДВОЕННАЯ ДУГА",
-          title: "Теплица Капелька «Богатырь»",
-          price: "от 32 900 ₽",
-          lead: "Максимальная прочность для открытых полей и ветреных участков. Сдвоенные ферменные дуги выдерживают экстремальные снегопады до 450 кг/м².",
-          sizesTitle: "📏 Доступные размеры:",
-          sizes: "3х4 м (32 900 ₽)<br>3х6 м (39 900 ₽)<br>3х8 м (47 900 ₽)<br>3х10 м (55 500 ₽)",
-          featuresTitle: "🔥 Особенности Богатыря:",
+        2: {
+          id: 2,
+          badge: "🛠 Профессионально • Под ключ",
+          title: "Сборка теплиц",
+          price: "6 500–8 000 ₽",
+          lead: "Выполняем профессиональную сборку теплиц под ключ. Работаем аккуратно, соблюдаем сроки и обеспечиваем надёжную сборку конструкции.",
+          sizesTitle: "📏 Устанавливаем:",
+          sizes: "Любые размеры (3х4, 3х6, 3х8, 3х10 м и нестандартные)",
+          featuresTitle: "✓ Как мы работаем:",
           features: [
-            "Мощная ферменная сдвоенная дуга 40х20 + 20х20 мм;",
-            "Снеговая нагрузка до 450 кг/м² — абсолютная надежность на десятилетия;",
-            "Высота в коньке 2.45 м — максимальный полезный объем;",
-            "Усиленные петли и двухсторонние оцинкованные ручки;",
-            "Гарантия завода 15 лет на целостность геометрии."
+            "Устанавливаем как наши теплицы, так и теплицы других производителей;",
+            "Мусор за собой убираем, участок оставляем в чистоте;",
+            "Опытная штатная бригада с профессиональным инструментом;",
+            "Аккуратный монтаж за 3–4 часа без лишнего шума;",
+            "Оплата строго по факту завершения работ. 0 ₽ предоплаты."
+          ],
+          packageTitle: "📦 Что входит в сборку:",
+          packageText: "Сборка металлокаркаса, раскрой и крепление сотового поликарбоната, регулировка дверей и форточек, монтаж на брус или грунтозацепы.",
+          deliveryNote: "🚚 Выезд бригады по всей Ярославской области.",
+          note: "Нужна сборка теплицы?<br>Нажмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Услуга: Сборка теплиц (6 500–8 000 ₽)",
+          images: [
+            "assets/images/products/p2/1.jpg",
+            "assets/images/products/p2/2.jpg",
+            "assets/images/products/p2/3.jpg",
+            "assets/images/products/p2/4.jpg",
+            "assets/images/products/p2/5.jpg"
+          ]
+        },
+        3: {
+          id: 3,
+          badge: "🛠 Ремонт и замена • Второе дыхание",
+          title: "Ремонт теплиц - замена поликарбоната",
+          price: "6 500–9 500 ₽",
+          lead: "Выполняем ремонт старых теплиц, замену поликарбоната и восстановление повреждённых элементов каркаса. Поможем продлить срок службы теплицы без необходимости полной замены конструкции.",
+          sizesTitle: "📏 Ремонтируем:",
+          sizes: "Любые размеры (3х4, 3х6, 3х8, 3х10 м и нестандартные теплицы)",
+          featuresTitle: "🔥 Что входит в услугу:",
+          features: [
+            "Демонтаж старого, пожелтевшего или пробитого градом поликарбоната;",
+            "Выправление, усиление и восстановление повреждённых элементов каркаса;",
+            "Монтаж нового качественного сотового поликарбоната 4 мм с УФ-защитой (служит до 15 лет);",
+            "Регулировка дверей и форточек, замена крепежа и фурнитуры;",
+            "Экономия до 60% по сравнению с покупкой новой теплицы."
+          ],
+          packageTitle: "📦 Материалы и работа:",
+          packageText: "Выезд мастера с материалом, демонтаж старого покрытия, замена и крепление нового поликарбоната, герметизация и регулировка.",
+          deliveryNote: "🚚 Работаем по Ярославской, Ивановской и Костромской областям.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Услуга: Ремонт теплиц - замена поликарбоната (6 500–9 500 ₽)",
+          images: [
+            "assets/images/products/p3/1.jpg",
+            "assets/images/products/p3/2.jpg",
+            "assets/images/products/p3/3.jpg",
+            "assets/images/products/p3/4.jpg",
+            "assets/images/products/p3/5.jpg"
+          ]
+        },
+        4: {
+          id: 4,
+          badge: "🚚 Быстро и бережно • До участка",
+          title: "Доставка теплиц",
+          price: "1 500–2 500 ₽",
+          lead: "Осуществляем доставку теплиц и комплектующих по Ярославской, Ивановской и Костромской области. Согласовываем удобное время и обеспечиваем бережную перевозку до участка.",
+          sizesTitle: "📏 Что доставляем:",
+          sizes: "Теплицы любых размеров, рулоны поликарбоната, грядки, брус, комплектующие",
+          featuresTitle: "🚚 Преимущества нашей доставки:",
+          features: [
+            "Специально оборудованный транспорт для перевозки дуг и рулонов поликарбоната;",
+            "Никаких заломов и повреждений листов при транспортировке;",
+            "Согласовываем удобный день и точное время прибытия;",
+            "Бережная выгрузка прямо на вашем дачном участке;",
+            "Доставка в любые СНТ, деревни и коттеджные посёлки."
+          ],
+          packageTitle: "📦 Условия перевозки:",
+          packageText: "Бережная фиксация груза специальными стяжными ремнями, защита торцов поликарбоната от загрязнения и повреждений.",
+          deliveryNote: "🚚 Ярославская, Ивановская и Костромская области.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Услуга: Доставка теплиц (1 500–2 500 ₽)",
+          images: [
+            "assets/images/products/p4/1.jpg",
+            "assets/images/products/p4/2.jpg",
+            "assets/images/products/p4/3.jpg",
+            "assets/images/products/p4/4.jpg",
+            "assets/images/products/p4/5.jpg"
+          ]
+        },
+        5: {
+          id: 5,
+          badge: "🛡 С УФ-защитой • Прямые поставки",
+          title: "Сотовый поликарбонат 4мм",
+          price: "3 500–5 100 ₽",
+          lead: "Поликарбонат для теплиц и других конструкций. Подходит как для замены старого покрытия, так и для новых проектов. Поможем подобрать необходимую толщину и плотность.<br><strong>Закажите с доставкой и оплатите всё при получении!</strong>",
+          sizesTitle: "💰 Цены за 6 метров:",
+          sizes: "✓ 4 мм плотность 0,52 кг/кв.м — 3 500 ₽<br>✓ 4 мм плотность 0,65 кг/кв.м — 4 200 ₽<br>✓ 4 мм плотность 0,82 кг/кв.м — 5 200 ₽",
+          featuresTitle: "🔥 Особенности материала:",
+          features: [
+            "Качественное первичное сырье с гарантией завода до 15 лет;",
+            "Двойной УФ-защитный слой — не желтеет и не трескается на солнце;",
+            "Повышенная ударопрочность: выдерживает сильный град и давление снега;",
+            "Эластичный: легко монтируется на любые арочные и прямостенные каркасы;",
+            "0 ₽ предоплаты — оплата водителю при доставке на участок."
+          ],
+          packageTitle: "📦 Размеры листов:",
+          packageText: "Стандартные рулоны 2.1 х 6 м и 2.1 х 12 м. Возможен раскрой под ваши размеры.",
+          deliveryNote: "🚚 Бережная доставка собственным транспортом по всей области.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Заказ: Сотовый поликарбонат 4мм (3 500–5 100 ₽)",
+          images: [
+            "assets/images/products/p5/1.jpg",
+            "assets/images/products/p5/2.jpg",
+            "assets/images/products/p5/3.jpg"
+          ]
+        },
+        6: {
+          id: 6,
+          badge: "🪵 Брус с антисептиком • Монтаж по уровню",
+          title: "Фундамент для теплиц",
+          price: "6 000–9 000 ₽",
+          lead: "Надёжное основание для установки теплицы, которое повышает устойчивость конструкции, помогает избежать перекосов и увеличивает срок службы теплицы.",
+          sizesTitle: "📏 Размеры фундамента:",
+          sizes: "Изготавливаем под любые теплицы: 3х4, 3х6, 3х8, 3х10 м и под индивидуальный заказ",
+          featuresTitle: "🔥 Преимущества качественного фундамента:",
+          features: [
+            "Предотвращает контакт металлокаркаса с влажной почвой и появление коррозии;",
+            "Обеспечивает идеальную геометрию и жёсткость всей конструкции;",
+            "Теплицу не перекашивает от сезонного и весеннего пучения грунта;",
+            "Глубокая пропитка защитным трудновымываемым антисептиком от гниения;",
+            "Надёжная фиксация конструкции к грунту грунтозацепами или анкерами."
+          ],
+          packageTitle: "📦 Комплектация и монтаж:",
+          packageText: "Качественный брус (хвоя), обработка антисептиком, усиленный крепёж, диагональная выставка по лазерному уровню.",
+          deliveryNote: "🚚 Доставка и установка фундамента по всей области.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Услуга: Фундамент для теплиц (6 000–9 000 ₽)",
+          images: [
+            "assets/images/products/p6/1.jpg",
+            "assets/images/products/p6/2.jpg",
+            "assets/images/products/p6/3.jpg",
+            "assets/images/products/p6/4.jpg",
+            "assets/images/products/p6/5.jpg"
+          ]
+        },
+        7: {
+          id: 7,
+          badge: "🌱 Оцинкованная сталь • Борт 200 мм",
+          title: "Грядки для теплиц оцинкованные",
+          price: "6 000–9 500 ₽",
+          lead: "Оцинкованные грядки, предназначенные для установки внутри теплицы. Удобны в эксплуатации, сохраняют форму и помогают аккуратно организовать пространство для посадок.<br><strong>Комплект из трех грядок для теплиц 4м и 6м. Высота стенок 200 мм.</strong>",
+          sizesTitle: "📏 Размеры и комплекты:",
+          sizes: "✓ Комплект из 3-х грядок для теплицы 4 м<br>✓ Комплект из 3-х грядок для теплицы 6 м<br>✓ Высота стенок: 200 мм (оптимально для корневой системы)",
+          featuresTitle: "🔥 Преимущества оцинкованных грядок:",
+          features: [
+            "Качественная оцинкованная сталь — устойчива к влаге, не ржавеет и не гниет;",
+            "Безопасные завальцованные края — защищают от порезов при уходе за растениями;",
+            "Продольные ребра жесткости — держат форму под давлением влажного грунта;",
+            "Удобный проход между посадками и аккуратная организация пространства внутри;",
+            "Экономия воды при поливе и подкормках (не растекаются по дорожкам)."
           ],
           packageTitle: "📦 В комплекте:",
-          packageText: "Ферменные дуги, мощные торцы, коньковый оцинкованный профиль, качественный поликарбонат 4 мм с УФ-защитой, усиленный крепеж.",
-          deliveryNote: "🚚 Бережная доставка и возможность сборки за 1 день.",
-          note: "Идеально подходит тем, кто хочет поставить теплицу один раз и навсегда забыть о любых погодных катаклизмах!",
-          orderSubject: "Заказ: Капелька Богатырь (от 32 900 ₽)",
+          packageText: "3 оцинкованные грядки (борта, торцы, стяжки, ножки-колышки для фиксации в грунте, полный комплект крепежа). Быстрая сборка за 20 минут.",
+          deliveryNote: "🚚 Доставка по Ярославской, Ивановской и Костромской областям.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Заказ: Грядки оцинкованные для теплиц (6 000–9 500 ₽)",
           images: [
-            "assets/images/products/p1/1.jpg",
-            "assets/images/mockup_install.jpg",
-            "assets/images/mockup_kaplevidnaya.jpg",
-            "assets/images/products/p1/5.jpg"
+            "assets/images/products/p7/1.jpg",
+            "assets/images/products/p7/2.jpg"
+          ]
+        },
+        8: {
+          id: 8,
+          badge: "🌿 Оцинкованная сталь • Долговечно",
+          title: "Грядки оцинкованные",
+          price: "1 250–2 300 ₽",
+          lead: "Практичные и долговечные грядки для дачного участка и огорода. Устойчивы к влаге и не требуют дополнительного ухода.",
+          sizesTitle: "📏 Размеры и стоимость:",
+          sizes: "Различные длины (от 2 до 6 м), ширина 0.65 м, 0.8 м, 1 м. Высота бортов 20 см. Уточняйте необходимый размер под ваш участок у менеджера.",
+          featuresTitle: "🔥 Особенности и преимущества:",
+          features: [
+            "Оцинкованный металл не подвержен гниению, грибку и коррозии;",
+            "Служат от 10–15 лет без необходимости регулярного ремонта;",
+            "Края аккуратно завальцованы для безопасности рук;",
+            "Защищают посадки от сорняков, размытия почвы дождями и вредителей;",
+            "Простая и интуитивная сборка за считанные минуты."
+          ],
+          packageTitle: "📦 Комплектация:",
+          packageText: "Продольные и поперечные борта, угловые элементы, соединительные планки, колышки в землю и оцинкованные винты с гайками.",
+          deliveryNote: "🚚 Быстрая доставка по всей области собственным транспортом.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Заказ: Грядки оцинкованные (1 250–2 300 ₽)",
+          images: [
+            "assets/images/products/p8/1.jpg"
+          ]
+        },
+        9: {
+          id: 9,
+          badge: "🌸 Металл с полимерным покрытием • Декор сада",
+          title: "Клумбы металлические",
+          price: "1 700–3 500 ₽",
+          lead: "Металлические клумбы для оформления участка, цветников и декоративных посадок. Аккуратный внешний вид и долговечность делают их удобным решением для благоустройства территории.",
+          sizesTitle: "📏 Формы и размеры:",
+          sizes: "Круглые, овальные, шестигранные и многоярусные каскадные клумбы. Цвета: оцинкованный, зеленый (мох), бордовый (вишня).",
+          featuresTitle: "🔥 Преимущества металлических клумб:",
+          features: [
+            "Эстетичный внешний вид — аккуратное украшение сада, дорожек или газона;",
+            "Оцинкованный металл с полимерной окраской устойчив к ультрафиолету и ржавчине;",
+            "Многоярусные конструкции позволяют создавать эффектные цветущие каскады;",
+            "Защищают корни растений от пересыхания и вымывания при поливе;",
+            "Компактная упаковка и лёгкая самостоятельная сборка."
+          ],
+          packageTitle: "📦 В комплекте:",
+          packageText: "Металлические борта выбранной конфигурации, прочные ножки-стойки для фиксации в грунте, крепёжные элементы, инструкция.",
+          deliveryNote: "🚚 Быстрая доставка по Ярославской, Ивановской и Костромской областям.",
+          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
+          orderSubject: "Заказ: Клумбы металлические (1 700–3 500 ₽)",
+          images: [
+            "assets/images/products/p9/1.jpg",
+            "assets/images/products/p9/2.png",
+            "assets/images/products/p9/3.jpg",
+            "assets/images/products/p9/4.jpg"
           ]
         }
       };
@@ -996,22 +945,25 @@
         });
       }
 
-      function openKaplyaModal(modelKey) {
+      function openProductModal(productId) {
         const modal = document.getElementById('productModalOverlay');
         if (!modal) return;
 
-        const prod = kaplyaData[modelKey] || kaplyaData['k2'];
+        const prod = productsData[productId] || productsData[1];
         currentImages = prod.images || [];
 
+        // Заполнение данных
         document.getElementById('prodModalBadge').innerHTML = prod.badge;
         document.getElementById('prodModalTitle').textContent = prod.title;
         document.getElementById('prodModalPrice').textContent = prod.price;
         document.getElementById('prodModalLead').innerHTML = prod.lead;
 
-        document.getElementById('prodModalSizesTitle').textContent = prod.sizesTitle;
+        // Размеры
+        document.getElementById('prodModalSizesTitle').textContent = prod.sizesTitle || "📏 Размеры:";
         document.getElementById('prodModalSizesVal').innerHTML = prod.sizes;
 
-        document.getElementById('prodModalFeaturesTitle').textContent = prod.featuresTitle;
+        // Преимущества
+        document.getElementById('prodModalFeaturesTitle').textContent = prod.featuresTitle || "🔥 Преимущества:";
         const featList = document.getElementById('prodModalFeaturesList');
         featList.innerHTML = '';
         (prod.features || []).forEach(function(item) {
@@ -1020,22 +972,28 @@
           featList.appendChild(li);
         });
 
-        document.getElementById('prodModalPackageTitle').textContent = prod.packageTitle;
+        // Комплектация
+        document.getElementById('prodModalPackageTitle').textContent = prod.packageTitle || "📦 В комплекте:";
         document.getElementById('prodModalPackageText').textContent = prod.packageText;
         document.getElementById('prodModalDeliveryNote').innerHTML = prod.deliveryNote;
+
+        // Сноска
         document.getElementById('prodModalNote').innerHTML = prod.note;
 
+        // Кнопка заказа
         const orderBtn = document.getElementById('prodModalOrderBtn');
         if (orderBtn) {
           orderBtn.setAttribute('data-title', prod.title);
           orderBtn.setAttribute('data-subject', prod.orderSubject);
         }
 
+        // Рендер миниатюр
         const thumbsRow = document.getElementById('prodThumbsRow');
         thumbsRow.innerHTML = '';
         currentImages.forEach(function(imgSrc, i) {
           const item = document.createElement('div');
           item.className = 'prod-thumb-item' + (i === 0 ? ' active' : '');
+          item.setAttribute('data-index', i);
           item.innerHTML = '<img src="' + imgSrc + '" alt="Превью ' + (i + 1) + '">';
           item.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1049,44 +1007,84 @@
         document.body.style.overflow = 'hidden';
       }
 
-      function closeKaplyaModal() {
+      function closeProductModal() {
         const modal = document.getElementById('productModalOverlay');
         if (!modal) return;
         modal.classList.remove('active');
         document.body.style.overflow = '';
       }
 
-      // Кнопки открытия модалки моделей
-      document.querySelectorAll('.js-open-kaplya-modal').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const mid = btn.getAttribute('data-product-id');
-          openKaplyaModal(mid);
+      // Привязка событий
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('productModalOverlay');
+        const closeBtn = document.getElementById('productModalCloseBtn');
+        const prevBtn = document.getElementById('prodSliderPrevBtn');
+        const nextBtn = document.getElementById('prodSliderNextBtn');
+        const prodCards = document.querySelectorAll('.js-product-card');
+
+        // Открытие по клику на карточку товара
+        prodCards.forEach(function(card) {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pid = card.getAttribute('data-product-id') || 1;
+            openProductModal(pid);
+          });
         });
-      });
 
-      const closeBtn = document.getElementById('productModalCloseBtn');
-      if (closeBtn) closeBtn.addEventListener('click', closeKaplyaModal);
+        // Закрытие по крестику
+        if (closeBtn) closeBtn.addEventListener('click', closeProductModal);
 
-      const prodModal = document.getElementById('productModalOverlay');
-      if (prodModal) {
-        prodModal.addEventListener('click', function(e) {
-          if (e.target === prodModal) closeKaplyaModal();
+        // Закрытие по клику вне модалки
+        if (modal) {
+          modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeProductModal();
+          });
+        }
+
+        // Кнопки слайдера
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            updateSlide(currentSlideIdx - 1);
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            updateSlide(currentSlideIdx + 1);
+          });
+        }
+
+        // Нажатие стрелок на клавиатуре и Escape
+        document.addEventListener('keydown', function(e) {
+          if (!modal || !modal.classList.contains('active')) return;
+          if (e.key === 'Escape') closeProductModal();
+          if (e.key === 'ArrowLeft') updateSlide(currentSlideIdx - 1);
+          if (e.key === 'ArrowRight') updateSlide(currentSlideIdx + 1);
         });
-      }
 
-      const prevBtn = document.getElementById('prodSliderPrevBtn');
-      const nextBtn = document.getElementById('prodSliderNextBtn');
-      if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); updateSlide(currentSlideIdx - 1); });
-      if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); updateSlide(currentSlideIdx + 1); });
-
-      document.addEventListener('keydown', function(e) {
-        if (!prodModal || !prodModal.classList.contains('active')) return;
-        if (e.key === 'Escape') closeKaplyaModal();
-        if (e.key === 'ArrowLeft') updateSlide(currentSlideIdx - 1);
-        if (e.key === 'ArrowRight') updateSlide(currentSlideIdx + 1);
+        // Поддержка свайпов на тач-экранах
+        const sliderWrap = document.querySelector('.prod-slider-main-wrap');
+        if (sliderWrap) {
+          let touchStartX = 0;
+          let touchEndX = 0;
+          sliderWrap.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+          }, { passive: true });
+          sliderWrap.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) {
+              if (diff > 0) {
+                updateSlide(currentSlideIdx + 1);
+              } else {
+                updateSlide(currentSlideIdx - 1);
+              }
+            }
+          }, { passive: true });
+        }
       });
-
     })();
   </script>
 </body>

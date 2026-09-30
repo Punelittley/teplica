@@ -61,65 +61,65 @@
     /* Сетка фотографий (только картинки) */
     .works-gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 50px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 55px;
     }
 
     .works-item {
       position: relative;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
-      background: #fff;
+      background: #ffffff;
       cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      transition: box-shadow 0.25s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      border: 1.5px solid #e3ede5;
+      display: flex;
+      flex-direction: column;
     }
     .works-item:hover {
       transform: none;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+      border-color: #2d6a4f;
+      box-shadow: 0 12px 30px rgba(45, 106, 79, 0.16);
     }
 
     .works-item img {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 18px;
+      border-radius: 19px;
     }
     .works-item:hover img {
       transform: none;
     }
 
-    /* Иконка увеличения при наведении */
+    /* Стильная плашка открытия при наведении */
     .works-item-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.32);
+      background: rgba(27, 67, 50, 0.22);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
+      border-radius: 19px;
     }
     .works-item:hover .works-item-overlay {
       opacity: 1;
     }
     .works-zoom-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.95);
-      color: var(--color-primary-dark);
-      display: flex;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      color: #1b4332;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transform: scale(0.85);
-      transition: transform 0.25s ease;
-    }
-    .works-item:hover .works-zoom-btn {
-      transform: scale(1);
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
 
     /* Баннер заказа внизу */
@@ -332,45 +332,112 @@
 
       <!-- Фильтры по направлениям работ -->
       <div class="works-filter-nav">
-        <button class="works-filter-btn active" data-filter="all">Все работы</button>
-        <button class="works-filter-btn" data-filter="teplica">Продажа теплиц</button>
-        <button class="works-filter-btn" data-filter="ustanovka">Установка</button>
-        <button class="works-filter-btn" data-filter="remont">Ремонт</button>
-        <button class="works-filter-btn" data-filter="dostavka">Доставка</button>
-        <button class="works-filter-btn" data-filter="polikarbonat">Поликарбонат</button>
+        <button class="works-filter-btn active" data-filter="all">Все направления (9)</button>
+        <button class="works-filter-btn" data-filter="teplica">Теплицы и монтаж</button>
+        <button class="works-filter-btn" data-filter="materials">Фундамент и поликарбонат</button>
+        <button class="works-filter-btn" data-filter="gryadki">Грядки и клумбы</button>
       </div>
 
-      <!-- Сетка картинок -->
+      <!-- Сетка картинок (стильная витрина 3х3) -->
       <div class="works-gallery-grid" id="worksGrid">
 
         <!-- 1. Продажа теплиц -->
         <div class="works-item" data-category="teplica" data-src="assets/images/works/work_1_prodazha.png" data-title="Продажа теплиц от производителя">
           <img src="assets/images/works/work_1_prodazha.png" alt="Продажа теплиц" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
         </div>
 
         <!-- 2. Установка теплиц -->
-        <div class="works-item" data-category="ustanovka" data-src="assets/images/works/work_2_ustanovka.png" data-title="Профессиональная установка теплиц">
+        <div class="works-item" data-category="teplica" data-src="assets/images/works/work_2_ustanovka.png" data-title="Профессиональная установка теплиц под ключ">
           <img src="assets/images/works/work_2_ustanovka.png" alt="Установка теплиц" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
         </div>
 
         <!-- 3. Ремонт теплиц -->
-        <div class="works-item" data-category="remont" data-src="assets/images/works/work_3_remont.png" data-title="Ремонт теплиц и замена поликарбоната">
+        <div class="works-item" data-category="teplica" data-src="assets/images/works/work_3_remont.png" data-title="Ремонт теплиц и замена поликарбоната">
           <img src="assets/images/works/work_3_remont.png" alt="Ремонт теплиц" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
         </div>
 
         <!-- 4. Доставка теплиц -->
-        <div class="works-item" data-category="dostavka" data-src="assets/images/works/work_4_dostavka.png" data-title="Бережная доставка теплиц спецтранспортом">
+        <div class="works-item" data-category="teplica" data-src="assets/images/works/work_4_dostavka.png" data-title="Бережная доставка спецтранспортом завода">
           <img src="assets/images/works/work_4_dostavka.png" alt="Доставка теплиц" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
         </div>
 
-        <!-- 5. Продажа поликарбоната -->
-        <div class="works-item" data-category="polikarbonat" data-src="assets/images/works/work_5_polikarbonat.png" data-title="Продажа сотового поликарбоната с честной УФ-защитой">
+        <!-- 5. Фундамент для теплиц -->
+        <div class="works-item" data-category="materials" data-src="assets/images/works/work_fundament.png" data-title="Продажа фундамента из бруса 100х100 и свай">
+          <img src="assets/images/works/work_fundament.png" alt="Продажа фундамента для теплиц" loading="lazy">
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
+        </div>
+
+        <!-- 6. Продажа поликарбоната -->
+        <div class="works-item" data-category="materials" data-src="assets/images/works/work_5_polikarbonat.png" data-title="Продажа сотового поликарбоната с честной УФ-защитой">
           <img src="assets/images/works/work_5_polikarbonat.png" alt="Продажа поликарбоната" loading="lazy">
-          <div class="works-item-overlay"><div class="works-zoom-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div></div>
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
+        </div>
+
+        <!-- 7. Грядки в теплице -->
+        <div class="works-item" data-category="gryadki" data-src="assets/images/works/work_gryadki_inside.png" data-title="Продажа оцинкованных грядок для теплицы">
+          <img src="assets/images/works/work_gryadki_inside.png" alt="Оцинкованные грядки в теплице" loading="lazy">
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
+        </div>
+
+        <!-- 8. Грядки на открытом грунте -->
+        <div class="works-item" data-category="gryadki" data-src="assets/images/works/work_gryadki_outside.png" data-title="Оцинкованные грядки для сада и огорода">
+          <img src="assets/images/works/work_gryadki_outside.png" alt="Оцинкованные грядки на участке" loading="lazy">
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
+        </div>
+
+        <!-- 9. Клумбы металлические -->
+        <div class="works-item" data-category="gryadki" data-src="assets/images/works/work_klumby.png" data-title="Клумбы металлические с полимерным покрытием">
+          <img src="assets/images/works/work_klumby.png" alt="Металлические клумбы" loading="lazy">
+          <div class="works-item-overlay">
+            <span class="works-zoom-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Увеличить
+            </span>
+          </div>
         </div>
 
       </div>

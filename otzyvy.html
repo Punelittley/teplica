@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Отзывы покупателей — Завод теплиц «Теплицы ТУТ»</title>
-  <meta name="description" content="Реальные отзывы садоводов и дачников Ярославской области о теплицах завода «Теплицы ТУТ». Оценка качества каркасов, доставки и сборки. Рейтинг 4.9 из 5.">
+  <meta name="description" content="Реальные отзывы покупателей о теплицах завода «Теплицы ТУТ». Оценка качества каркасов, доставки и сборки в Ярославле и области.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -52,241 +52,138 @@
     </div>
   </header>
 
-  <!-- Заголовок страницы отзывов -->
-  <section class="reviews-header-section">
-    <div class="container">
-      <div class="reviews-rating-pill">
-        <span style="color: #fca311;">★★★★★</span> 4.9 из 5 • Более 120 подтверждённых отзывов
-      </div>
-      <h1 class="reviews-page-title">Отзывы покупателей</h1>
-      <p class="reviews-page-subtitle">
-        Честные отзывы садоводов Ярославля и области о качестве каркасов ГОСТ, снегостойкости, скорости заводской сборки и полученном урожае.
-      </p>
-    </div>
-  </section>
-
-  <!-- Основной контент отзывов -->
-  <section class="section-padding" style="background: #ffffff;">
+  <!-- Секция отзывов в точности по макету пользователя -->
+  <section class="testimonials-section">
     <div class="container">
       
-      <!-- Фильтры -->
-      <div class="reviews-filter-bar">
-        <button type="button" class="reviews-filter-btn active" data-filter="all">
-          Все отзывы <span class="filter-count">124</span>
-        </button>
-        <button type="button" class="reviews-filter-btn" data-filter="arch">
-          Арочные <span class="filter-count">54</span>
-        </button>
-        <button type="button" class="reviews-filter-btn" data-filter="kaplya">
-          Каплевидные <span class="filter-count">42</span>
-        </button>
-        <button type="button" class="reviews-filter-btn" data-filter="sborka">
-          Сборка под ключ <span class="filter-count">78</span>
-        </button>
-        <button type="button" class="reviews-filter-btn" data-filter="gryadki">
-          С брусом и грядками <span class="filter-count">36</span>
-        </button>
+      <div class="testimonials-header">
+        <h1 class="testimonials-title">Отзывы наших покупателей</h1>
+        <p class="testimonials-subtitle">
+          Честные истории садоводов Ярославля и области о качестве каркасов ГОСТ, снегостойкости и скорости заводской сборки
+        </p>
       </div>
 
-      <!-- Сетка текстовых отзывов без картинок (3 колонки) -->
-      <div class="reviews-text-grid" id="reviewsGrid">
+      <!-- Сетка карточек отзывов (3 колонки) -->
+      <div class="testimonials-cards-grid">
         
-        <!-- Отзыв 1 -->
-        <div class="review-text-card" data-category="arch sborka">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Май 2025</span>
+        <!-- Карточка 1 (Белая) -->
+        <div class="testimonial-card">
+          <div class="testimonial-avatar-wrapper">
+            <div class="testimonial-avatar-ring">
+              <img src="assets/images/avatars/avatar1.jpg" alt="Наталья Петровна" class="testimonial-avatar-img">
             </div>
-            <div class="review-model-tag">Арочная 3×6 м (шаг 0.65 м)</div>
-            <p class="review-text-body">
-              «Заказывали теплицу с усиленным шагом дуг и брусом 100×100. Монтажники приехали точно в назначенное время, к обеду уже всё стояло ровно по уровню. Зиму пережила без единой подпорки, поликарбонат остался целым и чистым. Очень довольны!»
-            </p>
           </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar">НП</div>
-            <div>
-              <div class="review-author-name">Наталья Петровна</div>
-              <div class="review-author-city">Ярославль, СНТ «Садовод-1»</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-name">Наталья Петровна</div>
+          <div class="testimonial-role">г. Ярославль, СНТ «Садовод-1» • Арочная 3×6 м</div>
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
           </div>
+          <p class="testimonial-body">
+            Заказывали теплицу с усиленным шагом дуг и брусом 100×100. Бригада приехала вовремя, к обеду уже всё стояло ровно по уровню. Зиму пережила без единой подпорки, поликарбонат остался чистым и целым. Очень благодарны заводу!
+          </p>
         </div>
 
-        <!-- Отзыв 2 -->
-        <div class="review-text-card" data-category="kaplya sborka">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Июнь 2025</span>
+        <!-- Карточка 2 (Синяя / Акцентная по центру) -->
+        <div class="testimonial-card testimonial-card-featured">
+          <div class="testimonial-avatar-wrapper">
+            <div class="testimonial-avatar-ring">
+              <img src="assets/images/avatars/avatar2.jpg" alt="Виктор Ильич" class="testimonial-avatar-img">
             </div>
-            <div class="review-model-tag">Каплевидная 3×6 м</div>
-            <p class="review-text-body">
-              «Выбрали капельку, потому что зимой на дачу не наездишься счищать сугробы. Конёк острый, мокрый снег со скатов съезжает сам. Металл толстый, оцинковка плотная без пропусков. Рекомендую завод всем соседям по деревне!»
-            </p>
           </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #1b4332;">ВИ</div>
-            <div>
-              <div class="review-author-name">Виктор Ильич</div>
-              <div class="review-author-city">Тутаев, д. Борисоглеб</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-name">Виктор Ильич</div>
+          <div class="testimonial-role">г. Тутаев, д. Борисоглеб • Каплевидная 3×6 м</div>
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
           </div>
+          <p class="testimonial-body">
+            Выбрали капельку из-за снежных зим — сугробы со скатов съезжают сами. Конструкция очень жёсткая, честная труба ГОСТ с горячим цинком. Ребята собрали быстро, весь мусор за собой убрали. Рекомендую завод всем соседям по даче!
+          </p>
         </div>
 
-        <!-- Отзыв 3 -->
-        <div class="review-text-card" data-category="arch sborka gryadki">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Апрель 2025</span>
+        <!-- Карточка 3 (Белая) -->
+        <div class="testimonial-card">
+          <div class="testimonial-avatar-wrapper">
+            <div class="testimonial-avatar-ring">
+              <img src="assets/images/avatars/avatar3.jpg" alt="Сергей Николаевич" class="testimonial-avatar-img">
             </div>
-            <div class="review-model-tag">Арочная 3×8 м + Грядки в 3 ряда</div>
-            <p class="review-text-body">
-              «Взяли теплицу сразу с оцинкованными грядками. Для нас, пожилых людей, это колоссальное облегчение: полоть удобно, спина не болит, вода при поливе не уходит в проход. Первый урожай огурцов сняли на три недели раньше обычного!»
-            </p>
           </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #2d6a4f;">ЕМ</div>
-            <div>
-              <div class="review-author-name">Елена Михайловна</div>
-              <div class="review-author-city">Рыбинск, пос. Волжский</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-name">Сергей Николаевич</div>
+          <div class="testimonial-role">г. Ростов Великий • Фермерская 3×10 м</div>
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
           </div>
+          <p class="testimonial-body">
+            Брал теплицу 10 метров для ранней высадки огурцов и рассады. Конструкция монолитная, дуги цельногнутые, оцинковка плотная. В мае выдержала шквалистый ветер — стоит как влитая, двери и форточки открываются легко.
+          </p>
         </div>
 
-        <!-- Отзыв 4 -->
-        <div class="review-text-card" data-category="arch gryadki">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Июль 2025</span>
+        <!-- Карточка 4 (Белая) -->
+        <div class="testimonial-card">
+          <div class="testimonial-avatar-wrapper">
+            <div class="testimonial-avatar-ring">
+              <img src="assets/images/avatars/avatar1.jpg" alt="Елена Михайловна" class="testimonial-avatar-img">
             </div>
-            <div class="review-model-tag">Арочная 3×4 м (базовая)</div>
-            <p class="review-text-body">
-              «Покупали родителям в подарок. Главный плюс — отсутствие предоплаты. Привезли машиной завода, выгрузили, водитель помог пересчитать все дуги и проверить толщину поликарбоната. Только после этого оплатили. Родители очень рады!»
-            </p>
           </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #b45309;">СА</div>
-            <div>
-              <div class="review-author-name">Светлана и Андрей</div>
-              <div class="review-author-city">Ярославский р-н, Григорьевское</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-name">Елена Михайловна</div>
+          <div class="testimonial-role">г. Рыбинск, пос. Волжский • Арочная 3×8 м + Грядки</div>
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
           </div>
+          <p class="testimonial-body">
+            Взяли теплицу сразу с оцинкованными грядками в три ряда. Для пожилых людей это спасение: полоть удобно, спина не устает, вода не растекается. Первый урожай огурцов собрали на 3 недели раньше обычного срока!
+          </p>
         </div>
 
-        <!-- Отзыв 5 -->
-        <div class="review-text-card" data-category="arch sborka">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Август 2025</span>
+        <!-- Карточка 5 (Синяя / Акцентная) -->
+        <div class="testimonial-card testimonial-card-featured">
+          <div class="testimonial-avatar-wrapper">
+            <div class="testimonial-avatar-ring">
+              <img src="assets/images/avatars/avatar2.jpg" alt="Михаил Юрьевич" class="testimonial-avatar-img">
             </div>
-            <div class="review-model-tag">Фермерская Арочная 3×10 м</div>
-            <p class="review-text-body">
-              «Занимаюсь рассадой и ранней зеленью. Взял 10 метров с поликарбонатом 6 мм. Конструкция монолитная, цельногнутые дуги держат геометрию идеально. В мае были сильные порывы ветра — теплица стоит как влитая, двери закрываются плотно.»
-            </p>
           </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #0369a1;">СН</div>
-            <div>
-              <div class="review-author-name">Сергей Николаевич</div>
-              <div class="review-author-city">Ростов Великий, пос. Поречье</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-name">Михаил Юрьевич</div>
+          <div class="testimonial-role">г. Переславль-Залесский • Каплевидная 3×4 м</div>
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
           </div>
+          <p class="testimonial-body">
+            Очень порадовало соединение краб-системой: поликарбонат ложится монолитно без провисаний и щелей, на ветру не вибрирует. Оплатил водителю на месте после полной проверки комплектации без предоплаты.
+          </p>
         </div>
 
-        <!-- Отзыв 6 -->
-        <div class="review-text-card" data-category="kaplya gryadki">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Сентябрь 2025</span>
+        <!-- Карточка 6 (Белая) -->
+        <div class="testimonial-card">
+          <div class="testimonial-avatar-wrapper">
+            <div class="testimonial-avatar-ring">
+              <img src="assets/images/avatars/avatar3.jpg" alt="Светлана и Андрей" class="testimonial-avatar-img">
             </div>
-            <div class="review-model-tag">Каплевидная 3×4 м</div>
-            <p class="review-text-body">
-              «Очень понравилась краб-система: перемычки в одной плоскости с дугами, поликарбонат прилегает плотно без провисаний. Внутри тепло держится долго даже при первых заморозках. Спасибо консультанту за грамотный подбор!»
-            </p>
           </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #475569;">МЮ</div>
-            <div>
-              <div class="review-author-name">Михаил Юрьевич</div>
-              <div class="review-author-city">г. Переславль-Залесский</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-name">Светлана и Андрей</div>
+          <div class="testimonial-role">Ярославский р-н, Григорьевское • Арочная 3×4 м</div>
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
           </div>
-        </div>
-
-        <!-- Отзыв 7 -->
-        <div class="review-text-card" data-category="arch sborka">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Октябрь 2025</span>
-            </div>
-            <div class="review-model-tag">Арочная 3×6 м (поликарбонат 6 мм)</div>
-            <p class="review-text-body">
-              «Решили не экономить на поликарбонате и взяли шестерку с усиленной защитой от УФ. Разница с рыночными колоссальная: листы жесткие, не мнутся руками, град пережили вообще без следов. Бригада установила за 3 часа.»
-            </p>
-          </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #1b4332;">АВ</div>
-            <div>
-              <div class="review-author-name">Алексей Владимирович</div>
-              <div class="review-author-city">Ярославль, Резинотехника</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
-          </div>
-        </div>
-
-        <!-- Отзыв 8 -->
-        <div class="review-text-card" data-category="kaplya sborka gryadki">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Ноябрь 2025</span>
-            </div>
-            <div class="review-model-tag">Каплевидная 3×8 м на брусе</div>
-            <p class="review-text-body">
-              «Заказывали установку под ключ на брус 100х100 с пропиткой Неомид. Мастера сделали идеальную диагональ по лазерному уровню. Двери не клинят, форточки с обоих торцов отлично проветривают. Честный заводской продукт.»
-            </p>
-          </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #2d6a4f;">ГС</div>
-            <div>
-              <div class="review-author-name">Геннадий Степанович</div>
-              <div class="review-author-city">Тутаевский р-н, Константиновский</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
-          </div>
-        </div>
-
-        <!-- Отзыв 9 -->
-        <div class="review-text-card" data-category="arch sborka">
-          <div>
-            <div class="review-card-head">
-              <span class="review-stars">★★★★★</span>
-              <span class="review-date-badge">Декабрь 2025</span>
-            </div>
-            <div class="review-model-tag">Арочная 3×6 м</div>
-            <p class="review-text-body">
-              «Поставили теплицу поздней осенью по акции с бесплатным хранением. Хочу отдельно отметить культуру ребят-сборщиков: не топтали грядки, все обрезки лент и коробок собрали в мешки и увезли. Спасибо за аккуратность!»
-            </p>
-          </div>
-          <div class="review-author-info">
-            <div class="review-author-avatar" style="background: #065f46;">ОД</div>
-            <div>
-              <div class="review-author-name">Ольга Дмитриевна</div>
-              <div class="review-author-city">Ярославль, СНТ «Берёзка»</div>
-            </div>
-            <span class="review-verified-mark">✓ Проверено</span>
-          </div>
+          <p class="testimonial-body">
+            Покупали родителям на юбилей. Водитель аккуратно выгрузил, помог пересчитать все детали и проверить толщину дуг. Качество заводское, сварочные швы оцинкованы. Родители в восторге от подарка!
+          </p>
         </div>
 
       </div>
@@ -295,7 +192,7 @@
       <div class="review-form-card" id="leave-review">
         <div class="review-form-title">Оставить свой отзыв</div>
         <p class="review-form-sub">
-          Поделитесь опытом эксплуатации теплицы завода «Теплицы ТУТ» — ваше мнение важно для нас и других дачников!
+          Поделитесь опытом использования теплицы завода «Теплицы ТУТ» — ваше мнение важно для нас и других покупателей!
         </p>
 
         <form class="js-lead-form">
@@ -332,7 +229,7 @@
               <label class="form-label">Модель теплицы:</label>
               <select name="model" class="form-input" style="height: 48px;">
                 <option value="Арочная 3х4">Арочная 3×4 м</option>
-                <option value="Арочная 3х6" selected>Арочная 3×6 м</option>
+                <option value="Арочная 3х6" selected>Арочная 3×6 м (Хит)</option>
                 <option value="Арочная 3х8">Арочная 3×8 м</option>
                 <option value="Каплевидная 3х4">Каплевидная 3×4 м</option>
                 <option value="Каплевидная 3х6">Каплевидная 3×6 м</option>
@@ -351,7 +248,7 @@
             Опубликовать отзыв →
           </button>
           <div style="font-size: 0.78rem; color: #718096; text-align: center; margin-top: 8px;">
-            🔒 Ваши контакты не передаются третьим лицам.
+            🔒 Ваши контактные данные защищены и не передаются третьим лицам.
           </div>
         </form>
       </div>
@@ -375,34 +272,9 @@
     </div>
   </section>
 
-  <!-- Интерактивные скрипты фильтра и рейтинга -->
+  <!-- Интерактивные скрипты рейтинга -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Фильтр отзывов
-      const filterBtns = document.querySelectorAll(".reviews-filter-btn");
-      const reviewCards = document.querySelectorAll(".review-text-card");
-
-      filterBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          filterBtns.forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          const target = btn.getAttribute("data-filter");
-
-          reviewCards.forEach(card => {
-            if (target === "all") {
-              card.style.display = "flex";
-            } else {
-              const cats = (card.getAttribute("data-category") || "").split(" ");
-              if (cats.includes(target)) {
-                card.style.display = "flex";
-              } else {
-                card.style.display = "none";
-              }
-            }
-          });
-        });
-      });
-
       // Выбор звёзд в форме
       const starBtns = document.querySelectorAll(".review-star-btn");
       const ratingInput = document.getElementById("reviewRatingInput");

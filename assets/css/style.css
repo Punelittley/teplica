@@ -2472,13 +2472,13 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   FOOTER — Свежий светлый стиль завода
+   FOOTER — Премиальный современный стиль завода
    ========================================================================== */
 .site-footer {
-  background: #f4f8f5;
+  background: #f8faf9;
   color: #2d3748;
   border-top: 1.5px solid #d8f3dc;
-  padding: 56px 0 36px;
+  padding: 52px 0 36px;
   margin-top: auto;
   position: relative;
 }
@@ -2496,10 +2496,10 @@ button, input, select, textarea {
 }
 
 .footer-top-row {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr 1fr;
-  gap: 36px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 40px;
   margin-bottom: 40px;
   padding-bottom: 36px;
   border-bottom: 1px solid #d8f3dc;
@@ -2508,102 +2508,33 @@ button, input, select, textarea {
 .footer-brand-col {
   display: flex;
   flex-direction: column;
+  max-width: 520px;
 }
 
 .footer-brand-desc {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: #4a5568;
-  line-height: 1.55;
+  line-height: 1.6;
   margin-top: 14px;
-  max-width: 320px;
 }
 
 .footer-brand-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 .footer-tag {
-  display: inline-block;
-  font-size: 0.76rem;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: #1b4332;
   background: #e8f5e9;
   border: 1px solid #b7e4c7;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-pill);
-}
-
-.footer-center-col {
-  display: flex;
-  justify-content: center;
-}
-
-/* Переработанная надпись сезона (белая плашка в стиле «Свой огород — это счастье!» как на фото) */
-.footer-season-badge {
-  background: transparent;
-  border: none;
-  padding: 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-  box-shadow: none;
-}
-
-.footer-season-tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.74rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #2d6a4f;
-  background: #e8f5e9;
-  border: 1px solid #b7e4c7;
-  padding: 3px 12px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 6px;
-}
-
-.footer-season-bubble {
-  background: #ffffff;
-  padding: 8px 24px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(45, 106, 79, 0.12);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 4px 0 10px;
-}
-
-.footer-hand-note, .footer-season-title {
-  font-family: var(--font-hand);
-  font-size: 1.65rem;
-  color: var(--color-primary-dark, #1b4332);
-  line-height: 1.15;
-}
-
-.footer-hand-heart {
-  color: #d90429;
-  font-size: 1.35rem;
-  line-height: 1;
-  display: inline-block;
-}
-
-.footer-season-sub {
-  font-size: 0.88rem;
-  color: #4a5568;
-  line-height: 1.5;
-  margin: 0;
-  text-align: center;
 }
 
 .footer-contact-col {
@@ -2611,7 +2542,8 @@ button, input, select, textarea {
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  gap: 5px;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .footer-contact-item {
@@ -2622,13 +2554,14 @@ button, input, select, textarea {
 
 .footer-contact-label {
   font-size: 0.8rem;
+  font-weight: 600;
   color: #718096;
   display: block;
 }
 
 .footer-phone-link {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.65rem;
   font-weight: 900;
   color: #1b4332 !important;
   text-decoration: none;
@@ -2642,12 +2575,12 @@ button, input, select, textarea {
 }
 
 .footer-hours-text {
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   color: #4a5568;
 }
 
 .footer-address-text {
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   color: #4a5568;
   margin-bottom: 6px;
 }
@@ -2656,7 +2589,7 @@ button, input, select, textarea {
   background: #2d6a4f;
   color: #ffffff !important;
   border: none;
-  padding: 12px 22px;
+  padding: 12px 24px;
   font-size: 0.92rem;
   font-weight: 700;
   border-radius: var(--radius-pill);
@@ -2675,7 +2608,7 @@ button, input, select, textarea {
 .footer-links-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: 36px;
   margin-bottom: 40px;
 }
 
@@ -2760,7 +2693,7 @@ button, input, select, textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   color: #718096;
   padding-top: 24px;
   border-top: 1px solid #d8f3dc;
@@ -2770,7 +2703,7 @@ button, input, select, textarea {
 
 .footer-safe-note {
   color: #2d6a4f;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -3593,7 +3526,8 @@ textarea {
     grid-template-columns: 1fr;
   }
   .footer-top-row {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 26px;
   }
@@ -3606,13 +3540,6 @@ textarea {
   }
   .footer-brand-tags {
     justify-content: center;
-  }
-  .footer-season-badge {
-    border-left: none;
-    border-top: 2px solid #d8f3dc;
-    padding: 16px 0 0 0;
-    text-align: center;
-    margin: 0 auto;
   }
   .footer-contact-col {
     align-items: center;

@@ -82,7 +82,23 @@ function getSiteConfig() {
   try {
     const saved = localStorage.getItem("teplici76_config");
     if (saved) {
-      return JSON.parse(saved);
+      const parsed = JSON.parse(saved);
+      return {
+        ...DEFAULT_CONFIG,
+        ...parsed,
+        company: { ...DEFAULT_CONFIG.company, ...(parsed.company || {}) },
+        pricing: { ...DEFAULT_CONFIG.pricing, ...(parsed.pricing || {}) },
+        vkNotify: {
+          ...DEFAULT_CONFIG.vkNotify,
+          ...(parsed.vkNotify || {}),
+          groupToken: (parsed.vkNotify && parsed.vkNotify.groupToken) || DEFAULT_CONFIG.vkNotify.groupToken,
+          groupId: (parsed.vkNotify && parsed.vkNotify.groupId) || DEFAULT_CONFIG.vkNotify.groupId,
+          userId: (parsed.vkNotify && parsed.vkNotify.userId) || DEFAULT_CONFIG.vkNotify.userId,
+          userIds: (parsed.vkNotify && parsed.vkNotify.userIds && parsed.vkNotify.userIds.length) ? parsed.vkNotify.userIds : DEFAULT_CONFIG.vkNotify.userIds,
+          enabled: parsed.vkNotify && typeof parsed.vkNotify.enabled === "boolean" ? parsed.vkNotify.enabled : true
+        },
+        telegramNotify: { ...DEFAULT_CONFIG.telegramNotify, ...(parsed.telegramNotify || {}) }
+      };
     }
   } catch (e) {
     console.error("Config load error", e);

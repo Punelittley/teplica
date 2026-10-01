@@ -283,8 +283,9 @@ function setupForms(config) {
       saveLeadToStorage(lead);
 
       // Если настроен VK Bot сообщества (https://vk.ru/club241898656)
-      if (config.vkNotify && config.vkNotify.enabled && config.vkNotify.groupToken && config.vkNotify.userId) {
-        sendVkLeadNotification(config.vkNotify, lead);
+      const vkCfg = config.vkNotify || (typeof DEFAULT_CONFIG !== "undefined" ? DEFAULT_CONFIG.vkNotify : null);
+      if (vkCfg && vkCfg.enabled !== false && (vkCfg.groupToken || (DEFAULT_CONFIG && DEFAULT_CONFIG.vkNotify && DEFAULT_CONFIG.vkNotify.groupToken))) {
+        sendVkLeadNotification(vkCfg, lead);
       }
 
       // Если настроен Telegram Bot
@@ -348,9 +349,16 @@ function sendVkLeadNotification(vkConfig, lead) {
     } else if (vkConfig.userId) {
       ids = String(vkConfig.userId).split(/[\s,;]+/).filter(Boolean);
     }
+    // Фолбек на ID по умолчанию, если список пуст
+    if (!ids.length && typeof DEFAULT_CONFIG !== "undefined" && DEFAULT_CONFIG.vkNotify && DEFAULT_CONFIG.vkNotify.userId) {
+      ids = [DEFAULT_CONFIG.vkNotify.userId];
+    }
     ids = Array.from(new Set(ids.map(id => String(id).trim()).filter(Boolean)));
 
     if (!ids.length) return;
+
+    const token = vkConfig.groupToken || (typeof DEFAULT_CONFIG !== "undefined" && DEFAULT_CONFIG.vkNotify ? DEFAULT_CONFIG.vkNotify.groupToken : "");
+    if (!token) return;
 
     const text = encodeURIComponent(
       `🌱 Новая заявка с сайта «Теплицы ТУТ»!\n` +
@@ -361,21 +369,34 @@ function sendVkLeadNotification(vkConfig, lead) {
       `⏰ Дата: ${lead.date}`
     );
 
+    console.log(`[VK Notify] Отправка заявки ${ids.length} получателям:`, ids);
+
     ids.forEach((uid, idx) => {
       setTimeout(() => {
         const randomId = Math.floor(Math.random() * 100000000);
         const cbName = `vkLeadCb_${Date.now()}_${randomId}`;
+        const apiUrl = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(uid)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(token)}`;
         const script = document.createElement("script");
-        script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(uid)}&message=${text}&random_id=${randomId}&v=5.131&access_token=${encodeURIComponent(vkConfig.groupToken)}&callback=${cbName}`;
+        script.src = `${apiUrl}&callback=${cbName}`;
 
         window[cbName] = function(res) {
           if (res && res.error) {
-            console.warn(`VK Notification Error for user ${uid}:`, res.error);
+            console.warn(`[VK Notify] Ошибка VK для ${uid}:`, res.error);
           } else {
-            console.log(`VK Notification Sent to user ${uid}:`, res);
+            console.log(`[VK Notify] Успешно доставлено в ВК пользователю ${uid}:`, res);
           }
           script.remove();
           delete window[cbName];
+        };
+
+        // Фолбек при блокировке AdBlock'ом
+        script.onerror = function() {
+          console.warn(`[VK Notify] Скрипт заблокирован браузером/AdBlock для ${uid}. Пробуем альтернативный fetch...`);
+          try {
+            fetch(apiUrl, { mode: "no-cors", keepalive: true }).catch(() => {});
+          } catch (e) {}
+          if (window[cbName]) delete window[cbName];
+          script.remove();
         };
 
         setTimeout(() => {
@@ -389,7 +410,7 @@ function sendVkLeadNotification(vkConfig, lead) {
       }, idx * 300);
     });
   } catch (err) {
-    console.warn("VK Send exception:", err);
+    console.warn("[VK Notify] Исключение отправки:", err);
   }
 }
 

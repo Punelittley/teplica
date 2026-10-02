@@ -611,10 +611,32 @@ function setupDatabaseTab() {
   const ghBranchInput = document.getElementById("github_branch");
   const ghStatus = document.getElementById("githubStatus");
 
-  // Загрузка ранее сохраненных настроек GitHub
-  if (ghRepoInput) ghRepoInput.value = localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica";
-  if (ghTokenInput) ghTokenInput.value = localStorage.getItem("teplici76_github_token") || "";
-  if (ghBranchInput) ghBranchInput.value = localStorage.getItem("teplici76_github_branch") || "main";
+  // Авто-привязка токена при открытии по ссылке с #token=...
+  if (window.location.hash.includes("token=")) {
+    const match = window.location.hash.match(/token=([^&]+)/);
+    if (match && match[1]) {
+      localStorage.setItem("teplici76_github_token", match[1]);
+      localStorage.setItem("teplici76_github_repo", "Punelittley/teplica");
+      localStorage.setItem("teplici76_github_branch", "main");
+      try {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      } catch (e) {}
+    }
+  }
+
+  // Загрузка настроек GitHub из localStorage
+  if (ghRepoInput) {
+    ghRepoInput.value = localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica";
+    ghRepoInput.addEventListener("input", () => localStorage.setItem("teplici76_github_repo", ghRepoInput.value.trim()));
+  }
+  if (ghTokenInput) {
+    ghTokenInput.value = localStorage.getItem("teplici76_github_token") || "";
+    ghTokenInput.addEventListener("input", () => localStorage.setItem("teplici76_github_token", ghTokenInput.value.trim()));
+  }
+  if (ghBranchInput) {
+    ghBranchInput.value = localStorage.getItem("teplici76_github_branch") || "main";
+    ghBranchInput.addEventListener("input", () => localStorage.setItem("teplici76_github_branch", ghBranchInput.value.trim()));
+  }
 
   // Публикация на GitHub Pages
   if (publishGithubBtn) {

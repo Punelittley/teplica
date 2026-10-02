@@ -735,6 +735,62 @@ function setupDatabaseTab() {
     });
   }
 
+  const pullGithubBtn = document.getElementById("pullGithubBtn");
+  if (pullGithubBtn) {
+    pullGithubBtn.addEventListener("click", async () => {
+      pullGithubBtn.disabled = true;
+      ghStatus.style.display = "block";
+      ghStatus.style.color = "#1b4332";
+      ghStatus.innerHTML = "⏳ Загрузка актуальной базы с сайта / GitHub...";
+
+      try {
+        const res = await fetch("database.json?v=" + Date.now());
+        if (!res.ok) throw new Error("Файл database.json не найден (HTTP " + res.status + ")");
+        const data = await res.json();
+        const db = data.database || data;
+        if (db && (db.products || db.company || db.pricing)) {
+          saveSiteConfig(db);
+          if (Array.isArray(data.leads)) {
+            localStorage.setItem("teplici76_leads", JSON.stringify(data.leads));
+          }
+          ghStatus.style.color = "#2b9348";
+          ghStatus.innerHTML = "✅ База успешно синхронизирована с сайта! Перезагрузка...";
+          setTimeout(() => location.reload(), 800);
+        } else {
+          throw new Error("Неверная структура database.json");
+        }
+      } catch (err) {
+        ghStatus.style.color = "#dc3545";
+        ghStatus.innerHTML = "❌ Ошибка синхронизации: " + err.message;
+      } finally {
+        pullGithubBtn.disabled = false;
+      }
+    });
+  }
+
+  // Если локальной базы еще нет на этом устройстве (первый вход или очищен кэш), подгружаем с GitHub
+  if (!localStorage.getItem("teplici76_config")) {
+    fetch("database.json?v=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data) {
+          const db = data.database || data;
+          if (db && (db.products || db.company || db.pricing)) {
+            saveSiteConfig(db);
+            if (Array.isArray(data.leads) && !localStorage.getItem("teplici76_leads")) {
+              localStorage.setItem("teplici76_leads", JSON.stringify(data.leads));
+            }
+            loadProductsTab();
+            loadReviewsTab();
+            loadWorksTab();
+            loadPricesForm();
+            loadContactsForm();
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
   if (exportBtn) {
     exportBtn.addEventListener("click", () => {
       exportFullDatabase();

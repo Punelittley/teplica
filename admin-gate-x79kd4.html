@@ -312,9 +312,14 @@
             <input type="password" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
           </div>
 
-          <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" style="padding: 14px 28px; font-size: 1.05rem;">
-            🚀 Опубликовать изменения на сайт (GitHub)
-          </button>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
+            <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" style="padding: 14px 28px; font-size: 1.05rem;">
+              🚀 Опубликовать изменения на сайт (GitHub)
+            </button>
+            <button type="button" class="btn-admin btn-admin-light" id="pullGithubBtn" style="padding: 14px 22px; font-size: 0.95rem; font-weight: 600;" title="Загрузить опубликованную с сайта базу">
+              🔄 Загрузить свежую базу с сайта / GitHub
+            </button>
+          </div>
 
           <div id="githubStatus" style="margin-top: 14px; font-size: 0.92rem; display: none; padding: 10px 14px; border-radius: 8px; background: #ffffff; border: 1px solid #d8f3dc;"></div>
         </div>

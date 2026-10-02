@@ -6200,19 +6200,20 @@ textarea {
   padding: 12px 30px;
   font-size: 14px;
   white-space: nowrap;
-  border: 1px solid #e3e3e3;
+  border: 1px solid #d4ded7;
   border-bottom: 0;
   border-radius: 12px 12px 0 0;
   background: #fff;
-  color: #2b2420;
+  color: #1b4332;
+  font-weight: 600;
   font-family: var(--font-base);
   position: relative;
   z-index: 2;
   transition: background .4s cubic-bezier(.22,.7,.2,1), color .4s cubic-bezier(.22,.7,.2,1);
 }
 .tabbed-showcase-section .tab.active { 
-  background: #9b887b; 
-  border-color: #9b887b; 
+  background: #204b36; 
+  border-color: #204b36; 
   color: #fff; 
   z-index: 3;
   padding-bottom: 13px;
@@ -6236,10 +6237,10 @@ textarea {
   color: #fff;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background: linear-gradient(115deg, #9b887b 0%, #a99484 35%, #c3ab98 70%, #e8cfb4 100%);
+  background: linear-gradient(115deg, #1b4332 0%, #255940 35%, #347a57 70%, #4da377 100%);
   background-size: 140% 140%;
   animation: drift 14s ease-in-out infinite alternate;
-  box-shadow: 0 16px 40px rgba(135, 117, 102, 0.2);
+  box-shadow: 0 16px 40px rgba(27, 67, 50, 0.22);
 }
 
 .tabbed-showcase-section .card::before { /* мягкий световой блик */
@@ -6249,7 +6250,7 @@ textarea {
   aspect-ratio: 1;
   right: -15%;
   bottom: -35%;
-  background: radial-gradient(circle, rgba(255,240,222,.55), transparent 65%);
+  background: radial-gradient(circle, rgba(163, 230, 185, 0.35), transparent 65%);
   filter: blur(20px);
   animation: float 9s ease-in-out infinite alternate;
   pointer-events: none;
@@ -6331,9 +6332,9 @@ textarea {
   z-index: 1;
   justify-self: start;
   background: #fff;
-  color: #2b2420;
+  color: #1b4332;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 16px 44px;
   border-radius: 10px;
   overflow: hidden;
@@ -6345,7 +6346,7 @@ textarea {
 
 .tabbed-showcase-section .cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(70,45,30,.25);
+  box-shadow: 0 12px 26px rgba(20, 55, 38, 0.3);
 }
 
 .tabbed-showcase-section .cta:active {
@@ -6356,7 +6357,7 @@ textarea {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, transparent 30%, rgba(232,207,180,.55) 50%, transparent 70%);
+  background: linear-gradient(100deg, transparent 30%, rgba(216, 243, 220, 0.65) 50%, transparent 70%);
   transform: translateX(-120%);
 }
 
@@ -6386,7 +6387,7 @@ textarea {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(45, 30, 20, 0.22));
+  filter: drop-shadow(0 14px 28px rgba(15, 45, 30, 0.35));
   transition: opacity .45s cubic-bezier(.22,.7,.2,1), transform .45s cubic-bezier(.22,.7,.2,1), filter .45s cubic-bezier(.22,.7,.2,1);
 }
 

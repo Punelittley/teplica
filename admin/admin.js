@@ -612,7 +612,7 @@ function setupDatabaseTab() {
   const ghStatus = document.getElementById("githubStatus");
 
   // Загрузка ранее сохраненных настроек GitHub
-  if (ghRepoInput) ghRepoInput.value = localStorage.getItem("teplici76_github_repo") || "";
+  if (ghRepoInput) ghRepoInput.value = localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica";
   if (ghTokenInput) ghTokenInput.value = localStorage.getItem("teplici76_github_token") || "";
   if (ghBranchInput) ghBranchInput.value = localStorage.getItem("teplici76_github_branch") || "main";
 

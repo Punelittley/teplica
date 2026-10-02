@@ -223,3 +223,229 @@ body {
 .tab-panel.active {
   display: block;
 }
+
+/* Сетка карточек товаров и работ */
+.admin-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.admin-item-card {
+  background: white;
+  border: 1.5px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.admin-item-img-wrap {
+  width: 100%;
+  height: 170px;
+  background: #eef2ef;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-item-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-item-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #1b4332;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.admin-item-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.admin-item-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 6px;
+}
+
+.admin-item-meta {
+  font-size: 0.85rem;
+  color: var(--admin-muted);
+  margin-bottom: 8px;
+}
+
+.admin-item-price {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #2d6a4f;
+  margin-bottom: 12px;
+}
+
+.admin-item-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Загрузчик картинок */
+.image-uploader-box {
+  background: #f8faf9;
+  border: 2px dashed #b7e4c7;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.image-source-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.image-source-tab-btn {
+  background: #e9ecef;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #495057;
+}
+
+.image-source-tab-btn.active {
+  background: #2d6a4f;
+  color: white;
+}
+
+.image-preview-area {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  border: 1px solid var(--admin-border);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 10px;
+  color: var(--admin-muted);
+  font-size: 0.85rem;
+}
+
+.image-preview-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Модальное окно редактора */
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+}
+
+.admin-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin-modal-card {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--admin-radius);
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.admin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b4332;
+}
+
+.admin-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--admin-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Блок отзывов в админке */
+.admin-review-card {
+  background: white;
+  border: 1.5px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-review-card.featured {
+  border-color: #52b788;
+  background: #f4fbf7;
+}
+
+.admin-review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-review-stars {
+  color: #e9c46a;
+  font-size: 1.1rem;
+}
+

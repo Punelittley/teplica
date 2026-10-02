@@ -37,10 +37,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 11. Умный FAQ чат-бот консультант
   setupFaqChatbot();
+
+  // 12. Интерактивный витринный блок категорий и услуг
+  initTabbedShowcase();
+
+  // 13. Динамическая гидратация контента из БД (товары, отзывы, работы)
+  renderDatabaseContent(config);
+
+  // 14. Автоматическая подгрузка свежей базы database.json с GitHub Pages
+  fetch("database.json?v=" + Date.now())
+    .then(res => {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then(data => {
+      const db = data.database || data;
+      if (db && (db.products || db.company || db.pricing)) {
+        applyCompanyContacts(db);
+        renderDatabaseContent(db);
+      }
+    })
+    .catch(() => {
+      // Работаем на встроенной/локальной конфигурации
+    });
+
+  // Слушатель событий обновления базы данных
+  window.addEventListener("teplica:data-updated", (e) => {
+    const updated = e.detail || getSiteConfig();
+    applyCompanyContacts(updated);
+    renderDatabaseContent(updated);
+  });
 });
 
 // Обновление контактов в DOM
 function applyCompanyContacts(config) {
+  if (!config || !config.company) return;
   const phoneEls = document.querySelectorAll(".js-phone-text");
   phoneEls.forEach(el => el.textContent = config.company.phone);
 
@@ -56,6 +87,83 @@ function applyCompanyContacts(config) {
   const promoEl = document.querySelector(".js-promo-text");
   if (promoEl && config.company.promoText) {
     promoEl.textContent = config.company.promoText;
+  }
+}
+
+// Динамическое отображение данных из БД на всех страницах сайта
+function renderDatabaseContent(config) {
+  if (!config) return;
+
+  // 1. Отзывы на странице otzyvy.html
+  const testimonialsGrid = document.querySelector(".testimonials-cards-grid");
+  if (testimonialsGrid && Array.isArray(config.reviews) && config.reviews.length) {
+    testimonialsGrid.innerHTML = config.reviews.map(rev => `
+      <div class="testimonial-card ${rev.featured ? 'testimonial-card-featured' : ''}">
+        <div class="testimonial-stars">${'★'.repeat(rev.stars || 5)}${'☆'.repeat(5 - (rev.stars || 5))}</div>
+        <div class="testimonial-name">${rev.name}</div>
+        <div class="testimonial-role">${rev.role || ''}</div>
+        <div class="testimonial-quote-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+        </div>
+        <p class="testimonial-body">${rev.text}</p>
+      </div>
+    `).join("");
+  }
+
+  // 2. Отзывы на главной странице index.html
+  const indexReviewsGrid = document.querySelector(".reviews-grid");
+  if (indexReviewsGrid && Array.isArray(config.reviews) && config.reviews.length) {
+    const topReviews = config.reviews.slice(0, 3);
+    indexReviewsGrid.innerHTML = topReviews.map((r, idx) => `
+      <div class="review-item" data-aos="fade-up" data-aos-delay="${(idx + 1) * 80}">
+        <div class="review-item-stars">${'★'.repeat(r.stars || 5)}${'☆'.repeat(5 - (r.stars || 5))}</div>
+        <p class="review-item-text">«${r.text}»</p>
+        <div class="review-item-author">
+          <div>
+            <div class="review-item-name">${r.name}</div>
+            <div class="review-item-city">${r.role || ''}</div>
+          </div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // 3. Наши работы на странице nashi-raboty.html
+  const worksGrid = document.getElementById("worksGrid");
+  if (worksGrid && Array.isArray(config.works) && config.works.length) {
+    worksGrid.innerHTML = config.works.map(w => `
+      <div class="works-item" data-category="${w.category || 'arch'}" data-src="${w.image}" data-title="${w.title}">
+        <img src="${w.image}" alt="${w.title}" loading="lazy" onerror="this.src='assets/images/products/p1/2.jpg'">
+      </div>
+    `).join("");
+  }
+
+  // 4. Товары на страницах каталога (arochnye.html, kaplevidnye.html)
+  const catalogGrid = document.querySelector(".catalog-grid");
+  if (catalogGrid && Array.isArray(config.products) && config.products.length) {
+    const isDrop = window.location.pathname.includes("kaplevidnye");
+    const filtered = isDrop
+      ? config.products.filter(p => p.category === "drop" || p.category === "poly" || p.category === "beds" || p.category === "other")
+      : config.products.filter(p => p.category === "arch" || p.category === "poly" || p.category === "beds" || p.category === "other");
+
+    if (filtered.length) {
+      catalogGrid.innerHTML = filtered.map(prod => `
+        <div class="cat-card js-product-card" data-product-id="${prod.id}">
+          <img src="${prod.image}" alt="${prod.name}" class="cat-card-img" onerror="this.src='assets/images/products/p1/1.jpg'">
+          ${prod.badge ? `<span class="cat-card-badge badge-${prod.badgeType || 'hit'}">${prod.badge}</span>` : ''}
+          <div class="cat-card-dot" style="background:#52b788;"></div>
+          <div class="cat-card-body">
+            <div class="cat-card-info">
+              <div class="cat-card-name">${prod.name}</div>
+              <div class="cat-card-size">${prod.price ? 'от ' + prod.price.toLocaleString('ru-RU') + ' ₽' : ''} ${prod.size ? '• ' + prod.size : ''}</div>
+            </div>
+            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+          </div>
+        </div>
+      `).join("");
+    }
   }
 }
 
@@ -837,4 +945,144 @@ function setupFaqChatbot() {
     handleUserQuery(val);
   });
 }
+
+// 12. Интерактивный витринный блок (в стиле верстки пользователя)
+function initTabbedShowcase() {
+  const DATA = [
+    { 
+      tab: 'Теплицы', 
+      items: [
+        ['Арочные теплицы', 'Классическая надежная форма с оцинкованным каркасом 20х20 или 40х20. Выдерживает любые ветровые и снеговые нагрузки.', 'assets/images/2.png'],
+        ['Каплевидные теплицы', 'Усиленный стрельчатый свод — снег сходит сам! Увеличенная высота 2.35 м для удобства ухода за высокорослыми томатами.', 'assets/images/mockup_kaplevidnaya.jpg'],
+        ['Прямостенные теплицы', 'Максимум полезного объема для посадки вдоль стенок. Удобно ходить в полный рост по всей площади теплицы.', 'assets/images/greenhouse_arch.jpg'],
+        ['Мини-парники', 'Компактные оцинкованные конструкции для зелени, перцев и ранней рассады с удобными откидными крышками.', 'assets/images/2kryg.png'] 
+      ]
+    },
+    { 
+      tab: 'Грядки и Оборудование', 
+      items: [
+        ['Оцинкованные грядки', 'Забота о здоровье спины. Высота бортов 15, 20 и 35 см. Безопасные завальцованные края, которые не режут руки.', 'assets/images/4.png'],
+        ['Сотовый поликарбонат', 'Первичное сырье 4 мм и 6 мм повышенной плотности. Двойной слой защиты от УФ излучения предотвращает разрушение сотов.', 'assets/images/mockup_polycarb_detail.jpg'],
+        ['Автопроветривание и полив', 'Автономные термоприводы открывают форточки при нагреве. Система капельного полива ухаживает за растениями без вас.', 'assets/images/3kryg.png'] 
+      ]
+    },
+    { 
+      tab: 'Услуги и Сервис', 
+      items: [
+        ['Доставка по области', 'Бережная доставка по Ярославлю, Рыбинску, Тутаеву, Угличу, Ростову, Переславлю и всем СНТ области в удобное время.', 'assets/images/teplica.png'],
+        ['Сборка под ключ', 'Опытные бригады установят теплицу на фундамент из бруса 100х100 или грунтозацепы. Оплата только после вашей приемки.', 'assets/images/mockup_install.jpg'],
+        ['Бесплатное хранение', 'Купите теплицу со скидкой прямо сейчас! Мы бесплатно сохраним её на сухом охраняемом складе завода до нужной даты выгрузки.', 'assets/images/hero_gardener.jpg'] 
+      ]
+    }
+  ];
+
+  const tabsEl = document.getElementById('tabs');
+  const listEl = document.getElementById('list');
+  const titleEl = document.getElementById('title');
+  const descEl = document.getElementById('desc');
+  const nextEl = document.getElementById('next');
+  const ctaEl = document.getElementById('cta');
+  const cardImgEl = document.getElementById('cardImg');
+
+  if (!tabsEl || !listEl || !titleEl || !descEl) return;
+
+  let tab = 0, item = 0, busy = false;
+
+  function renderTabs() {
+    tabsEl.innerHTML = '';
+    DATA.forEach((d, i) => {
+      const b = document.createElement('button');
+      b.className = 'tab' + (i === tab ? ' active' : '');
+      b.textContent = d.tab;
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === tab);
+      b.onclick = () => { 
+        if (i !== tab) { 
+          tab = i; 
+          item = 0; 
+          renderTabs(); 
+          renderList(); 
+          show(); 
+        } 
+      };
+      tabsEl.appendChild(b);
+    });
+  }
+
+  function renderList() {
+    listEl.innerHTML = '';
+    DATA[tab].items.forEach((it, i) => {
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.textContent = it[0];
+      b.className = i === item ? 'active' : '';
+      b.style.animationDelay = (i * 70) + 'ms';
+      li.className = 'in';
+      li.style.animationDelay = (i * 70) + 'ms';
+      b.onclick = () => select(i);
+      li.appendChild(b);
+      listEl.appendChild(li);
+    });
+  }
+
+  function show() {
+    const [t, d, img] = DATA[tab].items[item];
+    if (titleEl) titleEl.textContent = t;
+    if (descEl) descEl.textContent = d;
+    if (cardImgEl) {
+      cardImgEl.src = img || 'assets/images/2.png';
+      cardImgEl.alt = t;
+    }
+  }
+
+  function select(i) {
+    if (busy || i === item) return;
+    busy = true;
+    titleEl.classList.add('out'); 
+    descEl.classList.add('out');
+    if (cardImgEl) cardImgEl.classList.add('out');
+
+    setTimeout(() => {
+      item = i;
+      show();
+      [...listEl.querySelectorAll('button')].forEach((b, k) => b.classList.toggle('active', k === item));
+      titleEl.classList.remove('out'); 
+      descEl.classList.remove('out');
+      if (cardImgEl) cardImgEl.classList.remove('out');
+      busy = false;
+    }, 380);
+  }
+
+  if (nextEl) {
+    nextEl.onclick = () => select((item + 1) % DATA[tab].items.length);
+  }
+
+  if (ctaEl) {
+    ctaEl.onclick = (e) => {
+      e.preventDefault();
+      const modalOverlay = document.getElementById("modalOverlay");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalSubtitle = document.getElementById("modalSubtitle");
+      const modalSubject = document.getElementById("modalSubject");
+      if (!modalOverlay) return;
+
+      const currentItem = DATA[tab].items[item];
+      const subject = `Заявка из каталога: ${DATA[tab].tab} — ${currentItem[0]}`;
+      const title = "Рассчитать стоимость";
+      const subtitle = "Остановите выбор на надежной теплице от завода";
+
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalSubtitle) modalSubtitle.textContent = subtitle;
+      if (modalSubject) modalSubject.value = subject;
+      modalOverlay.classList.add("active");
+    };
+  }
+
+  renderTabs(); 
+  renderList(); 
+  show();
+}
+
+
+
 

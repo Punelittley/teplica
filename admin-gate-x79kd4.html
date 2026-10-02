@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Защищенная панель управления — Теплицы ТУТ</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="admin/admin.css">
+</head>
+<body>
+
+  <!-- Экран входа по сложному паролю -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <img src="assets/images/logo.png" alt="Теплицы ТУТ" style="width: 68px; height: 68px; border-radius: 14px; margin: 0 auto 15px; object-fit: cover;">
+      <h1 style="font-size: 1.6rem; color: #1b4332; margin-bottom: 6px;">Вход в управление</h1>
+      <p style="font-size: 0.88rem; color: #6c757d; margin-bottom: 22px;">
+        Секретный шлюз сайта «Теплицы ТУТ»
+      </p>
+
+      <form id="loginForm">
+        <div style="margin-bottom: 18px; text-align: left;">
+          <label style="font-size: 0.88rem; font-weight: 700; display: block; margin-bottom: 6px;">Пароль администратора:</label>
+          <input type="password" id="passwordInput" class="form-input-admin" placeholder="Введите сложный пароль" required autofocus>
+        </div>
+        <div id="loginError" style="color: #dc3545; font-size: 0.85rem; margin-bottom: 15px; display: none;">
+          Неверный пароль. Попробуйте еще раз.
+        </div>
+        <button type="submit" class="btn-admin btn-admin-primary" style="width: 100%; padding: 12px; font-size: 1rem;">
+          Войти в панель →
+        </button>
+      </form>
+      <div style="margin-top: 20px;">
+        <a href="index.html" style="font-size: 0.85rem; color: #2d6a4f; text-decoration: none;">← Вернуться на витрину сайта</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Главный интерфейс панели -->
+  <div class="admin-layout" id="adminLayout">
+    <!-- Боковое меню -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="assets/images/logo.png" alt="Теплицы ТУТ" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+        <div>
+          <div style="font-weight: 800; font-size: 1.15rem; line-height: 1.1;">ТЕПЛИЦЫ <span style="color: #52b788;">ТУТ</span></div>
+          <div style="font-size: 0.75rem; opacity: 0.7;">Панель 2.0 (Секретная)</div>
+        </div>
+      </div>
+
+      <ul class="admin-nav">
+        <li class="admin-nav-item">
+          <button type="button" class="active" data-tab="tabLeads">
+            <span>📥</span>
+            <span>Заявки</span>
+            <span id="leadsCount" style="margin-left: auto; background: rgba(255,255,255,0.25); padding: 2px 7px; border-radius: 999px; font-size: 0.75rem;">0</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabProducts">
+            <span>📦</span>
+            <span>Товары (Каталог)</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabReviews">
+            <span>⭐</span>
+            <span>Отзывы</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabWorks">
+            <span>📷</span>
+            <span>Наши работы</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabPricing">
+            <span>💰</span>
+            <span>Цены калькулятора</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabContacts">
+            <span>🏢</span>
+            <span>Контакты и акции</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabVk">
+            <span>💬</span>
+            <span>ВКонтакте бот</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabTelegram">
+            <span>✈️</span>
+            <span>Telegram бот</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabBackup">
+            <span>💾</span>
+            <span>База данных (JSON)</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-tab="tabSecurity">
+            <span>🔒</span>
+            <span>Безопасность</span>
+          </button>
+        </li>
+      </ul>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 8px;">
+        <a href="index.html" target="_blank" style="color: rgba(255,255,255,0.85); font-size: 0.88rem; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+          <span>🌐</span> Открыть сайт
+        </a>
+        <button type="button" id="logoutBtn" style="background: none; border: none; color: #ffadad; text-align: left; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 4px 0;">
+          <span>🚪</span> Выйти
+        </button>
+      </div>
+    </aside>
+
+    <!-- Основная рабочая область -->
+    <main class="admin-content">
+
+      <!-- Вкладка 1: Заявки (Лиды) -->
+      <section class="tab-panel active" id="tabLeads">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Поступившие заявки</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">Звонки, расчеты из калькулятора и формы связи</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-admin btn-admin-primary" onclick="exportLeadsCSV()">📥 Экспорт в CSV</button>
+            <button class="btn-admin btn-admin-danger" onclick="clearAllLeads()">Очистить все</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div id="leadsEmpty" style="padding: 40px; text-align: center; color: var(--admin-muted); display: none;">
+            Пока нет ни одной заявки. Как только клиент заполнит форму или калькулятор на сайте, заявка появится здесь.
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Дата</th>
+                  <th>Имя</th>
+                  <th>Телефон</th>
+                  <th>Статус</th>
+                  <th>Тема</th>
+                  <th>Детали</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Вкладка 2: Товары (Каталог) -->
+      <section class="tab-panel" id="tabProducts">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Товары и каталог теплиц</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">Добавление, редактирование цен, фото и характеристик</p>
+          </div>
+          <button class="btn-admin btn-admin-primary" onclick="openCreateProductModal()">
+            ➕ Добавить товар
+          </button>
+        </div>
+
+        <div style="margin-bottom: 12px; font-weight: 700; color: #1b4332;" id="adminProductsCount"></div>
+        <div class="admin-items-grid" id="adminProductsGrid"></div>
+      </section>
+
+      <!-- Вкладка 3: Отзывы -->
+      <section class="tab-panel" id="tabReviews">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Отзывы покупателей</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">Управление отзывами садоводов на сайте</p>
+          </div>
+          <button class="btn-admin btn-admin-primary" onclick="openCreateReviewModal()">
+            ➕ Добавить отзыв
+          </button>
+        </div>
+
+        <div style="margin-bottom: 12px; font-weight: 700; color: #1b4332;" id="adminReviewsCount"></div>
+        <div id="adminReviewsList"></div>
+      </section>
+
+      <!-- Вкладка 4: Наши работы -->
+      <section class="tab-panel" id="tabWorks">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Наши работы (Галерея)</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">Фотографии собранных теплиц на участках клиентов</p>
+          </div>
+          <button class="btn-admin btn-admin-primary" onclick="openCreateWorkModal()">
+            ➕ Добавить работу
+          </button>
+        </div>
+
+        <div style="margin-bottom: 12px; font-weight: 700; color: #1b4332;" id="adminWorksCount"></div>
+        <div class="admin-items-grid" id="adminWorksGrid"></div>
+      </section>
+
+      <!-- Вкладка 5: Цены калькулятора -->
+      <section class="tab-panel" id="tabPricing">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Цены калькулятора</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">Базовые расценки каркасов и доплат</p>
+          </div>
+        </div>
+
+        <form id="pricesForm">
+          <div class="admin-card">
+            <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 15px;">Арочные теплицы (базовый каркас)</h2>
+            <div class="form-grid-2">
+              <div class="form-group-admin">
+                <label>Арочная 3х4 м (руб):</label>
+                <input type="number" id="p_arch_4m" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Арочная 3х6 м (руб):</label>
+                <input type="number" id="p_arch_6m" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Арочная 3х8 м (руб):</label>
+                <input type="number" id="p_arch_8m" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Арочная 3х10 м (руб):</label>
+                <input type="number" id="p_arch_10m" class="form-input-admin" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 15px;">Каплевидные теплицы</h2>
+            <div class="form-grid-2">
+              <div class="form-group-admin">
+                <label>Каплевидная 3х4 м (руб):</label>
+                <input type="number" id="p_drop_4m" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Каплевидная 3х6 м (руб):</label>
+                <input type="number" id="p_drop_6m" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Каплевидная 3х8 м (руб):</label>
+                <input type="number" id="p_drop_8m" class="form-input-admin" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 15px;">Доплаты за опции</h2>
+            <div class="form-grid-2">
+              <div class="form-group-admin">
+                <label>Шаг дуг 0.65 м (руб):</label>
+                <input type="number" id="p_step_65" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Поликарбонат Премиум 4мм (руб):</label>
+                <input type="number" id="p_poly_prem4" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Поликарбонат Зимний 6мм (руб):</label>
+                <input type="number" id="p_poly_prem6" class="form-input-admin" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-admin btn-admin-primary" style="margin-top: 15px; padding: 12px 24px;">
+              💾 Сохранить цены калькулятора
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Вкладка 6: Контакты и промо -->
+      <section class="tab-panel" id="tabContacts">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Контакты и баннер акции</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">Телефон, адрес, часы работы и акционная строка</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <form id="contactsForm">
+            <div class="form-grid-2">
+              <div class="form-group-admin">
+                <label>Телефон для показа:</label>
+                <input type="text" id="c_phone" class="form-input-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Телефон без пробелов (+7...):</label>
+                <input type="text" id="c_phoneRaw" class="form-input-admin" required>
+              </div>
+            </div>
+
+            <div class="form-group-admin">
+              <label>Адрес площадки и склада:</label>
+              <input type="text" id="c_address" class="form-input-admin" required>
+            </div>
+
+            <div class="form-group-admin">
+              <label>Часы работы:</label>
+              <input type="text" id="c_hours" class="form-input-admin" required>
+            </div>
+
+            <div class="form-group-admin">
+              <label>Текст акции в верхней строке сайта:</label>
+              <input type="text" id="c_promo" class="form-input-admin" required>
+            </div>
+
+            <button type="submit" class="btn-admin btn-admin-primary" style="padding: 12px 24px;">
+              💾 Сохранить контакты
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Вкладка 7: ВК бот -->
+      <section class="tab-panel" id="tabVk">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Оповещения ВКонтакте</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">
+              Бот группы <strong>club241898656</strong> моментально присылает заявки вам в ЛС
+            </p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <form id="vkForm">
+            <div class="form-group-admin" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+              <input type="checkbox" id="vk_enabled" style="width: 20px; height: 20px;" checked>
+              <label for="vk_enabled" style="margin: 0; font-size: 1rem; cursor: pointer; font-weight: 700;">
+                Включить отправку заявок в личные сообщения ВК
+              </label>
+            </div>
+
+            <div class="form-group-admin">
+              <label>ID сообщества ВК:</label>
+              <input type="text" id="vk_group_id" class="form-input-admin">
+            </div>
+
+            <div class="form-group-admin">
+              <label>Ключ доступа (токен) группы:</label>
+              <input type="text" id="vk_token" class="form-input-admin">
+            </div>
+
+            <div class="form-group-admin">
+              <label>ID получателей (через запятую):</label>
+              <input type="text" id="vk_user_id" class="form-input-admin">
+            </div>
+
+            <div style="background: #f7faf8; border: 1.5px dashed #b7e4c7; border-radius: 10px; padding: 16px; margin: 18px 0;">
+              <label style="font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                ⚡ Быстрое добавление получателя:
+              </label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="vk_add_command_input" class="form-input-admin" placeholder="Числовой ID страницы" style="margin: 0;">
+                <button type="button" class="btn-admin btn-admin-primary" id="vkAddUserBtn" style="white-space: nowrap;">
+                  Добавить
+                </button>
+              </div>
+              <div id="vkAddStatus" style="font-size: 0.88rem; margin-top: 8px; display: none;"></div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label style="font-weight: 700; color: #1b4332; display: block; margin-bottom: 8px;">
+                Подключенные получатели:
+              </label>
+              <div id="vkRecipientsList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 20px;">
+              <button type="submit" class="btn-admin btn-admin-primary">Сохранить настройки ВК</button>
+              <button type="button" class="btn-admin btn-admin-light" id="vkTestBtn">Отправить тест</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Вкладка 8: Telegram бот -->
+      <section class="tab-panel" id="tabTelegram">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Уведомления в Telegram</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">
+              Заявки с сайта прямо в рабочий чат Telegram
+            </p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <form id="tgForm">
+            <div class="form-group-admin" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+              <input type="checkbox" id="tg_enabled" style="width: 20px; height: 20px;">
+              <label for="tg_enabled" style="margin: 0; font-size: 1rem; cursor: pointer;">
+                Включить уведомления в Telegram
+              </label>
+            </div>
+
+            <div class="form-group-admin">
+              <label>Telegram Bot Token:</label>
+              <input type="text" id="tg_token" class="form-input-admin" placeholder="123456789:ABCdef...">
+            </div>
+
+            <div class="form-group-admin">
+              <label>Telegram Chat ID:</label>
+              <input type="text" id="tg_chat" class="form-input-admin" placeholder="123456789">
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+              <button type="submit" class="btn-admin btn-admin-primary">Сохранить</button>
+              <button type="button" class="btn-admin btn-admin-light" id="tgTestBtn">Отправить тест</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Вкладка 9: База данных и синхронизация с GitHub -->
+      <section class="tab-panel" id="tabBackup">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">База данных и публикация на сайт</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">
+              Мгновенная отправка изменений в GitHub Pages, резервное копирование и привязка домена .com
+            </p>
+          </div>
+        </div>
+
+        <!-- 1. Публикация на GitHub Pages -->
+        <div class="admin-card" style="border: 2px solid #52b788; background: #fafdfb;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="font-size: 1.8rem;">🚀</span>
+            <div>
+              <h2 style="font-size: 1.3rem; color: #1b4332; margin: 0;">Публикация на GitHub Pages в 1 клик</h2>
+              <small style="color: var(--admin-muted);">Изменения автоматически обновятся на вашем .com домене за 20–30 секунд</small>
+            </div>
+          </div>
+
+          <div style="background: #edf7ee; border-radius: 8px; padding: 14px 16px; margin-bottom: 18px; font-size: 0.88rem; color: #1b4332; line-height: 1.55;">
+            <strong>Как подключить один раз (занимает 1 минуту):</strong>
+            <ol style="margin-left: 20px; margin-top: 6px;">
+              <li>Укажите репозиторий в формате <code>имя_пользователя/имя_репозитория</code> (например: <code>myuser/teplica-main</code>).</li>
+              <li>Сгенерируйте бесплатный токен: в GitHub откройте <strong>Settings → Developer settings → Personal access tokens → Tokens (classic)</strong>, нажмите <em>Generate new token</em>, отметьте галочку <code>repo</code> и скопируйте токен.</li>
+              <li>Вставьте токен в поле ниже. Он сохранится в вашей админке, повторно вводить не потребуется.</li>
+            </ol>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group-admin">
+              <label>Репозиторий GitHub (username/repo):</label>
+              <input type="text" id="github_repo" class="form-input-admin" placeholder="например: ivan/teplica-main">
+            </div>
+            <div class="form-group-admin">
+              <label>Ветка (branch):</label>
+              <input type="text" id="github_branch" class="form-input-admin" value="main">
+            </div>
+          </div>
+
+          <div class="form-group-admin">
+            <label>GitHub Personal Access Token (PAT):</label>
+            <input type="password" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+          </div>
+
+          <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" style="padding: 14px 28px; font-size: 1.05rem;">
+            🚀 Опубликовать изменения на сайт (GitHub)
+          </button>
+
+          <div id="githubStatus" style="margin-top: 14px; font-size: 0.92rem; display: none; padding: 10px 14px; border-radius: 8px; background: #ffffff; border: 1px solid #d8f3dc;"></div>
+        </div>
+
+        <!-- 2. Памятка по домену .com с Reg.ru -->
+        <div class="admin-card">
+          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 10px;">🌐 Привязка домена .com из Reg.ru к GitHub Pages</h2>
+          <p style="font-size: 0.9rem; color: var(--admin-muted); margin-bottom: 14px;">
+            Пошаговая инструкция для подключения купленного домена на Reg.ru:
+          </p>
+          <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; font-size: 0.88rem; line-height: 1.6;">
+            <p><strong>1. В личном кабинете Reg.ru в разделе «DNS-серверы и управление зоной»:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 10px;">
+              <li>Добавьте 4 <strong>A-записи</strong> для вашего домена (с именем <code>@</code>):<br>
+                <code>185.199.108.153</code><br>
+                <code>185.199.109.153</code><br>
+                <code>185.199.110.153</code><br>
+                <code>185.199.111.153</code>
+              </li>
+              <li>Добавьте 1 <strong>CNAME-запись</strong> для поддомена <code>www</code>:<br>
+                значение: <code>ваш_логин.github.io.</code> (с точкой на конце)
+              </li>
+            </ul>
+            <p><strong>2. В репозитории GitHub:</strong></p>
+            <ul style="margin-left: 20px;">
+              <li>В репозитории сайта откройте <strong>Settings → Pages → Custom domain</strong>, введите купленный домен <code>ваш-домен.com</code> и включите галочку <em>Enforce HTTPS</em>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Ручной бэкап -->
+        <div class="admin-card">
+          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 8px;">📥 3. Скачать полную базу данных (.json) на компьютер</h2>
+          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
+            Создает единый файл <code>teplica_full_database.json</code> со всеми товарами, ценами, отзывами, выполненными работами и всеми загруженными фотографиями (в Base64).
+          </p>
+          <button class="btn-admin btn-admin-light" id="exportFullDbBtn" style="padding: 12px 24px; font-weight: 700;">
+            📥 Скачать файл базы данных (.json)
+          </button>
+        </div>
+
+        <!-- 4. Ручной импорт -->
+        <div class="admin-card">
+          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 8px;">📤 4. Загрузить базу данных из файла</h2>
+          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
+            Выберите ранее сохраненный JSON-файл базы для восстановления товаров и фотографий.
+          </p>
+          <input type="file" id="importFullDbInput" accept=".json" class="form-input-admin" style="max-width: 450px;">
+        </div>
+
+        <!-- 5. Сброс -->
+        <div class="admin-card" style="border-color: #ffadad;">
+          <h2 style="font-size: 1.25rem; color: #dc3545; margin-bottom: 8px;">⚠️ 5. Сброс к заводским настройкам</h2>
+          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
+            Стереть все локальные изменения и вернуть исходную базу данных сайта.
+          </p>
+          <button class="btn-admin btn-admin-danger" id="resetDbBtn">
+            Сбросить базу данных
+          </button>
+        </div>
+      </section>
+
+      <!-- Вкладка 10: Безопасность -->
+      <section class="tab-panel" id="tabSecurity">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Безопасность панели управления</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">
+              Смена сложного пароля и секретная ссылка на панель
+            </p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 style="font-size: 1.2rem; color: #1b4332; margin-bottom: 10px;">Секретная ссылка на админку</h2>
+          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 12px;">
+            Ваша панель управления находится по зашифрованному адресу:
+          </p>
+          <div style="background: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 1.05rem; color: #1b4332; font-weight: 700; word-break: break-all;">
+            admin-gate-x79kd4.html
+          </div>
+          <small style="color: var(--admin-muted); display: block; margin-top: 8px;">
+            Стандартная ссылка <code>/admin/</code> закрыта заглушкой для посторонних посетителей.
+          </small>
+        </div>
+
+        <div class="admin-card">
+          <h2 style="font-size: 1.2rem; color: #1b4332; margin-bottom: 10px;">Смена пароля администратора</h2>
+          <p style="font-size: 0.9rem; color: var(--admin-muted); margin-bottom: 15px;">
+            Текущий пароль: <strong id="currentPassDisplay" style="color: #1b4332; font-family: monospace;">—</strong>
+          </p>
+
+          <form id="changePassForm" style="max-width: 480px;">
+            <div class="form-group-admin">
+              <label>Новый пароль (рекомендуется от 8 символов со спецсимволами):</label>
+              <input type="password" id="newAdminPass" class="form-input-admin" placeholder="Новый сложный пароль" required>
+            </div>
+            <div class="form-group-admin">
+              <label>Повторите новый пароль:</label>
+              <input type="password" id="repeatAdminPass" class="form-input-admin" placeholder="Повторите пароль" required>
+            </div>
+            <button type="submit" class="btn-admin btn-admin-primary" style="padding: 10px 20px;">
+              🔒 Сохранить новый пароль
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ / РЕДАКТИРОВАНИЕ ТОВАРА -->
+  <div class="admin-modal-overlay" id="productModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="productModalTitle">Товар</h3>
+        <button class="admin-modal-close" onclick="closeModal('productModal')">&times;</button>
+      </div>
+      <form id="productForm">
+        <div class="form-group-admin">
+          <label>Название товара / модели:</label>
+          <input type="text" id="prod_name" class="form-input-admin" placeholder="Например: Теплица «Богатырь 3х6 м»" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group-admin">
+            <label>Категория:</label>
+            <select id="prod_category" class="form-input-admin">
+              <option value="arch">Арочные теплицы</option>
+              <option value="drop">Каплевидные теплицы</option>
+              <option value="poly">Поликарбонат</option>
+              <option value="beds">Грядки оцинкованные</option>
+              <option value="other">Услуги / Другое</option>
+            </select>
+          </div>
+          <div class="form-group-admin">
+            <label>Бейдж (метка):</label>
+            <input type="text" id="prod_badge" class="form-input-admin" placeholder="Хит, Скидка 15%, Заводская">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group-admin">
+            <label>Цена (руб):</label>
+            <input type="number" id="prod_price" class="form-input-admin" placeholder="25500" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Старая цена (руб, если есть):</label>
+            <input type="number" id="prod_oldPrice" class="form-input-admin" placeholder="29900">
+          </div>
+        </div>
+
+        <div class="form-group-admin">
+          <label>Размер / Комплектация (строка):</label>
+          <input type="text" id="prod_size" class="form-input-admin" placeholder="от 25 500 ₽ • 3х4...3х10 м">
+        </div>
+
+        <div class="form-group-admin">
+          <label>Краткое описание:</label>
+          <textarea id="prod_desc" class="form-input-admin" rows="3" placeholder="Описание характеристик, дуг, оцинковки"></textarea>
+        </div>
+
+        <!-- Загрузчик фото для товара -->
+        <div class="form-group-admin">
+          <label>Изображение товара:</label>
+          <div class="image-uploader-box">
+            <div class="image-source-tabs">
+              <button type="button" class="image-source-tab-btn active" id="prod_tab_file">📁 С устройства</button>
+              <button type="button" class="image-source-tab-btn" id="prod_tab_url">🔗 По ссылке</button>
+            </div>
+
+            <div id="prod_wrap_file">
+              <input type="file" id="prod_input_file" accept="image/*" class="form-input-admin">
+              <small style="color: var(--admin-muted); display: block; margin-top: 4px;">Файл автоматически конвертируется в Base64 и сохранится прямо в базе данных.</small>
+            </div>
+
+            <div id="prod_wrap_url" style="display: none;">
+              <input type="text" id="prod_input_url" class="form-input-admin" placeholder="https://... или assets/images/products/p1/1.jpg">
+            </div>
+
+            <div class="image-preview-area" id="prod_preview">
+              <span>Предпросмотр фото</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn-admin btn-admin-light" onclick="closeModal('productModal')">Отмена</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Сохранить товар</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ / РЕДАКТИРОВАНИЕ ОТЗЫВА -->
+  <div class="admin-modal-overlay" id="reviewModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="reviewModalTitle">Отзыв</h3>
+        <button class="admin-modal-close" onclick="closeModal('reviewModal')">&times;</button>
+      </div>
+      <form id="reviewForm">
+        <div class="form-group-admin">
+          <label>Имя клиента:</label>
+          <input type="text" id="rev_name" class="form-input-admin" placeholder="Например: Наталья Петровна" required>
+        </div>
+
+        <div class="form-group-admin">
+          <label>Город / СНТ / Модель теплицы:</label>
+          <input type="text" id="rev_role" class="form-input-admin" placeholder="г. Ярославль, СНТ «Садовод» • Арочная 3х6 м" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group-admin">
+            <label>Оценка (звезды):</label>
+            <select id="rev_stars" class="form-input-admin">
+              <option value="5">5 звезд (★★★★★)</option>
+              <option value="4">4 звезды (★★★★☆)</option>
+              <option value="3">3 звезды (★★★☆☆)</option>
+            </select>
+          </div>
+          <div class="form-group-admin" style="display: flex; align-items: center; gap: 8px; padding-top: 28px;">
+            <input type="checkbox" id="rev_featured" style="width: 18px; height: 18px;">
+            <label for="rev_featured" style="margin: 0; cursor: pointer;">Зеленый акцент (выделенный)</label>
+          </div>
+        </div>
+
+        <div class="form-group-admin">
+          <label>Текст отзыва:</label>
+          <textarea id="rev_text" class="form-input-admin" rows="4" placeholder="Честный отзыв о сборке, каркасе, доставке" required></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn-admin btn-admin-light" onclick="closeModal('reviewModal')">Отмена</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Сохранить отзыв</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ / РЕДАКТИРОВАНИЕ РАБОТЫ -->
+  <div class="admin-modal-overlay" id="workModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="workModalTitle">Выполненная работа</h3>
+        <button class="admin-modal-close" onclick="closeModal('workModal')">&times;</button>
+      </div>
+      <form id="workForm">
+        <div class="form-group-admin">
+          <label>Подпись / Название объекта:</label>
+          <input type="text" id="work_title" class="form-input-admin" placeholder="Арочная усиленная теплица 3х6 м на брусе" required>
+        </div>
+
+        <div class="form-group-admin">
+          <label>Категории фильтра (arch, drop, usil, timber через пробел):</label>
+          <input type="text" id="work_category" class="form-input-admin" placeholder="arch usil timber" required>
+          <small style="color: var(--admin-muted);">Доступные теги: arch (Арочные), drop (Каплевидные), usil (Усиленные), timber (На брусе).</small>
+        </div>
+
+        <!-- Загрузчик фото для работы -->
+        <div class="form-group-admin">
+          <label>Фотография работы:</label>
+          <div class="image-uploader-box">
+            <div class="image-source-tabs">
+              <button type="button" class="image-source-tab-btn active" id="work_tab_file">📁 С устройства</button>
+              <button type="button" class="image-source-tab-btn" id="work_tab_url">🔗 По ссылке</button>
+            </div>
+
+            <div id="work_wrap_file">
+              <input type="file" id="work_input_file" accept="image/*" class="form-input-admin">
+              <small style="color: var(--admin-muted); display: block; margin-top: 4px;">Фото упакуется в Base64 прямо в базу данных.</small>
+            </div>
+
+            <div id="work_wrap_url" style="display: none;">
+              <input type="text" id="work_input_url" class="form-input-admin" placeholder="https://... или assets/images/products/p1/2.jpg">
+            </div>
+
+            <div class="image-preview-area" id="work_preview">
+              <span>Предпросмотр фото</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn-admin btn-admin-light" onclick="closeModal('workModal')">Отмена</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Сохранить работу</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/catalog-data.js"></script>
+  <script src="admin/admin.js"></script>
+</body>
+</html>

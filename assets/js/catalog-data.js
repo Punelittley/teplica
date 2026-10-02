@@ -1,9 +1,232 @@
 /**
- * Теплицы 76 — Данные каталога и настройки компании
- * Поддерживает редактирование через локальную панель администратора (/admin)
+ * Теплицы 76 — Единая база данных каталога, отзывов, выполненных работ и настроек
+ * Поддерживает 100% автономную работу, экспорт/импорт базы данных в JSON (включая фото в Base64)
  */
 
+const DEFAULT_PRODUCTS = [
+  {
+    id: "prod-1",
+    category: "arch",
+    name: "Теплицы от производителя",
+    price: 25500,
+    oldPrice: 28900,
+    size: "3х4...3х10 м",
+    badge: "От производителя",
+    badgeType: "hit",
+    image: "assets/images/products/p1/1.jpg",
+    description: "Надежный каркас из оцинкованной трубы ГОСТ. Двойная горячая оцинковка защищает от ржавчины на 15+ лет."
+  },
+  {
+    id: "prod-2",
+    category: "arch",
+    name: "Сборка теплиц под ключ",
+    price: 6500,
+    oldPrice: 8000,
+    size: "под ключ",
+    badge: "Профессионально",
+    badgeType: "pro",
+    image: "assets/images/products/p2/1.jpg",
+    description: "Монтаж опытными бригадами за 3-4 часа. Выставление по уровню, крепление к грунту или брусу."
+  },
+  {
+    id: "prod-3",
+    category: "arch",
+    name: "Ремонт теплиц и замена поликарбоната",
+    price: 6500,
+    oldPrice: 9500,
+    size: "замена СПК",
+    badge: "Ремонт и замена",
+    badgeType: "hit",
+    image: "assets/images/products/p3/1.jpg",
+    description: "Демонтаж старого разрушенного пластика, усиление каркаса и монтаж нового премиального поликарбоната с УФ-защитой."
+  },
+  {
+    id: "prod-4",
+    category: "other",
+    name: "Доставка теплиц спецтранспортом",
+    price: 1500,
+    oldPrice: 2500,
+    size: "по области",
+    badge: "Доставка",
+    badgeType: "pro",
+    image: "assets/images/products/p4/1.jpg",
+    description: "Бережная доставка прямо к калитке вашего СНТ на специально оборудованном автотранспорте."
+  },
+  {
+    id: "prod-5",
+    category: "poly",
+    name: "Сотовый поликарбонат 4 мм Премиум",
+    price: 2950,
+    oldPrice: 3400,
+    size: "лист 2.1х6 м",
+    badge: "С УФ-слоем",
+    badgeType: "hit",
+    image: "assets/images/products/p5/1.jpg",
+    description: "Первичное сырье Sabic/Bayer, честный слой соэкструзионной защиты от ультрафиолета 45 мкм."
+  },
+  {
+    id: "prod-6",
+    category: "poly",
+    name: "Сотовый поликарбонат 6 мм Зимний",
+    price: 4850,
+    oldPrice: 5600,
+    size: "лист 2.1х6 м",
+    badge: "Круглый год",
+    badgeType: "pro",
+    image: "assets/images/products/p6/1.jpg",
+    description: "Сверхпрочный лист повышенной жесткости для всесезонных теплиц и снеговых регионов."
+  },
+  {
+    id: "prod-7",
+    category: "drop",
+    name: "Каплевидная теплица «Стрела»",
+    price: 24900,
+    oldPrice: 27900,
+    size: "3х4...3х8 м",
+    badge: "Снегосброс",
+    badgeType: "hit",
+    image: "assets/images/products/p2/2.jpg",
+    description: "Стрельчатый свод позволяет снегу свободно сходить вниз, не задерживаясь на крыше. Высота 2.35 м."
+  },
+  {
+    id: "prod-8",
+    category: "beds",
+    name: "Оцинкованные грядки для теплиц",
+    price: 1450,
+    oldPrice: 1900,
+    size: "высота 20 см",
+    badge: "Удобно",
+    badgeType: "hit",
+    image: "assets/images/products/p8/1.jpg",
+    description: "Завальцованные безопасные края, толстая сталь с цинковым покрытием. Земля не осыпается, спина не устает."
+  }
+];
+
+const DEFAULT_REVIEWS = [
+  {
+    id: "rev-1",
+    name: "Наталья Петровна",
+    role: "г. Ярославль, СНТ «Садовод-1» • Арочная 3×6 м",
+    stars: 5,
+    featured: false,
+    text: "Заказывали теплицу с усиленным шагом дуг и брусом 100×100. Бригада приехала вовремя, к обеду уже всё стояло ровно по уровню. Зиму пережила без единой подпорки, поликарбонат остался чистым и целым. Очень благодарны заводу!"
+  },
+  {
+    id: "rev-2",
+    name: "Виктор Ильич",
+    role: "г. Тутаев, д. Борисоглеб • Каплевидная 3×6 м",
+    stars: 5,
+    featured: true,
+    text: "Выбрали капельку из-за снежных зим — сугробы со скатов съезжают сами. Конструкция очень жёсткая, честная труба ГОСТ с горячим цинком. Ребята собрали быстро, весь мусор за собой убрали. Рекомендую завод всем соседям по даче!"
+  },
+  {
+    id: "rev-3",
+    name: "Сергей Николаевич",
+    role: "г. Ростов Великий • Фермерская 3×10 м",
+    stars: 5,
+    featured: false,
+    text: "Брал теплицу 10 метров для ранней высадки огурцов и рассады. Конструкция монолитная, дуги цельногнутые, оцинковка плотная. В мае выдержала шквалистый ветер — стоит как влитая, двери и форточки открываются легко."
+  },
+  {
+    id: "rev-4",
+    name: "Елена Михайловна",
+    role: "г. Рыбинск, пос. Волжский • Арочная 3×8 м + Грядки",
+    stars: 5,
+    featured: false,
+    text: "Взяли теплицу сразу с оцинкованными грядками в три ряда. Для пожилых людей это спасение: полоть удобно, спина не устает, вода не растекается. Первый урожай огурцов собрали на 3 недели раньше обычного срока!"
+  },
+  {
+    id: "rev-5",
+    name: "Михаил Юрьевич",
+    role: "г. Переславль-Залесский • Каплевидная 3×4 м",
+    stars: 5,
+    featured: true,
+    text: "Очень порадовало соединение краб-системой: поликарбонат ложится монолитно без провисаний и щелей, на ветру не вибрирует. Оплатил водителю на месте после полной проверки комплектации без предоплаты."
+  },
+  {
+    id: "rev-6",
+    name: "Светлана и Андрей",
+    role: "Ярославский р-н, Григорьевское • Арочная 3×4 м",
+    stars: 5,
+    featured: false,
+    text: "Покупали родителям на юбилей. Водитель аккуратно выгрузил, помог пересчитать все детали и проверить толщину дуг. Качество заводское, сварочные швы оцинкованы. Родители в восторге от подарка!"
+  }
+];
+
+const DEFAULT_WORKS = [
+  {
+    id: "work-1",
+    title: "Арочная усиленная теплица 3х4 м",
+    category: "arch usil",
+    image: "assets/images/products/p1/2.jpg"
+  },
+  {
+    id: "work-2",
+    title: "Теплица с поликарбонатом 4 мм Премиум",
+    category: "arch timber",
+    image: "assets/images/products/p1/3.jpg"
+  },
+  {
+    id: "work-3",
+    title: "Сборка теплицы на дачном участке",
+    category: "arch",
+    image: "assets/images/products/p1/4.jpg"
+  },
+  {
+    id: "work-4",
+    title: "Арочная теплица 3х8 м под ключ",
+    category: "arch usil timber",
+    image: "assets/images/products/p1/5.jpg"
+  },
+  {
+    id: "work-5",
+    title: "Каплевидная теплица на брусе 100х100",
+    category: "drop timber",
+    image: "assets/images/products/p2/2.jpg"
+  },
+  {
+    id: "work-6",
+    title: "Каплевидная теплица — снегосброс",
+    category: "drop",
+    image: "assets/images/products/p2/3.jpg"
+  },
+  {
+    id: "work-7",
+    title: "Усиленная каплевидная теплица 3х4 м",
+    category: "drop usil",
+    image: "assets/images/products/p2/4.jpg"
+  },
+  {
+    id: "work-8",
+    title: "Каплевидная теплица 3х8 м",
+    category: "drop timber",
+    image: "assets/images/products/p2/5.jpg"
+  },
+  {
+    id: "work-9",
+    title: "Теплица на участке в Ярославском районе",
+    category: "arch usil timber",
+    image: "assets/images/products/p3/2.jpg"
+  },
+  {
+    id: "work-10",
+    title: "Двойная дуга ферма 40х20 мм",
+    category: "arch usil",
+    image: "assets/images/products/p3/3.jpg"
+  },
+  {
+    id: "work-11",
+    title: "Сверхпрочная теплица 3х6 м",
+    category: "arch usil timber",
+    image: "assets/images/products/p3/4.jpg"
+  }
+];
+
 const DEFAULT_CONFIG = {
+  security: {
+    // Надежный пароль по умолчанию (можно менять прямо в админке)
+    password: "TepL!ca#76_Yar2026!"
+  },
   company: {
     name: "Теплицы ТУТ",
     tagline: "С заботой о вашем урожае",
@@ -17,26 +240,18 @@ const DEFAULT_CONFIG = {
     telegramUsername: "teplici76_yar",
     promoText: "Весенняя акция: бесплатное хранение теплицы на складе до начала сезона!"
   },
-  telegramNotify: {
-    enabled: false,
-    botToken: "",
-    chatId: ""
-  },
   pricing: {
-    // Арочные
     arch: {
       "4m": { name: "3х4 метра", price: 21900, oldPrice: 24500 },
       "6m": { name: "3х6 метров", price: 26900, oldPrice: 30500 },
       "8m": { name: "3х8 метров", price: 32400, oldPrice: 36800 },
       "10m": { name: "3х10 метров", price: 37900, oldPrice: 42900 }
     },
-    // Каплевидные
     drop: {
       "4m": { name: "3х4 метра", price: 24900, oldPrice: 27900 },
       "6m": { name: "3х6 метров", price: 30900, oldPrice: 34900 },
       "8m": { name: "3х8 метров", price: 37400, oldPrice: 42500 }
     },
-    // Опции
     step: {
       "100": { name: "Шаг 1 метр", price: 0 },
       "65": { name: "Усиленный шаг 0.65 м", price: 2500 }
@@ -59,10 +274,13 @@ const DEFAULT_CONFIG = {
       "8m": { name: "Профессиональная сборка 8м", price: 6000 }
     },
     delivery: {
-      baseYar: 1500, // По Ярославлю
-      perKm: 40 // За км от черты города
+      baseYar: 1500,
+      perKm: 40
     }
   },
+  products: DEFAULT_PRODUCTS,
+  reviews: DEFAULT_REVIEWS,
+  works: DEFAULT_WORKS,
   vkNotify: {
     enabled: true,
     groupId: "241898656",
@@ -77,7 +295,7 @@ const DEFAULT_CONFIG = {
   }
 };
 
-// Загрузка актуальных настроек из localStorage или по умолчанию
+// Загрузка актуальной базы данных из localStorage или по умолчанию
 function getSiteConfig() {
   try {
     const saved = localStorage.getItem("teplici76_config");
@@ -86,8 +304,12 @@ function getSiteConfig() {
       return {
         ...DEFAULT_CONFIG,
         ...parsed,
+        security: { ...DEFAULT_CONFIG.security, ...(parsed.security || {}) },
         company: { ...DEFAULT_CONFIG.company, ...(parsed.company || {}) },
         pricing: { ...DEFAULT_CONFIG.pricing, ...(parsed.pricing || {}) },
+        products: Array.isArray(parsed.products) && parsed.products.length ? parsed.products : DEFAULT_PRODUCTS,
+        reviews: Array.isArray(parsed.reviews) && parsed.reviews.length ? parsed.reviews : DEFAULT_REVIEWS,
+        works: Array.isArray(parsed.works) && parsed.works.length ? parsed.works : DEFAULT_WORKS,
         vkNotify: {
           ...DEFAULT_CONFIG.vkNotify,
           ...(parsed.vkNotify || {}),
@@ -106,12 +328,71 @@ function getSiteConfig() {
   return DEFAULT_CONFIG;
 }
 
+// Сохранение базы данных в localStorage
 function saveSiteConfig(newConfig) {
   try {
     localStorage.setItem("teplici76_config", JSON.stringify(newConfig));
+    // Оповещаем открытые вкладки или страницы
+    window.dispatchEvent(new CustomEvent("teplica:data-updated", { detail: newConfig }));
     return true;
   } catch (e) {
     console.error("Config save error", e);
     return false;
   }
+}
+
+// Экспорт всей базы в JSON (включая картинки)
+function exportFullDatabase() {
+  const config = getSiteConfig();
+  const leads = JSON.parse(localStorage.getItem("teplici76_leads") || "[]");
+  
+  const fullBackup = {
+    exportedAt: new Date().toISOString(),
+    version: "2.0",
+    site: "Теплицы ТУТ",
+    database: config,
+    leads: leads
+  };
+
+  const jsonStr = JSON.stringify(fullBackup, null, 2);
+  const blob = new Blob([jsonStr], { type: "application/json;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const dateStr = new Date().toISOString().slice(0, 10);
+  a.href = url;
+  a.download = `teplica_full_database_${dateStr}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Импорт базы из JSON строки
+function importFullDatabase(jsonString) {
+  try {
+    const data = JSON.parse(jsonString);
+    const db = data.database || data;
+    
+    if (!db || (!db.company && !db.products && !db.pricing)) {
+      throw new Error("Неверная структура файла базы данных");
+    }
+
+    // Сохраняем конфигурацию
+    saveSiteConfig(db);
+
+    // Если есть лиды в бэкапе
+    if (Array.isArray(data.leads)) {
+      localStorage.setItem("teplici76_leads", JSON.stringify(data.leads));
+    }
+
+    return { success: true };
+  } catch (err) {
+    return { success: false, error: err.message };
+  }
+}
+
+// Сброс до начальных настроек
+function resetDatabaseToDefaults() {
+  localStorage.removeItem("teplici76_config");
+  return DEFAULT_CONFIG;
 }

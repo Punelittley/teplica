@@ -203,6 +203,20 @@ function setupMobileNav() {
     nav.classList.toggle("mobile-open");
     toggleBtn.textContent = nav.classList.contains("mobile-open") ? "✕" : "☰";
   });
+
+  // Открытие выпадающего списка «Теплицы» по клику на стрелку / пункт (особенно на телефонах)
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
+      if (window.innerWidth <= 1060 || e.target.closest(".dropdown-arrow")) {
+        e.preventDefault();
+        const parent = toggle.closest(".nav-item-dropdown");
+        if (parent) {
+          parent.classList.toggle("dropdown-open");
+        }
+      }
+    });
+  });
 }
 
 // Модальные окна

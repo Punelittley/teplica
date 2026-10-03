@@ -50,7 +50,7 @@ body.font-large {
 html {
   scroll-behavior: smooth;
   font-size: var(--base-font-size);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -62,7 +62,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
@@ -150,9 +150,20 @@ button, input, select, textarea {
 .site-header {
   background: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  position: static;
-  z-index: 100;
-  box-shadow: 0 2px 14px rgba(45, 106, 79, 0.05);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 990;
+  box-shadow: 0 2px 14px rgba(45, 106, 79, 0.06);
+  transition: padding 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Компактный аккуратный вид при скролле вниз */
+.site-header.header-scrolled {
+  box-shadow: 0 6px 22px rgba(27, 67, 50, 0.12);
+  border-bottom-color: rgba(45, 106, 79, 0.15);
 }
 
 /* Верхняя строка: логотип по центру */
@@ -162,6 +173,11 @@ button, input, select, textarea {
   align-items: center;
   position: relative;
   padding: 14px 0 10px;
+  transition: padding 0.25s ease;
+}
+
+.site-header.header-scrolled .header-top-row {
+  padding: 6px 0 4px;
 }
 
 .header-top-center {
@@ -200,7 +216,12 @@ button, input, select, textarea {
   border-radius: 16px;
   display: block;
   box-shadow: 0 4px 16px rgba(45, 106, 79, 0.16);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: height 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease, border-radius 0.25s ease;
+}
+
+.site-header.header-scrolled .header-logo-image {
+  height: 52px;
+  border-radius: 12px;
 }
 
 .logo-wrapper:hover .header-logo-image {
@@ -254,7 +275,12 @@ button, input, select, textarea {
   font-size: 0.88rem;
   white-space: nowrap;
   border-radius: var(--radius-sm);
-  transition: background 0.18s, color 0.18s;
+  transition: padding 0.2s ease, font-size 0.2s ease, background 0.18s, color 0.18s;
+}
+
+.site-header.header-scrolled .nav-link {
+  padding: 7px 12px;
+  font-size: 0.85rem;
 }
 
 .nav-link:hover {
@@ -3440,22 +3466,30 @@ textarea {
     height: 52px;
     border-radius: 10px;
   }
+  .site-header.header-scrolled .header-logo-image {
+    height: 42px;
+  }
+  .site-header.header-scrolled .header-top-row {
+    padding: 6px 0;
+  }
   .logo-text-title {
     font-size: 1.25rem;
   }
   .site-nav {
     display: none;
-    position: fixed;
-    top: 68px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     background: white;
     padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
-    z-index: 105;
+    z-index: 1005;
+    max-height: 80vh;
+    overflow-y: auto;
   }
   .site-nav.mobile-open {
     display: flex;

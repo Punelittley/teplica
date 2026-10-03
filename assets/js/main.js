@@ -97,7 +97,8 @@ function renderDatabaseContent(config) {
   // 1. Отзывы на странице otzyvy.html
   const testimonialsGrid = document.querySelector(".testimonials-cards-grid");
   if (testimonialsGrid && Array.isArray(config.reviews) && config.reviews.length) {
-    testimonialsGrid.innerHTML = config.reviews.map(rev => `
+    const validReviews = config.reviews.filter(r => r.name && r.name.toLowerCase() !== "asd" && r.text && r.text.length > 5);
+    testimonialsGrid.innerHTML = validReviews.map(rev => `
       <div class="testimonial-card ${rev.featured ? 'testimonial-card-featured' : ''}">
         <div class="testimonial-stars">${'★'.repeat(rev.stars || 5)}${'☆'.repeat(5 - (rev.stars || 5))}</div>
         <div class="testimonial-name">${rev.name}</div>
@@ -115,19 +116,22 @@ function renderDatabaseContent(config) {
   // 2. Отзывы на главной странице index.html
   const indexReviewsGrid = document.querySelector(".reviews-grid");
   if (indexReviewsGrid && Array.isArray(config.reviews) && config.reviews.length) {
-    const topReviews = config.reviews.slice(0, 3);
-    indexReviewsGrid.innerHTML = topReviews.map((r, idx) => `
-      <div class="review-item" data-aos="fade-up" data-aos-delay="${(idx + 1) * 80}">
-        <div class="review-item-stars">${'★'.repeat(r.stars || 5)}${'☆'.repeat(5 - (r.stars || 5))}</div>
-        <p class="review-item-text">«${r.text}»</p>
-        <div class="review-item-author">
-          <div>
-            <div class="review-item-name">${r.name}</div>
-            <div class="review-item-city">${r.role || ''}</div>
+    const validReviews = config.reviews.filter(r => r.name && r.name.toLowerCase() !== "asd" && r.text && r.text.length > 5);
+    const topReviews = validReviews.slice(0, 3);
+    if (topReviews.length > 0) {
+      indexReviewsGrid.innerHTML = topReviews.map((r, idx) => `
+        <div class="review-item aos-animate" data-aos="fade-up" data-aos-delay="${(idx + 1) * 80}">
+          <div class="review-item-stars">${'★'.repeat(r.stars || 5)}${'☆'.repeat(5 - (r.stars || 5))}</div>
+          <p class="review-item-text">«${r.text}»</p>
+          <div class="review-item-author">
+            <div>
+              <div class="review-item-name">${r.name}</div>
+              <div class="review-item-city">${r.role || ''}</div>
+            </div>
           </div>
         </div>
-      </div>
-    `).join("");
+      `).join("");
+    }
   }
 
   // 3. Наши работы на странице nashi-raboty.html
@@ -165,6 +169,9 @@ function renderDatabaseContent(config) {
       `).join("");
     }
   }
+
+  // Обновляем наблюдение за скролл-анимациями для новых элементов
+  initScrollAnimations();
 }
 
 // Переключатель крупного шрифта
@@ -545,20 +552,22 @@ function initScrollAnimations() {
     return;
   }
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("aos-animate");
-        obs.unobserve(entry.target);
-      }
+  if (!window._teplicaAosObserver) {
+    window._teplicaAosObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("aos-animate");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: "0px 0px -20px 0px"
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: "0px 0px -40px 0px"
-  });
+  }
 
-  document.querySelectorAll("[data-aos]").forEach(el => {
-    observer.observe(el);
+  document.querySelectorAll("[data-aos]:not(.aos-animate)").forEach(el => {
+    window._teplicaAosObserver.observe(el);
   });
 }
 

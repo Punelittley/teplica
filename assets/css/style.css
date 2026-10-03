@@ -157,7 +157,9 @@ button, input, select, textarea {
   width: 100%;
   z-index: 990;
   box-shadow: 0 2px 14px rgba(45, 106, 79, 0.06);
-  transition: padding 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 /* Компактный аккуратный вид при скролле вниз */

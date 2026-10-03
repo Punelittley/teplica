@@ -208,21 +208,39 @@ function setupMobileNav() {
   });
 }
 
-// Фиксированный хедер со сжатием при скролле
+// Фиксированный хедер со сжатием при скролле (с гистерезисом от дребезга)
 function setupStickyHeader() {
   const header = document.querySelector(".site-header");
   if (!header) return;
 
-  const handleScroll = () => {
-    if (window.scrollY > 30) {
-      header.classList.add("header-scrolled");
-    } else {
-      header.classList.remove("header-scrolled");
+  let isScrolled = false;
+  let ticking = false;
+
+  const updateHeader = () => {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    // Гистерезис: включаем при скролле вниз > 75px, выключаем только при возврате на самый верх < 15px
+    if (scrollY > 75) {
+      if (!isScrolled) {
+        header.classList.add("header-scrolled");
+        isScrolled = true;
+      }
+    } else if (scrollY < 15) {
+      if (isScrolled) {
+        header.classList.remove("header-scrolled");
+        isScrolled = false;
+      }
     }
+    ticking = false;
   };
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateHeader();
 }
 
 // Модальные окна

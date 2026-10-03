@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Мобильное меню
   setupMobileNav();
 
-  // 3.1. Липкий хедер со сжатием при скролле
-  setupStickyHeader();
-
   // 4. Модальные окна
   setupModals();
 
@@ -206,41 +203,6 @@ function setupMobileNav() {
     nav.classList.toggle("mobile-open");
     toggleBtn.textContent = nav.classList.contains("mobile-open") ? "✕" : "☰";
   });
-}
-
-// Фиксированный хедер со сжатием при скролле (с гистерезисом от дребезга)
-function setupStickyHeader() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-
-  let isScrolled = false;
-  let ticking = false;
-
-  const updateHeader = () => {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    // Гистерезис: включаем при скролле вниз > 75px, выключаем только при возврате на самый верх < 15px
-    if (scrollY > 75) {
-      if (!isScrolled) {
-        header.classList.add("header-scrolled");
-        isScrolled = true;
-      }
-    } else if (scrollY < 15) {
-      if (isScrolled) {
-        header.classList.remove("header-scrolled");
-        isScrolled = false;
-      }
-    }
-    ticking = false;
-  };
-
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
-  }, { passive: true });
-
-  updateHeader();
 }
 
 // Модальные окна

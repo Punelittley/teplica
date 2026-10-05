@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 10. Счетчик промо-акции со скидкой 20%
   setupCalcPromoCountdown();
+  setupHashScroll();
 
   // 11. Умный FAQ чат-бот консультант
   setupFaqChatbot();
@@ -269,7 +270,9 @@ function setupCalculator(config) {
     step: "100",
     poly: "eco4",
     timber: false,
-    assembly: true
+    assembly: true,
+    beds: false,
+    autovent: false
   };
 
   const typeBtns = calcRoot.querySelectorAll("[data-calc-type]");
@@ -278,6 +281,8 @@ function setupCalculator(config) {
   const polyBtns = calcRoot.querySelectorAll("[data-calc-poly]");
   const timberCheckbox = document.getElementById("calcOptionTimber");
   const assemblyCheckbox = document.getElementById("calcOptionAssembly");
+  const bedsCheckbox = document.getElementById("calcOptionBeds");
+  const autoventCheckbox = document.getElementById("calcOptionAutovent");
 
   const sumTotalEl = document.getElementById("calcSumTotal");
   const sumOldEl = document.getElementById("calcSumOld");
@@ -322,6 +327,24 @@ function setupCalculator(config) {
       oldTotal += assemblyCost;
     }
 
+    // Грядки в теплицу
+    let bedsCost = 0;
+    if (state.beds) {
+      bedsCost = p.beds?.set2?.price || 4500;
+      const bedsOldCost = p.beds?.set2?.oldPrice || 5500;
+      total += bedsCost;
+      oldTotal += bedsOldCost;
+    }
+
+    // Автопроветриватель
+    let autoventCost = 0;
+    if (state.autovent) {
+      autoventCost = p.autovent?.price || 2400;
+      const autoventOldCost = p.autovent?.oldPrice || 2900;
+      total += autoventCost;
+      oldTotal += autoventOldCost;
+    }
+
     // Отображение
     if (sumTotalEl) sumTotalEl.textContent = `${total.toLocaleString("ru-RU")} ₽`;
     if (sumOldEl) sumOldEl.textContent = `${oldTotal.toLocaleString("ru-RU")} ₽`;
@@ -340,13 +363,22 @@ function setupCalculator(config) {
     }
     if (breakdownExtraEl) {
       const extras = [];
-      if (state.timber) extras.push(`Брус (${timberCost} ₽)`);
-      if (state.assembly) extras.push(`Сборка (${assemblyCost} ₽)`);
+      if (state.timber) extras.push(`Брус (${timberCost.toLocaleString("ru-RU")} ₽)`);
+      if (state.assembly) extras.push(`Сборка (${assemblyCost.toLocaleString("ru-RU")} ₽)`);
+      if (state.beds) extras.push(`Грядки (${bedsCost.toLocaleString("ru-RU")} ₽)`);
+      if (state.autovent) extras.push(`Автопроветриватель (${autoventCost.toLocaleString("ru-RU")} ₽)`);
       breakdownExtraEl.textContent = extras.length ? extras.join(" + ") : "Без доп. услуг";
     }
 
     if (submitBtn) {
-      const desc = `${state.type === "arch" ? "Арочная" : "Каплевидная"} ${baseItem.name}, поликарбонат ${p.poly[state.poly]?.name}, брус: ${state.timber ? 'Да' : 'Нет'}, сборка: ${state.assembly ? 'Да' : 'Нет'}. Итого: ${total} руб`;
+      const extraList = [];
+      if (state.timber) extraList.push("Брус");
+      if (state.assembly) extraList.push("Сборка");
+      if (state.beds) extraList.push("Грядки");
+      if (state.autovent) extraList.push("Автопроветриватель");
+      const extrasStr = extraList.length ? extraList.join(", ") : "нет";
+
+      const desc = `${state.type === "arch" ? "Арочная" : "Каплевидная"} ${baseItem.name}, поликарбонат: ${p.poly[state.poly]?.name}, доп: ${extrasStr}. Итого: ${total.toLocaleString("ru-RU")} руб`;
       submitBtn.setAttribute("data-subject", `Расчет: ${desc}`);
     }
   }
@@ -381,7 +413,35 @@ function setupCalculator(config) {
     });
   }
 
+  if (bedsCheckbox) {
+    bedsCheckbox.addEventListener("change", (e) => {
+      state.beds = e.target.checked;
+      update();
+    });
+  }
+
+  if (autoventCheckbox) {
+    autoventCheckbox.addEventListener("change", (e) => {
+      state.autovent = e.target.checked;
+      update();
+    });
+  }
+
   update();
+}
+
+// Плавный переход к якорям (включая #calculator с других страниц)
+function setupHashScroll() {
+  if (window.location.hash) {
+    setTimeout(() => {
+      try {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } catch (err) {}
+    }, 200);
+  }
 }
 
 // Отправка форм (localStorage + опционально Telegram)

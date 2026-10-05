@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin-gate-x79kd4.html
+Disallow: /scratch/
+Disallow: /scripts/
+
+Sitemap: https://teplicy-tut.ru/sitemap.xml

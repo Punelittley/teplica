@@ -53,6 +53,18 @@ html {
   overflow-x: clip;
 }
 
+#calculator,
+[id] {
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 768px) {
+  #calculator,
+  [id] {
+    scroll-margin-top: 80px;
+  }
+}
+
 body {
   font-family: var(--font-base);
   background-color: var(--color-bg);
@@ -279,6 +291,40 @@ button, input, select, textarea {
   height: 2.5px;
   background: var(--color-primary);
   border-radius: 2px;
+}
+
+.nav-link--calc {
+  color: var(--color-primary-dark) !important;
+  background: rgba(45, 106, 79, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 7px 15px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid rgba(45, 106, 79, 0.22);
+  transition: all 0.2s ease;
+  font-weight: 800 !important;
+}
+
+.nav-link--calc svg {
+  flex-shrink: 0;
+  stroke: var(--color-primary);
+  transition: stroke 0.2s ease;
+}
+
+.nav-link--calc:hover {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.22);
+}
+
+.nav-link--calc:hover svg {
+  stroke: #ffffff;
+}
+
+.nav-link--calc.active::after {
+  display: none;
 }
 
 /* Dropdown */
@@ -5362,17 +5408,17 @@ textarea {
 }
 .arc-diagram-title {
   font-family: var(--font-heading);
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   font-weight: 900;
-  color: #111111;
+  color: #1b4332;
   margin: 0;
   letter-spacing: -0.5px;
 }
 .arc-diagram-big-num {
   font-family: var(--font-heading);
-  font-size: 4.8rem;
+  font-size: 4.5rem;
   font-weight: 900;
-  color: #111111;
+  color: #52b788;
   line-height: 0.85;
   letter-spacing: -2px;
 }
@@ -5404,7 +5450,7 @@ textarea {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #111111;
+  background: #2d6a4f;
   color: #ffffff;
   font-size: 1.35rem;
   font-weight: 900;
@@ -5412,7 +5458,7 @@ textarea {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 14px rgba(45,106,79,0.22);
   border: 4px solid #ffffff;
   transition: all 0.25s ease;
 }

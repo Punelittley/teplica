@@ -45,186 +45,145 @@
     }
 
     /* ==========================================================================
-       ДИЗАЙН БЛОКА 2 (ИЗ РЕФЕРЕНСА): АРОЧНЫЕ КАРТОЧКИ С КРУГЛОЙ ИЛЛЮСТРАЦИЕЙ ВНУТРИ
+       ЛЕГКИЕ ГАРАНТИЙНЫЕ КАРТОЧКИ
        ========================================================================== */
-    .arch-cards-row {
+    .delivery-features-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      margin-bottom: 50px;
+      margin-bottom: 36px;
     }
 
-    .arch-card {
-      border-radius: 130px 130px 20px 20px;
-      padding: 18px 18px 28px;
-      color: #ffffff;
+    .del-feat-card {
+      background: #ffffff;
+      border: 1.5px solid #e3ede5;
+      border-radius: 20px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      transition: all 0.25s ease;
+    }
+    .del-feat-card:hover {
+      border-color: #2d6a4f;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45,106,79,0.08);
+    }
+
+    .del-feat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #eaf4ed;
+      color: #2d6a4f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .del-feat-title {
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #1b4332;
+      margin: 0 0 6px;
+    }
+
+    .del-feat-desc {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       ШКАЛА ЭТАПОВ РАБОТЫ (СВЕТЛЫЙ ДИЗАЙН)
+       ========================================================================== */
+    .del-steps-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px 34px;
+      border: 1.5px solid #e3ede5;
+      margin-bottom: 45px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+    }
+
+    .del-steps-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .del-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .del-step-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      border: 1.5px solid rgba(255,255,255,0.06);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      padding: 20px 14px;
+      border-radius: 16px;
+      background: #f8faf8;
+      border: 1px solid #edf4ef;
+      transition: all 0.2s ease;
     }
-    .arch-card.dark {
-      background: #18221c;
-    }
-    .arch-card.green {
-      background: #235d43;
+    .del-step-item:hover {
+      background: #ffffff;
+      border-color: #b7e4c7;
+      box-shadow: 0 4px 14px rgba(45,106,79,0.07);
     }
 
-    .arch-circle-wrap {
-      width: 124px;
-      height: 124px;
+    .del-step-num {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: #ffffff;
+      background: #2d6a4f;
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 900;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-      color: #1b4332;
-      flex-shrink: 0;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(45,106,79,0.2);
     }
 
-    .arch-circle-wrap svg {
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
+    .del-step-text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      color: #1b4332;
+      margin-bottom: 4px;
+    }
+
+    .del-step-text span {
+      font-size: 0.83rem;
+      color: var(--color-text-muted);
+      line-height: 1.45;
       display: block;
     }
 
-    .arch-card-text {
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.35;
-      color: #ffffff;
-      padding: 0 8px;
-    }
-
     /* ==========================================================================
-       ДИЗАЙН БЛОКА 4 (ИЗ РЕФЕРЕНСА): СЦЕПЛЕННЫЙ ТРЕК ШАГОВ (OVERLAPPING PILLS)
-       ========================================================================== */
-    .timeline-wrap-box {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 34px 38px;
-      border: 1.5px solid #ebebeb;
-      margin-bottom: 50px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.04);
-    }
-
-    .timeline-header-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .timeline-header-main {
-      font-family: var(--font-heading);
-      font-size: 1.45rem;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: #1a1a1a;
-      white-space: nowrap;
-    }
-
-    .timeline-arrow-line {
-      flex-grow: 1;
-      height: 2px;
-      background: #1a1a1a;
-      position: relative;
-      margin: 0 8px;
-    }
-    .timeline-arrow-line::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: -4px;
-      width: 10px;
-      height: 10px;
-      border-top: 2px solid #1a1a1a;
-      border-right: 2px solid #1a1a1a;
-      transform: rotate(45deg);
-    }
-
-    .timeline-header-sub {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #2d6a4f;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-
-    .pill-steps-track {
-      display: flex;
-      align-items: stretch;
-      overflow-x: auto;
-      padding: 6px 2px 14px;
-    }
-
-    .pill-step {
-      flex: 1 1 0;
-      min-width: 220px;
-      background: #ffffff;
-      border: 1.5px solid #222222;
-      border-radius: 999px;
-      padding: 16px 22px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-      margin-right: -20px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
-      z-index: 1;
-    }
-    .pill-step:nth-child(2) { z-index: 2; }
-    .pill-step:nth-child(3) { z-index: 3; }
-    .pill-step:nth-child(4) { z-index: 4; margin-right: 0; }
-
-    .pill-step.active {
-      background: #2d6a4f;
-      border-color: #2d6a4f;
-      color: #ffffff;
-      z-index: 5;
-      box-shadow: 0 8px 25px rgba(45,106,79,0.32);
-    }
-
-    .pill-step-num {
-      font-family: var(--font-heading);
-      font-size: 1.65rem;
-      font-weight: 900;
-      line-height: 1;
-      color: #1a1a1a;
-    }
-    .pill-step.active .pill-step-num {
-      color: #95d5b2;
-    }
-
-    .pill-step-text {
-      font-size: 0.86rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    /* ==========================================================================
-       ДИЗАЙН БЛОКА 1 (ИЗ РЕФЕРЕНСА): ТЕМНЫЕ КАРТОЧКИ С ВЫРЕЗАННЫМ УГЛОМ И СТРЕЛКОЙ
+       КАРТОЧКИ УСЛУГ (СВЕТЛЫЕ С ЗЕЛЕНЫМИ АКЦЕНТАМИ)
        ========================================================================== */
     .notched-section-title {
       font-family: var(--font-heading);
       font-size: 1.75rem;
       font-weight: 800;
-      color: #1a1a1a;
+      color: #1b4332;
       margin-bottom: 8px;
       text-align: center;
     }
     .notched-section-sub {
       text-align: center;
-      color: #666;
+      color: var(--color-text-muted);
       font-size: 0.95rem;
       margin-bottom: 26px;
     }
@@ -237,44 +196,46 @@
     }
 
     .notched-card {
-      background: #1c2420;
-      border-radius: 28px;
-      padding: 34px 26px 28px;
-      color: #ffffff;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 30px 24px 26px;
+      color: var(--color-text-main);
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      min-height: 220px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      border: 1px solid rgba(255,255,255,0.06);
+      min-height: 200px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      border: 1.5px solid #e3ede5;
       cursor: pointer;
-      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+      transition: all 0.25s ease;
     }
     .notched-card:hover {
-      box-shadow: 0 12px 35px rgba(0,0,0,0.16);
-      border-color: #52b788;
+      box-shadow: 0 10px 28px rgba(45,106,79,0.1);
+      border-color: #2d6a4f;
+      transform: translateY(-2px);
     }
 
     .notched-corner-btn {
       position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 48px;
-      height: 48px;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: #52b788;
-      color: #0d281a;
+      background: #eaf4ed;
+      color: #2d6a4f;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      font-weight: 900;
-      box-shadow: 0 4px 16px rgba(82, 183, 136, 0.35);
-      transition: background 0.2s;
+      font-size: 1.2rem;
+      font-weight: 800;
+      transition: all 0.2s ease;
     }
     .notched-card:hover .notched-corner-btn {
-      background: #74c69d;
+      background: #2d6a4f;
+      color: #ffffff;
+      transform: rotate(45deg);
     }
 
     .notched-card-title {
@@ -282,13 +243,13 @@
       font-size: 1.25rem;
       font-weight: 800;
       line-height: 1.25;
-      color: #ffffff;
+      color: #1b4332;
       margin-bottom: 8px;
     }
 
     .notched-card-sub {
       font-size: 0.88rem;
-      color: #a7bcaf;
+      color: var(--color-text-muted);
       line-height: 1.45;
     }
 
@@ -847,7 +808,7 @@
           
           <div class="nav-item-dropdown">
             <a href="arochnye.html" class="nav-link dropdown-toggle">
-              Теплицы 
+              Теплицы и товары 
               <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9l6 6 6-6"/>
               </svg>
@@ -855,9 +816,14 @@
             <div class="dropdown-menu">
               <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
               <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
+              <a href="gryadki.html" class="dropdown-item">Оцинкованные грядки</a>
+              <a href="polikarbonat.html" class="dropdown-item">Сотовый поликарбонат</a>
             </div>
           </div>
 
+          <a href="index.html#calculator" class="nav-link nav-link--calc">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>Калькулятор
+          </a>
           <a href="nashi-raboty.html" class="nav-link">Наши работы</a>
           <a href="dostavka-sborka.html" class="nav-link active">Доставка и сборка</a>
           <a href="preimushchestva.html" class="nav-link">Преимущества</a>
@@ -873,106 +839,93 @@
   <main class="delivery-page">
     <div class="container">
 
-      <!-- Хлебные крошки -->
-      
-
       <!-- Заголовок страницы -->
-      <div class="testimonials-header" style="padding-top: 40px; margin-bottom: 45px;">
+      <div class="testimonials-header" style="padding-top: 40px; margin-bottom: 35px;">
         <h1 class="testimonials-title">Доставка и сборка теплиц под ключ</h1>
         <p class="testimonials-subtitle">
           Привезем собственным спецтранспортом по Ярославской, Ивановской и Костромской областям и профессионально соберем надежную теплицу за 3–4 часа
         </p>
       </div>
 
-      <!-- БЛОК 2: АРОЧНЫЕ КАРТОЧКИ С КРУГЛОЙ ИЛЛЮСТРАЦИЕЙ ВНУТРИ -->
-      <div class="arch-cards-row">
-        
-        <div class="arch-card dark">
-          <div class="arch-circle-wrap">
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#1b4332" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="m9 12 2 2 4-4"/>
-            </svg>
+      <!-- 4 КЛЮЧЕВЫХ ГАРАНТИИ (Светлые аккуратные карточки) -->
+      <div class="delivery-features-grid">
+        <div class="del-feat-card">
+          <div class="del-feat-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
-          <div class="arch-card-text">
-            Гарантия на все виды работ и целостность каркаса
+          <div class="del-feat-content">
+            <h3 class="del-feat-title">Заводская гарантия</h3>
+            <p class="del-feat-desc">Официальный договор и гарантия на каркас и монтажные работы</p>
           </div>
         </div>
 
-        <div class="arch-card green">
-          <div class="arch-circle-wrap">
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#1b4332" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
-              <path d="M15 18H9"/>
-              <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
-              <circle cx="7" cy="18" r="2"/>
-              <circle cx="17" cy="18" r="2"/>
-            </svg>
+        <div class="del-feat-card">
+          <div class="del-feat-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
           </div>
-          <div class="arch-card-text">
-            Собственный спецтранспорт и штатные мастера
+          <div class="del-feat-content">
+            <h3 class="del-feat-title">Свой спецтранспорт</h3>
+            <p class="del-feat-desc">Бережная перевозка на пирамиде без заломов поликарбоната</p>
           </div>
         </div>
 
-        <div class="arch-card dark">
-          <div class="arch-circle-wrap">
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#1b4332" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Z"/>
-              <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/>
-              <line x1="8" y1="11" x2="16" y2="11"/>
-              <line x1="8" y1="15" x2="13" y2="15"/>
-              <path d="m14 17 2 2 4-4"/>
-            </svg>
+        <div class="del-feat-card">
+          <div class="del-feat-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           </div>
-          <div class="arch-card-text">
-            Работаем строго по договору и в срок
+          <div class="del-feat-content">
+            <h3 class="del-feat-title">Сборка за 3–4 часа</h3>
+            <p class="del-feat-desc">Штатные бригады со стажем от 5 лет. Сборка по лазерному уровню</p>
           </div>
         </div>
 
-        <div class="arch-card green">
-          <div class="arch-circle-wrap">
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#1b4332" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9 7h4a2.5 2.5 0 0 1 0 5H9m0 0v6m0-6h5m-5 3h3.5"/>
-            </svg>
+        <div class="del-feat-card">
+          <div class="del-feat-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9 7h4a2.5 2.5 0 0 1 0 5H9m0 0v6m0-6h5m-5 3h3.5"/></svg>
           </div>
-          <div class="arch-card-text">
-            0 ₽ предоплаты — оплата только после сборки
+          <div class="del-feat-content">
+            <h3 class="del-feat-title">0 ₽ предоплаты</h3>
+            <p class="del-feat-desc">Полная оплата только после доставки и проверки качества</p>
           </div>
         </div>
-
       </div>
 
-      <!-- БЛОК 4: СЦЕПЛЕННЫЙ ТРЕК ШАГОВ (OVERLAPPING PILLS) -->
-      <div class="timeline-wrap-box">
-        <div class="timeline-header-row">
-          <div class="timeline-header-main">ЧЕТЫРЕ ШАГА</div>
-          <div class="timeline-arrow-line"></div>
-          <div class="timeline-header-sub">К ВАШЕЙ НОВОЙ ТЕПЛИЦЕ</div>
+      <!-- ЭТАПЫ РАБОТЫ (Современная легкая шкала) -->
+      <div class="del-steps-card">
+        <div class="del-steps-header">
+          <span class="adv-section-tag" style="background: #eaf4ed; color: #2d6a4f; padding: 5px 16px; border-radius: 999px; font-weight: 800; font-size: 0.84rem; display: inline-block; margin-bottom: 8px;">Прозрачный процесс</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.65rem; font-weight: 900; color: #1b4332; margin: 4px 0;">4 простых шага до готовой теплицы</h2>
         </div>
 
-        <div class="pill-steps-track">
-          
-          <div class="pill-step">
-            <div class="pill-step-num">1</div>
-            <div class="pill-step-text">Согласование удобной даты выезда</div>
+        <div class="del-steps-grid">
+          <div class="del-step-item">
+            <div class="del-step-num">1</div>
+            <div class="del-step-text">
+              <strong>Звонок или заявка</strong>
+              <span>Подбор модели, фиксация заводской цены и даты</span>
+            </div>
           </div>
-
-          <div class="pill-step">
-            <div class="pill-step-num">2</div>
-            <div class="pill-step-text">Бережная доставка спецтранспортом</div>
+          <div class="del-step-item">
+            <div class="del-step-num">2</div>
+            <div class="del-step-text">
+              <strong>Доставка к калитке</strong>
+              <span>Привезем в согласованное время прямо на участок</span>
+            </div>
           </div>
-
-          <div class="pill-step active">
-            <div class="pill-step-num">3</div>
-            <div class="pill-step-text">Профессиональная сборка за 3–4 часа</div>
+          <div class="del-step-item">
+            <div class="del-step-num">3</div>
+            <div class="del-step-text">
+              <strong>Сборка под ключ</strong>
+              <span>Монтаж бруса, каркаса, поликарбоната и дверей</span>
+            </div>
           </div>
-
-          <div class="pill-step">
-            <div class="pill-step-num">4</div>
-            <div class="pill-step-text">Приемка работы и оплата по факту</div>
+          <div class="del-step-item">
+            <div class="del-step-num">4</div>
+            <div class="del-step-text">
+              <strong>Приемка и расчет</strong>
+              <span>Проверяете работу мастера и оплачиваете по факту</span>
+            </div>
           </div>
-
         </div>
       </div>
 
@@ -1316,12 +1269,13 @@
       <!-- Меню ссылок футера (адаптивная сетка) -->
       <div class="footer-links-grid">
         <div class="footer-links-col">
-          <div class="footer-col-title">Каталог теплиц</div>
+          <div class="footer-col-title">Каталог продукции</div>
           <ul class="footer-nav-list">
             <li><a href="arochnye.html">Арочные теплицы</a></li>
             <li><a href="kaplevidnye.html">Каплевидные теплицы</a></li>
+            <li><a href="gryadki.html">Оцинкованные грядки</a></li>
+            <li><a href="polikarbonat.html">Сотовый поликарбонат с УФ</a></li>
             <li><a href="arochnye.html#usil">Усиленные теплицы (шаг 0.65 м)</a></li>
-            <li><a href="nashi-raboty.html">Наши работы (фото)</a></li>
           </ul>
         </div>
 

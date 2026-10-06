@@ -3,7 +3,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const config = getSiteConfig();
+  const config = typeof getSiteConfig === "function" ? getSiteConfig() : (window.DEFAULT_CONFIG || {});
 
   // 1. Применение настроек контактов
   applyCompanyContacts(config);
@@ -244,14 +244,16 @@ function setupModals() {
     modalOverlay.classList.remove("active");
   }
 
-  document.querySelectorAll("[data-open-modal]").forEach(btn => {
-    btn.addEventListener("click", (e) => {
+  // Делегирование открытия модальных окон для любых элементов с data-open-modal
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-open-modal]");
+    if (btn) {
       e.preventDefault();
       const subject = btn.getAttribute("data-subject") || "Заявка с сайта";
       const title = btn.getAttribute("data-title") || "Заказать звонок мастера";
       const subtitle = btn.getAttribute("data-subtitle") || "Специалист подробно ответит на все вопросы";
       openModal(title, subtitle, subject);
-    });
+    }
   });
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);

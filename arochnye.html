@@ -142,22 +142,28 @@
     }
 
     .cat-card-size {
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       font-weight: 800;
       color: #1b4332;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
     }
 
     .cat-card-price-val {
       font-weight: 900;
       color: #1b4332;
-      font-size: 1.02rem;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
     }
 
     .cat-card-size-sub {
-      color: #666;
-      font-weight: 500;
-      font-size: 0.82rem;
-      margin-left: 4px;
+      color: #555;
+      font-weight: 600;
+      font-size: 0.88rem;
     }
 
     .cat-card-price {
@@ -1088,62 +1094,80 @@
         const modal = document.getElementById('productModalOverlay');
         if (!modal) return;
 
-        const cleanId = String(productId).replace(/\D/g, '') || 1;
-        const prod = productsData[productId] || productsData[cleanId] || productsData[1];
+        const cleanId = String(productId).replace(/\D/g, '') || '1';
+        let prod = productsData[productId] || productsData[cleanId];
+        if (!prod && typeof productId === 'string') {
+          prod = Object.values(productsData).find(p => p.id == cleanId || p.title === productId);
+        }
+        if (!prod) prod = productsData[1];
         if (!prod) return;
+
         currentImages = prod.images || [];
 
-        // Заполнение данных
-        document.getElementById('prodModalBadge').innerHTML = prod.badge;
-        document.getElementById('prodModalTitle').textContent = prod.title;
-        document.getElementById('prodModalPrice').textContent = prod.price;
-        document.getElementById('prodModalLead').innerHTML = prod.lead;
+        try {
+          const badgeEl = document.getElementById('prodModalBadge');
+          if (badgeEl) badgeEl.innerHTML = prod.badge || '';
+          const titleEl = document.getElementById('prodModalTitle');
+          if (titleEl) titleEl.textContent = prod.title || '';
+          const priceEl = document.getElementById('prodModalPrice');
+          if (priceEl) priceEl.textContent = prod.price || '';
+          const leadEl = document.getElementById('prodModalLead');
+          if (leadEl) leadEl.innerHTML = prod.lead || '';
 
-        // Размеры
-        document.getElementById('prodModalSizesTitle').textContent = prod.sizesTitle || "📏 Размеры:";
-        document.getElementById('prodModalSizesVal').innerHTML = prod.sizes;
+          const sizesTitleEl = document.getElementById('prodModalSizesTitle');
+          if (sizesTitleEl) sizesTitleEl.textContent = prod.sizesTitle || "📏 Размеры:";
+          const sizesValEl = document.getElementById('prodModalSizesVal');
+          if (sizesValEl) sizesValEl.innerHTML = prod.sizes || '';
 
-        // Преимущества
-        document.getElementById('prodModalFeaturesTitle').textContent = prod.featuresTitle || "🔥 Преимущества:";
-        const featList = document.getElementById('prodModalFeaturesList');
-        featList.innerHTML = '';
-        (prod.features || []).forEach(function(item) {
-          const li = document.createElement('li');
-          li.textContent = item;
-          featList.appendChild(li);
-        });
+          const featTitleEl = document.getElementById('prodModalFeaturesTitle');
+          if (featTitleEl) featTitleEl.textContent = prod.featuresTitle || "🔥 Преимущества:";
+          const featList = document.getElementById('prodModalFeaturesList');
+          if (featList) {
+            featList.innerHTML = '';
+            (prod.features || []).forEach(function(item) {
+              const li = document.createElement('li');
+              li.textContent = item;
+              featList.appendChild(li);
+            });
+          }
 
-        // Комплектация
-        document.getElementById('prodModalPackageTitle').textContent = prod.packageTitle || "📦 В комплекте:";
-        document.getElementById('prodModalPackageText').textContent = prod.packageText;
-        document.getElementById('prodModalDeliveryNote').innerHTML = prod.deliveryNote;
+          const pkgTitleEl = document.getElementById('prodModalPackageTitle');
+          if (pkgTitleEl) pkgTitleEl.textContent = prod.packageTitle || "📦 В комплекте:";
+          const pkgTextEl = document.getElementById('prodModalPackageText');
+          if (pkgTextEl) pkgTextEl.textContent = prod.packageText || '';
+          const delivEl = document.getElementById('prodModalDeliveryNote');
+          if (delivEl) delivEl.innerHTML = prod.deliveryNote || '';
 
-        // Сноска
-        document.getElementById('prodModalNote').innerHTML = prod.note;
+          const noteEl = document.getElementById('prodModalNote');
+          if (noteEl) noteEl.innerHTML = prod.note || '';
 
-        // Кнопка заказа
-        const orderBtn = document.getElementById('prodModalOrderBtn');
-        if (orderBtn) {
-          orderBtn.setAttribute('data-title', prod.title);
-          orderBtn.setAttribute('data-subject', prod.orderSubject);
+          const orderBtn = document.getElementById('prodModalOrderBtn');
+          if (orderBtn) {
+            orderBtn.setAttribute('data-title', prod.title || 'Заказ теплицы');
+            orderBtn.setAttribute('data-subject', prod.orderSubject || 'Заказ из каталога');
+          }
+
+          const thumbsRow = document.getElementById('prodThumbsRow');
+          if (thumbsRow) {
+            thumbsRow.innerHTML = '';
+            currentImages.forEach(function(imgSrc, i) {
+              const item = document.createElement('div');
+              item.className = 'prod-thumb-item' + (i === 0 ? ' active' : '');
+              item.setAttribute('data-index', i);
+              item.innerHTML = '<img src="' + imgSrc + '" alt="Превью ' + (i + 1) + '">';
+              item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                updateSlide(i);
+              });
+              thumbsRow.appendChild(item);
+            });
+          }
+
+          updateSlide(0);
+        } catch (err) {
+          console.warn('Error setting up modal content:', err);
         }
 
-        // Рендер миниатюр
-        const thumbsRow = document.getElementById('prodThumbsRow');
-        thumbsRow.innerHTML = '';
-        currentImages.forEach(function(imgSrc, i) {
-          const item = document.createElement('div');
-          item.className = 'prod-thumb-item' + (i === 0 ? ' active' : '');
-          item.setAttribute('data-index', i);
-          item.innerHTML = '<img src="' + imgSrc + '" alt="Превью ' + (i + 1) + '">';
-          item.addEventListener('click', function(e) {
-            e.stopPropagation();
-            updateSlide(i);
-          });
-          thumbsRow.appendChild(item);
-        });
-
-        updateSlide(0);
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
@@ -1158,49 +1182,34 @@
       window.openProductModal = openProductModal;
       window.closeProductModal = closeProductModal;
 
-      // Привязка событий
-      document.addEventListener('DOMContentLoaded', function() {
+      function bindProductModalControls() {
         const modal = document.getElementById('productModalOverlay');
         const closeBtn = document.getElementById('productModalCloseBtn');
         const prevBtn = document.getElementById('prodSliderPrevBtn');
         const nextBtn = document.getElementById('prodSliderNextBtn');
 
-        // Открытие по клику на любую карточку товара (делегирование на весь документ)
-        document.addEventListener('click', function(e) {
-          const card = e.target.closest('.js-product-card');
-          if (card) {
-            e.preventDefault();
-            const pid = card.getAttribute('data-product-id') || 1;
-            openProductModal(pid);
-          }
-        });
+        if (closeBtn) closeBtn.onclick = closeProductModal;
 
-        // Закрытие по крестику
-        if (closeBtn) closeBtn.addEventListener('click', closeProductModal);
-
-        // Закрытие по клику вне модалки
         if (modal) {
-          modal.addEventListener('click', function(e) {
+          modal.onclick = function(e) {
             if (e.target === modal) closeProductModal();
-          });
+          };
         }
 
-        // Кнопки слайдера
         if (prevBtn) {
-          prevBtn.addEventListener('click', function(e) {
+          prevBtn.onclick = function(e) {
             e.stopPropagation();
             updateSlide(currentSlideIdx - 1);
-          });
+          };
         }
 
         if (nextBtn) {
-          nextBtn.addEventListener('click', function(e) {
+          nextBtn.onclick = function(e) {
             e.stopPropagation();
             updateSlide(currentSlideIdx + 1);
-          });
+          };
         }
 
-        // Нажатие стрелок на клавиатуре и Escape
         document.addEventListener('keydown', function(e) {
           if (!modal || !modal.classList.contains('active')) return;
           if (e.key === 'Escape') closeProductModal();
@@ -1208,29 +1217,39 @@
           if (e.key === 'ArrowRight') updateSlide(currentSlideIdx + 1);
         });
 
-        // Поддержка свайпов на тач-экранах
         const sliderWrap = document.querySelector('.prod-slider-main-wrap');
         if (sliderWrap) {
           let touchStartX = 0;
           let touchEndX = 0;
-
           sliderWrap.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
           }, { passive: true });
-
           sliderWrap.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
             const diff = touchStartX - touchEndX;
             if (Math.abs(diff) > 40) {
-              if (diff > 0) {
-                updateSlide(currentSlideIdx + 1);
-              } else {
-                updateSlide(currentSlideIdx - 1);
-              }
+              if (diff > 0) updateSlide(currentSlideIdx + 1);
+              else updateSlide(currentSlideIdx - 1);
             }
           }, { passive: true });
         }
+      }
+
+      // Открытие по клику на любую карточку товара (делегирование на весь документ работает мгновенно)
+      document.addEventListener('click', function(e) {
+        const card = e.target.closest('.js-product-card');
+        if (card) {
+          e.preventDefault();
+          const pid = card.getAttribute('data-product-id') || 1;
+          openProductModal(pid);
+        }
       });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindProductModalControls);
+      } else {
+        bindProductModalControls();
+      }
     })();
   </script>
 </body>

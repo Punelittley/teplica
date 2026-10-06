@@ -162,7 +162,10 @@ function renderDatabaseContent(config) {
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">${prod.name}</div>
-              <div class="cat-card-size">${prod.price ? 'от ' + prod.price.toLocaleString('ru-RU') + ' ₽' : ''} ${prod.size ? '• ' + prod.size : ''}</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">${prod.price ? 'от ' + prod.price.toLocaleString('ru-RU') + ' ₽' : ''}</strong>
+                ${prod.size ? `<span class="cat-card-size-sub">• ${prod.size}</span>` : ''}
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>

@@ -135,21 +135,35 @@
 
     .cat-card-name {
       font-family: var(--font-heading);
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-size: 0.95rem;
+      font-weight: 800;
       color: #1a1a1a;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .cat-card-size {
-      font-size: 0.78rem;
-      color: #999;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #1b4332;
+    }
+
+    .cat-card-price-val {
+      font-weight: 900;
+      color: #1b4332;
+      font-size: 1.02rem;
+    }
+
+    .cat-card-size-sub {
+      color: #666;
+      font-weight: 500;
+      font-size: 0.82rem;
+      margin-left: 4px;
     }
 
     .cat-card-price {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #1a1a1a;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #1b4332;
       white-space: nowrap;
     }
 
@@ -298,13 +312,16 @@
 
         <!-- Карточка 1: Теплицы от производителя -->
         <div class="cat-card js-product-card" data-product-id="1">
-          <img src="assets/images/products/p1/1.jpg" alt="Теплицы от производителя" class="cat-card-img">
+          <img src="assets/images/products/p1/2.jpg" alt="Теплицы от производителя" class="cat-card-img">
           <span class="cat-card-badge badge-hit">От производителя</span>
           <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">Теплицы от производителя</div>
-              <div class="cat-card-size">от 25 500 ₽ • 3х4...3х10 м</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">от 25 500 ₽</strong>
+                <span class="cat-card-size-sub">• 3х4...3х10 м</span>
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
@@ -312,13 +329,16 @@
 
         <!-- Карточка 2: Сборка теплиц -->
         <div class="cat-card js-product-card" data-product-id="2">
-          <img src="assets/images/products/p2/1.jpg" alt="Сборка теплиц" class="cat-card-img">
+          <img src="assets/images/products/p2/2.jpg" alt="Сборка теплиц" class="cat-card-img">
           <span class="cat-card-badge badge-pro">Профессионально</span>
           <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">Сборка теплиц</div>
-              <div class="cat-card-size">6 500–8 000 ₽ • под ключ</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">6 500–8 000 ₽</strong>
+                <span class="cat-card-size-sub">• под ключ</span>
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
@@ -326,13 +346,16 @@
 
         <!-- Карточка 3: Ремонт теплиц — замена поликарбоната -->
         <div class="cat-card js-product-card" data-product-id="3">
-          <img src="assets/images/products/p3/1.jpg" alt="Ремонт теплиц — замена поликарбоната" class="cat-card-img">
+          <img src="assets/images/products/p3/2.jpg" alt="Ремонт теплиц — замена поликарбоната" class="cat-card-img">
           <span class="cat-card-badge badge-hit">Ремонт и замена</span>
           <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">Ремонт теплиц</div>
-              <div class="cat-card-size">6 500–9 500 ₽ • замена СПК</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">6 500–9 500 ₽</strong>
+                <span class="cat-card-size-sub">• замена СПК</span>
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
@@ -340,13 +363,16 @@
 
         <!-- Карточка 4: Доставка теплиц -->
         <div class="cat-card js-product-card" data-product-id="4">
-          <img src="assets/images/products/p4/1.jpg" alt="Доставка теплиц" class="cat-card-img">
+          <img src="assets/images/products/p4/2.jpg" alt="Доставка теплиц" class="cat-card-img">
           <span class="cat-card-badge badge-pro">Доставка</span>
           <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">Доставка теплиц</div>
-              <div class="cat-card-size">1 500–2 500 ₽ • по области</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">1 500–2 500 ₽</strong>
+                <span class="cat-card-size-sub">• по области</span>
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
@@ -354,13 +380,16 @@
 
         <!-- Карточка 5: Сотовый поликарбонат 4мм -->
         <div class="cat-card js-product-card" data-product-id="5">
-          <img src="assets/images/products/p5/1.jpg" alt="Сотовый поликарбонат 4мм" class="cat-card-img">
+          <img src="assets/images/products/p5/2.jpg" alt="Сотовый поликарбонат 4мм" class="cat-card-img">
           <span class="cat-card-badge badge-pro">В наличии</span>
           <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">Сотовый поликарбонат 4мм</div>
-              <div class="cat-card-size">3 500–5 100 ₽ • за 6 метров</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">3 500–5 100 ₽</strong>
+                <span class="cat-card-size-sub">• за 6 метров</span>
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
@@ -368,13 +397,16 @@
 
         <!-- Карточка 6: Фундамент для теплиц -->
         <div class="cat-card js-product-card" data-product-id="6">
-          <img src="assets/images/products/p6/1.jpg" alt="Фундамент для теплиц" class="cat-card-img">
+          <img src="assets/images/products/p6/2.jpg" alt="Фундамент для теплиц" class="cat-card-img">
           <span class="cat-card-badge badge-pro">Основание</span>
           <div class="cat-card-dot" style="background:#52b788;"></div>
           <div class="cat-card-body">
             <div class="cat-card-info">
               <div class="cat-card-name">Фундамент для теплиц</div>
-              <div class="cat-card-size">6 000–9 000 ₽ • под ключ</div>
+              <div class="cat-card-size">
+                <strong class="cat-card-price-val">6 000–9 000 ₽</strong>
+                <span class="cat-card-size-sub">• под ключ</span>
+              </div>
             </div>
             <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
           </div>
@@ -1056,7 +1088,9 @@
         const modal = document.getElementById('productModalOverlay');
         if (!modal) return;
 
-        const prod = productsData[productId] || productsData[1];
+        const cleanId = String(productId).replace(/\D/g, '') || 1;
+        const prod = productsData[productId] || productsData[cleanId] || productsData[1];
+        if (!prod) return;
         currentImages = prod.images || [];
 
         // Заполнение данных
@@ -1121,21 +1155,24 @@
         document.body.style.overflow = '';
       }
 
+      window.openProductModal = openProductModal;
+      window.closeProductModal = closeProductModal;
+
       // Привязка событий
       document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('productModalOverlay');
         const closeBtn = document.getElementById('productModalCloseBtn');
         const prevBtn = document.getElementById('prodSliderPrevBtn');
         const nextBtn = document.getElementById('prodSliderNextBtn');
-        const prodCards = document.querySelectorAll('.js-product-card');
 
-        // Открытие по клику на карточку товара
-        prodCards.forEach(function(card) {
-          card.addEventListener('click', function(e) {
+        // Открытие по клику на любую карточку товара (делегирование на весь документ)
+        document.addEventListener('click', function(e) {
+          const card = e.target.closest('.js-product-card');
+          if (card) {
             e.preventDefault();
             const pid = card.getAttribute('data-product-id') || 1;
             openProductModal(pid);
-          });
+          }
         });
 
         // Закрытие по крестику

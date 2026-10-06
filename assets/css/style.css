@@ -6864,7 +6864,26 @@ textarea {
   }
 }
 
+/* Глобальное выделение цен в карточках товаров */
+.cat-card-size {
+  font-size: 0.96rem !important;
+  font-weight: 700 !important;
+  color: #1b4332 !important;
+  display: flex !important;
+  align-items: baseline !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+}
 
+.cat-card-price-val {
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+  color: #1b4332 !important;
+  display: inline-block !important;
+}
 
-
-
+.cat-card-size-sub {
+  color: #555555 !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+}

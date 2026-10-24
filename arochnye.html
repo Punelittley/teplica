@@ -252,8 +252,27 @@
 <body>
   <!-- Шапка сайта -->
   <header class="site-header">
-    <div class="container">
+    <!-- Верхняя строка: активный телефон + лозунг + рукописная пропись -->
+    <div class="header-topbar">
+      <div class="container header-topbar-inner">
+        <div class="header-topbar-slogan">
+          <span class="topbar-slogan-main">🌱 Свой огород — это счастье!</span>
+          <span class="topbar-slogan-hand">«С душевной заботой о вашем урожае ♡»</span>
+        </div>
+        <div class="header-topbar-contacts">
+          <span class="topbar-hours">Ежедневно 8:00–20:00</span>
+          <a href="tel:+748521234567" class="header-phone-link js-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+          </a>
+          <button type="button" class="header-callback-btn" data-open-modal data-subject="Заказ звонка из шапки" data-title="Заказать звонок мастера">
+            Заказать звонок
+          </button>
+        </div>
+      </div>
+    </div>
 
+    <div class="container">
       <!-- Верхняя строка: логотип по центру картинкой -->
       <div class="header-top-row">
         <div class="header-top-center">
@@ -267,11 +286,11 @@
       <!-- Нижняя строка: навигация по центру -->
       <div class="header-nav-row">
         <nav class="site-nav" id="siteNav">
-          <a href="index.html" class="nav-link ">Главная</a>
+          <a href="index.html" class="nav-link">Главная</a>
           
           <div class="nav-item-dropdown">
             <a href="arochnye.html" class="nav-link dropdown-toggle active">
-              Теплицы и товары 
+              Теплицы 
               <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9l6 6 6-6"/>
               </svg>
@@ -279,262 +298,258 @@
             <div class="dropdown-menu">
               <a href="arochnye.html" class="dropdown-item active">Арочные теплицы (Хит)</a>
               <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
-              <a href="gryadki.html" class="dropdown-item">Оцинкованные грядки</a>
-              <a href="polikarbonat.html" class="dropdown-item">Сотовый поликарбонат</a>
+              <a href="domikom.html" class="dropdown-item">Теплицы «Домиком»</a>
             </div>
           </div>
+
+          <a href="gryadki.html" class="nav-link">Оцинкованные грядки</a>
+          <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
 
           <a href="index.html#calculator" class="nav-link nav-link--calc">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>Калькулятор
           </a>
-          <a href="nashi-raboty.html" class="nav-link ">Наши работы</a>
-          <a href="dostavka-sborka.html" class="nav-link ">Доставка и сборка</a>
-          <a href="preimushchestva.html" class="nav-link ">Преимущества</a>
-          <a href="otzyvy.html" class="nav-link ">Отзывы</a>
-          <a href="kontakty.html" class="nav-link ">Контакты</a>
+          <a href="nashi-raboty.html" class="nav-link">Наши работы</a>
+          <a href="dostavka-sborka.html" class="nav-link">Доставка и сборка</a>
+          <a href="preimushchestva.html" class="nav-link">Преимущества</a>
+          <a href="otzyvy.html" class="nav-link">Отзывы</a>
+          <a href="kontakty.html" class="nav-link">Контакты</a>
         </nav>
       </div>
 
     </div>
   </header>
 
-  <!-- Каталог -->
+  <!-- Главный блок: Арочные теплицы -->
   <main class="catalog-page">
     <div class="container">
 
-      <!-- Хлебные крошки -->
-      
-
-      <!-- Заголовок -->
-      <div class="testimonials-header" style="padding-top: 40px; margin-bottom: 35px;">
-        <h1 class="testimonials-title">Арочные теплицы</h1>
+      <!-- Заголовок и преимущества формы -->
+      <div class="testimonials-header" style="padding-top: 36px; margin-bottom: 25px;">
+        <span class="adv-section-tag" style="background: #eaf4ed; color: #2d6a4f; padding: 5px 16px; border-radius: 999px; font-weight: 800; font-size: 0.84rem; display: inline-block; margin-bottom: 8px;">Классика дачных участков</span>
+        <h1 class="testimonials-title">Арочные теплицы из оцинкованной стали</h1>
         <p class="testimonials-subtitle">
-          Классические и усиленные модели из оцинкованной трубы ГОСТ с заводской гарантией до 10 лет и быстрой сборкой в Ярославле и области
+          Самая популярная и проверенная временем форма. Идеальное распределение солнечного света, высокая аэродинамика и максимальная доступность для бюджета.
         </p>
       </div>
 
-      <!-- Сетка товаров -->
-      <div class="catalog-grid">
-
-        <!-- Карточка 1: Теплицы от производителя -->
-        <div class="cat-card js-product-card" data-product-id="1">
-          <img src="assets/images/products/p1/2.jpg" alt="Теплицы от производителя" class="cat-card-img">
-          <span class="cat-card-badge badge-hit">От производителя</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Теплицы от производителя</div>
-              <div class="cat-card-size">
-                <strong class="cat-card-price-val">от 25 500 ₽</strong>
-                <span class="cat-card-size-sub">• 3х4...3х10 м</span>
-              </div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+      <!-- Плашки преимуществ арочной формы -->
+      <div class="greenhouse-features-bar" style="margin-bottom: 35px;">
+        <div class="greenhouse-feature-pill">
+          <div class="greenhouse-feature-pill-icon">💨</div>
+          <div>
+            <strong>Аэродинамика</strong>
+            <span>Обтекает сильные порывы ветра</span>
           </div>
         </div>
-
-        <!-- Карточка 2: Сборка теплиц -->
-        <div class="cat-card js-product-card" data-product-id="2">
-          <img src="assets/images/products/p2/2.jpg" alt="Сборка теплиц" class="cat-card-img">
-          <span class="cat-card-badge badge-pro">Профессионально</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Сборка теплиц</div>
-              <div class="cat-card-size">
-                <strong class="cat-card-price-val">6 500–8 000 ₽</strong>
-                <span class="cat-card-size-sub">• под ключ</span>
-              </div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+        <div class="greenhouse-feature-pill">
+          <div class="greenhouse-feature-pill-icon">☀️</div>
+          <div>
+            <strong>Равномерный свет</strong>
+            <span>Солнце прогревает весь день</span>
           </div>
         </div>
-
-        <!-- Карточка 3: Ремонт теплиц — замена поликарбоната -->
-        <div class="cat-card js-product-card" data-product-id="3">
-          <img src="assets/images/products/p3/2.jpg" alt="Ремонт теплиц — замена поликарбоната" class="cat-card-img">
-          <span class="cat-card-badge badge-hit">Ремонт и замена</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Ремонт теплиц</div>
-              <div class="cat-card-size">
-                <strong class="cat-card-price-val">6 500–9 500 ₽</strong>
-                <span class="cat-card-size-sub">• замена СПК</span>
-              </div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+        <div class="greenhouse-feature-pill">
+          <div class="greenhouse-feature-pill-icon">🛡️</div>
+          <div>
+            <strong>Труба ГОСТ</strong>
+            <span>Снеговая нагрузка до 240 кг/м²</span>
           </div>
         </div>
-
-        <!-- Карточка 4: Доставка теплиц -->
-        <div class="cat-card js-product-card" data-product-id="4">
-          <img src="assets/images/products/p4/2.jpg" alt="Доставка теплиц" class="cat-card-img">
-          <span class="cat-card-badge badge-pro">Доставка</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Доставка теплиц</div>
-              <div class="cat-card-size">
-                <strong class="cat-card-price-val">1 500–2 500 ₽</strong>
-                <span class="cat-card-size-sub">• по области</span>
-              </div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
+        <div class="greenhouse-feature-pill">
+          <div class="greenhouse-feature-pill-icon">💰</div>
+          <div>
+            <strong>Фабричная цена</strong>
+            <span>Честная стоимость без посредников</span>
           </div>
         </div>
-
-        <!-- Карточка 5: Сотовый поликарбонат 4мм -->
-        <div class="cat-card js-product-card" data-product-id="5">
-          <img src="assets/images/products/p5/2.jpg" alt="Сотовый поликарбонат 4мм" class="cat-card-img">
-          <span class="cat-card-badge badge-pro">В наличии</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Сотовый поликарбонат 4мм</div>
-              <div class="cat-card-size">
-                <strong class="cat-card-price-val">3 500–5 100 ₽</strong>
-                <span class="cat-card-size-sub">• за 6 метров</span>
-              </div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
-          </div>
-        </div>
-
-        <!-- Карточка 6: Фундамент для теплиц -->
-        <div class="cat-card js-product-card" data-product-id="6">
-          <img src="assets/images/products/p6/2.jpg" alt="Фундамент для теплиц" class="cat-card-img">
-          <span class="cat-card-badge badge-pro">Основание</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Фундамент для теплиц</div>
-              <div class="cat-card-size">
-                <strong class="cat-card-price-val">6 000–9 000 ₽</strong>
-                <span class="cat-card-size-sub">• под ключ</span>
-              </div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
-          </div>
-        </div>
-
-        <!-- Карточка 7: Грядки для теплиц оцинкованные -->
-        <div class="cat-card js-product-card" data-product-id="7">
-          <img src="assets/images/products/p7/1.jpg" alt="Грядки для теплиц оцинкованные" class="cat-card-img">
-          <span class="cat-card-badge badge-pro">Комплект</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Грядки оцинкованные</div>
-              <div class="cat-card-size">6 000–9 500 ₽ • комплект 3 шт</div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
-          </div>
-        </div>
-
-        <!-- Карточка 8: Грядки оцинкованные -->
-        <div class="cat-card js-product-card" data-product-id="8">
-          <img src="assets/images/products/p8/1.jpg" alt="Грядки оцинкованные для дачи" class="cat-card-img">
-          <span class="cat-card-badge badge-hit">Поштучно</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Грядки оцинкованные (поштучно)</div>
-              <div class="cat-card-size">1 250–2 300 ₽ • для сада и огорода</div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
-          </div>
-        </div>
-
-        <!-- Карточка 9: Клумбы металлические -->
-        <div class="cat-card js-product-card" data-product-id="9">
-          <img src="assets/images/products/p9/1.jpg" alt="Клумбы металлические" class="cat-card-img">
-          <span class="cat-card-badge badge-new">Новинка</span>
-          <div class="cat-card-dot" style="background:#52b788;"></div>
-          <div class="cat-card-body">
-            <div class="cat-card-info">
-              <div class="cat-card-name">Клумбы металлические</div>
-              <div class="cat-card-size">1 700–3 500 ₽ • для цветников</div>
-            </div>
-            <button class="cat-card-order-btn" title="Посмотреть фото и описание" aria-label="Подробнее">👁</button>
-          </div>
-        </div>
-
-      </div>
-      <!-- /catalog-grid -->
-
-      <!-- Баннер консультации -->
-      <div class="catalog-consult-banner">
-        <div>
-          <h3>Сомневаетесь, какую модель выбрать?</h3>
-          <p>Позвоните нашему мастеру или закажите обратный звонок. Честно подскажем оптимальный вариант под ваш участок и бюджет.</p>
-        </div>
-        <button class="btn btn-primary" data-open-modal data-subject="Консультация мастера по арочной теплице" data-title="Консультация мастера">
-          Спросить у мастера →
-        </button>
       </div>
 
-      <!-- Таблица цен -->
-      <div class="catalog-prices">
-        <h2>Сводная таблица цен</h2>
-        <p>В стоимость входит: каркас, 2 двери, 2 форточки, поликарбонат с УФ-защитой, крепёж, инструкция.</p>
-        <div class="pricing-table-wrap">
-          <table class="pricing-table">
-            <thead>
-              <tr>
-                <th>Размер</th>
-                <th>«Стандарт» (шаг 1 м)</th>
-                <th>«Усиленная» (шаг 0.65 м)</th>
-                <th>«Богатырь» (двойная дуга)</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>3 × 4 м</strong></td>
-                <td>21 900 ₽</td>
-                <td>24 400 ₽</td>
-                <td>28 900 ₽</td>
-                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×4 арочная">Заказать</button></td>
-              </tr>
-              <tr>
-                <td><strong>3 × 6 м</strong> <span style="font-size:0.75rem;color:#e07b53;font-weight:700;">Хит</span></td>
-                <td>26 900 ₽</td>
-                <td>29 900 ₽</td>
-                <td>35 500 ₽</td>
-                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×6 арочная">Заказать</button></td>
-              </tr>
-              <tr>
-                <td><strong>3 × 8 м</strong></td>
-                <td>32 400 ₽</td>
-                <td>35 900 ₽</td>
-                <td>42 900 ₽</td>
-                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×8 арочная">Заказать</button></td>
-              </tr>
-              <tr>
-                <td><strong>3 × 10 м</strong></td>
-                <td>37 900 ₽</td>
-                <td>41 900 ₽</td>
-                <td>49 900 ₽</td>
-                <td><button class="btn btn-secondary" style="padding:6px 14px;font-size:0.85rem;" data-open-modal data-subject="Заказ 3×10 арочная">Заказать</button></td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- ИНТЕРАКТИВНАЯ ГАЛЕРЕЯ АРОЧНЫХ ТЕПЛИЦ -->
+      <div class="greenhouse-gallery-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.55rem; color: #1b4332; margin: 0;">
+              Фотогалерея арочных теплиц на участках
+            </h2>
+            <span style="font-size: 0.88rem; color: #6c757d;">Реальные фото установленных конструкций нашими бригадами</span>
+          </div>
+          <span style="background: #eaf4ed; color: #2d6a4f; font-weight: 800; font-size: 0.82rem; padding: 5px 14px; border-radius: 999px;">
+            5 ракурсов сборки
+          </span>
+        </div>
+
+        <div class="gallery-main-view">
+          <img src="assets/images/products/p1/1.jpg" alt="Арочная теплица на даче" class="gallery-main-img" id="archMainImg">
+          <button class="gallery-nav-btn prev" id="archPrevBtn" aria-label="Предыдущее фото">‹</button>
+          <button class="gallery-nav-btn next" id="archNextBtn" aria-label="Следующее фото">›</button>
+          <div class="gallery-counter-badge" id="archCounterBadge">1 / 5</div>
+        </div>
+
+        <div class="gallery-thumbs-row" id="archThumbsRow">
+          <div class="gallery-thumb-item active" data-src="assets/images/products/p1/1.jpg" data-idx="0">
+            <img src="assets/images/products/p1/1.jpg" alt="Арочная теплица фасад">
+          </div>
+          <div class="gallery-thumb-item" data-src="assets/images/products/p1/2.jpg" data-idx="1">
+            <img src="assets/images/products/p1/2.jpg" alt="Арочная теплица на брусе">
+          </div>
+          <div class="gallery-thumb-item" data-src="assets/images/products/p1/3.jpg" data-idx="2">
+            <img src="assets/images/products/p1/3.jpg" alt="Арочная теплица торец и дверь">
+          </div>
+          <div class="gallery-thumb-item" data-src="assets/images/products/p1/4.jpg" data-idx="3">
+            <img src="assets/images/products/p1/4.jpg" alt="Арочная теплица каркас">
+          </div>
+          <div class="gallery-thumb-item" data-src="assets/images/products/p1/5.jpg" data-idx="4">
+            <img src="assets/images/products/p1/5.jpg" alt="Арочная теплица готовая под ключ">
+          </div>
+        </div>
+      </div>
+
+      <!-- КАРТОЧКИ СТОИМОСТИ ПО РАЗМЕРАМ -->
+      <div class="greenhouse-prices-section">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 30px;">
+          <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 900; color: #1b4332; margin: 0 0 8px;">
+            Стоимость арочных теплиц по размерам
+          </h2>
+          <p style="color: #556b62; font-size: 0.95rem; margin: 0;">
+            В комплект входит: каркас из оцинкованной трубы, 2 двери, 2 форточки, сотовый поликарбонат с УФ-защитой, вся фурнитура. 0 ₽ предоплаты!
+          </p>
+        </div>
+
+        <div class="greenhouse-prices-grid">
+          <!-- 3х4 м -->
+          <div class="greenhouse-price-card">
+            <div class="price-card-size">3 × 4 метра</div>
+            <div class="price-card-val-box">
+              <div class="price-card-old">24 500 ₽</div>
+              <div class="price-card-current">21 900 ₽</div>
+            </div>
+            <ul class="price-card-specs">
+              <li>✓ <strong>Площадь:</strong> 12 м²</li>
+              <li>✓ <strong>Шаг дуг:</strong> 1 м или 0.65 м</li>
+              <li>✓ <strong>Комплектация:</strong> 2 двери, 2 форточки</li>
+              <li>✓ <strong>Поликарбонат:</strong> 4 мм с УФ-слоем</li>
+            </ul>
+            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Арочная теплица 3х4 м" data-subtitle="Цена от 21 900 ₽. Доставка и сборка без предоплаты" data-subject="Заказ: Арочная теплица 3х4 м (от 21 900 ₽)">
+              Заказать 3х4 м →
+            </button>
+          </div>
+
+          <!-- 3х6 м (Хит) -->
+          <div class="greenhouse-price-card featured">
+            <span class="price-card-badge">🔥 Хит продаж</span>
+            <div class="price-card-size">3 × 6 метров</div>
+            <div class="price-card-val-box">
+              <div class="price-card-old">30 500 ₽</div>
+              <div class="price-card-current">26 900 ₽</div>
+            </div>
+            <ul class="price-card-specs">
+              <li>✓ <strong>Площадь:</strong> 18 м² (самый выбор дачников)</li>
+              <li>✓ <strong>Шаг дуг:</strong> 1 м или 0.65 м (усиленная)</li>
+              <li>✓ <strong>Комплектация:</strong> 2 двери, 2 форточки</li>
+              <li>✓ <strong>Поликарбонат:</strong> 4 мм с УФ-слоем Sabic</li>
+            </ul>
+            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Арочная теплица 3х6 м" data-subtitle="Цена от 26 900 ₽. Бесплатное хранение до весны" data-subject="Заказ: Арочная теплица 3х6 м (от 26 900 ₽)">
+              Заказать 3х6 м (Хит) →
+            </button>
+          </div>
+
+          <!-- 3х8 м -->
+          <div class="greenhouse-price-card">
+            <div class="price-card-size">3 × 8 метров</div>
+            <div class="price-card-val-box">
+              <div class="price-card-old">36 800 ₽</div>
+              <div class="price-card-current">32 400 ₽</div>
+            </div>
+            <ul class="price-card-specs">
+              <li>✓ <strong>Площадь:</strong> 24 м² для двух грядок томатов</li>
+              <li>✓ <strong>Шаг дуг:</strong> 1 м или 0.65 м</li>
+              <li>✓ <strong>Комплектация:</strong> 2 двери, 2 форточки</li>
+              <li>✓ <strong>Поликарбонат:</strong> 4 мм с УФ-защитой</li>
+            </ul>
+            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Арочная теплица 3х8 м" data-subtitle="Цена от 32 400 ₽. Оплата после сборки на участке" data-subject="Заказ: Арочная теплица 3х8 м (от 32 400 ₽)">
+              Заказать 3х8 м →
+            </button>
+          </div>
+
+          <!-- 3х10 м -->
+          <div class="greenhouse-price-card">
+            <div class="price-card-size">3 × 10 метров</div>
+            <div class="price-card-val-box">
+              <div class="price-card-old">42 900 ₽</div>
+              <div class="price-card-current">37 900 ₽</div>
+            </div>
+            <ul class="price-card-specs">
+              <li>✓ <strong>Площадь:</strong> 30 м² максимум урожая</li>
+              <li>✓ <strong>Шаг дуг:</strong> 1 м или 0.65 м</li>
+              <li>✓ <strong>Комплектация:</strong> 2 двери, 2 форточки</li>
+              <li>✓ <strong>Поликарбонат:</strong> 4 мм с УФ-защитой</li>
+            </ul>
+            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Арочная теплица 3х10 м" data-subtitle="Цена от 37 900 ₽. Оплата строго по факту" data-subject="Заказ: Арочная теплица 3х10 м (от 37 900 ₽)">
+              Заказать 3х10 м →
+            </button>
+          </div>
+        </div>
+
+        <!-- Сводная таблица по шагу дуг -->
+        <div style="margin-top: 35px; background: #ffffff; border-radius: 18px; border: 1.5px solid #e1ece4; padding: 24px;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: #1b4332; margin: 0 0 12px;">Сравнение модификаций по шагу дуги</h3>
+          <div class="pricing-table-wrap">
+            <table class="pricing-table">
+              <thead>
+                <tr>
+                  <th>Размер теплицы</th>
+                  <th>Стандарт (шаг 1 м)</th>
+                  <th>Усиленная (шаг 0.65 м)</th>
+                  <th>Богатырь (двойная дуга 40х20)</th>
+                  <th>Заказ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>3 × 4 метра</strong></td>
+                  <td>21 900 ₽</td>
+                  <td>24 400 ₽</td>
+                  <td>28 900 ₽</td>
+                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х4 арочная">Заказать</button></td>
+                </tr>
+                <tr>
+                  <td><strong>3 × 6 метров (Хит)</strong></td>
+                  <td>26 900 ₽</td>
+                  <td>29 900 ₽</td>
+                  <td>35 500 ₽</td>
+                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х6 арочная">Заказать</button></td>
+                </tr>
+                <tr>
+                  <td><strong>3 × 8 метров</strong></td>
+                  <td>32 400 ₽</td>
+                  <td>35 900 ₽</td>
+                  <td>42 900 ₽</td>
+                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х8 арочная">Заказать</button></td>
+                </tr>
+                <tr>
+                  <td><strong>3 × 10 метров</strong></td>
+                  <td>37 900 ₽</td>
+                  <td>41 900 ₽</td>
+                  <td>49 900 ₽</td>
+                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х10 арочная">Заказать</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Подвал -->
-    <!-- Подвал сайта -->
+  <!-- Подвал сайта -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top-row">
         <!-- Логотип и позиционирование бренда -->
         <div class="footer-brand-col">
           <a href="index.html" class="logo-wrapper">
-            <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+            <img src="assets/images/logo_teplicy_tut.png" alt="Теплицы ТУТ" class="logo-img" style="border-radius: 10px; object-fit: cover;">
             <div>
               <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
               <div class="logo-text-sub">С заботой о вашем урожае</div>
@@ -573,9 +588,9 @@
           <ul class="footer-nav-list">
             <li><a href="arochnye.html">Арочные теплицы</a></li>
             <li><a href="kaplevidnye.html">Каплевидные теплицы</a></li>
+            <li><a href="domikom.html">Теплицы «Домиком»</a></li>
             <li><a href="gryadki.html">Оцинкованные грядки</a></li>
             <li><a href="polikarbonat.html">Сотовый поликарбонат с УФ</a></li>
-            <li><a href="arochnye.html#usil">Усиленные теплицы (шаг 0.65 м)</a></li>
           </ul>
         </div>
 
@@ -616,86 +631,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Модальное окно просмотра товара со слайдером фото -->
-  <div class="prod-modal-overlay" id="productModalOverlay" aria-hidden="true">
-    <div class="prod-modal-card">
-      <button class="prod-modal-close" id="productModalCloseBtn" aria-label="Закрыть">✕</button>
-
-      <div class="prod-modal-scroll">
-        <!-- Колонка со слайдером фото -->
-        <div class="prod-slider-col">
-          <div class="prod-slider-main-wrap">
-            <img src="assets/images/products/p1/1.jpg" alt="Фото товара" class="prod-slider-img" id="prodSliderMainImg">
-            <button class="prod-slider-nav-btn prev" id="prodSliderPrevBtn" aria-label="Предыдущее фото">‹</button>
-            <button class="prod-slider-nav-btn next" id="prodSliderNextBtn" aria-label="Следующее фото">›</button>
-            <div class="prod-slider-counter" id="prodSliderCounter">1 / 5</div>
-          </div>
-
-          <!-- Миниатюры (превью) -->
-          <div class="prod-thumbs-row" id="prodThumbsRow">
-          </div>
-        </div>
-
-        <!-- Колонка с подробной информацией -->
-        <div class="prod-info-col">
-          <div class="prod-info-badge" id="prodModalBadge">🔥 Хит сезона • От производителя</div>
-          
-          <h2 class="prod-info-title" id="prodModalTitle">Теплицы от производителя</h2>
-
-          <div class="prod-info-price-box">
-            <span class="prod-info-price-label">Цена:</span>
-            <strong class="prod-info-price-val" id="prodModalPrice">от 25 500 ₽</strong>
-          </div>
-
-          <div class="prod-info-lead" id="prodModalLead">
-            Усиленные теплицы под ключ — сборка и доставка уже завтра.<br>
-            <strong>Ярославская, Ивановская, Костромская области.</strong>
-          </div>
-
-          <!-- Размеры / Параметры -->
-          <div class="prod-info-block" id="prodModalSizesBlock">
-            <div class="prod-info-block-title" id="prodModalSizesTitle">📏 Размеры:</div>
-            <p style="margin: 0; font-weight: 700; color: var(--color-primary-dark); font-size: 1rem;" id="prodModalSizesVal">
-              3х4, 3х6, 3х8, 3х10 м
-            </p>
-          </div>
-
-          <!-- Преимущества / Как работаем -->
-          <div class="prod-info-block" id="prodModalFeaturesBlock">
-            <div class="prod-info-block-title" id="prodModalFeaturesTitle">🔥 Наши преимущества:</div>
-            <ul class="prod-info-list" id="prodModalFeaturesList">
-            </ul>
-          </div>
-
-          <!-- В комплекте / Что входит -->
-          <div class="prod-info-block" id="prodModalPackageBlock">
-            <div class="prod-info-block-title" id="prodModalPackageTitle">📦 В комплекте:</div>
-            <p style="margin-bottom: 8px; font-size: 0.92rem; color: var(--color-text-main);" id="prodModalPackageText">
-            </p>
-            <div style="font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);" id="prodModalDeliveryNote">
-            </div>
-          </div>
-
-          <!-- Сноска -->
-          <div class="prod-callout-note" id="prodModalNote">
-          </div>
-
-          <!-- Кнопки действий -->
-          <div class="prod-modal-actions">
-            <button type="button" class="btn btn-primary" id="prodModalOrderBtn" data-open-modal data-title="Теплицы от производителя" data-subtitle="Подскажем точную стоимость под ваши размеры и ответим на вопросы" data-subject="Заказ: Теплицы от производителя (от 25 500 ₽)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              Написать
-            </button>
-            <a href="tel:+74852123456" class="btn btn-secondary" style="background:#eaf4ed; color:var(--color-primary); border: 1.5px solid var(--color-border); text-decoration: none;">
-              📞 Позвонить
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Модальное окно заявки -->
   <div class="modal-overlay" id="modalOverlay">
@@ -802,454 +737,36 @@
   <script src="assets/js/catalog-data.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- Скрипт слайдера и модального окна товара -->
+  <!-- Интерактивная галерея арочной теплицы -->
   <script>
     (function() {
-      // База данных товаров
-      const productsData = {
-        1: {
-          id: 1,
-          badge: "🔥 Хит сезона • От производителя",
-          title: "Теплицы от производителя",
-          price: "от 25 500 ₽",
-          lead: "Усиленные теплицы под ключ — сборка и доставка уже завтра.<br><strong>Ярославская, Ивановская, Костромская области.</strong>",
-          sizesTitle: "📏 Размеры:",
-          sizes: "3х4, 3х6, 3х8, 3х10 м",
-          featuresTitle: "🔥 Наши преимущества:",
-          features: [
-            "усиленный каркас (профтруба 30х20 мм, оцинковка Zn 140 мкм);",
-            "цельногнутые дуги — не деформируются;",
-            "снеговая нагрузка до 227 кг/м² — подпорки не нужны;",
-            "поликарбонат 4 мм (Россия) с УФ-защитой, служит до 15 лет;",
-            "работаем без предоплаты: сначала установка — потом оплата."
-          ],
-          packageTitle: "📦 В комплекте:",
-          packageText: "каркас, поликарбонат, 2 двери с форточками, крепёж, инструкция.",
-          deliveryNote: "🚚 <strong>Быстрая доставка и установка.</strong><br>📸 Перед отправкой — фото вашей теплицы!",
-          note: "Нажмите «Написать», подскажем стоимость под необходимые размеры и ответим на все вопросы!",
-          orderSubject: "Заказ: Теплицы от производителя (от 25 500 ₽)",
-          images: [
-            "assets/images/products/p1/1.jpg",
-            "assets/images/products/p1/2.jpg",
-            "assets/images/products/p1/3.jpg",
-            "assets/images/products/p1/4.jpg",
-            "assets/images/products/p1/5.jpg"
-          ]
-        },
-        2: {
-          id: 2,
-          badge: "🛠 Профессионально • Под ключ",
-          title: "Сборка теплиц",
-          price: "6 500–8 000 ₽",
-          lead: "Выполняем профессиональную сборку теплиц под ключ. Работаем аккуратно, соблюдаем сроки и обеспечиваем надёжную сборку конструкции.",
-          sizesTitle: "📏 Устанавливаем:",
-          sizes: "Любые размеры (3х4, 3х6, 3х8, 3х10 м и нестандартные)",
-          featuresTitle: "✓ Как мы работаем:",
-          features: [
-            "Устанавливаем как наши теплицы, так и теплицы других производителей;",
-            "Мусор за собой убираем, участок оставляем в чистоте;",
-            "Опытная штатная бригада с профессиональным инструментом;",
-            "Аккуратный монтаж за 3–4 часа без лишнего шума;",
-            "Оплата строго по факту завершения работ. 0 ₽ предоплаты."
-          ],
-          packageTitle: "📦 Что входит в сборку:",
-          packageText: "Сборка металлокаркаса, раскрой и крепление сотового поликарбоната, регулировка дверей и форточек, монтаж на брус или грунтозацепы.",
-          deliveryNote: "🚚 Выезд бригады по всей Ярославской области.",
-          note: "Нужна сборка теплицы?<br>Нажмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Услуга: Сборка теплиц (6 500–8 000 ₽)",
-          images: [
-            "assets/images/products/p2/1.jpg",
-            "assets/images/products/p2/2.jpg",
-            "assets/images/products/p2/3.jpg",
-            "assets/images/products/p2/4.jpg",
-            "assets/images/products/p2/5.jpg"
-          ]
-        },
-        3: {
-          id: 3,
-          badge: "🛠 Ремонт и замена • Второе дыхание",
-          title: "Ремонт теплиц - замена поликарбоната",
-          price: "6 500–9 500 ₽",
-          lead: "Выполняем ремонт старых теплиц, замену поликарбоната и восстановление повреждённых элементов каркаса. Поможем продлить срок службы теплицы без необходимости полной замены конструкции.",
-          sizesTitle: "📏 Ремонтируем:",
-          sizes: "Любые размеры (3х4, 3х6, 3х8, 3х10 м и нестандартные теплицы)",
-          featuresTitle: "🔥 Что входит в услугу:",
-          features: [
-            "Демонтаж старого, пожелтевшего или пробитого градом поликарбоната;",
-            "Выправление, усиление и восстановление повреждённых элементов каркаса;",
-            "Монтаж нового качественного сотового поликарбоната 4 мм с УФ-защитой (служит до 15 лет);",
-            "Регулировка дверей и форточек, замена крепежа и фурнитуры;",
-            "Экономия до 60% по сравнению с покупкой новой теплицы."
-          ],
-          packageTitle: "📦 Материалы и работа:",
-          packageText: "Выезд мастера с материалом, демонтаж старого покрытия, замена и крепление нового поликарбоната, герметизация и регулировка.",
-          deliveryNote: "🚚 Работаем по Ярославской, Ивановской и Костромской областям.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Услуга: Ремонт теплиц - замена поликарбоната (6 500–9 500 ₽)",
-          images: [
-            "assets/images/products/p3/1.jpg",
-            "assets/images/products/p3/2.jpg",
-            "assets/images/products/p3/3.jpg",
-            "assets/images/products/p3/4.jpg",
-            "assets/images/products/p3/5.jpg"
-          ]
-        },
-        4: {
-          id: 4,
-          badge: "🚚 Быстро и бережно • До участка",
-          title: "Доставка теплиц",
-          price: "1 500–2 500 ₽",
-          lead: "Осуществляем доставку теплиц и комплектующих по Ярославской, Ивановской и Костромской области. Согласовываем удобное время и обеспечиваем бережную перевозку до участка.",
-          sizesTitle: "📏 Что доставляем:",
-          sizes: "Теплицы любых размеров, рулоны поликарбоната, грядки, брус, комплектующие",
-          featuresTitle: "🚚 Преимущества нашей доставки:",
-          features: [
-            "Специально оборудованный транспорт для перевозки дуг и рулонов поликарбоната;",
-            "Никаких заломов и повреждений листов при транспортировке;",
-            "Согласовываем удобный день и точное время прибытия;",
-            "Бережная выгрузка прямо на вашем дачном участке;",
-            "Доставка в любые СНТ, деревни и коттеджные посёлки."
-          ],
-          packageTitle: "📦 Условия перевозки:",
-          packageText: "Бережная фиксация груза специальными стяжными ремнями, защита торцов поликарбоната от загрязнения и повреждений.",
-          deliveryNote: "🚚 Ярославская, Ивановская и Костромская области.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Услуга: Доставка теплиц (1 500–2 500 ₽)",
-          images: [
-            "assets/images/products/p4/1.jpg",
-            "assets/images/products/p4/2.jpg",
-            "assets/images/products/p4/3.jpg",
-            "assets/images/products/p4/4.jpg",
-            "assets/images/products/p4/5.jpg"
-          ]
-        },
-        5: {
-          id: 5,
-          badge: "🛡 С УФ-защитой • Прямые поставки",
-          title: "Сотовый поликарбонат 4мм",
-          price: "3 500–5 100 ₽",
-          lead: "Поликарбонат для теплиц и других конструкций. Подходит как для замены старого покрытия, так и для новых проектов. Поможем подобрать необходимую толщину и плотность.<br><strong>Закажите с доставкой и оплатите всё при получении!</strong>",
-          sizesTitle: "💰 Цены за 6 метров:",
-          sizes: "✓ 4 мм плотность 0,52 кг/кв.м — 3 500 ₽<br>✓ 4 мм плотность 0,65 кг/кв.м — 4 200 ₽<br>✓ 4 мм плотность 0,82 кг/кв.м — 5 200 ₽",
-          featuresTitle: "🔥 Особенности материала:",
-          features: [
-            "Качественное первичное сырье с гарантией завода до 15 лет;",
-            "Двойной УФ-защитный слой — не желтеет и не трескается на солнце;",
-            "Повышенная ударопрочность: выдерживает сильный град и давление снега;",
-            "Эластичный: легко монтируется на любые арочные и прямостенные каркасы;",
-            "0 ₽ предоплаты — оплата водителю при доставке на участок."
-          ],
-          packageTitle: "📦 Размеры листов:",
-          packageText: "Стандартные рулоны 2.1 х 6 м и 2.1 х 12 м. Возможен раскрой под ваши размеры.",
-          deliveryNote: "🚚 Бережная доставка собственным транспортом по всей области.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Заказ: Сотовый поликарбонат 4мм (3 500–5 100 ₽)",
-          images: [
-            "assets/images/products/p5/1.jpg",
-            "assets/images/products/p5/2.jpg",
-            "assets/images/products/p5/3.jpg"
-          ]
-        },
-        6: {
-          id: 6,
-          badge: "🪵 Брус с антисептиком • Монтаж по уровню",
-          title: "Фундамент для теплиц",
-          price: "6 000–9 000 ₽",
-          lead: "Надёжное основание для установки теплицы, которое повышает устойчивость конструкции, помогает избежать перекосов и увеличивает срок службы теплицы.",
-          sizesTitle: "📏 Размеры фундамента:",
-          sizes: "Изготавливаем под любые теплицы: 3х4, 3х6, 3х8, 3х10 м и под индивидуальный заказ",
-          featuresTitle: "🔥 Преимущества качественного фундамента:",
-          features: [
-            "Предотвращает контакт металлокаркаса с влажной почвой и появление коррозии;",
-            "Обеспечивает идеальную геометрию и жёсткость всей конструкции;",
-            "Теплицу не перекашивает от сезонного и весеннего пучения грунта;",
-            "Глубокая пропитка защитным трудновымываемым антисептиком от гниения;",
-            "Надёжная фиксация конструкции к грунту грунтозацепами или анкерами."
-          ],
-          packageTitle: "📦 Комплектация и монтаж:",
-          packageText: "Качественный брус (хвоя), обработка антисептиком, усиленный крепёж, диагональная выставка по лазерному уровню.",
-          deliveryNote: "🚚 Доставка и установка фундамента по всей области.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Услуга: Фундамент для теплиц (6 000–9 000 ₽)",
-          images: [
-            "assets/images/products/p6/1.jpg",
-            "assets/images/products/p6/2.jpg",
-            "assets/images/products/p6/3.jpg",
-            "assets/images/products/p6/4.jpg",
-            "assets/images/products/p6/5.jpg"
-          ]
-        },
-        7: {
-          id: 7,
-          badge: "🌱 Оцинкованная сталь • Борт 200 мм",
-          title: "Грядки для теплиц оцинкованные",
-          price: "6 000–9 500 ₽",
-          lead: "Оцинкованные грядки, предназначенные для установки внутри теплицы. Удобны в эксплуатации, сохраняют форму и помогают аккуратно организовать пространство для посадок.<br><strong>Комплект из трех грядок для теплиц 4м и 6м. Высота стенок 200 мм.</strong>",
-          sizesTitle: "📏 Размеры и комплекты:",
-          sizes: "✓ Комплект из 3-х грядок для теплицы 4 м<br>✓ Комплект из 3-х грядок для теплицы 6 м<br>✓ Высота стенок: 200 мм (оптимально для корневой системы)",
-          featuresTitle: "🔥 Преимущества оцинкованных грядок:",
-          features: [
-            "Качественная оцинкованная сталь — устойчива к влаге, не ржавеет и не гниет;",
-            "Безопасные завальцованные края — защищают от порезов при уходе за растениями;",
-            "Продольные ребра жесткости — держат форму под давлением влажного грунта;",
-            "Удобный проход между посадками и аккуратная организация пространства внутри;",
-            "Экономия воды при поливе и подкормках (не растекаются по дорожкам)."
-          ],
-          packageTitle: "📦 В комплекте:",
-          packageText: "3 оцинкованные грядки (борта, торцы, стяжки, ножки-колышки для фиксации в грунте, полный комплект крепежа). Быстрая сборка за 20 минут.",
-          deliveryNote: "🚚 Доставка по Ярославской, Ивановской и Костромской областям.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Заказ: Грядки оцинкованные для теплиц (6 000–9 500 ₽)",
-          images: [
-            "assets/images/products/p7/1.jpg",
-            "assets/images/products/p7/2.jpg"
-          ]
-        },
-        8: {
-          id: 8,
-          badge: "🌿 Оцинкованная сталь • Долговечно",
-          title: "Грядки оцинкованные",
-          price: "1 250–2 300 ₽",
-          lead: "Практичные и долговечные грядки для дачного участка и огорода. Устойчивы к влаге и не требуют дополнительного ухода.",
-          sizesTitle: "📏 Размеры и стоимость:",
-          sizes: "Различные длины (от 2 до 6 м), ширина 0.65 м, 0.8 м, 1 м. Высота бортов 20 см. Уточняйте необходимый размер под ваш участок у менеджера.",
-          featuresTitle: "🔥 Особенности и преимущества:",
-          features: [
-            "Оцинкованный металл не подвержен гниению, грибку и коррозии;",
-            "Служат от 10–15 лет без необходимости регулярного ремонта;",
-            "Края аккуратно завальцованы для безопасности рук;",
-            "Защищают посадки от сорняков, размытия почвы дождями и вредителей;",
-            "Простая и интуитивная сборка за считанные минуты."
-          ],
-          packageTitle: "📦 Комплектация:",
-          packageText: "Продольные и поперечные борта, угловые элементы, соединительные планки, колышки в землю и оцинкованные винты с гайками.",
-          deliveryNote: "🚚 Быстрая доставка по всей области собственным транспортом.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Заказ: Грядки оцинкованные (1 250–2 300 ₽)",
-          images: [
-            "assets/images/products/p8/1.jpg"
-          ]
-        },
-        9: {
-          id: 9,
-          badge: "🌸 Металл с полимерным покрытием • Декор сада",
-          title: "Клумбы металлические",
-          price: "1 700–3 500 ₽",
-          lead: "Металлические клумбы для оформления участка, цветников и декоративных посадок. Аккуратный внешний вид и долговечность делают их удобным решением для благоустройства территории.",
-          sizesTitle: "📏 Формы и размеры:",
-          sizes: "Круглые, овальные, шестигранные и многоярусные каскадные клумбы. Цвета: оцинкованный, зеленый (мох), бордовый (вишня).",
-          featuresTitle: "🔥 Преимущества металлических клумб:",
-          features: [
-            "Эстетичный внешний вид — аккуратное украшение сада, дорожек или газона;",
-            "Оцинкованный металл с полимерной окраской устойчив к ультрафиолету и ржавчине;",
-            "Многоярусные конструкции позволяют создавать эффектные цветущие каскады;",
-            "Защищают корни растений от пересыхания и вымывания при поливе;",
-            "Компактная упаковка и лёгкая самостоятельная сборка."
-          ],
-          packageTitle: "📦 В комплекте:",
-          packageText: "Металлические борта выбранной конфигурации, прочные ножки-стойки для фиксации в грунте, крепёжные элементы, инструкция.",
-          deliveryNote: "🚚 Быстрая доставка по Ярославской, Ивановской и Костромской областям.",
-          note: "Заинтересовала данная услуга?<br>Жмите «Написать» и мы с радостью поможем Вам и ответим на все вопросы!",
-          orderSubject: "Заказ: Клумбы металлические (1 700–3 500 ₽)",
-          images: [
-            "assets/images/products/p9/1.jpg",
-            "assets/images/products/p9/2.png",
-            "assets/images/products/p9/3.jpg",
-            "assets/images/products/p9/4.jpg"
-          ]
-        }
-      };
+      const mainImg = document.getElementById('archMainImg');
+      const thumbs = document.querySelectorAll('#archThumbsRow .gallery-thumb-item');
+      const prevBtn = document.getElementById('archPrevBtn');
+      const nextBtn = document.getElementById('archNextBtn');
+      const counter = document.getElementById('archCounterBadge');
+      if (!mainImg || !thumbs.length) return;
 
-      let currentImages = [];
-      let currentSlideIdx = 0;
+      let currentIdx = 0;
+      const images = Array.from(thumbs).map(t => t.getAttribute('data-src') || t.querySelector('img').src);
 
-      function updateSlide(idx) {
-        if (!currentImages.length) return;
-        if (idx < 0) idx = currentImages.length - 1;
-        if (idx >= currentImages.length) idx = 0;
-        currentSlideIdx = idx;
+      function setSlide(idx) {
+        if (idx < 0) idx = images.length - 1;
+        if (idx >= images.length) idx = 0;
+        currentIdx = idx;
+        mainImg.src = images[currentIdx];
+        if (counter) counter.textContent = (currentIdx + 1) + ' / ' + images.length;
+        thumbs.forEach((t, i) => t.classList.toggle('active', i === currentIdx));
+      }
 
-        const mainImg = document.getElementById('prodSliderMainImg');
-        const counter = document.getElementById('prodSliderCounter');
-        const thumbs = document.querySelectorAll('.prod-thumb-item');
-
-        if (mainImg) {
-          mainImg.style.opacity = '0.35';
-          setTimeout(function() {
-            mainImg.src = currentImages[currentSlideIdx];
-            mainImg.style.opacity = '1';
-          }, 110);
-        }
-
-        if (counter) {
-          counter.textContent = (currentSlideIdx + 1) + ' / ' + currentImages.length;
-        }
-
-        thumbs.forEach(function(thumb, i) {
-          thumb.classList.toggle('active', i === currentSlideIdx);
+      thumbs.forEach((t, i) => {
+        t.addEventListener('click', function() {
+          setSlide(i);
         });
-      }
-
-      function openProductModal(productId) {
-        const modal = document.getElementById('productModalOverlay');
-        if (!modal) return;
-
-        const cleanId = String(productId).replace(/\D/g, '') || '1';
-        let prod = productsData[productId] || productsData[cleanId];
-        if (!prod && typeof productId === 'string') {
-          prod = Object.values(productsData).find(p => p.id == cleanId || p.title === productId);
-        }
-        if (!prod) prod = productsData[1];
-        if (!prod) return;
-
-        currentImages = prod.images || [];
-
-        try {
-          const badgeEl = document.getElementById('prodModalBadge');
-          if (badgeEl) badgeEl.innerHTML = prod.badge || '';
-          const titleEl = document.getElementById('prodModalTitle');
-          if (titleEl) titleEl.textContent = prod.title || '';
-          const priceEl = document.getElementById('prodModalPrice');
-          if (priceEl) priceEl.textContent = prod.price || '';
-          const leadEl = document.getElementById('prodModalLead');
-          if (leadEl) leadEl.innerHTML = prod.lead || '';
-
-          const sizesTitleEl = document.getElementById('prodModalSizesTitle');
-          if (sizesTitleEl) sizesTitleEl.textContent = prod.sizesTitle || "📏 Размеры:";
-          const sizesValEl = document.getElementById('prodModalSizesVal');
-          if (sizesValEl) sizesValEl.innerHTML = prod.sizes || '';
-
-          const featTitleEl = document.getElementById('prodModalFeaturesTitle');
-          if (featTitleEl) featTitleEl.textContent = prod.featuresTitle || "🔥 Преимущества:";
-          const featList = document.getElementById('prodModalFeaturesList');
-          if (featList) {
-            featList.innerHTML = '';
-            (prod.features || []).forEach(function(item) {
-              const li = document.createElement('li');
-              li.textContent = item;
-              featList.appendChild(li);
-            });
-          }
-
-          const pkgTitleEl = document.getElementById('prodModalPackageTitle');
-          if (pkgTitleEl) pkgTitleEl.textContent = prod.packageTitle || "📦 В комплекте:";
-          const pkgTextEl = document.getElementById('prodModalPackageText');
-          if (pkgTextEl) pkgTextEl.textContent = prod.packageText || '';
-          const delivEl = document.getElementById('prodModalDeliveryNote');
-          if (delivEl) delivEl.innerHTML = prod.deliveryNote || '';
-
-          const noteEl = document.getElementById('prodModalNote');
-          if (noteEl) noteEl.innerHTML = prod.note || '';
-
-          const orderBtn = document.getElementById('prodModalOrderBtn');
-          if (orderBtn) {
-            orderBtn.setAttribute('data-title', prod.title || 'Заказ теплицы');
-            orderBtn.setAttribute('data-subject', prod.orderSubject || 'Заказ из каталога');
-          }
-
-          const thumbsRow = document.getElementById('prodThumbsRow');
-          if (thumbsRow) {
-            thumbsRow.innerHTML = '';
-            currentImages.forEach(function(imgSrc, i) {
-              const item = document.createElement('div');
-              item.className = 'prod-thumb-item' + (i === 0 ? ' active' : '');
-              item.setAttribute('data-index', i);
-              item.innerHTML = '<img src="' + imgSrc + '" alt="Превью ' + (i + 1) + '">';
-              item.addEventListener('click', function(e) {
-                e.stopPropagation();
-                updateSlide(i);
-              });
-              thumbsRow.appendChild(item);
-            });
-          }
-
-          updateSlide(0);
-        } catch (err) {
-          console.warn('Error setting up modal content:', err);
-        }
-
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeProductModal() {
-        const modal = document.getElementById('productModalOverlay');
-        if (!modal) return;
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      window.openProductModal = openProductModal;
-      window.closeProductModal = closeProductModal;
-
-      function bindProductModalControls() {
-        const modal = document.getElementById('productModalOverlay');
-        const closeBtn = document.getElementById('productModalCloseBtn');
-        const prevBtn = document.getElementById('prodSliderPrevBtn');
-        const nextBtn = document.getElementById('prodSliderNextBtn');
-
-        if (closeBtn) closeBtn.onclick = closeProductModal;
-
-        if (modal) {
-          modal.onclick = function(e) {
-            if (e.target === modal) closeProductModal();
-          };
-        }
-
-        if (prevBtn) {
-          prevBtn.onclick = function(e) {
-            e.stopPropagation();
-            updateSlide(currentSlideIdx - 1);
-          };
-        }
-
-        if (nextBtn) {
-          nextBtn.onclick = function(e) {
-            e.stopPropagation();
-            updateSlide(currentSlideIdx + 1);
-          };
-        }
-
-        document.addEventListener('keydown', function(e) {
-          if (!modal || !modal.classList.contains('active')) return;
-          if (e.key === 'Escape') closeProductModal();
-          if (e.key === 'ArrowLeft') updateSlide(currentSlideIdx - 1);
-          if (e.key === 'ArrowRight') updateSlide(currentSlideIdx + 1);
-        });
-
-        const sliderWrap = document.querySelector('.prod-slider-main-wrap');
-        if (sliderWrap) {
-          let touchStartX = 0;
-          let touchEndX = 0;
-          sliderWrap.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-          }, { passive: true });
-          sliderWrap.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 40) {
-              if (diff > 0) updateSlide(currentSlideIdx + 1);
-              else updateSlide(currentSlideIdx - 1);
-            }
-          }, { passive: true });
-        }
-      }
-
-      // Открытие по клику на любую карточку товара (делегирование на весь документ работает мгновенно)
-      document.addEventListener('click', function(e) {
-        const card = e.target.closest('.js-product-card');
-        if (card) {
-          e.preventDefault();
-          const pid = card.getAttribute('data-product-id') || 1;
-          openProductModal(pid);
-        }
       });
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', bindProductModalControls);
-      } else {
-        bindProductModalControls();
-      }
+      if (prevBtn) prevBtn.addEventListener('click', () => setSlide(currentIdx - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => setSlide(currentIdx + 1));
     })();
   </script>
 </body>

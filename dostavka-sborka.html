@@ -789,9 +789,28 @@
 <body>
   <!-- Шапка сайта -->
   <header class="site-header">
-    <div class="container">
+    <!-- Верхняя строка: активный телефон + лозунг + рукописная пропись -->
+    <div class="header-topbar">
+      <div class="container header-topbar-inner">
+        <div class="header-topbar-slogan">
+          <span class="topbar-slogan-main">🌱 Свой огород — это счастье!</span>
+          <span class="topbar-slogan-hand">«С душевной заботой о вашем урожае ♡»</span>
+        </div>
+        <div class="header-topbar-contacts">
+          <span class="topbar-hours">Ежедневно 8:00–20:00</span>
+          <a href="tel:+748521234567" class="header-phone-link js-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+          </a>
+          <button type="button" class="header-callback-btn" data-open-modal data-subject="Заказ звонка из шапки" data-title="Заказать звонок мастера">
+            Заказать звонок
+          </button>
+        </div>
+      </div>
+    </div>
 
-      <!-- Верхняя строка: логотип по центру картинкой -->
+    <div class="container">
+      <!-- Логотип по центру картинкой -->
       <div class="header-top-row">
         <div class="header-top-center">
           <a href="index.html" class="logo-wrapper" title="Теплицы ТУТ">
@@ -807,8 +826,8 @@
           <a href="index.html" class="nav-link">Главная</a>
           
           <div class="nav-item-dropdown">
-            <a href="arochnye.html" class="nav-link dropdown-toggle">
-              Теплицы и товары 
+            <a href="arochnye.html" class="nav-link dropdown-toggle active">
+              Теплицы 
               <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9l6 6 6-6"/>
               </svg>
@@ -816,10 +835,12 @@
             <div class="dropdown-menu">
               <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
               <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
-              <a href="gryadki.html" class="dropdown-item">Оцинкованные грядки</a>
-              <a href="polikarbonat.html" class="dropdown-item">Сотовый поликарбонат</a>
+              <a href="domikom.html" class="dropdown-item">Теплицы «Домиком»</a>
             </div>
           </div>
+
+          <a href="gryadki.html" class="nav-link">Оцинкованные грядки</a>
+          <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
 
           <a href="index.html#calculator" class="nav-link nav-link--calc">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>Калькулятор
@@ -929,132 +950,79 @@
         </div>
       </div>
 
-      <!-- БЛОК 1: ТЕМНЫЕ КАРТОЧКИ С ВЫРЕЗАННЫМ УГЛОМ И СТРЕЛКОЙ -->
-      <div>
-        <h2 class="notched-section-title">Комплекс услуг завода «Теплицы ТУТ»</h2>
-        <p class="notched-section-sub">Нажмите на услугу, чтобы рассчитать точную стоимость под ваш участок</p>
-
-        <div class="notched-cards-grid">
-          
-          <div class="notched-card" data-open-modal data-subject="Заказ услуги: Доставка теплицы" data-title="Доставка теплицы">
-            <div class="notched-corner-btn">↗</div>
-            <div class="notched-card-title">Бережная доставка теплиц</div>
-            <div class="notched-card-sub">Перевозка на спецтранспорте с пирамидой без перегиба дуг и заломов поликарбоната. Разгрузка включена.</div>
-          </div>
-
-          <div class="notched-card" data-open-modal data-subject="Заказ услуги: Сборка теплицы" data-title="Сборка теплицы под ключ">
-            <div class="notched-corner-btn">↗</div>
-            <div class="notched-card-title">Сборка под ключ за 3–4 часа</div>
-            <div class="notched-card-sub">Опытные мастера с лазерным уровнем. Крепление поликарбоната, диагонали, регулировка дверей и форточек.</div>
-          </div>
-
-          <div class="notched-card" data-open-modal data-subject="Заказ услуги: Монтаж фундамента из бруса" data-title="Фундамент для теплицы">
-            <div class="notched-corner-btn">↗</div>
-            <div class="notched-card-title">Фундамент из бруса 100х100</div>
-            <div class="notched-card-sub">Сухой брус с запилом в полдерева, пропитка антисептиком, точная диагональ и защита от сырости почвы.</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- БЛОК 3: БЕНТО-ГРИД (BENTO GRID С ЦИФРАМИ И ИКОНКАМИ) -->
-      <div class="bento-section">
-        <h2 class="notched-section-title">Факты и гарантии в цифрах</h2>
-        <p class="notched-section-sub">Почему дачники доверяют нам уже больше 12 лет</p>
-
-        <div class="bento-mobile-hint">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Листайте карточки вправо →
+      <!-- КАРТА РЕГИОНОВ ДОСТАВКИ ЗАВОДА «ТЕПЛИЦЫ ТУТ» -->
+      <div class="delivery-regions-box">
+        <div style="text-align: center; max-width: 780px; margin: 0 auto 30px;">
+          <span class="adv-section-tag" style="background: #eaf4ed; color: #2d6a4f; padding: 5px 16px; border-radius: 999px; font-weight: 800; font-size: 0.84rem; display: inline-block; margin-bottom: 8px;">Широкая география</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 900; color: #1b4332; margin: 0 0 8px;">Куда мы доставляем теплицы</h2>
+          <p style="color: #556b62; font-size: 0.98rem; margin: 0;">
+            Собственный автопарк спецтранспорта с пирамидами. Доставка прямо до калитки вашего СНТ без перегибов поликарбоната и повреждения дуг.
+          </p>
         </div>
 
-        <div class="bento-scroll-wrap">
-          <div class="bento-grid">
-            
-            <!-- Bento 1 (Белая с галочкой) -->
-            <div class="bento-box">
-              <div>
-                <div class="bento-tag-check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                  Заводская гарантия
-                </div>
-                <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
-                  Официальный договор
-                </div>
-                <p class="bento-desc-p">
-                  «Теплицы ТУТ» является непосредственным производителем. Предоставляем письменную гарантию на металлокаркас, монтаж и сотовый поликарбонат с УФ-защитой.
-                </p>
+        <div class="delivery-regions-grid">
+          <!-- Левая колонка: Карточки регионов -->
+          <div class="delivery-region-list">
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Ярославская область</span>
+                <span class="delivery-region-price">от 1 500 ₽</span>
+              </div>
+              <div class="delivery-region-cities">
+                Ярославль, Рыбинск, Тутаев, Ростов Великий, Переславль-Залесский, Углич, Данилов, Гаврилов-Ям и все дачные массивы СНТ. Срок: <strong>уже завтра</strong>.
               </div>
             </div>
 
-            <!-- Bento 2 (Темная со статом 14 000) -->
-            <div class="bento-box dark">
-              <div>
-                <div class="bento-stat-val" style="color:#95d5b2;">14 000+</div>
-                <div class="bento-stat-lbl">Теплиц успешно установлено</div>
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Ивановская область</span>
+                <span class="delivery-region-price">от 2 000 ₽</span>
               </div>
-              <p class="bento-desc-p">
-                по всей Ярославской, Ивановской и Костромской областям
-              </p>
-              <div class="bento-icon-float">
-                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#95d5b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 21h18"/>
-                  <path d="M5 21V11l7-7 7 7v10"/>
-                  <path d="M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/>
-                  <line x1="5" y1="11" x2="19" y2="11"/>
-                </svg>
+              <div class="delivery-region-cities">
+                Иваново, Шуя, Тейково, Фурманов, Приволжск, Плёс, Родники, Вичуга, Кинешма и близлежащие садово-дачные товарищества. Срок: <strong>1–2 дня</strong>.
               </div>
             </div>
 
-            <!-- Bento 3 (Белая со сроком) -->
-            <div class="bento-box">
-              <div>
-                <div class="bento-stat-val" style="color:var(--color-primary-dark);">1–2 дня</div>
-                <div class="bento-stat-lbl">Срок доставки с момента звонка</div>
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Костромская область</span>
+                <span class="delivery-region-price">от 2 000 ₽</span>
               </div>
-              <p class="bento-desc-p">
-                Большой склад готовой продукции позволяет привезти теплицу уже на следующий день после заявки.
-              </p>
-              <div class="bento-icon-float">
-                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
+              <div class="delivery-region-cities">
+                Кострома, Нерехта, Волгореченск, Красное-на-Волге, Судиславль и все СНТ Костромского района. Срок: <strong>1–2 дня</strong>.
               </div>
             </div>
 
-            <!-- Bento 4 (Зеленая со статом 12 лет) -->
-            <div class="bento-box green">
-              <div>
-                <div class="bento-stat-val" style="color:#ffffff;">12 лет</div>
-                <div class="bento-stat-lbl" style="color:#d8f3dc;">Успешного производства</div>
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Восток Московской области</span>
+                <span class="delivery-region-price">спецрейс завода</span>
               </div>
-              <p class="bento-desc-p" style="color:#d8f3dc;">
-                Собственные станки лазерного раскроя и профилегибы. Полный контроль качества.
-              </p>
-              <div class="bento-icon-float">
-                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#d8f3dc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8" r="6"/>
-                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                </svg>
+              <div class="delivery-region-cities">
+                Сергиев Посад, Дмитров, Талдом, Пушкино, Краснозаводск, Хотьково и дачные кооперативы Ярославского направления.
               </div>
             </div>
 
-            <!-- Bento 5 (Белая широкая на 2 колонки) -->
-            <div class="bento-box span-2">
-              <div>
-                <div class="bento-tag-check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                  Прозрачные условия
-                </div>
-                <div style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#1a1a1a; margin-bottom:8px;">
-                  0 ₽ предоплаты — сначала осмотр, затем оплата
-                </div>
-                <p class="bento-desc-p">
-                  Никаких скрытых надбавок, платных подъемов или неожиданных платежей. Сумма, согласованная с логистом при оформлении заказа, фиксируется в договоре и не меняется на участке.
-                </p>
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Север Владимирской области</span>
+                <span class="delivery-region-price">спецрейс завода</span>
+              </div>
+              <div class="delivery-region-cities">
+                Александров, Струнино, Киржач, Кольчугино, Юрьев-Польский и все прилегающие деревни и СНТ.
               </div>
             </div>
 
+            <div style="margin-top: 10px;">
+              <button type="button" class="btn btn-primary" style="width: 100%; padding: 13px; font-size: 1rem;" data-open-modal data-title="Рассчитать доставку на ваш участок" data-subtitle="Назовите ваш населенный пункт или СНТ — диспетчер рассчитает точный километраж" data-subject="Расчет доставки до СНТ">
+                Рассчитать доставку до моего СНТ →
+              </button>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Яндекс.Карта с выделенной зоной -->
+          <div class="delivery-map-container" id="deliveryMapContainer">
+            <div id="deliveryYandexMap" style="width: 100%; height: 100%;"></div>
           </div>
         </div>
       </div>
@@ -1091,7 +1059,13 @@
           <button type="button" class="dest-chip" data-dest="Костромская область" data-price="2 000 – 2 500 ₽" data-term="1–2 дня" data-note="Кострома, Нерехта, Волгореченск и СНТ">
             Костромская обл.
           </button>
-          <button type="button" class="dest-chip" data-dest="Любое СНТ в области" data-price="1 500 – 2 500 ₽" data-term="В удобный день" data-note="Расчет по километражу прямо до ворот вашего участка">
+          <button type="button" class="dest-chip" data-dest="Восток Московской области" data-price="от 3 000 ₽" data-term="спецрейс" data-note="Сергиев Посад, Дмитров, Талдом, Пушкино и СНТ">
+            Восток МО
+          </button>
+          <button type="button" class="dest-chip" data-dest="Север Владимирской области" data-price="от 2 500 ₽" data-term="спецрейс" data-note="Александров, Киржач, Кольчугино, Юрьев-Польский">
+            Север Владимирской обл.
+          </button>
+          <button type="button" class="dest-chip" data-dest="Любое СНТ в области" data-price="1 500 – 2 500 ₽" data-term="В удобный день" data-note="Расчет по навигатору прямо до ворот вашего участка">
             Любое СНТ
           </button>
         </div>
@@ -1234,7 +1208,7 @@
         <!-- Логотип и позиционирование бренда -->
         <div class="footer-brand-col">
           <a href="index.html" class="logo-wrapper">
-            <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+            <img src="assets/images/logo_teplicy_tut.png" alt="Теплицы ТУТ" class="logo-img" style="border-radius: 10px; object-fit: cover;">
             <div>
               <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
               <div class="logo-text-sub">С заботой о вашем урожае</div>
@@ -1273,9 +1247,9 @@
           <ul class="footer-nav-list">
             <li><a href="arochnye.html">Арочные теплицы</a></li>
             <li><a href="kaplevidnye.html">Каплевидные теплицы</a></li>
+            <li><a href="domikom.html">Теплицы «Домиком»</a></li>
             <li><a href="gryadki.html">Оцинкованные грядки</a></li>
             <li><a href="polikarbonat.html">Сотовый поликарбонат с УФ</a></li>
-            <li><a href="arochnye.html#usil">Усиленные теплицы (шаг 0.65 м)</a></li>
           </ul>
         </div>
 
@@ -1465,6 +1439,74 @@
         });
       });
     })();
+  </script>
+
+  <!-- Интерактивная карта Яндекс для регионов доставки -->
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script>
+    if (typeof ymaps !== 'undefined') {
+      ymaps.ready(function() {
+        var mapEl = document.getElementById('deliveryYandexMap');
+        if (!mapEl) return;
+
+        var map = new ymaps.Map('deliveryYandexMap', {
+          center: [57.4, 39.8],
+          zoom: 7,
+          controls: ['zoomControl']
+        });
+
+        // Полигон охвата: Ярославская, Ивановская, Костромская, восток МО, север ВО
+        var coveragePolygon = new ymaps.Polygon([
+          [
+            [58.6, 38.3],
+            [58.4, 41.6],
+            [57.8, 42.1],
+            [56.7, 41.9],
+            [56.1, 40.4],
+            [55.9, 38.6],
+            [56.3, 37.4],
+            [56.9, 37.3],
+            [57.9, 37.9],
+            [58.6, 38.3]
+          ]
+        ], {
+          hintContent: "Зона доставки спецтранспортом завода «Теплицы ТУТ»"
+        }, {
+          fillColor: 'rgba(45, 106, 79, 0.22)',
+          strokeColor: '#2d6a4f',
+          strokeWidth: 3,
+          strokeOpacity: 0.85
+        });
+
+        map.geoObjects.add(coveragePolygon);
+
+        var cities = [
+          { coords: [57.6261, 39.8845], name: 'Ярославль (База завода)', color: '#d90429' },
+          { coords: [58.0484, 38.8584], name: 'Рыбинск', color: '#2d6a4f' },
+          { coords: [57.8767, 39.5333], name: 'Тутаев', color: '#2d6a4f' },
+          { coords: [57.1866, 39.4148], name: 'Ростов Великий', color: '#2d6a4f' },
+          { coords: [56.7388, 38.8562], name: 'Переславль-Залесский', color: '#2d6a4f' },
+          { coords: [57.5268, 38.3283], name: 'Углич', color: '#2d6a4f' },
+          { coords: [57.7679, 40.9269], name: 'Кострома', color: '#2d6a4f' },
+          { coords: [56.9997, 40.9733], name: 'Иваново', color: '#2d6a4f' },
+          { coords: [56.3153, 38.1360], name: 'Сергиев Посад (Восток МО)', color: '#2d6a4f' },
+          { coords: [56.3950, 38.7126], name: 'Александров (Север ВО)', color: '#2d6a4f' }
+        ];
+
+        cities.forEach(function(c) {
+          var placemark = new ymaps.Placemark(c.coords, {
+            balloonContent: '<strong>' + c.name + '</strong><br>Доставка спецтранспортом «Теплицы ТУТ»',
+            hintContent: c.name
+          }, {
+            preset: 'islands#circleIcon',
+            iconColor: c.color
+          });
+          map.geoObjects.add(placemark);
+        });
+
+        map.behaviors.disable('scrollZoom');
+      });
+    }
   </script>
 </body>
 </html>

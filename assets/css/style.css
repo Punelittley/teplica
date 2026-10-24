@@ -2543,7 +2543,8 @@ button, input, select, textarea {
 }
 
 .site-footer .logo-text-title .logo-highlight {
-  color: #2d6a4f;
+  color: #d90429 !important;
+  font-weight: 900;
 }
 
 .site-footer .logo-text-sub {
@@ -6917,4 +6918,982 @@ textarea {
   flex-direction: column;
   gap: 8px;
 }
+
+/* ==========================================================================
+   НОВЫЙ ТОПБАР ШАПКИ (АКТИВНЫЙ ТЕЛЕФОН + ЛОЗУНГ + РУКОПИСНЫЙ АКЦЕНТ)
+   ========================================================================== */
+.header-topbar {
+  background: #183b2c;
+  color: #ffffff;
+  padding: 8px 0;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.header-topbar-slogan {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.topbar-slogan-main {
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.topbar-slogan-hand {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  color: #a7f3d0;
+  font-weight: 700;
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+
+.header-topbar-contacts {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.topbar-hours {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #ffffff !important;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.08rem;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 5px 14px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-phone-link:hover {
+  background: #d90429;
+  border-color: #d90429;
+  transform: translateY(-1px);
+  color: #ffffff !important;
+}
+
+.header-phone-link svg {
+  color: #74c69d;
+  transition: color 0.2s ease;
+}
+
+.header-phone-link:hover svg {
+  color: #ffffff;
+}
+
+.header-callback-btn {
+  background: #d90429;
+  color: #ffffff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-callback-btn:hover {
+  background: #b70422;
+  box-shadow: 0 4px 12px rgba(217, 4, 41, 0.35);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 991px) {
+  .header-topbar-slogan {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .header-topbar-contacts {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .topbar-slogan-hand {
+    display: none;
+  }
+  .topbar-hours {
+    display: none;
+  }
+  .header-phone-link {
+    font-size: 0.98rem;
+    padding: 4px 12px;
+  }
+}
+
+/* ==========================================================================
+   БЛОК 3 ГЛАВНЫХ ПРЕИМУЩЕСТВ (УСИЛЕННЫЕ ДВЕРИ, ПОЛИКАРБОНАТ С УФ, СБОРКА И ГАРАНТИЯ)
+   ========================================================================== */
+.about-features-section {
+  padding: 60px 0;
+  background: #f7faf8;
+}
+
+.advantage-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.advantage-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid #e1ece4;
+  box-shadow: 0 8px 24px rgba(27, 67, 50, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.advantage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(27, 67, 50, 0.12);
+  border-color: #74c69d;
+}
+
+.advantage-card-media {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #edf3ee;
+}
+
+.advantage-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.advantage-card:hover .advantage-card-media img {
+  transform: scale(1.05);
+}
+
+.advantage-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #1b4332;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.advantage-card-body {
+  padding: 24px 22px 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.advantage-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eaf4ed;
+  color: #2d6a4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.advantage-card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.advantage-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.advantage-card-text {
+  font-size: 0.94rem;
+  color: #495057;
+  line-height: 1.55;
+  margin: 0 0 16px;
+  flex-grow: 1;
+}
+
+.advantage-card-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px dashed #e1ece4;
+  padding-top: 14px;
+}
+
+.advantage-card-points li {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #2d6a4f;
+}
+
+@media (max-width: 991px) {
+  .advantage-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* ==========================================================================
+   ПОПУЛЯРНЫЕ ПРЕДЛОЖЕНИЯ: 2 КЛЮЧЕВЫХ ТОВАРА (АРОЧНАЯ И КАПЕЛЬКА 3х4)
+   ========================================================================== */
+.showcase-catalog-grid--two {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.showcase-popular-card {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px solid #e1ede5;
+  box-shadow: 0 12px 32px rgba(27, 67, 50, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.showcase-popular-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(27, 67, 50, 0.15);
+  border-color: #2d6a4f;
+}
+
+.showcase-popular-media {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  overflow: hidden;
+  background: #f0f4f1;
+}
+
+.showcase-popular-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.showcase-popular-card:hover .showcase-popular-media img {
+  transform: scale(1.06);
+}
+
+.showcase-badge-custom {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-badge-custom.popular {
+  background: linear-gradient(135deg, #e07b53, #d90429);
+}
+
+.showcase-badge-custom.leader {
+  background: linear-gradient(135deg, #2d6a4f, #1b4332);
+}
+
+.showcase-popular-content {
+  padding: 26px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.showcase-price-banner {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.showcase-current-price {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: #1b4332;
+}
+
+.showcase-old-price {
+  font-size: 1.15rem;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.showcase-popular-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1b4332;
+  margin: 0 0 10px;
+}
+
+.showcase-popular-desc {
+  font-size: 0.95rem;
+  color: #495057;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.showcase-spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f7faf8;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #edf4ef;
+}
+
+.showcase-spec-list li {
+  font-size: 0.88rem;
+  color: #2d6a4f;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.showcase-popular-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-red-action {
+  background: #d90429;
+  color: #ffffff !important;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-red-action:hover {
+  background: #b70422;
+  box-shadow: 0 6px 18px rgba(217, 4, 41, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-outline-green {
+  background: transparent;
+  color: #2d6a4f !important;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #2d6a4f;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-outline-green:hover {
+  background: #2d6a4f;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 820px) {
+  .showcase-catalog-grid--two {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+}
+
+/* ==========================================================================
+   ИНТЕРАКТИВНАЯ ГАЛЕРЕЯ ТЕПЛИЦ (ДЛЯ СТРАНИЦ АРОЧНЫЕ, КАПЛЕВИДНЫЕ, ДОМИКОМ)
+   ========================================================================== */
+.greenhouse-detail-hero {
+  background: linear-gradient(180deg, #edf5ef 0%, #ffffff 100%);
+  padding: 40px 0 30px;
+}
+
+.greenhouse-features-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.greenhouse-feature-pill {
+  background: #ffffff;
+  border: 1px solid #d8e8dc;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.04);
+}
+
+.greenhouse-feature-pill-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #eaf4ed;
+  color: #2d6a4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.greenhouse-feature-pill strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: #1b4332;
+}
+
+.greenhouse-feature-pill span {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.greenhouse-gallery-box {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1.5px solid #e1ece4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 45px;
+}
+
+.gallery-main-view {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111;
+  margin-bottom: 16px;
+}
+
+.gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1b4332;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.gallery-nav-btn:hover {
+  background: #d90429;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-nav-btn.prev { left: 16px; }
+.gallery-nav-btn.next { right: 16px; }
+
+.gallery-counter-badge {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+.gallery-thumbs-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.gallery-thumb-item {
+  height: 90px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.2s ease;
+  background: #f0f0f0;
+}
+
+.gallery-thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumb-item.active {
+  border-color: #d90429;
+  box-shadow: 0 4px 12px rgba(217, 4, 41, 0.3);
+}
+
+.gallery-thumb-item:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .greenhouse-features-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery-main-view {
+    height: 300px;
+  }
+  .gallery-thumbs-row {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+  .gallery-thumb-item {
+    height: 60px;
+  }
+}
+
+/* ==========================================================================
+   КАРТОЧКИ ЦЕН ТЕПЛИЦ ПО РАЗМЕРАМ
+   ========================================================================== */
+.greenhouse-prices-section {
+  padding-bottom: 60px;
+}
+
+.greenhouse-prices-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.greenhouse-price-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1.5px solid #e1ece4;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+.greenhouse-price-card.featured {
+  border-color: #2d6a4f;
+  box-shadow: 0 10px 28px rgba(45, 106, 79, 0.15);
+  transform: translateY(-4px);
+}
+
+.price-card-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d90429;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(217,4,41,0.3);
+  white-space: nowrap;
+}
+
+.price-card-size {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1b4332;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.price-card-val-box {
+  text-align: center;
+  background: #f7faf8;
+  padding: 12px 10px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+
+.price-card-current {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #1b4332;
+  line-height: 1.1;
+}
+
+.price-card-old {
+  font-size: 0.95rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+
+.price-card-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #495057;
+  flex-grow: 1;
+}
+
+.price-card-specs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-card-specs li strong {
+  color: #1b4332;
+}
+
+.price-card-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #2d6a4f;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.greenhouse-price-card.featured .price-card-btn {
+  background: #d90429;
+}
+
+.price-card-btn:hover {
+  background: #1b4332;
+  box-shadow: 0 6px 16px rgba(27,67,50,0.3);
+  transform: translateY(-2px);
+}
+
+.greenhouse-price-card.featured .price-card-btn:hover {
+  background: #b70422;
+  box-shadow: 0 6px 16px rgba(217,4,41,0.35);
+}
+
+@media (max-width: 991px) {
+  .greenhouse-prices-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .greenhouse-prices-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   ПОЛИКАРБОНАТ: 3 ВИДА И КОМПЛЕКТУЮЩИЕ
+   ========================================================================== */
+.poly-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 45px;
+}
+
+.poly-type-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1.5px solid #e1ece4;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  transition: all 0.25s ease;
+}
+
+.poly-type-card:hover {
+  transform: translateY(-5px);
+  border-color: #2d6a4f;
+  box-shadow: 0 16px 36px rgba(27,67,50,0.1);
+}
+
+.poly-type-header {
+  padding: 22px 22px 16px;
+  background: #f7faf8;
+  border-bottom: 1px solid #e8f0ea;
+}
+
+.poly-type-badge {
+  display: inline-block;
+  background: #2d6a4f;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.poly-type-badge.phyto {
+  background: #e07b53;
+}
+
+.poly-type-badge.max {
+  background: #1b4332;
+}
+
+.poly-type-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #1b4332;
+  margin: 0;
+}
+
+.poly-type-price-strip {
+  padding: 14px 22px;
+  background: #ffffff;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px dashed #e1ece4;
+}
+
+.poly-type-price-num {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #d90429;
+}
+
+.poly-type-price-unit {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.poly-type-body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.poly-spec-table {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.poly-spec-table li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted #e6ede8;
+  padding-bottom: 4px;
+}
+
+.poly-spec-table li span { color: #6c757d; }
+.poly-spec-table li strong { color: #1b4332; }
+
+@media (max-width: 991px) {
+  .poly-types-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ==========================================================================
+   КАРТА ДОСТАВКИ (ДЛЯ СТРАНИЦЫ ДОСТАВКА-СБОРКА)
+   ========================================================================== */
+.delivery-regions-box {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1.5px solid #e1ede5;
+  padding: 32px;
+  margin-bottom: 45px;
+  box-shadow: 0 8px 24px rgba(27,67,50,0.04);
+}
+
+.delivery-regions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.delivery-map-container {
+  width: 100%;
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border: 1px solid #d8e8dc;
+  background: #eef4f0;
+  position: relative;
+}
+
+.delivery-region-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.delivery-region-card {
+  background: #f8faf9;
+  border: 1.5px solid #e4ece7;
+  border-radius: 14px;
+  padding: 14px 18px;
+  transition: all 0.2s ease;
+}
+
+.delivery-region-card:hover {
+  background: #ffffff;
+  border-color: #2d6a4f;
+  transform: translateX(4px);
+  box-shadow: 0 4px 14px rgba(45,106,79,0.08);
+}
+
+.delivery-region-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.delivery-region-name {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #1b4332;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.delivery-region-price {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  color: #d90429;
+  font-size: 1.05rem;
+}
+
+.delivery-region-cities {
+  font-size: 0.84rem;
+  color: #556b62;
+  line-height: 1.4;
+}
+
+@media (max-width: 991px) {
+  .delivery-regions-grid {
+    grid-template-columns: 1fr;
+  }
+  .delivery-map-container {
+    height: 320px;
+  }
+}
+
 

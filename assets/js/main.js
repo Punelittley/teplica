@@ -1034,32 +1034,27 @@ function setupFaqChatbot() {
   });
 }
 
-// 12. Интерактивный витринный блок (в стиле верстки пользователя)
+// 12. Интерактивная витринная плашка (Теплицы, Грядки, Поликарбонат)
 function initTabbedShowcase() {
   const DATA = [
     { 
       tab: 'Теплицы', 
       items: [
-        ['Арочные теплицы', 'Классическая надежная форма с оцинкованным каркасом 20х20 или 40х20. Выдерживает любые ветровые и снеговые нагрузки.', 'assets/images/2.png'],
-        ['Каплевидные теплицы', 'Усиленный стрельчатый свод — снег сходит сам! Увеличенная высота 2.35 м для удобства ухода за высокорослыми томатами.', 'assets/images/mockup_kaplevidnaya.jpg'],
-        ['Прямостенные теплицы', 'Максимум полезного объема для посадки вдоль стенок. Удобно ходить в полный рост по всей площади теплицы.', 'assets/images/greenhouse_arch.jpg'],
-        ['Мини-парники', 'Компактные оцинкованные конструкции для зелени, перцев и ранней рассады с удобными откидными крышками.', 'assets/images/2kryg.png'] 
+        ['Арочные теплицы', 'Классическая проверенная форма с оцинкованным каркасом 20х20 или 40х20. Отличная аэродинамика, равномерное распределение света и доступная цена.', 'assets/images/2.png', 'arochnye.html', 'Смотреть арочные теплицы →'],
+        ['Каплевидные теплицы', 'Усиленный стрельчатый свод — снег сходит сам под своим весом! Увеличенная высота 2.35 м для высокорослых томатов и огурцов.', 'assets/images/mockup_kaplevidnaya.jpg', 'kaplevidnye.html', 'Смотреть каплевидные теплицы →'],
+        ['Теплицы «Домиком»', 'Прямостенные теплицы с двускатной крышей. Прямые стены дают 100% полезной площади у самых краев, комфортно ходить в полный рост.', 'assets/images/greenhouse_arch.jpg', 'domikom.html', 'Смотреть теплицы «Домиком» →']
       ]
     },
     { 
-      tab: 'Грядки и Оборудование', 
+      tab: 'Оцинкованные грядки', 
       items: [
-        ['Оцинкованные грядки', 'Забота о здоровье спины. Высота бортов 15, 20 и 35 см. Безопасные завальцованные края, которые не режут руки.', 'assets/images/4.png'],
-        ['Сотовый поликарбонат', 'Первичное сырье 4 мм и 6 мм повышенной плотности. Двойной слой защиты от УФ излучения предотвращает разрушение сотов.', 'assets/images/mockup_polycarb_detail.jpg'],
-        ['Автопроветривание и полив', 'Автономные термоприводы открывают форточки при нагреве. Система капельного полива ухаживает за растениями без вас.', 'assets/images/3kryg.png'] 
+        ['Оцинкованные грядки и клумбы', 'Забота о здоровье спины и суставов. Высота бортов 15, 20 и 35 см. Безопасные завальцованные края, которые не травмируют руки. Служат 15+ лет без ржавчины.', 'assets/images/4.png', 'gryadki.html', 'Перейти в каталог грядок →']
       ]
     },
     { 
-      tab: 'Услуги и Сервис', 
+      tab: 'Сотовый поликарбонат', 
       items: [
-        ['Доставка по области', 'Бережная доставка по Ярославлю, Рыбинску, Тутаеву, Угличу, Ростову, Переславлю и всем СНТ области в удобное время.', 'assets/images/teplica.png'],
-        ['Сборка под ключ', 'Опытные бригады установят теплицу на фундамент из бруса 100х100 или грунтозацепы. Оплата только после вашей приемки.', 'assets/images/mockup_install.jpg'],
-        ['Бесплатное хранение', 'Купите теплицу со скидкой прямо сейчас! Мы бесплатно сохраним её на сухом охраняемом складе завода до нужной даты выгрузки.', 'assets/images/hero_gardener.jpg'] 
+        ['Поликарбонат и комплектующие', 'Первичный гранулят с заводским соэкструзионным УФ-слоем: «Оптимальный» 4 мм, экологический «Фито» 4 мм и сверхпрочный «Максимальный» 6 мм. В наличии термошайбы и стяжная оцинкованная лента.', 'assets/images/mockup_polycarb_detail.jpg', 'polikarbonat.html', 'Перейти в каталог поликарбоната →']
       ]
     }
   ];
@@ -1114,12 +1109,17 @@ function initTabbedShowcase() {
   }
 
   function show() {
-    const [t, d, img] = DATA[tab].items[item];
+    const cur = DATA[tab].items[item];
+    if (!cur) return;
+    const [t, d, img, url, btnText] = cur;
     if (titleEl) titleEl.textContent = t;
     if (descEl) descEl.textContent = d;
     if (cardImgEl) {
       cardImgEl.src = img || 'assets/images/2.png';
       cardImgEl.alt = t;
+    }
+    if (ctaEl) {
+      ctaEl.textContent = btnText || 'Подробнее в каталоге →';
     }
   }
 
@@ -1138,7 +1138,7 @@ function initTabbedShowcase() {
       descEl.classList.remove('out');
       if (cardImgEl) cardImgEl.classList.remove('out');
       busy = false;
-    }, 380);
+    }, 320);
   }
 
   if (nextEl) {
@@ -1148,21 +1148,13 @@ function initTabbedShowcase() {
   if (ctaEl) {
     ctaEl.onclick = (e) => {
       e.preventDefault();
-      const modalOverlay = document.getElementById("modalOverlay");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalSubtitle = document.getElementById("modalSubtitle");
-      const modalSubject = document.getElementById("modalSubject");
-      if (!modalOverlay) return;
-
-      const currentItem = DATA[tab].items[item];
-      const subject = `Заявка из каталога: ${DATA[tab].tab} — ${currentItem[0]}`;
-      const title = "Рассчитать стоимость";
-      const subtitle = "Остановите выбор на надежной теплице от завода";
-
-      if (modalTitle) modalTitle.textContent = title;
-      if (modalSubtitle) modalSubtitle.textContent = subtitle;
-      if (modalSubject) modalSubject.value = subject;
-      modalOverlay.classList.add("active");
+      const cur = DATA[tab].items[item];
+      if (cur && cur[3]) {
+        window.location.href = cur[3];
+      } else {
+        const modalOverlay = document.getElementById("modalOverlay");
+        if (modalOverlay) modalOverlay.classList.add("active");
+      }
     };
   }
 

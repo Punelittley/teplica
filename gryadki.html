@@ -17,46 +17,107 @@
 </head>
 <body>
   <!-- Шапка сайта -->
-  <header class="site-header">
-    <div class="container">
+    <!-- Верхняя сервисная полоса -->
+  <div class="header-topbar">
+    <div class="container header-topbar-inner">
+      <div class="topbar-left">
+        <span class="topbar-slogan">🌱 Свой огород — это счастье!</span>
+        <span class="topbar-handwriting">надежные теплицы с любовью к земле</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-hours">Ежедневно 8:00 – 20:00</span>
+        <a href="tel:+748521234567" class="topbar-phone js-phone-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span class="js-phone-text">+7 (4852) 123-45-67</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-      <!-- Верхняя строка: логотип по центру -->
-      <div class="header-top-row">
-        <div class="header-top-center">
-          <a href="index.html" class="logo-wrapper" title="Теплицы ТУТ">
-            <img src="assets/images/logo_teplicy_tut.png" alt="Теплицы ТУТ" class="header-logo-image">
-          </a>
+  <!-- Шапка сайта -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <div class="header-main-row">
+        <!-- Логотип -->
+        <a href="index.html" class="logo-wrapper">
+          <img src="assets/images/logo_teplicy_tut.png" alt="Теплицы ТУТ" class="logo-img">
+          <div>
+            <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
+            <div class="logo-text-sub">Завод теплиц в Ярославле</div>
+          </div>
+        </a>
+
+        <!-- Преимущества в шапке -->
+        <div class="header-perks">
+          <div class="perk-item">
+            <span class="perk-icon">🏭</span>
+            <div>
+              <div class="perk-title">Прямо с завода</div>
+              <div class="perk-sub">Без наценок посредников</div>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon">🛡️</span>
+            <div>
+              <div class="perk-title">0 ₽ предоплаты</div>
+              <div class="perk-sub">Оплата только после установки</div>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon">🚚</span>
+            <div>
+              <div class="perk-title">Своя доставка</div>
+              <div class="perk-sub">Ярославль, Иваново, Кострома</div>
+            </div>
+          </div>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">☰</button>
+
+        <!-- Контакты и кнопка -->
+        <div class="header-cta-block">
+          <div class="header-phone-box">
+            <a href="tel:+748521234567" class="header-phone-link js-phone-link">
+              <span class="js-phone-text">+7 (4852) 123-45-67</span>
+            </a>
+            <div class="header-workhours js-hours-text">Звоните с 8:00 до 20:00 без выходных</div>
+          </div>
+          <button type="button" class="btn btn-secondary header-btn" data-open-modal data-subject="Заказ звонка с шапки" data-title="Заказать консультацию">
+            Заказать звонок
+          </button>
+          <button type="button" class="font-size-toggle" id="fontSizeToggle" title="Крупный шрифт для удобного чтения">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="2" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Крупный шрифт
+          </button>
+          <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">
+            ☰
+          </button>
+        </div>
       </div>
 
-      <!-- Нижняя строка: навигация по центру -->
-      <div class="header-nav-row">
+      <!-- Главная навигация -->
+      <div class="header-nav-wrap">
         <nav class="site-nav" id="siteNav">
           <a href="index.html" class="nav-link">Главная</a>
-          
+
+          <!-- ВЫПАДАЮЩИЙ СПИСОК ТЕПЛИЦ -->
           <div class="nav-item-dropdown">
-            <a href="arochnye.html" class="nav-link dropdown-toggle active">
-              Теплицы и товары 
-              <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle">
+              Теплицы <span class="dropdown-arrow">▾</span>
             </a>
-            <div class="dropdown-menu">
-              <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
+            <div class="nav-dropdown-menu">
+              <a href="arochnye.html" class="dropdown-item">Арочные теплицы</a>
               <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
-              <a href="gryadki.html" class="dropdown-item active">Оцинкованные грядки</a>
-              <a href="polikarbonat.html" class="dropdown-item">Сотовый поликарбонат</a>
+              <a href="domikom.html" class="dropdown-item">Теплицы «Домиком»</a>
             </div>
           </div>
 
+          <a href="gryadki.html" class="nav-link active">Оцинкованные грядки</a>
+          <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
+
           <a href="index.html#calculator" class="nav-link nav-link--calc">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="4" y="2" width="16" height="20" rx="2"/>
-              <line x1="8" y1="6" x2="16" y2="6"/>
-              <line x1="16" y1="14" x2="16" y2="18"/>
-              <path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/>
-            </svg>Калькулятор
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>Калькулятор
           </a>
           <a href="nashi-raboty.html" class="nav-link">Наши работы</a>
           <a href="dostavka-sborka.html" class="nav-link">Доставка и сборка</a>
@@ -366,7 +427,7 @@
         <!-- Логотип и позиционирование бренда -->
         <div class="footer-brand-col">
           <a href="index.html" class="logo-wrapper">
-            <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+            <img src="assets/images/logo_teplicy_tut.png" alt="Теплицы ТУТ" class="logo-img" style="border-radius: 10px; object-fit: cover;">
             <div>
               <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
               <div class="logo-text-sub">С заботой о вашем урожае</div>

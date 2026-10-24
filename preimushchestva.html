@@ -12,8 +12,27 @@
 <body>
   <!-- Шапка сайта -->
   <header class="site-header">
-    <div class="container">
+    <!-- Верхняя строка: активный телефон + лозунг + рукописная пропись -->
+    <div class="header-topbar">
+      <div class="container header-topbar-inner">
+        <div class="header-topbar-slogan">
+          <span class="topbar-slogan-main">🌱 Свой огород — это счастье!</span>
+          <span class="topbar-slogan-hand">«С душевной заботой о вашем урожае ♡»</span>
+        </div>
+        <div class="header-topbar-contacts">
+          <span class="topbar-hours">Ежедневно 8:00–20:00</span>
+          <a href="tel:+748521234567" class="header-phone-link js-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="js-phone-text">+7 (4852) 123-45-67</span>
+          </a>
+          <button type="button" class="header-callback-btn" data-open-modal data-subject="Заказ звонка из шапки" data-title="Заказать звонок мастера">
+            Заказать звонок
+          </button>
+        </div>
+      </div>
+    </div>
 
+    <div class="container">
       <!-- Верхняя строка: логотип по центру -->
       <div class="header-top-row">
         <div class="header-top-center">
@@ -31,7 +50,7 @@
 
           <div class="nav-item-dropdown">
             <a href="arochnye.html" class="nav-link dropdown-toggle">
-              Теплицы и товары 
+              Теплицы 
               <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9l6 6 6-6"/>
               </svg>
@@ -39,10 +58,12 @@
             <div class="dropdown-menu">
               <a href="arochnye.html" class="dropdown-item">Арочные теплицы (Хит)</a>
               <a href="kaplevidnye.html" class="dropdown-item">Каплевидные теплицы</a>
-              <a href="gryadki.html" class="dropdown-item">Оцинкованные грядки</a>
-              <a href="polikarbonat.html" class="dropdown-item">Сотовый поликарбонат</a>
+              <a href="domikom.html" class="dropdown-item">Теплицы «Домиком»</a>
             </div>
           </div>
+
+          <a href="gryadki.html" class="nav-link">Оцинкованные грядки</a>
+          <a href="polikarbonat.html" class="nav-link">Поликарбонат</a>
 
           <a href="index.html#calculator" class="nav-link nav-link--calc">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>Калькулятор
@@ -176,126 +197,7 @@
       </div>
 
       <!-- ==========================================
-           2. БЛОК «ПОЧЕМУ МЫ?» 03 (с живыми фото)
-           ========================================== -->
-      <div class="arc-diagram-card">
-        <div class="arc-diagram-header">
-          <h2 class="arc-diagram-title">ПОЧЕМУ МЫ?</h2>
-        </div>
-
-        <div class="steps-row-grid">
-          <!-- Шаг 1 -->
-          <div class="step-column">
-            <div class="step-badge-node">1</div>
-            <div class="step-card-box">
-              <img src="assets/images/products/p4/2.jpg" alt="Доставка спецтранспортом" class="step-photo-preview" loading="lazy" decoding="async">
-              <h3 class="step-card-name">Приоритет на Вас</h3>
-              <ul class="step-card-list">
-                <li>Удобная вам дата и время</li>
-                <li>Любое размещение дверей</li>
-                <li>Строго без скрытых доплат</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Шаг 2 -->
-          <div class="step-column">
-            <div class="step-badge-node">2</div>
-            <div class="step-card-box">
-              <img src="assets/images/works/work_2_ustanovka.png" alt="Монтаж мастерами" class="step-photo-preview">
-              <h3 class="step-card-name">Организация</h3>
-              <ul class="step-card-list">
-                <li>Контроль мастером завода</li>
-                <li>Сборка за 3–4 часа</li>
-                <li>Бережная спецдоставка на дачу</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Шаг 3 -->
-          <div class="step-column">
-            <div class="step-badge-node">3</div>
-            <div class="step-card-box">
-              <img src="assets/images/products/p1/3.jpg" alt="Качество металла" class="step-photo-preview">
-              <h3 class="step-card-name">Качество</h3>
-              <ul class="step-card-list">
-                <li>Сталь Северсталь по ГОСТ</li>
-                <li>Опыт производства 8+ лет</li>
-                <li>Цельногнутые дуги 40×20</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Шаг 4 -->
-          <div class="step-column">
-            <div class="step-badge-node">4</div>
-            <div class="step-card-box">
-              <img src="assets/images/works/work_1_prodazha.png" alt="Готовая теплица" class="step-photo-preview">
-              <h3 class="step-card-name">Гарантии</h3>
-              <ul class="step-card-list">
-                <li>Официальный договор с печатью</li>
-                <li>Сдача по акту приема-сдачи</li>
-                <li>Заводская гарантия 10 лет</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ==========================================
-           3. БЛОК «ЗАЧЕМ НЕОБХОДИМА ТЕПЛИЦА?» 02 (Сплит с фото)
-           ========================================== -->
-      <div class="pills-block-wrapper">
-        <div class="pills-block-header">
-          <div class="pills-heading-wrap">
-            <span class="pills-lime-tag">зачем необходима</span>
-            <span class="pills-heading-text">заводская теплица ?</span>
-          </div>
-        </div>
-
-        <div class="pills-split-layout">
-          <!-- Фото-карточка слева -->
-          <div class="pills-photo-card">
-            <img src="assets/images/products/p9/2.png" alt="Богатый урожай в теплице">
-            <div class="pills-photo-overlay">
-              <div class="pills-photo-title">Свежий дачный урожай</div>
-              <div class="pills-photo-sub">Экологически чистые овощи до поздней осени</div>
-            </div>
-          </div>
-
-          <!-- 4 плитки справа -->
-          <div class="pills-tiles-grid">
-            <div class="pill-tile pill-tile--lime">
-              <div>
-                <strong style="display: block; margin-bottom: 4px; font-size: 1.05rem;">Снегостойкость 240 кг/м²</strong>
-                <span style="font-size: 0.88rem; opacity: 0.9;">Зимует без подпорок под сугробами</span>
-              </div>
-            </div>
-            <div class="pill-tile pill-tile--white">
-              <div>
-                <strong style="display: block; margin-bottom: 4px; font-size: 1.05rem;">Защита урожая</strong>
-                <span style="font-size: 0.88rem; color: var(--color-text-muted);">Без сквозняков и ночных заморозков</span>
-              </div>
-            </div>
-            <div class="pill-tile pill-tile--white">
-              <div>
-                <strong style="display: block; margin-bottom: 4px; font-size: 1.05rem;">Сбор на месяц раньше</strong>
-                <span style="font-size: 0.88rem; color: var(--color-text-muted);">Благодаря герметичному микроклимату</span>
-              </div>
-            </div>
-            <div class="pill-tile pill-tile--dark">
-              <div>
-                <strong style="display: block; margin-bottom: 4px; font-size: 1.05rem;">Долговечность 15+ лет</strong>
-                <span style="font-size: 0.88rem; opacity: 0.85;">Оцинкованная замкнутая труба ГОСТ</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ==========================================
-           4. ГОРИЗОНТАЛЬНЫЕ КАРТОЧКИ-ТАБЫ С ФОТО
+           2. ИНЖЕНЕРНЫЕ СТАНДАРТЫ ЗАВОДА (С ФОТО)
            ========================================== -->
       <div class="adv-section-title-wrap">
         <span class="adv-section-tag">Инженерные стандарты</span>
@@ -506,7 +408,7 @@
         <!-- Логотип и позиционирование бренда -->
         <div class="footer-brand-col">
           <a href="index.html" class="logo-wrapper">
-            <img src="assets/images/favicon.svg" alt="Теплицы ТУТ" class="logo-img">
+            <img src="assets/images/logo_teplicy_tut.png" alt="Теплицы ТУТ" class="logo-img" style="border-radius: 10px; object-fit: cover;">
             <div>
               <div class="logo-text-title">ТЕПЛИЦЫ <span class="logo-highlight">ТУТ</span></div>
               <div class="logo-text-sub">С заботой о вашем урожае</div>
@@ -545,9 +447,9 @@
           <ul class="footer-nav-list">
             <li><a href="arochnye.html">Арочные теплицы</a></li>
             <li><a href="kaplevidnye.html">Каплевидные теплицы</a></li>
+            <li><a href="domikom.html">Теплицы «Домиком»</a></li>
             <li><a href="gryadki.html">Оцинкованные грядки</a></li>
             <li><a href="polikarbonat.html">Сотовый поликарбонат с УФ</a></li>
-            <li><a href="arochnye.html#usil">Усиленные теплицы (шаг 0.65 м)</a></li>
           </ul>
         </div>
 

@@ -784,6 +784,62 @@
         height: 22px;
       }
     }
+  
+    /* Адаптив для карточек доставки и шагов (чтобы не выезжали на мобильных) */
+    @media (max-width: 960px) {
+      .delivery-features-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 14px !important;
+      }
+      .del-steps-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 14px !important;
+      }
+      .delivery-regions-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .delivery-map-container {
+        height: 320px !important;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .delivery-features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .del-feat-card {
+        padding: 18px 16px !important;
+        border-radius: 16px !important;
+      }
+      .del-steps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      .del-steps-card {
+        padding: 20px 14px !important;
+        border-radius: 18px !important;
+        margin-bottom: 25px !important;
+      }
+      .delivery-regions-box {
+        padding: 18px 12px !important;
+        border-radius: 18px !important;
+        margin-bottom: 25px !important;
+      }
+      .delivery-map-container {
+        height: 280px !important;
+        border-radius: 14px !important;
+      }
+      .delivery-region-card {
+        padding: 12px 14px !important;
+      }
+      .delivery-region-header {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -850,7 +906,7 @@
           <a href="dostavka-sborka.html" class="nav-link active">Доставка и сборка</a>
           <a href="preimushchestva.html" class="nav-link">Преимущества</a>
           <a href="otzyvy.html" class="nav-link">Отзывы</a>
-          <a href="kontakty.html" class="nav-link">Контакты</a>
+          <a href="kontakty.html" class="nav-link">Выставочная площадка</a>
         </nav>
       </div>
 
@@ -869,6 +925,84 @@
         </p>
       </div>
 
+      <!-- КАРТА РЕГИОНОВ ДОСТАВКИ ЗАВОДА «ТЕПЛИЦЫ ТУТ» -->
+      <div class="delivery-regions-box">
+        <div style="text-align: center; max-width: 780px; margin: 0 auto 30px;">
+          <span class="adv-section-tag" style="background: #eaf4ed; color: #2d6a4f; padding: 5px 16px; border-radius: 999px; font-weight: 800; font-size: 0.84rem; display: inline-block; margin-bottom: 8px;">Широкая география</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 900; color: #1b4332; margin: 0 0 8px;">Куда мы доставляем теплицы</h2>
+          <p style="color: #556b62; font-size: 0.98rem; margin: 0;">
+            Собственный автопарк спецтранспорта с пирамидами. Доставка прямо до калитки вашего СНТ без перегибов поликарбоната и повреждения дуг.
+          </p>
+        </div>
+
+        <div class="delivery-regions-grid">
+          <!-- Левая колонка: Карточки регионов -->
+          <div class="delivery-region-list">
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Ярославская область</span>
+                <span class="delivery-region-price">от 1 500 ₽</span>
+              </div>
+              <div class="delivery-region-cities">
+                Ярославль, Рыбинск, Тутаев, Ростов Великий, Переславль-Залесский, Углич, Данилов, Гаврилов-Ям и все дачные массивы СНТ. Срок: <strong>уже завтра</strong>.
+              </div>
+            </div>
+
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Ивановская область</span>
+                <span class="delivery-region-price">от 2 000 ₽</span>
+              </div>
+              <div class="delivery-region-cities">
+                Иваново, Шуя, Тейково, Фурманов, Приволжск, Плёс, Родники, Вичуга, Кинешма и близлежащие садово-дачные товарищества. Срок: <strong>1–2 дня</strong>.
+              </div>
+            </div>
+
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Костромская область</span>
+                <span class="delivery-region-price">от 2 000 ₽</span>
+              </div>
+              <div class="delivery-region-cities">
+                Кострома, Нерехта, Волгореченск, Красное-на-Волге, Судиславль и все СНТ Костромского района. Срок: <strong>1–2 дня</strong>.
+              </div>
+            </div>
+
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Восток Московской области</span>
+                <span class="delivery-region-price">спецрейс завода</span>
+              </div>
+              <div class="delivery-region-cities">
+                Сергиев Посад, Дмитров, Талдом, Пушкино, Краснозаводск, Хотьково и дачные кооперативы Ярославского направления.
+              </div>
+            </div>
+
+            <div class="delivery-region-card">
+              <div class="delivery-region-header">
+                <span class="delivery-region-name">📍 Север Владимирской области</span>
+                <span class="delivery-region-price">спецрейс завода</span>
+              </div>
+              <div class="delivery-region-cities">
+                Александров, Струнино, Киржач, Кольчугино, Юрьев-Польский и все прилегающие деревни и СНТ.
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;">
+              <button type="button" class="btn btn-primary" style="width: 100%; padding: 13px; font-size: 1rem;" data-open-modal data-title="Рассчитать доставку на ваш участок" data-subtitle="Назовите ваш населенный пункт или СНТ — диспетчер рассчитает точный километраж" data-subject="Расчет доставки до СНТ">
+                Рассчитать доставку до моего СНТ →
+              </button>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Яндекс.Карта с выделенной зоной -->
+          <div class="delivery-map-container" id="deliveryMapContainer">
+            <div id="deliveryYandexMap" style="width: 100%; height: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      
       <!-- 4 КЛЮЧЕВЫХ ГАРАНТИИ (Светлые аккуратные карточки) -->
       <div class="delivery-features-grid">
         <div class="del-feat-card">
@@ -947,83 +1081,6 @@
               <strong>Приемка и расчет</strong>
               <span>Проверяете работу мастера и оплачиваете по факту</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- КАРТА РЕГИОНОВ ДОСТАВКИ ЗАВОДА «ТЕПЛИЦЫ ТУТ» -->
-      <div class="delivery-regions-box">
-        <div style="text-align: center; max-width: 780px; margin: 0 auto 30px;">
-          <span class="adv-section-tag" style="background: #eaf4ed; color: #2d6a4f; padding: 5px 16px; border-radius: 999px; font-weight: 800; font-size: 0.84rem; display: inline-block; margin-bottom: 8px;">Широкая география</span>
-          <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 900; color: #1b4332; margin: 0 0 8px;">Куда мы доставляем теплицы</h2>
-          <p style="color: #556b62; font-size: 0.98rem; margin: 0;">
-            Собственный автопарк спецтранспорта с пирамидами. Доставка прямо до калитки вашего СНТ без перегибов поликарбоната и повреждения дуг.
-          </p>
-        </div>
-
-        <div class="delivery-regions-grid">
-          <!-- Левая колонка: Карточки регионов -->
-          <div class="delivery-region-list">
-            <div class="delivery-region-card">
-              <div class="delivery-region-header">
-                <span class="delivery-region-name">📍 Ярославская область</span>
-                <span class="delivery-region-price">от 1 500 ₽</span>
-              </div>
-              <div class="delivery-region-cities">
-                Ярославль, Рыбинск, Тутаев, Ростов Великий, Переславль-Залесский, Углич, Данилов, Гаврилов-Ям и все дачные массивы СНТ. Срок: <strong>уже завтра</strong>.
-              </div>
-            </div>
-
-            <div class="delivery-region-card">
-              <div class="delivery-region-header">
-                <span class="delivery-region-name">📍 Ивановская область</span>
-                <span class="delivery-region-price">от 2 000 ₽</span>
-              </div>
-              <div class="delivery-region-cities">
-                Иваново, Шуя, Тейково, Фурманов, Приволжск, Плёс, Родники, Вичуга, Кинешма и близлежащие садово-дачные товарищества. Срок: <strong>1–2 дня</strong>.
-              </div>
-            </div>
-
-            <div class="delivery-region-card">
-              <div class="delivery-region-header">
-                <span class="delivery-region-name">📍 Костромская область</span>
-                <span class="delivery-region-price">от 2 000 ₽</span>
-              </div>
-              <div class="delivery-region-cities">
-                Кострома, Нерехта, Волгореченск, Красное-на-Волге, Судиславль и все СНТ Костромского района. Срок: <strong>1–2 дня</strong>.
-              </div>
-            </div>
-
-            <div class="delivery-region-card">
-              <div class="delivery-region-header">
-                <span class="delivery-region-name">📍 Восток Московской области</span>
-                <span class="delivery-region-price">спецрейс завода</span>
-              </div>
-              <div class="delivery-region-cities">
-                Сергиев Посад, Дмитров, Талдом, Пушкино, Краснозаводск, Хотьково и дачные кооперативы Ярославского направления.
-              </div>
-            </div>
-
-            <div class="delivery-region-card">
-              <div class="delivery-region-header">
-                <span class="delivery-region-name">📍 Север Владимирской области</span>
-                <span class="delivery-region-price">спецрейс завода</span>
-              </div>
-              <div class="delivery-region-cities">
-                Александров, Струнино, Киржач, Кольчугино, Юрьев-Польский и все прилегающие деревни и СНТ.
-              </div>
-            </div>
-
-            <div style="margin-top: 10px;">
-              <button type="button" class="btn btn-primary" style="width: 100%; padding: 13px; font-size: 1rem;" data-open-modal data-title="Рассчитать доставку на ваш участок" data-subtitle="Назовите ваш населенный пункт или СНТ — диспетчер рассчитает точный километраж" data-subject="Расчет доставки до СНТ">
-                Рассчитать доставку до моего СНТ →
-              </button>
-            </div>
-          </div>
-
-          <!-- Правая колонка: Яндекс.Карта с выделенной зоной -->
-          <div class="delivery-map-container" id="deliveryMapContainer">
-            <div id="deliveryYandexMap" style="width: 100%; height: 100%;"></div>
           </div>
         </div>
       </div>

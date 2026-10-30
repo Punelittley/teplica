@@ -252,6 +252,15 @@ const DEFAULT_CONFIG = {
       "6m": { name: "3х6 метров", price: 30900, oldPrice: 34900 },
       "8m": { name: "3х8 метров", price: 37400, oldPrice: 42500 }
     },
+    house: {
+      "4m": { name: "3х4 метра", price: 27900, oldPrice: 30900 },
+      "6m": { name: "3х6 метров", price: 34900, oldPrice: 38900 },
+      "8m": { name: "3х8 метров", price: 41900, oldPrice: 46900 },
+      "10m": { name: "3х10 метров", price: 48900, oldPrice: 54900 }
+    },
+      "6m": { name: "3х6 метров", price: 30900, oldPrice: 34900 },
+      "8m": { name: "3х8 метров", price: 37400, oldPrice: 42500 }
+    },
     step: {
       "100": { name: "Шаг 1 метр", price: 0 },
       "65": { name: "Усиленный шаг 0.65 м", price: 2500 }
@@ -276,6 +285,23 @@ const DEFAULT_CONFIG = {
     delivery: {
       baseYar: 1500,
       perKm: 40
+    },
+    tape: {
+      name: "Стяжная оцинкованная лента",
+      price: 1800,
+      oldPrice: 2400
+    },
+    beds: {
+      set2: {
+        name: "Комплект оцинкованных грядок (2 ряда)",
+        price: 4500,
+        oldPrice: 5500
+      }
+    },
+    autovent: {
+      name: "Автопроветриватель форточки (термопривод)",
+      price: 2400,
+      oldPrice: 2900
     }
   },
   products: DEFAULT_PRODUCTS,

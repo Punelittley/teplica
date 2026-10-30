@@ -277,7 +277,8 @@ function setupCalculator(config) {
     timber: false,
     assembly: true,
     beds: false,
-    autovent: false
+    autovent: false,
+    tape: false
   };
 
   const typeBtns = calcRoot.querySelectorAll("[data-calc-type]");
@@ -288,6 +289,7 @@ function setupCalculator(config) {
   const assemblyCheckbox = document.getElementById("calcOptionAssembly");
   const bedsCheckbox = document.getElementById("calcOptionBeds");
   const autoventCheckbox = document.getElementById("calcOptionAutovent");
+  const tapeCheckbox = document.getElementById("calcOptionTape");
 
   const sumTotalEl = document.getElementById("calcSumTotal");
   const sumOldEl = document.getElementById("calcSumOld");
@@ -350,12 +352,27 @@ function setupCalculator(config) {
       oldTotal += autoventOldCost;
     }
 
+    // Стяжная оцинкованная лента
+    let tapeCost = 0;
+    if (state.tape) {
+      tapeCost = p.tape?.price || 1800;
+      const tapeOldCost = p.tape?.oldPrice || 2400;
+      total += tapeCost;
+      oldTotal += tapeOldCost;
+    }
+
     // Отображение
     if (sumTotalEl) sumTotalEl.textContent = `${total.toLocaleString("ru-RU")} ₽`;
     if (sumOldEl) sumOldEl.textContent = `${oldTotal.toLocaleString("ru-RU")} ₽`;
 
     if (breakdownTypeEl) {
-      breakdownTypeEl.textContent = state.type === "arch" ? "Арочная теплица" : "Каплевидная теплица";
+      if (state.type === "arch") {
+        breakdownTypeEl.textContent = "Арочная теплица";
+      } else if (state.type === "drop") {
+        breakdownTypeEl.textContent = "Каплевидная теплица";
+      } else {
+        breakdownTypeEl.textContent = "Прямостенная «Домиком»";
+      }
     }
     if (breakdownSizeEl) {
       breakdownSizeEl.textContent = baseItem.name;
@@ -372,6 +389,7 @@ function setupCalculator(config) {
       if (state.assembly) extras.push(`Сборка (${assemblyCost.toLocaleString("ru-RU")} ₽)`);
       if (state.beds) extras.push(`Грядки (${bedsCost.toLocaleString("ru-RU")} ₽)`);
       if (state.autovent) extras.push(`Автопроветриватель (${autoventCost.toLocaleString("ru-RU")} ₽)`);
+      if (state.tape) extras.push(`Оцинкованная лента (${tapeCost.toLocaleString("ru-RU")} ₽)`);
       breakdownExtraEl.textContent = extras.length ? extras.join(" + ") : "Без доп. услуг";
     }
 
@@ -381,9 +399,11 @@ function setupCalculator(config) {
       if (state.assembly) extraList.push("Сборка");
       if (state.beds) extraList.push("Грядки");
       if (state.autovent) extraList.push("Автопроветриватель");
+      if (state.tape) extraList.push("Стяжная лента");
       const extrasStr = extraList.length ? extraList.join(", ") : "нет";
 
-      const desc = `${state.type === "arch" ? "Арочная" : "Каплевидная"} ${baseItem.name}, поликарбонат: ${p.poly[state.poly]?.name}, доп: ${extrasStr}. Итого: ${total.toLocaleString("ru-RU")} руб`;
+      const typeName = state.type === "arch" ? "Арочная" : (state.type === "drop" ? "Каплевидная" : "Домиком");
+      const desc = `${typeName} ${baseItem.name}, поликарбонат: ${p.poly[state.poly]?.name}, доп: ${extrasStr}. Итого: ${total.toLocaleString("ru-RU")} руб`;
       submitBtn.setAttribute("data-subject", `Расчет: ${desc}`);
     }
   }
@@ -428,6 +448,13 @@ function setupCalculator(config) {
   if (autoventCheckbox) {
     autoventCheckbox.addEventListener("change", (e) => {
       state.autovent = e.target.checked;
+      update();
+    });
+  }
+
+  if (tapeCheckbox) {
+    tapeCheckbox.addEventListener("change", (e) => {
+      state.tape = e.target.checked;
       update();
     });
   }

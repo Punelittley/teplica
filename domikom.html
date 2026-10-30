@@ -73,245 +73,315 @@
           <a href="dostavka-sborka.html" class="nav-link">Доставка и сборка</a>
           <a href="preimushchestva.html" class="nav-link">Преимущества</a>
           <a href="otzyvy.html" class="nav-link">Отзывы</a>
-          <a href="kontakty.html" class="nav-link">Контакты</a>
+          <a href="kontakty.html" class="nav-link">Выставочная площадка</a>
         </nav>
       </div>
 
     </div>
   </header>
 
-  <!-- Главный блок: Теплицы Домиком -->
-  <main class="catalog-page">
+  <!-- Главный блок товара: Теплицы «Домиком» -->
+  <main class="catalog-page" style="padding-top: 32px; padding-bottom: 60px;">
     <div class="container">
 
       <!-- Хлебные крошки -->
-      <div class="catalog-breadcrumb">
+      <div class="catalog-breadcrumb" style="margin-bottom: 20px;">
         <a href="index.html">Главная</a>
-        <span>›</span>
-        <span>Теплицы</span>
-        <span>›</span>
-        <span style="color: #333; font-weight: 600;">Теплицы «Домиком»</span>
+        <span>/</span>
+        <a href="domikom.html">Теплицы</a>
+        <span>/</span>
+        <span style="color: #1b4332; font-weight: 700;">Теплицы «Домиком»</span>
       </div>
 
-      <!-- Заголовок и преимущества формы -->
-      <div class="testimonials-header" style="padding-top: 24px; margin-bottom: 25px;">
-        <h1 class="testimonials-title">Прямостенные теплицы «Домиком» из поликарбоната</h1>
-        <p class="testimonials-subtitle">
-          Прямые вертикальные стены высотой 1.7 м позволяют задействовать всю ширину теплицы без потери пространства по краям. Растения тянутся строго вверх, а вы работаете в полный рост с максимальным комфортом.
-        </p>
-      </div>
+      <!-- КАРТОЧКА ТОВАРА ПО РЕФЕРЕНСУ (БОЛЬШОЕ ФОТО + 20 РАКУРСОВ В КРУГОВУЮ + КОНФИГУРАТОР) -->
+      <section class="prod-hero-wrap">
+        
+        <!-- Левая колонка: Галерея с 20 фото вкруговую -->
+        <div class="prod-gallery-col">
+          <div class="prod-main-view">
+            <img src="assets/images/products/p2/5.jpg" alt="Теплицы «Домиком»" class="prod-main-img" id="houseMainImg">
+            <div class="prod-badge-overlay">
+              <span class="prod-badge-pill hit">Хит завода</span>
+              <span class="prod-badge-pill">0 ₽ предоплаты</span>
+            </div>
+            <button type="button" class="prod-nav-arrow prev" id="housePrevBtn" aria-label="Предыдущее фото">‹</button>
+            <button type="button" class="prod-nav-arrow next" id="houseNextBtn" aria-label="Следующее фото">›</button>
+            <div class="prod-counter-pill" id="houseCounter">1 / 20 • Листайте фото</div>
+          </div>
 
-      <!-- Плашки преимуществ формы Домиком -->
+          <div class="prod-thumbs-strip" id="houseThumbs">
+            
+            <div class="prod-thumb-item active" data-idx="0" data-src="assets/images/products/p2/5.jpg" title="Прямостенная теплица Домиком фасад">
+              <img src="assets/images/products/p2/5.jpg" alt="Прямостенная теплица Домиком фасад" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="1" data-src="assets/images/products/p7/2.jpg" title="Прямые вертикальные стены 1.7 м">
+              <img src="assets/images/products/p7/2.jpg" alt="Прямые вертикальные стены 1.7 м" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="2" data-src="assets/images/products/p1/4.jpg" title="Усиленные фермы двухскатной крыши">
+              <img src="assets/images/products/p1/4.jpg" alt="Усиленные фермы двухскатной крыши" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="3" data-src="assets/images/products/p3/2.jpg" title="Входная группа и форточка">
+              <img src="assets/images/products/p3/2.jpg" alt="Входная группа и форточка" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="4" data-src="assets/images/products/p3/3.jpg" title="Оцинкованная труба ГОСТ">
+              <img src="assets/images/products/p3/3.jpg" alt="Оцинкованная труба ГОСТ" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="5" data-src="assets/images/products/p1/1.jpg" title="Вид теплицы Домиком на участке">
+              <img src="assets/images/products/p1/1.jpg" alt="Вид теплицы Домиком на участке" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="6" data-src="assets/images/products/p1/2.jpg" title="Монтаж на фундамент из бруса 100х100">
+              <img src="assets/images/products/p1/2.jpg" alt="Монтаж на фундамент из бруса 100х100" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="7" data-src="assets/images/products/p2/1.jpg" title="Сборка прямых стен по уровню">
+              <img src="assets/images/products/p2/1.jpg" alt="Сборка прямых стен по уровню" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="8" data-src="assets/images/products/p2/4.jpg" title="Монтаж поликарбоната на двухскатную крышу">
+              <img src="assets/images/products/p2/4.jpg" alt="Монтаж поликарбоната на двухскатную крышу" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="9" data-src="assets/images/products/p3/1.jpg" title="Цельносварные торцы">
+              <img src="assets/images/products/p3/1.jpg" alt="Цельносварные торцы" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="10" data-src="assets/images/products/p4/2.jpg" title="Доставка спецрейсом завода">
+              <img src="assets/images/products/p4/2.jpg" alt="Доставка спецрейсом завода" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="11" data-src="assets/images/products/p4/3.jpg" title="Комплект крепежа и фурнитуры">
+              <img src="assets/images/products/p4/3.jpg" alt="Комплект крепежа и фурнитуры" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="12" data-src="assets/images/products/p5/1.jpg" title="Поликарбонат сотовый Sabic 4 мм">
+              <img src="assets/images/products/p5/1.jpg" alt="Поликарбонат сотовый Sabic 4 мм" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="13" data-src="assets/images/products/p5/3.jpg" title="Фито-поликарбонат для богатого урожая">
+              <img src="assets/images/products/p5/3.jpg" alt="Фито-поликарбонат для богатого урожая" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="14" data-src="assets/images/products/p6/1.jpg" title="Зимний поликарбонат 6 мм">
+              <img src="assets/images/products/p6/1.jpg" alt="Зимний поликарбонат 6 мм" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="15" data-src="assets/images/products/p7/1.jpg" title="100% полезного объема внутри">
+              <img src="assets/images/products/p7/1.jpg" alt="100% полезного объема внутри" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="16" data-src="assets/images/products/p8/1.jpg" title="Посадка растений у самых стен">
+              <img src="assets/images/products/p8/1.jpg" alt="Посадка растений у самых стен" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="17" data-src="assets/images/products/p9/1.jpg" title="Оцинкованные грядки по периметру">
+              <img src="assets/images/products/p9/1.jpg" alt="Оцинкованные грядки по периметру" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="18" data-src="assets/images/works/work_2_ustanovka.png" title="Сборка бригадой завода">
+              <img src="assets/images/works/work_2_ustanovka.png" alt="Сборка бригадой завода" loading="lazy">
+            </div>
+            <div class="prod-thumb-item " data-idx="19" data-src="assets/images/products/p1/5.jpg" title="Готовый Домик под ключ">
+              <img src="assets/images/products/p1/5.jpg" alt="Готовый Домик под ключ" loading="lazy">
+            </div>
+          </div>
+          <div style="font-size: 0.82rem; color: #6c757d; margin-top: 6px; text-align: center;">
+            Кликните на любое из 20 фото для детального просмотра узлов, дверей, каркаса и готовых работ
+          </div>
+        </div>
+
+        <!-- Правая колонка: Параметры, Конфигуратор и Быстрый заказ -->
+        <div class="prod-info-col">
+          <div class="prod-rating-row">
+            <span class="prod-stars">★★★★★</span>
+            <strong>4.9 / 5.0</strong>
+            <span>(на основе 140+ установок в области)</span>
+          </div>
+
+          <h1 class="prod-title">Прямостенная теплица «Домиком» 3 м (100% полезного объема)</h1>
+
+          <!-- Блок динамической цены -->
+          <div class="prod-price-box">
+            <div>
+              <div style="font-size: 0.82rem; color: #556b62; font-weight: 700; margin-bottom: 2px;">Заводская цена комплекта:</div>
+              <div class="prod-price-main">
+                <span class="prod-price-current" id="housePriceVal">34 900 ₽</span>
+                <span class="prod-price-old" id="houseOldPriceVal">38 900 ₽</span>
+              </div>
+            </div>
+            <span class="prod-price-badge">Скидка 20% до конца недели</span>
+          </div>
+
+          <!-- Конфигуратор 1: Длина теплицы -->
+          <div class="prod-select-group">
+            <label class="prod-select-label">1. Длина теплицы (ширина 3 метра):</label>
+            <div class="prod-select-buttons">
+              <button type="button" class="prod-select-btn" data-house-length="4m">3 × 4 м</button>
+              <button type="button" class="prod-select-btn active" data-house-length="6m">3 × 6 м (Хит)</button>
+              <button type="button" class="prod-select-btn" data-house-length="8m">3 × 8 м</button>
+              <button type="button" class="prod-select-btn" data-house-length="10m">3 × 10 м</button>
+            </div>
+          </div>
+
+          <!-- Конфигуратор 2: Шаг дуг (без двойной дуги!) -->
+          <div class="prod-select-group">
+            <label class="prod-select-label">2. Расстояние между дугами:</label>
+            <div class="prod-select-buttons">
+              <button type="button" class="prod-select-btn active" data-house-step="100">Стандарт (шаг 1 м)</button>
+              <button type="button" class="prod-select-btn" data-house-step="65">Усиленная (шаг 0.65 м, +2 500 ₽)</button>
+            </div>
+          </div>
+
+          <!-- Ключевые заводские параметры -->
+          <ul class="prod-specs-bullets">
+            <li><strong>Каркас:</strong> оцинкованная профильная труба ГОСТ с защитой от ржавчины</li>
+            <li><strong>Торцы и двери:</strong> 2 широкие двери + 2 форточки в базовом комплекте</li>
+            <li><strong>Высота теплицы:</strong> 2.15 метра (стены 1.7 м) для комфортной работы в полный рост</li>
+            <li><strong>Снеговая нагрузка:</strong> до 280 кг/м²</li>
+            <li><strong>Поликарбонат:</strong> сотовый лист с заводским лазерным УФ-слоем</li>
+          </ul>
+
+          <!-- Кнопка заказа -->
+          <div class="prod-cta-row">
+            <button type="button" class="prod-btn-primary" id="houseOrderBtn" data-open-modal data-title="Заказ: Теплицы «Домиком»" data-subtitle="Цена от производителя. Оплата строго по факту на участке (0 ₽ предоплаты)" data-subject="Заказ: Теплицы «Домиком» 3х6м (от 34 900 ₽)">
+              Заказать без предоплаты →
+            </button>
+            <div class="prod-trust-pills">
+              <span class="prod-trust-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                0 ₽ предоплаты
+              </span>
+              <span class="prod-trust-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Сборка за 3–4 часа
+              </span>
+              <span class="prod-trust-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Заводская гарантия
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ПРЕИМУЩЕСТВА ФОРМЫ -->
       <div class="greenhouse-features-bar" style="margin-bottom: 35px;">
-        <div class="greenhouse-feature-pill">
-          <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-          <div>
-            <strong>100% объема</strong>
-            <span>Стены 1.7 м без скосов</span>
-          </div>
-        </div>
-        <div class="greenhouse-feature-pill">
-          <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="8"/><path d="M12 6V2M9 5l3 2 3-2"/></svg></div>
-          <div>
-            <strong>Подвязка вверх</strong>
-            <span>Томаты не упираются в свод</span>
-          </div>
-        </div>
-        <div class="greenhouse-feature-pill">
-          <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-          <div>
-            <strong>Двускатная крыша</strong>
-            <span>Классический сход снега и прочность</span>
-          </div>
-        </div>
-        <div class="greenhouse-feature-pill">
-          <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="m9 20 3-6 3 6M6 10l6-2 6 2M12 8v6"/></svg></div>
-          <div>
-            <strong>Ходить в рост</strong>
-            <span>Удобно у боковых стен и грядок</span>
-          </div>
+        
+    <div class="greenhouse-feature-pill">
+      <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+      <div><strong>Прямые стены 1.7 м</strong><span>Посадка растений вплотную к краям</span></div>
+    </div>
+    <div class="greenhouse-feature-pill">
+      <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+      <div><strong>Двускатная крыша</strong><span>Эффективный естественный сход снега</span></div>
+    </div>
+    <div class="greenhouse-feature-pill">
+      <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><strong>Усиленные фермы</strong><span>Жесткая связка углов и перекрытий</span></div>
+    </div>
+    <div class="greenhouse-feature-pill">
+      <div class="greenhouse-feature-pill-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><strong>100% полезный объем</strong><span>Ходите в полный рост по всей теплице</span></div>
+    </div>
+  
+      </div>
+
+      <!-- ТАБЛИЦА СТОИМОСТИ ПО РАЗМЕРАМ (БЕЗ ДВОЙНОЙ ДУГИ) -->
+      <div class="prod-details-box">
+        <h2 class="prod-details-title">Прайс-лист на теплицы «Теплицы «Домиком»»</h2>
+        <p style="color: #556b62; font-size: 0.95rem; margin: -10px 0 18px;">
+          Цены указаны за полный готовый комплект с сотовым поликарбонатом 4 мм, фурнитурой и 0 ₽ предоплаты.
+        </p>
+        <div class="pricing-table-wrap">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Размер теплицы</th>
+                <th>Стандарт (шаг 1 м)</th>
+                <th>Усиленная (шаг 0.65 м)</th>
+                <th>Действие</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+    <tr>
+      <td><strong>3 × 4 метра</strong></td>
+      <td>27 900 ₽</td>
+      <td>30 400 ₽</td>
+      <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х4 домиком">Заказать</button></td>
+    </tr>
+    <tr>
+      <td><strong>3 × 6 метров (Хит)</strong></td>
+      <td>34 900 ₽</td>
+      <td>37 400 ₽</td>
+      <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х6 домиком">Заказать</button></td>
+    </tr>
+    <tr>
+      <td><strong>3 × 8 метров</strong></td>
+      <td>41 900 ₽</td>
+      <td>44 400 ₽</td>
+      <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х8 домиком">Заказать</button></td>
+    </tr>
+    <tr>
+      <td><strong>3 × 10 метров</strong></td>
+      <td>48 900 ₽</td>
+      <td>51 400 ₽</td>
+      <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х10 домиком">Заказать</button></td>
+    </tr>
+  
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- ИНТЕРАКТИВНАЯ ГАЛЕРЕЯ ТЕПЛИЦ ДОМИКОМ -->
-      <div class="greenhouse-gallery-box">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-          <div>
-            <h2 style="font-family: var(--font-heading); font-size: 1.55rem; color: #1b4332; margin: 0;">
-              Фотогалерея теплиц «Домиком» на участках
-            </h2>
-            <span style="font-size: 0.88rem; color: #6c757d;">Реальные примеры монтажа на ленточный фундамент и брус 100×100</span>
-          </div>
-          <span style="background: #eaf4ed; color: #2d6a4f; font-weight: 800; font-size: 0.82rem; padding: 5px 14px; border-radius: 999px;">
-            5 ракурсов сборки
-          </span>
+      <!-- ХАРАКТЕРИСТИКИ И КОМПЛЕКТАЦИЯ -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 40px;" class="prod-specs-grid-2col">
+        <!-- Левая колонка: Характеристики -->
+        <div class="prod-details-box" style="margin-bottom: 0;">
+          <h3 class="prod-details-title" style="font-size: 1.35rem;">Технические характеристики</h3>
+          <table class="prod-table-specs">
+            <tbody>
+              <tr><td>Ширина</td><td>3.0 метра</td></tr>
+              <tr><td>Высота</td><td>2.15 метра (стены 1.7 м)</td></tr>
+              <tr><td>Длина</td><td>4, 6, 8, 10 метров (удлинение кратно 2 м)</td></tr>
+              <tr><td>Профиль каркаса</td><td>Оцинкованная труба ГОСТ Северсталь</td></tr>
+              <tr><td>Цинковое покрытие</td><td>140 г/м² (горячее цинкование изнутри и снаружи)</td></tr>
+              <tr><td>Шаг между дугами</td><td>1.0 м (стандарт) или 0.65 м (усиленный)</td></tr>
+              <tr><td>Двери и форточки</td><td>2 двери и 2 форточки в противоположных торцах</td></tr>
+              <tr><td>Снеговая стойкость</td><td>до 280 кг/м²</td></tr>
+              <tr><td>Покрытие</td><td>Сотовый поликарбонат 4 мм / 6 мм с УФ-защитой</td></tr>
+              <tr><td>Срок службы</td><td>15+ лет</td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="gallery-main-view">
-          <img src="assets/images/products/p2/5.jpg" alt="Прямостенная теплица Домиком" class="gallery-main-img" id="houseMainImg">
-          <button class="gallery-nav-btn prev" id="housePrevBtn" aria-label="Предыдущее фото">‹</button>
-          <button class="gallery-nav-btn next" id="houseNextBtn" aria-label="Следующее фото">›</button>
-          <div class="gallery-counter-badge" id="houseCounterBadge">1 / 5</div>
-        </div>
-
-        <div class="gallery-thumbs-row" id="houseThumbsRow">
-          <div class="gallery-thumb-item active" data-src="assets/images/products/p2/5.jpg" data-idx="0">
-            <img src="assets/images/products/p2/5.jpg" alt="Теплица Домиком на участке">
-          </div>
-          <div class="gallery-thumb-item" data-src="assets/images/products/p7/1.jpg" data-idx="1">
-            <img src="assets/images/products/p7/1.jpg" alt="Монтаж каркаса прямостенной теплицы">
-          </div>
-          <div class="gallery-thumb-item" data-src="assets/images/products/p7/2.jpg" data-idx="2">
-            <img src="assets/images/products/p7/2.jpg" alt="Двускатная крыша и конек">
-          </div>
-          <div class="gallery-thumb-item" data-src="assets/images/products/p2/1.jpg" data-idx="3">
-            <img src="assets/images/products/p2/1.jpg" alt="Установка прямостенной теплицы">
-          </div>
-          <div class="gallery-thumb-item" data-src="assets/images/works/clean_gryadki_inside.png" data-idx="4">
-            <img src="assets/images/works/clean_gryadki_inside.png" alt="Внутренний объем и грядки">
-          </div>
-        </div>
-      </div>
-
-      <!-- КАРТОЧКИ СТОИМОСТИ ПО РАЗМЕРАМ -->
-      <div class="greenhouse-prices-section">
-        <div style="text-align: center; max-width: 760px; margin: 0 auto 30px;">
-          <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 900; color: #1b4332; margin: 0 0 8px;">
-            Стоимость прямостенных теплиц «Домиком»
-          </h2>
-          <p style="color: #556b62; font-size: 0.95rem; margin: 0;">
-            В комплекте: усиленный каркас с вертикальными стойками, двускатная ферменная крыша, 2 широкие двери, 2 форточки, премиальный поликарбонат с УФ. 0 ₽ предоплаты!
-          </p>
-        </div>
-
-        <div class="greenhouse-prices-grid">
-          <!-- 3х4 м -->
-          <div class="greenhouse-price-card">
-            <div class="price-card-size">3 × 4 метра</div>
-            <div class="price-card-val-box">
-              <div class="price-card-old">31 500 ₽</div>
-              <div class="price-card-current">27 900 ₽</div>
-            </div>
-            <ul class="price-card-specs">
-              <li><strong>Площадь:</strong> 12 м² 100% полезного объема</li>
-              <li><strong>Высота стен:</strong> 1.7 м (в коньке 2.25 м)</li>
-              <li><strong>Каркас:</strong> оцинкованная труба 30×20 / 20×20</li>
-              <li><strong>Комплектация:</strong> 2 двери, 2 форточки</li>
-            </ul>
-            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Теплица «Домиком» 3х4 м" data-subtitle="Цена от 27 900 ₽. Оплата после доставки и сборки" data-subject="Заказ: Домиком 3х4 м (от 27 900 ₽)">
-              Заказать 3х4 м →
-            </button>
-          </div>
-
-          <!-- 3х6 м (Хит прямостенных) -->
-          <div class="greenhouse-price-card featured">
-            <span class="price-card-badge">Хит прямостенных</span>
-            <div class="price-card-size">3 × 6 метров</div>
-            <div class="price-card-val-box">
-              <div class="price-card-old">39 900 ₽</div>
-              <div class="price-card-current">34 900 ₽</div>
-            </div>
-            <ul class="price-card-specs">
-              <li><strong>Площадь:</strong> 18 м² простора для 3 грядок</li>
-              <li><strong>Высота стен:</strong> 1.7 м (свободный проход)</li>
-              <li><strong>Снеговая устойчивость:</strong> до 280 кг/м²</li>
-              <li><strong>Поликарбонат:</strong> 4 мм с УФ-защитой Sabic</li>
-            </ul>
-            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Теплица «Домиком» 3х6 м" data-subtitle="Цена от 34 900 ₽. Бесплатное хранение до весны" data-subject="Заказ: Домиком 3х6 м (от 34 900 ₽)">
-              Заказать 3х6 м (Хит) →
-            </button>
-          </div>
-
-          <!-- 3х8 м -->
-          <div class="greenhouse-price-card">
-            <div class="price-card-size">3 × 8 метров</div>
-            <div class="price-card-val-box">
-              <div class="price-card-old">47 500 ₽</div>
-              <div class="price-card-current">41 900 ₽</div>
-            </div>
-            <ul class="price-card-specs">
-              <li><strong>Площадь:</strong> 24 м² высокой урожайности</li>
-              <li><strong>Высота стен:</strong> 1.7 м</li>
-              <li><strong>Каркас:</strong> ферменная система кровли</li>
-              <li><strong>Комплектация:</strong> 2 двери, 2 форточки</li>
-            </ul>
-            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Теплица «Домиком» 3х8 м" data-subtitle="Цена от 41 900 ₽. Доставка в удобный для вас день" data-subject="Заказ: Домиком 3х8 м (от 41 900 ₽)">
-              Заказать 3х8 м →
-            </button>
-          </div>
-
-          <!-- 3х10 м -->
-          <div class="greenhouse-price-card">
-            <div class="price-card-size">3 × 10 метров</div>
-            <div class="price-card-val-box">
-              <div class="price-card-old">55 000 ₽</div>
-              <div class="price-card-current">48 900 ₽</div>
-            </div>
-            <ul class="price-card-specs">
-              <li><strong>Площадь:</strong> 30 м² максимум урожая</li>
-              <li><strong>Высота стен:</strong> 1.7 м (в коньке 2.25 м)</li>
-              <li><strong>Усиление:</strong> стойки с шагом 0.65 м</li>
-              <li><strong>Поликарбонат:</strong> 4 мм с УФ-защитой</li>
-            </ul>
-            <button type="button" class="price-card-btn" data-open-modal data-title="Заказ: Теплица «Домиком» 3х10 м" data-subtitle="Цена от 48 900 ₽. Оплата строго по факту" data-subject="Заказ: Домиком 3х10 м (от 48 900 ₽)">
-              Заказать 3х10 м →
-            </button>
-          </div>
-        </div>
-
-        <!-- Сводная таблица модификаций -->
-        <div style="margin-top: 35px; background: #ffffff; border-radius: 18px; border: 1.5px solid #e1ece4; padding: 24px;">
-          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: #1b4332; margin: 0 0 12px;">Сравнение модификаций прямостенных теплиц «Домиком»</h3>
-          <div class="pricing-table-wrap">
-            <table class="pricing-table">
-              <thead>
-                <tr>
-                  <th>Размер теплицы</th>
-                  <th>Стандарт (шаг 1 м)</th>
-                  <th>Усиленная (шаг 0.65 м)</th>
-                  <th>Ферма Богатырь (40×20)</th>
-                  <th>Заказ</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>3 × 4 метра</strong></td>
-                  <td>27 900 ₽</td>
-                  <td>30 900 ₽</td>
-                  <td>35 900 ₽</td>
-                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х4 домиком">Заказать</button></td>
-                </tr>
-                <tr>
-                  <td><strong>3 × 6 метров (Хит)</strong></td>
-                  <td>34 900 ₽</td>
-                  <td>38 500 ₽</td>
-                  <td>44 900 ₽</td>
-                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х6 домиком">Заказать</button></td>
-                </tr>
-                <tr>
-                  <td><strong>3 × 8 метров</strong></td>
-                  <td>41 900 ₽</td>
-                  <td>45 900 ₽</td>
-                  <td>53 900 ₽</td>
-                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х8 домиком">Заказать</button></td>
-                </tr>
-                <tr>
-                  <td><strong>3 × 10 метров</strong></td>
-                  <td>48 900 ₽</td>
-                  <td>53 900 ₽</td>
-                  <td>62 900 ₽</td>
-                  <td><button class="btn btn-secondary" style="padding:6px 14px; font-size:0.85rem;" data-open-modal data-subject="Заказ 3х10 домиком">Заказать</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <!-- Правая колонка: Комплектация «Все включено» -->
+        <div class="prod-details-box" style="margin-bottom: 0;">
+          <h3 class="prod-details-title" style="font-size: 1.35rem;">Комплектация «Все включено»</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 0.94rem; color: #333;">
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="color:#2d6a4f; font-weight:900;">•</span>
+              <div><strong>Цельносварные торцы:</strong> сварены на кондукторе завода, исключают перекосы и ускоряют монтаж.</div>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="color:#2d6a4f; font-weight:900;">•</span>
+              <div><strong>2 широкие двери и 2 форточки:</strong> обеспечивают сквозное проветривание без духоты и фитофторы.</div>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="color:#2d6a4f; font-weight:900;">•</span>
+              <div><strong>Продольные стяжки:</strong> надежно связывают дуги в монолитный силовой пространственный каркас.</div>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="color:#2d6a4f; font-weight:900;">•</span>
+              <div><strong>Сотовый поликарбонат с УФ-слоем:</strong> раскроен по ГОСТ, защищен заводской пленкой от повреждений.</div>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="color:#2d6a4f; font-weight:900;">•</span>
+              <div><strong>Полный комплект фурнитуры:</strong> оцинкованные кровельные саморезы с прессшайбой, двусторонние ручки, ветровые крючки, задвижки.</div>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="color:#2d6a4f; font-weight:900;">•</span>
+              <div><strong>Паспорт изделия и инструкция:</strong> подробное пошаговое руководство с иллюстрациями для самостоятельной сборки.</div>
+            </li>
+          </ul>
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Подвал сайта -->
+  <script>
+    window.housePricingTable = {"4m":{"name":"3х4 метра","price":27900,"oldPrice":30900},"6m":{"name":"3х6 метров","price":34900,"oldPrice":38900},"8m":{"name":"3х8 метров","price":41900,"oldPrice":46900},"10m":{"name":"3х10 метров","price":48900,"oldPrice":54900}};
+  </script>
+  
+<!-- Подвал сайта -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top-row">
@@ -494,36 +564,88 @@
   <script src="assets/js/catalog-data.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- Интерактивная галерея теплицы Домиком -->
+  
+  <!-- Интерактивная галерея и конфигуратор Теплицы «Домиком» -->
   <script>
     (function() {
       const mainImg = document.getElementById('houseMainImg');
-      const thumbs = document.querySelectorAll('#houseThumbsRow .gallery-thumb-item');
+      const counter = document.getElementById('houseCounter');
       const prevBtn = document.getElementById('housePrevBtn');
       const nextBtn = document.getElementById('houseNextBtn');
-      const counter = document.getElementById('houseCounterBadge');
+      const thumbs = document.querySelectorAll('#houseThumbs .prod-thumb-item');
       if (!mainImg || !thumbs.length) return;
 
       let currentIdx = 0;
-      const images = Array.from(thumbs).map(t => t.getAttribute('data-src') || t.querySelector('img').src);
+      const count = thumbs.length;
 
       function setSlide(idx) {
-        if (idx < 0) idx = images.length - 1;
-        if (idx >= images.length) idx = 0;
+        if (idx < 0) idx = count - 1;
+        if (idx >= count) idx = 0;
         currentIdx = idx;
-        mainImg.src = images[currentIdx];
-        if (counter) counter.textContent = (currentIdx + 1) + ' / ' + images.length;
+        const targetThumb = thumbs[currentIdx];
+        const src = targetThumb.getAttribute('data-src');
+        mainImg.style.opacity = '0.4';
+        setTimeout(() => {
+          mainImg.src = src;
+          mainImg.style.opacity = '1';
+        }, 100);
+        if (counter) counter.textContent = (currentIdx + 1) + ' / ' + count + ' • Листайте фото';
         thumbs.forEach((t, i) => t.classList.toggle('active', i === currentIdx));
+        targetThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
 
       thumbs.forEach((t, i) => {
-        t.addEventListener('click', function() {
-          setSlide(i);
-        });
+        t.addEventListener('click', () => setSlide(i));
       });
 
       if (prevBtn) prevBtn.addEventListener('click', () => setSlide(currentIdx - 1));
       if (nextBtn) nextBtn.addEventListener('click', () => setSlide(currentIdx + 1));
+
+      // Конфигуратор цен
+      const priceEl = document.getElementById('housePriceVal');
+      const oldPriceEl = document.getElementById('houseOldPriceVal');
+      const orderBtn = document.getElementById('houseOrderBtn');
+      const lengthBtns = document.querySelectorAll('[data-house-length]');
+      const stepBtns = document.querySelectorAll('[data-house-step]');
+
+      let currentLength = '6m';
+      let currentStep = '100';
+
+      const pricingTable = window.housePricingTable || {};
+
+      function updatePrice() {
+        const item = pricingTable[currentLength] || { price: 26900, oldPrice: 30500, name: '3х6 метров' };
+        const stepAdd = currentStep === '65' ? 2500 : 0;
+        const total = item.price + stepAdd;
+        const totalOld = item.oldPrice + stepAdd;
+
+        if (priceEl) priceEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
+        if (oldPriceEl) oldPriceEl.textContent = totalOld.toLocaleString('ru-RU') + ' ₽';
+        if (orderBtn) {
+          const stepName = currentStep === '65' ? 'шаг 0.65 м (усиленный)' : 'шаг 1 м';
+          orderBtn.setAttribute('data-subject', 'Заказ: Теплицы «Домиком» ' + item.name + ' (' + stepName + ') - ' + total.toLocaleString('ru-RU') + ' руб');
+        }
+      }
+
+      lengthBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          lengthBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentLength = btn.getAttribute('data-house-length');
+          updatePrice();
+        });
+      });
+
+      stepBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          stepBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentStep = btn.getAttribute('data-house-step');
+          updatePrice();
+        });
+      });
+
+      updatePrice();
     })();
   </script>
 </body>

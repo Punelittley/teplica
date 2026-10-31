@@ -470,9 +470,9 @@ function updateProductPage(cfg) {
   let html = fs.readFileSync(cfg.file, 'utf8');
 
   // Add cache buster to scripts so user gets fresh version instantly
-  html = html.replace(/assets\/js\/catalog-data\.js(?:\?v=[\d\.]+)?/g, 'assets/js/catalog-data.js?v=3.0');
-  html = html.replace(/assets\/js\/main\.js(?:\?v=[\d\.]+)?/g, 'assets/js/main.js?v=3.0');
-  html = html.replace(/assets\/css\/style\.css(?:\?v=[\d\.]+)?/g, 'assets/css/style.css?v=3.0');
+  html = html.replace(/assets\/js\/catalog-data\.js(?:\?v=[\d\.]+)?/g, 'assets/js/catalog-data.js?v=3.1');
+  html = html.replace(/assets\/js\/main\.js(?:\?v=[\d\.]+)?/g, 'assets/js/main.js?v=3.1');
+  html = html.replace(/assets\/css\/style\.css(?:\?v=[\d\.]+)?/g, 'assets/css/style.css?v=3.1');
 
   const headerEndTag = '</header>';
   const footerStartTag = '<!-- Подвал сайта -->';

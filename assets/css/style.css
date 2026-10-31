@@ -2527,28 +2527,28 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   ПРЕМИАЛЬНЫЙ ФУТЕР САЙТА (ЗАВОД ТЕПЛИЦЫ ТУТ)
+   СВЕТЛЫЙ СОВРЕМЕННЫЙ ФУТЕР САЙТА (ЗАВОД ТЕПЛИЦЫ ТУТ)
    ========================================================================== */
 .site-footer {
-  background: #11291f;
-  color: #c9dbd2;
-  border-top: 3px solid #2d6a4f;
+  background: #f7faf8;
+  color: #4a5568;
+  border-top: 2px solid #d8e8dc;
   padding: 56px 0 32px;
   margin-top: auto;
   position: relative;
 }
 
 .site-footer .logo-text-title {
-  color: #ffffff;
+  color: #1b4332;
 }
 
 .site-footer .logo-text-title .logo-highlight {
-  color: #ff3b53 !important;
+  color: #d90429 !important;
   font-weight: 900;
 }
 
 .site-footer .logo-text-sub {
-  color: #8fb8a2;
+  color: #52796f;
 }
 
 .footer-top-row {
@@ -2556,9 +2556,9 @@ button, input, select, textarea {
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 36px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #d8e8dc;
 }
 
 .footer-brand-col {
@@ -2569,7 +2569,7 @@ button, input, select, textarea {
 
 .footer-brand-desc {
   font-size: 0.94rem;
-  color: #a4c4b5;
+  color: #4a5568;
   line-height: 1.6;
   margin-top: 14px;
 }
@@ -2586,12 +2586,11 @@ button, input, select, textarea {
   align-items: center;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #a7f3d0;
-  background: rgba(45, 106, 79, 0.35);
-  border: 1px solid rgba(116, 198, 157, 0.3);
+  color: #1b4332;
+  background: #eaf4ed;
+  border: 1px solid #b7e4c7;
   padding: 5px 14px;
   border-radius: var(--radius-pill);
-  backdrop-filter: blur(4px);
 }
 
 .footer-contact-col {
@@ -2612,7 +2611,7 @@ button, input, select, textarea {
 .footer-contact-label {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #8fb8a2;
+  color: #718096;
   display: block;
 }
 
@@ -2620,7 +2619,7 @@ button, input, select, textarea {
   font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 900;
-  color: #ffffff !important;
+  color: #1b4332 !important;
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: all 0.2s ease;
@@ -2628,18 +2627,18 @@ button, input, select, textarea {
 }
 
 .footer-phone-link:hover {
-  color: #74c69d !important;
+  color: #2d6a4f !important;
   transform: scale(1.02);
 }
 
 .footer-hours-text {
   font-size: 0.88rem;
-  color: #a4c4b5;
+  color: #4a5568;
 }
 
 .footer-address-text {
   font-size: 0.88rem;
-  color: #8fb8a2;
+  color: #556b62;
   margin-bottom: 8px;
 }
 
@@ -2652,7 +2651,7 @@ button, input, select, textarea {
   font-weight: 800;
   font-size: 0.95rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(217, 4, 41, 0.35);
+  box-shadow: 0 4px 16px rgba(217, 4, 41, 0.3);
   transition: all 0.25s ease;
   margin-top: 4px;
 }
@@ -2660,20 +2659,20 @@ button, input, select, textarea {
 .footer-cta-btn:hover {
   background: #b70322 !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(217, 4, 41, 0.5);
+  box-shadow: 0 8px 24px rgba(217, 4, 41, 0.45);
 }
 
 .footer-links-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1.25fr 1.15fr 1fr 1.35fr;
   gap: 36px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .footer-col-title {
   font-weight: 800;
   font-size: 1.05rem;
-  color: #ffffff;
+  color: #1b4332;
   margin-bottom: 18px;
   font-family: var(--font-heading);
   letter-spacing: 0.02em;
@@ -2688,7 +2687,7 @@ button, input, select, textarea {
   bottom: 0;
   width: 32px;
   height: 2.5px;
-  background: #52b788;
+  background: #2d6a4f;
   border-radius: 2px;
 }
 
@@ -2704,20 +2703,21 @@ button, input, select, textarea {
 
 .footer-nav-list a {
   font-size: 0.92rem;
-  color: #c9dbd2;
+  color: #4a5568;
   text-decoration: none;
   display: inline-block;
   transition: all 0.2s ease;
 }
 
 .footer-nav-list a:hover {
-  color: #ffffff;
+  color: #1b4332;
+  font-weight: 600;
   transform: translateX(4px);
 }
 
 .footer-social-text {
   font-size: 0.88rem;
-  color: #a4c4b5;
+  color: #4a5568;
   line-height: 1.55;
   margin-bottom: 14px;
 }
@@ -2751,15 +2751,15 @@ button, input, select, textarea {
   justify-content: space-between;
   align-items: center;
   font-size: 0.86rem;
-  color: #7b9e8c;
+  color: #718096;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid #d8e8dc;
   flex-wrap: wrap;
   gap: 14px;
 }
 
 .footer-safe-note {
-  color: #74c69d;
+  color: #2d6a4f;
   font-weight: 700;
 }
 
@@ -3699,34 +3699,35 @@ textarea {
     padding: 38px 0 80px;
   }
   .footer-links-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 14px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px 8px !important;
   }
   .footer-social-col {
-    grid-column: span 2;
+    grid-column: span 3 !important;
     padding-top: 18px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    border-top: 1px dashed #d8e8dc;
   }
   .footer-col-title {
-    font-size: 0.98rem;
-    margin-bottom: 12px;
+    font-size: 0.88rem;
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+  .footer-col-title::after {
+    width: 22px;
+    height: 2px;
   }
   .footer-nav-list li {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .footer-nav-list a {
-    font-size: 0.88rem;
-    line-height: 1.4;
-    color: #c9dbd2;
+    font-size: 0.80rem;
+    line-height: 1.35;
+    color: #4a5568;
   }
   .footer-nav-list a:hover {
-    color: #ffffff;
+    color: #1b4332;
   }
   .footer-bottom-copy {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
     flex-direction: column;
     text-align: center;
     gap: 8px;

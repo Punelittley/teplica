@@ -7934,6 +7934,7 @@ textarea {
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
   gap: 32px;
+  align-items: start;
   background: #ffffff;
   border-radius: 24px;
   padding: 32px;
@@ -7945,13 +7946,15 @@ textarea {
 .prod-gallery-col {
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 24px;
 }
 
 .prod-main-view {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  max-height: 520px;
+  aspect-ratio: 4 / 3;
+  max-height: 480px;
   border-radius: 20px;
   overflow: hidden;
   background: #f4f7f4;
@@ -7963,6 +7966,7 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   transition: opacity 0.22s ease;
 }
@@ -8275,6 +8279,16 @@ textarea {
     grid-template-columns: 1fr;
     padding: 24px 20px;
   }
+  .prod-gallery-col {
+    position: static;
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .prod-main-view {
+    aspect-ratio: 4 / 3;
+    max-height: 420px;
+  }
   .prod-title {
     font-size: 1.55rem;
   }
@@ -8285,8 +8299,9 @@ textarea {
     border-radius: 18px;
   }
   .prod-main-view {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
     border-radius: 14px;
+    max-height: 280px;
   }
   .prod-thumb-item {
     width: 60px;

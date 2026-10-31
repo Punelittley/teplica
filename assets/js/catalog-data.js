@@ -95,10 +95,22 @@ const DEFAULT_PRODUCTS = [
     price: 1550,
     oldPrice: 2000,
     size: "высота 20 см",
-    badge: "Удобно",
+    badge: "Поштучно",
     badgeType: "hit",
-    image: "assets/images/products/p8/1.jpg",
-    description: "Завальцованные безопасные края, толстая сталь с цинковым покрытием. Земля не осыпается, спина не устает."
+    image: "assets/images/products/gryadki/1.jpg",
+    description: "Завальцованные безопасные края, толстая оцинкованная сталь. Земля не осыпается, спина не устает."
+  },
+  {
+    id: "prod-9",
+    category: "beds",
+    name: "Комплект грядок для теплицы 3×6 м",
+    price: 9500,
+    oldPrice: 11500,
+    size: "комплект 3 ряда",
+    badge: "Хит • 3×6 м",
+    badgeType: "hit",
+    image: "assets/images/products/gryadki/gryadki_3x6.jpg",
+    description: "2 боковые грядки 0,65×5,75 м + 1 центральная 0,5×5 м. Высота борта 0,2 м. Оцинкованный металл, удобные проходы, разделение культур."
   }
 ];
 

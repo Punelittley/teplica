@@ -265,13 +265,25 @@
         "id": "prod-8",
         "category": "beds",
         "name": "Оцинкованные грядки для теплиц",
-        "price": 1450,
-        "oldPrice": 1900,
+        "price": 1550,
+        "oldPrice": 2000,
         "size": "высота 20 см",
         "badge": "Удобно",
         "badgeType": "hit",
         "image": "assets/images/products/p8/clean_p8.png",
         "description": "Завальцованные безопасные края, толстая сталь с цинковым покрытием. Земля не осыпается, спина не устает."
+      },
+      {
+        "id": "prod-9",
+        "category": "beds",
+        "name": "Комплект грядок для теплицы 3×6 м",
+        "price": 9500,
+        "oldPrice": 11500,
+        "size": "комплект 3 ряда",
+        "badge": "Хит • 3×6 м",
+        "badgeType": "hit",
+        "image": "assets/images/products/gryadki/gryadki_3x6.jpg",
+        "description": "Комплект оцинкованных грядок для теплицы 3×6 м: 2 боковые 0,65×5,75 м, 1 центральная 0,5×5 м. Высота борта 0,2 м. Идеальные проходы, порядок и защита от коррозии."
       }
     ],
     "reviews": [

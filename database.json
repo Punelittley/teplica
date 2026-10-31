@@ -228,26 +228,26 @@
       {
         "id": "prod-5",
         "category": "poly",
-        "name": "Сотовый поликарбонат 4 мм Премиум",
-        "price": 2950,
-        "oldPrice": 3400,
+        "name": "Сотовый поликарбонат 4 мм Eurotek",
+        "price": 3500,
+        "oldPrice": 4200,
         "size": "лист 2.1х6 м",
-        "badge": "С УФ-слоем",
+        "badge": "В наличии • Eurotek",
         "badgeType": "hit",
-        "image": "assets/images/products/p5/2.jpg",
-        "description": "Первичное сырье Sabic/Bayer, честный слой соэкструзионной защиты от ультрафиолета 45 мкм."
+        "image": "assets/images/products/poly/eurotek_4mm.jpg",
+        "description": "Сотовый поликарбонат 4 мм (плотность 0,52) с УФ-защитой. Не желтеет на солнце, высокая светопроницаемость. От 3 листов, гарантия завода 15 лет."
       },
       {
         "id": "prod-6",
         "category": "poly",
-        "name": "Сотовый поликарбонат 6 мм Зимний",
-        "price": 4850,
-        "oldPrice": 5600,
+        "name": "Сотовый поликарбонат 6 мм Eurotek",
+        "price": 4700,
+        "oldPrice": 5500,
         "size": "лист 2.1х6 м",
-        "badge": "Круглый год",
+        "badge": "В наличии • Eurotek",
         "badgeType": "pro",
-        "image": "assets/images/products/p6/2.jpg",
-        "description": "Сверхпрочный лист повышенной жесткости для всесезонных теплиц и снеговых регионов."
+        "image": "assets/images/products/poly/eurotek_6mm.jpg",
+        "description": "Усиленный сотовый поликарбонат 6 мм Eurotek. Честная плотность, 15 лет гарантия, надежная УФ-защита, продажа от 3 листов."
       },
       {
         "id": "prod-7",

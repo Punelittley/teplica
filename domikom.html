@@ -471,33 +471,37 @@
     </div>
   </footer>
 
-  <!-- Модальное окно заявки -->
+    <!-- Модальное окно заявки / звонка мастера -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-box">
-      <button class="modal-close-btn" id="modalCloseBtn">✕</button>
-      <div style="font-family:var(--font-heading);font-size:1.6rem;color:var(--color-primary-dark);font-weight:700;margin-bottom:6px;" id="modalTitle">
-        Заказ консультации
-      </div>
-      <p style="font-size:0.92rem;color:var(--color-text-muted);margin-bottom:20px;" id="modalSubtitle">
-        Оставьте номер, наш мастер перезвонит в течение 10 минут
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Закрыть">&times;</button>
+      <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 8px;" id="modalTitle">
+        Заказать звонок мастера
+      </h3>
+      <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;" id="modalSubtitle">
+        Специалист подробно ответит на все вопросы
       </p>
       <form class="js-lead-form">
-        <input type="hidden" name="subject" id="modalSubject" value="Заявка теплицы Домиком">
+        <input type="hidden" name="subject" id="modalSubject" value="Заказ звонка мастера">
+        <input type="hidden" name="lead_type" id="modalLeadType" value="callback">
         <div class="form-group">
           <label class="form-label">Ваше имя:</label>
-          <input type="text" name="name" class="form-input" placeholder="Например: Надежда Ивановна" required>
+          <input type="text" name="name" class="form-input" placeholder="Например: Галина Сергеевна" required>
         </div>
         <div class="form-group">
           <label class="form-label">Телефон для связи:</label>
           <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Пожелания (длина, адрес доставки):</label>
-          <textarea name="comment" class="form-textarea" rows="3" placeholder="Например: хочу теплицу Домиком 3×6 с доставкой в Тутаев"></textarea>
+          <label class="form-label">Пожелания или вопрос (необязательно):</label>
+          <textarea name="comment" class="form-textarea" rows="3" placeholder="Например: перезвоните во второй половине дня, интересует арочная теплица 3х6"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:10px;">
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
           Жду звонка мастера →
         </button>
+        <div style="font-size: 0.78rem; color: var(--color-text-muted); text-align: center; margin-top: 10px;">
+          Конфиденциальность гарантируется. Ваши данные никогда не передаются третьим лицам.
+        </div>
       </form>
     </div>
   </div>

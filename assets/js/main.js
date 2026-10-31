@@ -229,13 +229,17 @@ function setupModals() {
   const modalTitle = document.getElementById("modalTitle");
   const modalSubtitle = document.getElementById("modalSubtitle");
   const modalSubject = document.getElementById("modalSubject");
+  const modalLeadType = document.getElementById("modalLeadType");
   const closeBtn = document.getElementById("modalCloseBtn");
 
-  function openModal(title, subtitle, subject) {
+  function openModal(title, subtitle, subject, leadType) {
     if (!modalOverlay) return;
-    if (modalTitle) modalTitle.textContent = title || "Заказ консультации";
-    if (modalSubtitle) modalSubtitle.textContent = subtitle || "Оставьте номер, мастер перезвонит в течение 10 минут";
-    if (modalSubject) modalSubject.value = subject || "Общая заявка";
+    if (modalTitle) modalTitle.textContent = title || "Заказать звонок мастера";
+    if (modalSubtitle) modalSubtitle.textContent = subtitle || "Специалист подробно ответит на все вопросы";
+    if (modalSubject) modalSubject.value = subject || "Заказ звонка мастера";
+    if (modalLeadType) {
+      modalLeadType.value = leadType || (isCallbackSubject(subject || title) ? "callback" : "order");
+    }
     modalOverlay.classList.add("active");
   }
 
@@ -249,10 +253,11 @@ function setupModals() {
     const btn = e.target.closest("[data-open-modal]");
     if (btn) {
       e.preventDefault();
-      const subject = btn.getAttribute("data-subject") || "Заявка с сайта";
+      const subject = btn.getAttribute("data-subject") || "Заказ звонка мастера";
       const title = btn.getAttribute("data-title") || "Заказать звонок мастера";
       const subtitle = btn.getAttribute("data-subtitle") || "Специалист подробно ответит на все вопросы";
-      openModal(title, subtitle, subject);
+      const leadType = btn.getAttribute("data-lead-type") || "";
+      openModal(title, subtitle, subject, leadType);
     }
   });
 
@@ -262,6 +267,12 @@ function setupModals() {
       if (e.target === modalOverlay) closeModal();
     });
   }
+}
+
+function isCallbackSubject(str) {
+  if (!str) return false;
+  const s = String(str).toLowerCase();
+  return s.includes("звон") || s.includes("мастер") || s.includes("консульт") || s.includes("обратный") || s.includes("шапк");
 }
 
 // Калькулятор теплиц
@@ -476,6 +487,62 @@ function setupHashScroll() {
   }
 }
 
+// Форматирование текста заявки для VK и Telegram
+function formatLeadMessage(lead) {
+  const subj = (lead.subject || "").toLowerCase();
+  const formType = (lead.leadType || lead.form_type || "").toLowerCase();
+  const isCallback = formType === "callback" || isCallbackSubject(lead.subject) || isCallbackSubject(lead.name);
+  const isCalculator = subj.includes("калькулятор") || subj.includes("расчет");
+  const isOrder = !isCallback && !isCalculator && (
+    subj.includes("заказ") || 
+    subj.includes("теплиц") || 
+    subj.includes("грядк") || 
+    subj.includes("поликарбонат") ||
+    subj.includes("арочн") ||
+    subj.includes("каплев") ||
+    subj.includes("домик")
+  );
+
+  let header = "[ ЗАЯВКА С САЙТА ]";
+  let topicLabel = "Тема:";
+  let detailsLabel = "Пожелания / детали:";
+  let footer = "Связаться с клиентом для уточнения деталей.";
+
+  if (isCallback) {
+    header = "[ ЗАКАЗ ЗВОНКА МАСТЕРА ]";
+    topicLabel = "Тип обращения:";
+    detailsLabel = "Вопрос / пожелания:";
+    footer = "ВНИМАНИЕ: Требуется перезвонить клиенту в течение 10 минут!";
+  } else if (isOrder) {
+    header = "[ НОВЫЙ ЗАКАЗ ТЕПЛИЦЫ ]";
+    topicLabel = "Заказанная модель:";
+    detailsLabel = "Комплектация и пожелания:";
+    footer = "Требуется связаться с клиентом для подтверждения заказа и адреса доставки!";
+  } else if (isCalculator) {
+    header = "[ РАСЧЕТ ИЗ КАЛЬКУЛЯТОРА ]";
+    topicLabel = "Конфигурация:";
+    detailsLabel = "Параметры и опции:";
+    footer = "Требуется зафиксировать расчетную стоимость и согласовать дату!";
+  }
+
+  const commentText = (lead.comment && lead.comment.trim()) ? lead.comment.trim() : (isCallback ? "Клиент ожидает звонка мастера" : "Не указано");
+
+  const lines = [
+    header,
+    "----------------------------------------",
+    `Клиент: ${lead.name || "Не указано"}`,
+    `Телефон: ${lead.phone || "Не указан"}`,
+    `${topicLabel} ${lead.subject || "Заказ звонка"}`,
+    `${detailsLabel} ${commentText}`,
+    `Время: ${lead.date || new Date().toLocaleString("ru-RU")}`,
+    `Сайт: «Теплицы ТУТ» (Ярославль)`,
+    "----------------------------------------",
+    footer
+  ];
+
+  return lines.join("\n");
+}
+
 // Отправка форм (localStorage + опционально Telegram)
 function setupForms(config) {
   document.querySelectorAll(".js-lead-form").forEach(form => {
@@ -493,10 +560,11 @@ function setupForms(config) {
       const lead = {
         id: "lead_" + Date.now(),
         date: new Date().toLocaleString("ru-RU"),
-        name: formData.get("name") || "Не указано",
-        phone: formData.get("phone") || "",
-        comment: formData.get("comment") || "",
-        subject: formData.get("subject") || "Заявка с сайта",
+        name: (formData.get("name") || "").trim() || "Не указано",
+        phone: (formData.get("phone") || "").trim(),
+        comment: (formData.get("comment") || "").trim(),
+        subject: (formData.get("subject") || "").trim() || "Заказ звонка мастера",
+        leadType: (formData.get("lead_type") || "").trim() || (isCallbackSubject(formData.get("subject")) ? "callback" : "order"),
         status: "new"
       };
 
@@ -512,19 +580,13 @@ function setupForms(config) {
       // Если настроен Telegram Bot
       if (config.telegramNotify && config.telegramNotify.enabled && config.telegramNotify.botToken && config.telegramNotify.chatId) {
         try {
-          const text = `🌱 *Новая заявка с сайта Теплицы 76*!\n` +
-                       `👤 *Имя*: ${lead.name}\n` +
-                       `📞 *Телефон*: ${lead.phone}\n` +
-                       `📝 *Тема*: ${lead.subject}\n` +
-                       `💬 *Комментарий*: ${lead.comment || 'нет'}\n` +
-                       `⏰ *Дата*: ${lead.date}`;
+          const text = formatLeadMessage(lead);
           await fetch(`https://api.telegram.org/bot${config.telegramNotify.botToken}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               chat_id: config.telegramNotify.chatId,
-              text: text,
-              parse_mode: "Markdown"
+              text: text
             })
           });
         } catch (err) {
@@ -581,16 +643,10 @@ function sendVkLeadNotification(vkConfig, lead) {
     const token = vkConfig.groupToken || (typeof DEFAULT_CONFIG !== "undefined" && DEFAULT_CONFIG.vkNotify ? DEFAULT_CONFIG.vkNotify.groupToken : "");
     if (!token) return;
 
-    const text = encodeURIComponent(
-      `🌱 Новая заявка с сайта «Теплицы ТУТ»!\n` +
-      `👤 Имя: ${lead.name}\n` +
-      `📞 Телефон: ${lead.phone}\n` +
-      `📝 Тема: ${lead.subject}\n` +
-      `💬 Детали: ${lead.comment || 'нет'}\n` +
-      `⏰ Дата: ${lead.date}`
-    );
+    const formattedMessage = formatLeadMessage(lead);
+    const text = encodeURIComponent(formattedMessage);
 
-    console.log(`[VK Notify] Отправка заявки ${ids.length} получателям:`, ids);
+    console.log(`[VK Notify] Отправка заявки (${lead.subject}) ${ids.length} получателям:`, ids);
 
     ids.forEach((uid, idx) => {
       setTimeout(() => {

@@ -242,21 +242,21 @@ const DEFAULT_CONFIG = {
   },
   pricing: {
     arch: {
-      "4m": { name: "3х4 метра", price: 21900, oldPrice: 24500 },
-      "6m": { name: "3х6 метров", price: 26900, oldPrice: 30500 },
-      "8m": { name: "3х8 метров", price: 32400, oldPrice: 36800 },
-      "10m": { name: "3х10 метров", price: 37900, oldPrice: 42900 }
+      "4m": { name: "3х4 метра", price: 25500, oldPrice: 28500 },
+      "6m": { name: "3х6 метров", price: 29500, oldPrice: 33000 },
+      "8m": { name: "3х8 метров", price: 34200, oldPrice: 38500 },
+      "10m": { name: "3х10 метров", price: 38500, oldPrice: 43000 }
     },
     drop: {
-      "4m": { name: "3х4 метра", price: 24900, oldPrice: 27900 },
-      "6m": { name: "3х6 метров", price: 30900, oldPrice: 34900 },
-      "8m": { name: "3х8 метров", price: 37400, oldPrice: 42500 }
+      "4m": { name: "3х4 метра", price: 26500, oldPrice: 29900 },
+      "6m": { name: "3х6 метров", price: 32500, oldPrice: 36500 },
+      "8m": { name: "3х8 метров", price: 38500, oldPrice: 43500 }
     },
     house: {
-      "4m": { name: "3х4 метра", price: 27900, oldPrice: 30900 },
-      "6m": { name: "3х6 метров", price: 34900, oldPrice: 38900 },
-      "8m": { name: "3х8 метров", price: 41900, oldPrice: 46900 },
-      "10m": { name: "3х10 метров", price: 48900, oldPrice: 54900 }
+      "4m": { name: "3х4 метра", price: 29500, oldPrice: 33500 },
+      "6m": { name: "3х6 метров", price: 36500, oldPrice: 41000 },
+      "8m": { name: "3х8 метров", price: 43500, oldPrice: 48500 },
+      "10m": { name: "3х10 метров", price: 50500, oldPrice: 56500 }
     },
     step: {
       "100": { name: "Шаг 1 метр", price: 0 },
@@ -264,14 +264,14 @@ const DEFAULT_CONFIG = {
     },
     poly: {
       "eco4": { name: "Поликарбонат 4 мм Стандарт (с УФ)", price: 0 },
-      "prem4": { name: "Поликарбонат 4 мм Премиум повышенной плотности", price: 3200 },
-      "prem6": { name: "Поликарбонат 6 мм Усиленный (для круглого года)", price: 6500 }
+      "prem4": { name: "Поликарбонат 4 мм Премиум повышенной плотности", price: 3500 },
+      "prem6": { name: "Поликарбонат 6 мм Усиленный (для круглого года)", price: 4700 }
     },
     foundation: {
       "ground": { name: "Грунтозацепы (в комплекте)", price: 0 },
-      "timber4": { name: "Фундамент из бруса 100х100 (для 4м)", price: 3800 },
-      "timber6": { name: "Фундамент из бруса 100х100 (для 6м)", price: 4900 },
-      "timber8": { name: "Фундамент из бруса 100х100 (для 8м)", price: 6200 }
+      "timber4": { name: "Фундамент из бруса 100х100 (для 4м)", price: 6000 },
+      "timber6": { name: "Фундамент из бруса 100х100 (для 6м)", price: 6000 },
+      "timber8": { name: "Фундамент из бруса 100х100 (для 8м)", price: 7500 }
     },
     assembly: {
       "none": { name: "Соберу сам (инструкция в комплекте)", price: 0 },
@@ -289,10 +289,15 @@ const DEFAULT_CONFIG = {
       oldPrice: 2400
     },
     beds: {
-      set2: {
-        name: "Комплект оцинкованных грядок (2 ряда)",
-        price: 4500,
-        oldPrice: 5500
+      set3x4: {
+        name: "Комплект грядок в теплицу 3х4 м (3 ряда)",
+        price: 6000,
+        oldPrice: 7200
+      },
+      set3x6: {
+        name: "Комплект грядок в теплицу 3х6 м (3 ряда)",
+        price: 9500,
+        oldPrice: 11000
       }
     },
     autovent: {

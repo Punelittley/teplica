@@ -7048,16 +7048,69 @@ textarea {
   }
 }
 
-@media (max-width: 576px) {
-  .topbar-slogan-hand {
-    display: none;
+@media (max-width: 768px) {
+  .header-topbar {
+    padding: 6px 0;
+  }
+  .header-topbar-slogan {
+    display: none !important;
+  }
+  .header-topbar-contacts {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+    gap: 8px;
+    flex-wrap: nowrap;
   }
   .topbar-hours {
-    display: none;
+    display: none !important;
   }
   .header-phone-link {
-    font-size: 0.98rem;
-    padding: 4px 12px;
+    font-size: 0.88rem;
+    padding: 5px 12px;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .header-phone-link svg {
+    width: 13px;
+    height: 13px;
+  }
+  .header-callback-btn {
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .header-top-row {
+    padding: 6px 0 !important;
+  }
+  .header-logo-image {
+    height: 44px !important;
+    border-radius: 9px;
+  }
+  .mobile-menu-btn {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-topbar {
+    padding: 4px 0;
+  }
+  .header-phone-link {
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    gap: 4px;
+  }
+  .header-callback-btn {
+    padding: 5px 11px;
+    font-size: 0.74rem;
+  }
+  .header-top-row {
+    padding: 5px 0 !important;
+  }
+  .header-logo-image {
+    height: 40px !important;
+    border-radius: 8px;
   }
 }
 

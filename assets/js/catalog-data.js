@@ -111,6 +111,18 @@ const DEFAULT_PRODUCTS = [
     badgeType: "hit",
     image: "assets/images/products/gryadki/gryadki_3x6.jpg",
     description: "2 боковые грядки 0,65×5,75 м + 1 центральная 0,5×5 м. Высота борта 0,2 м. Оцинкованный металл, удобные проходы, разделение культур."
+  },
+  {
+    id: "prod-10",
+    category: "beds",
+    name: "Комплект грядок для теплицы 3×4 м",
+    price: 6000,
+    oldPrice: 7500,
+    size: "комплект 3 ряда",
+    badge: "Хит • 3×4 м",
+    badgeType: "hit",
+    image: "assets/images/products/gryadki/gryadki_3x4.jpg",
+    description: "2 боковые грядки 0,65×3,75 м + 1 центральная 0,5×3 м. Высота борта 0,2 м. Оцинкованный металл, удобные проходы, чистота и порядок внутри теплицы."
   }
 ];
 

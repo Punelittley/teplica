@@ -7950,7 +7950,8 @@ textarea {
 .prod-main-view {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
+  max-height: 520px;
   border-radius: 20px;
   overflow: hidden;
   background: #f4f7f4;

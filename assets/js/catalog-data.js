@@ -258,9 +258,6 @@ const DEFAULT_CONFIG = {
       "8m": { name: "3х8 метров", price: 41900, oldPrice: 46900 },
       "10m": { name: "3х10 метров", price: 48900, oldPrice: 54900 }
     },
-      "6m": { name: "3х6 метров", price: 30900, oldPrice: 34900 },
-      "8m": { name: "3х8 метров", price: 37400, oldPrice: 42500 }
-    },
     step: {
       "100": { name: "Шаг 1 метр", price: 0 },
       "65": { name: "Усиленный шаг 0.65 м", price: 2500 }

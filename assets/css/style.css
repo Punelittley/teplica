@@ -7932,8 +7932,8 @@ textarea {
    ========================================================================== */
 .prod-hero-wrap {
   display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 36px;
   align-items: start;
   background: #ffffff;
   border-radius: 24px;
@@ -7941,6 +7941,7 @@ textarea {
   border: 1.5px solid #e1ece4;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   margin-bottom: 40px;
+  box-sizing: border-box;
 }
 
 .prod-gallery-col {
@@ -7948,18 +7949,23 @@ textarea {
   flex-direction: column;
   position: sticky;
   top: 24px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .prod-main-view {
   position: relative;
   width: 100%;
+  max-width: 100%;
   aspect-ratio: 4 / 3;
-  max-height: 480px;
   border-radius: 20px;
   overflow: hidden;
   background: #f4f7f4;
   border: 1.5px solid #e1ece4;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
 }
 
 .prod-main-img {
@@ -8039,6 +8045,10 @@ textarea {
   display: flex;
   gap: 10px;
   overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 14px 2px 6px;
   scrollbar-width: thin;
   scrollbar-color: #74c69d #f0f0ec;
@@ -8080,6 +8090,10 @@ textarea {
 .prod-info-col {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .prod-rating-row {
@@ -8278,10 +8292,11 @@ textarea {
   .prod-hero-wrap {
     grid-template-columns: 1fr;
     padding: 24px 20px;
+    gap: 24px;
   }
   .prod-gallery-col {
     position: static;
-    max-width: 620px;
+    max-width: 580px;
     margin: 0 auto;
     width: 100%;
   }
@@ -8297,11 +8312,12 @@ textarea {
   .prod-hero-wrap {
     padding: 18px 14px;
     border-radius: 18px;
+    gap: 20px;
   }
   .prod-main-view {
     aspect-ratio: 4 / 3;
     border-radius: 14px;
-    max-height: 280px;
+    max-height: 300px;
   }
   .prod-thumb-item {
     width: 60px;

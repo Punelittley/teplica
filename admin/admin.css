@@ -1,4 +1,4 @@
-/* Стили панели управления Теплицы 76 */
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 
 :root {
@@ -28,7 +28,7 @@ body {
   min-height: 100vh;
 }
 
-/* Экран логина */
+
 .login-screen {
   min-height: 100vh;
   display: flex;
@@ -48,7 +48,7 @@ body {
   text-align: center;
 }
 
-/* Главный интерфейс */
+
 .admin-layout {
   display: none;
   min-height: 100vh;
@@ -224,7 +224,7 @@ body {
   display: block;
 }
 
-/* Сетка карточек товаров и работ */
+
 .admin-items-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -311,7 +311,7 @@ body {
   border-top: 1px solid #f0f0f0;
 }
 
-/* Загрузчик картинок */
+
 .image-uploader-box {
   background: #f8faf9;
   border: 2px dashed #b7e4c7;
@@ -363,7 +363,7 @@ body {
   object-fit: cover;
 }
 
-/* Модальное окно редактора */
+
 .admin-modal-overlay {
   position: fixed;
   top: 0;
@@ -421,7 +421,7 @@ body {
   line-height: 1;
 }
 
-/* Блок отзывов в админке */
+
 .admin-review-card {
   background: white;
   border: 1.5px solid var(--admin-border);

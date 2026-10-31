@@ -1,51 +1,49 @@
-/**
- * Теплицы 76 — Основной скрипт интерактивности и калькулятора
- */
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const config = typeof getSiteConfig === "function" ? getSiteConfig() : (window.DEFAULT_CONFIG || {});
 
-  // 1. Применение настроек контактов
+  
   applyCompanyContacts(config);
 
-  // 2. Управление размером шрифта (для слабовидящих садоводов)
+  
   setupFontSizeToggle();
 
-  // 3. Мобильное меню
+  
   setupMobileNav();
 
-  // 4. Модальные окна
+  
   setupModals();
 
-  // 5. Интерактивный калькулятор
+  
   setupCalculator(config);
 
-  // 6. Обработка всех форм заявок
+  
   setupForms(config);
 
-  // 7. Плавные анимации при скролле
+  
   initScrollAnimations();
 
-  // 8. Слайдер готовых проектов
+  
   setupModelsSlider();
 
-  // 9. Счетчик "Успей к сезону"
+  
   setupSeasonCountdown();
 
-  // 10. Счетчик промо-акции со скидкой 20%
+  
   setupCalcPromoCountdown();
   setupHashScroll();
 
-  // 11. Умный FAQ чат-бот консультант
+  
   setupFaqChatbot();
 
-  // 12. Интерактивный витринный блок категорий и услуг
+  
   initTabbedShowcase();
 
-  // 13. Динамическая гидратация контента из БД (товары, отзывы, работы)
+  
   renderDatabaseContent(config);
 
-  // 14. Автоматическая подгрузка свежей базы database.json с GitHub Pages
+  
   fetch("database.json?v=" + Date.now())
     .then(res => {
       if (!res.ok) throw new Error("HTTP " + res.status);
@@ -59,10 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(() => {
-      // Работаем на встроенной/локальной конфигурации
+      
     });
 
-  // Слушатель событий обновления базы данных
+  
   window.addEventListener("teplica:data-updated", (e) => {
     const updated = e.detail || getSiteConfig();
     applyCompanyContacts(updated);
@@ -70,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Обновление контактов в DOM
+
 function applyCompanyContacts(config) {
   if (!config || !config.company) return;
   const phoneEls = document.querySelectorAll(".js-phone-text");
@@ -91,11 +89,11 @@ function applyCompanyContacts(config) {
   }
 }
 
-// Динамическое отображение данных из БД на всех страницах сайта
+
 function renderDatabaseContent(config) {
   if (!config) return;
 
-  // 1. Отзывы на странице otzyvy.html
+  
   const testimonialsGrid = document.querySelector(".testimonials-cards-grid");
   if (testimonialsGrid && Array.isArray(config.reviews) && config.reviews.length) {
     const validReviews = config.reviews.filter(r => r.name && r.name.toLowerCase() !== "asd" && r.text && r.text.length > 5);
@@ -114,7 +112,7 @@ function renderDatabaseContent(config) {
     `).join("");
   }
 
-  // 2. Отзывы на главной странице index.html
+  
   const indexReviewsGrid = document.querySelector(".reviews-grid");
   if (indexReviewsGrid && Array.isArray(config.reviews) && config.reviews.length) {
     const validReviews = config.reviews.filter(r => r.name && r.name.toLowerCase() !== "asd" && r.text && r.text.length > 5);
@@ -135,7 +133,7 @@ function renderDatabaseContent(config) {
     }
   }
 
-  // 3. Наши работы на странице nashi-raboty.html
+  
   const worksGrid = document.getElementById("worksGrid");
   if (worksGrid && Array.isArray(config.works) && config.works.length) {
     worksGrid.innerHTML = config.works.map(w => `
@@ -145,7 +143,7 @@ function renderDatabaseContent(config) {
     `).join("");
   }
 
-  // 4. Товары на страницах каталога (arochnye.html, kaplevidnye.html)
+  
   const catalogGrid = document.querySelector(".catalog-grid");
   if (catalogGrid && Array.isArray(config.products) && config.products.length) {
     const isDrop = window.location.pathname.includes("kaplevidnye");
@@ -174,11 +172,11 @@ function renderDatabaseContent(config) {
     }
   }
 
-  // Обновляем наблюдение за скролл-анимациями для новых элементов
+  
   initScrollAnimations();
 }
 
-// Переключатель крупного шрифта
+
 function setupFontSizeToggle() {
   const btn = document.getElementById("fontSizeToggleBtn");
   if (!btn) return;
@@ -197,7 +195,7 @@ function setupFontSizeToggle() {
   });
 }
 
-// Мобильное меню
+
 function setupMobileNav() {
   const toggleBtn = document.getElementById("mobileMenuBtn");
   const nav = document.getElementById("siteNav");
@@ -208,7 +206,7 @@ function setupMobileNav() {
     toggleBtn.textContent = nav.classList.contains("mobile-open") ? "✕" : "☰";
   });
 
-  // Открытие выпадающего списка «Теплицы» по клику на стрелку / пункт (особенно на телефонах)
+  
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener("click", (e) => {
@@ -223,7 +221,7 @@ function setupMobileNav() {
   });
 }
 
-// Модальные окна
+
 function setupModals() {
   const modalOverlay = document.getElementById("modalOverlay");
   const modalTitle = document.getElementById("modalTitle");
@@ -248,7 +246,7 @@ function setupModals() {
     modalOverlay.classList.remove("active");
   }
 
-  // Делегирование открытия модальных окон для любых элементов с data-open-modal
+  
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-open-modal]");
     if (btn) {
@@ -275,7 +273,7 @@ function isCallbackSubject(str) {
   return s.includes("звон") || s.includes("мастер") || s.includes("консульт") || s.includes("обратный") || s.includes("шапк");
 }
 
-// Калькулятор теплиц
+
 function setupCalculator(config) {
   const calcRoot = document.getElementById("greenhouseCalculator");
   if (!calcRoot) return;
@@ -319,17 +317,17 @@ function setupCalculator(config) {
     let total = baseItem.price;
     let oldTotal = baseItem.oldPrice;
 
-    // Шаг дуг
+    
     const stepCost = p.step[state.step] ? p.step[state.step].price : 0;
     total += stepCost;
     oldTotal += stepCost;
 
-    // Поликарбонат
+    
     const polyCost = p.poly[state.poly] ? p.poly[state.poly].price : 0;
     total += polyCost;
     oldTotal += polyCost;
 
-    // Брус
+    
     let timberCost = 0;
     if (state.timber) {
       timberCost = p.foundation[`timber${state.length.replace('m','')}`]?.price || 4900;
@@ -337,7 +335,7 @@ function setupCalculator(config) {
       oldTotal += timberCost;
     }
 
-    // Сборка
+    
     let assemblyCost = 0;
     if (state.assembly) {
       assemblyCost = p.assembly[state.length] ? p.assembly[state.length].price : 5000;
@@ -345,7 +343,7 @@ function setupCalculator(config) {
       oldTotal += assemblyCost;
     }
 
-    // Грядки в теплицу
+    
     let bedsCost = 0;
     if (state.beds) {
       bedsCost = p.beds?.set2?.price || 4500;
@@ -354,7 +352,7 @@ function setupCalculator(config) {
       oldTotal += bedsOldCost;
     }
 
-    // Автопроветриватель
+    
     let autoventCost = 0;
     if (state.autovent) {
       autoventCost = p.autovent?.price || 2400;
@@ -363,7 +361,7 @@ function setupCalculator(config) {
       oldTotal += autoventOldCost;
     }
 
-    // Стяжная оцинкованная лента
+    
     let tapeCost = 0;
     if (state.tape) {
       tapeCost = p.tape?.price || 1800;
@@ -372,7 +370,7 @@ function setupCalculator(config) {
       oldTotal += tapeOldCost;
     }
 
-    // Отображение
+    
     if (sumTotalEl) sumTotalEl.textContent = `${total.toLocaleString("ru-RU")} ₽`;
     if (sumOldEl) sumOldEl.textContent = `${oldTotal.toLocaleString("ru-RU")} ₽`;
 
@@ -473,7 +471,7 @@ function setupCalculator(config) {
   update();
 }
 
-// Плавный переход к якорям (включая #calculator с других страниц)
+
 function setupHashScroll() {
   if (window.location.hash) {
     setTimeout(() => {
@@ -487,7 +485,7 @@ function setupHashScroll() {
   }
 }
 
-// Форматирование текста заявки для VK и Telegram
+
 function formatLeadMessage(lead) {
   const subj = (lead.subject || "").toLowerCase();
   const formType = (lead.leadType || lead.form_type || "").toLowerCase();
@@ -543,7 +541,7 @@ function formatLeadMessage(lead) {
   return lines.join("\n");
 }
 
-// Отправка форм (localStorage + опционально Telegram)
+
 function setupForms(config) {
   document.querySelectorAll(".js-lead-form").forEach(form => {
     form.addEventListener("submit", async (e) => {
@@ -568,16 +566,16 @@ function setupForms(config) {
         status: "new"
       };
 
-      // Сохраняем в локальное хранилище
+      
       saveLeadToStorage(lead);
 
-      // Если настроен VK Bot сообщества (https://vk.ru/club241898656)
+      
       const vkCfg = config.vkNotify || (typeof DEFAULT_CONFIG !== "undefined" ? DEFAULT_CONFIG.vkNotify : null);
       if (vkCfg && vkCfg.enabled !== false && (vkCfg.groupToken || (DEFAULT_CONFIG && DEFAULT_CONFIG.vkNotify && DEFAULT_CONFIG.vkNotify.groupToken))) {
         sendVkLeadNotification(vkCfg, lead);
       }
 
-      // Если настроен Telegram Bot
+      
       if (config.telegramNotify && config.telegramNotify.enabled && config.telegramNotify.botToken && config.telegramNotify.chatId) {
         try {
           const text = formatLeadMessage(lead);
@@ -594,11 +592,11 @@ function setupForms(config) {
         }
       }
 
-      // Закрываем модалку если есть
+      
       const modalOverlay = document.getElementById("modalOverlay");
       if (modalOverlay) modalOverlay.classList.remove("active");
 
-      // Показываем уведомление
+      
       showToast("Спасибо за доверие! Мы свяжемся с вами в течение 10 минут.");
       form.reset();
 
@@ -621,7 +619,7 @@ function saveLeadToStorage(lead) {
   }
 }
 
-// Отправка заявки в ЛС ВКонтакте через API группы (https://vk.ru/club241898656)
+
 function sendVkLeadNotification(vkConfig, lead) {
   try {
     let ids = [];
@@ -632,7 +630,7 @@ function sendVkLeadNotification(vkConfig, lead) {
     } else if (vkConfig.userId) {
       ids = String(vkConfig.userId).split(/[\s,;]+/).filter(Boolean);
     }
-    // Фолбек на ID по умолчанию, если список пуст
+    
     if (!ids.length && typeof DEFAULT_CONFIG !== "undefined" && DEFAULT_CONFIG.vkNotify && DEFAULT_CONFIG.vkNotify.userId) {
       ids = [DEFAULT_CONFIG.vkNotify.userId];
     }
@@ -666,7 +664,7 @@ function sendVkLeadNotification(vkConfig, lead) {
           delete window[cbName];
         };
 
-        // Фолбек при блокировке AdBlock'ом
+        
         script.onerror = function() {
           console.warn(`[VK Notify] Скрипт заблокирован браузером/AdBlock для ${uid}. Пробуем альтернативный fetch...`);
           try {
@@ -706,10 +704,10 @@ function showToast(message) {
   }, 4500);
 }
 
-// Плавные анимации появления при скроллинге
+
 function initScrollAnimations() {
   if (!("IntersectionObserver" in window)) {
-    // Фолбек для старых браузеров
+    
     document.querySelectorAll("[data-aos]").forEach(el => el.classList.add("aos-animate"));
     return;
   }
@@ -733,7 +731,7 @@ function initScrollAnimations() {
   });
 }
 
-// Слайдер проектов
+
 function setupModelsSlider() {
   const prevBtn = document.getElementById("modelsPrevBtn");
   const nextBtn = document.getElementById("modelsNextBtn");
@@ -749,7 +747,7 @@ function setupModelsSlider() {
   });
 }
 
-// 9. Счетчик "Успей к сезону"
+
 function setupSeasonCountdown() {
   const daysEl = document.getElementById("seasonDays");
   const hoursEl = document.getElementById("seasonHours");
@@ -759,8 +757,8 @@ function setupSeasonCountdown() {
 
   function updateTimer() {
     const now = new Date();
-    // Реалистичный скользящий цикл бронирования на фабричную партию (3.5 дня)
-    // Всегда дает активный, стимулирующий дедлайн (1-3 дня) вместо нелепых 197 дней
+    
+    
     const cycleMs = 3.5 * 24 * 60 * 60 * 1000;
     const baseEpoch = new Date(now.getFullYear(), 0, 1).getTime();
     const elapsed = (now.getTime() - baseEpoch) % cycleMs;
@@ -789,7 +787,7 @@ function setupSeasonCountdown() {
   setInterval(updateTimer, 1000);
 }
 
-// 10. Счетчик промо-акции "Скидка 20% и льготная доставка"
+
 function setupCalcPromoCountdown() {
   const daysEl = document.getElementById("calcPromoDays");
   const hoursEl = document.getElementById("calcPromoHours");
@@ -799,7 +797,7 @@ function setupCalcPromoCountdown() {
 
   function update() {
     const now = new Date();
-    // 24-часовой скользящий цикл акции (до конца суток, 00 дней)
+    
     const cycleMs = 24 * 60 * 60 * 1000;
     const baseEpoch = new Date(now.getFullYear(), 0, 1).getTime();
     const elapsed = (now.getTime() - baseEpoch) % cycleMs;
@@ -828,7 +826,7 @@ function setupCalcPromoCountdown() {
   setInterval(update, 1000);
 }
 
-// 11. Умный FAQ чат-бот консультант
+
 function setupFaqChatbot() {
   let widget = document.getElementById("faqChatWidget");
   if (!widget) {
@@ -917,7 +915,7 @@ function setupFaqChatbot() {
 
   if (!widget || !triggerBtn || !chatWindow || !chatForm || !chatInput) return;
 
-  // База знаний бота (вопросы, ключевые слова, ответы и действия)
+  
   const knowledgeBase = [
     {
       keywords: ["доставк", "привез", "тариф", "яросл", "рыбинск", "тутаев", "ростов", "переславл", "углич", "данилов", "гаврилов", "костром", "иванов", "снт", "област", "километр", "км", "куда"],
@@ -1068,7 +1066,7 @@ function setupFaqChatbot() {
       removeTypingIndicator();
       const qLower = cleanQ.toLowerCase();
 
-      // Поиск наилучшего совпадения по ключевым словам
+      
       let bestMatch = null;
       let maxScore = 0;
 
@@ -1088,7 +1086,7 @@ function setupFaqChatbot() {
       if (bestMatch && maxScore > 0) {
         appendMessage(bestMatch.answer, "bot", bestMatch.action);
       } else {
-        // Ответ при нераспознанном запросе
+        
         appendMessage(
           "Спасибо за вопрос! Чтобы дать точный расчет под особенности вашего участка, я могу передать ваш вопрос нашему старшему мастеру производства. Оставьте номер телефона или позвоните нам прямо сейчас:",
           "bot",
@@ -1098,7 +1096,7 @@ function setupFaqChatbot() {
     }, 450);
   }
 
-  // Обработка клика по чипсам быстрых вопросов
+  
   if (chipsContainer) {
     chipsContainer.addEventListener("click", (e) => {
       const chip = e.target.closest(".faq-chip");
@@ -1108,7 +1106,7 @@ function setupFaqChatbot() {
     });
   }
 
-  // Отправка формы
+  
   chatForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const val = chatInput.value;
@@ -1117,7 +1115,7 @@ function setupFaqChatbot() {
   });
 }
 
-// 12. Интерактивная витринная плашка (Теплицы, Грядки, Поликарбонат)
+
 function initTabbedShowcase() {
   const DATA = [
     { 

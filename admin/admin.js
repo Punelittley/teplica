@@ -1,13 +1,9 @@
-/**
- * Панель управления «Теплицы ТУТ» — Версия 2.0
- * Поддержка полного управления товарами, отзывами, выполненными работами,
- * загрузка картинок с устройства (Base64) и ссылками, экспорт/импорт БД и защита входа.
- */
+
 
 const ADMIN_PASS_KEY = "teplici76_admin_pass";
-const DEFAULT_PASS = "TepL!ca#76_Yar2026!"; // Сложный пароль по умолчанию
+const DEFAULT_PASS = "TepL!ca#76_Yar2026!"; 
 
-// Состояние сессии
+
 let failedAttempts = 0;
 let lockoutTimer = null;
 let currentEditingProductId = null;
@@ -30,9 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupImageUploaderControls();
 });
 
-/* ==========================================================================
-   1. АВТОРИЗАЦИЯ И ЗАЩИТА ОТ ПЕРЕБОРА
-   ========================================================================== */
+
 function setupAuth() {
   const loginScreen = document.getElementById("loginScreen");
   const adminLayout = document.getElementById("adminLayout");
@@ -98,9 +92,7 @@ function setupAuth() {
   });
 }
 
-/* ==========================================================================
-   2. НАВИГАЦИЯ ПО ВКЛАДКАМ
-   ========================================================================== */
+
 function setupNavigation() {
   const navBtns = document.querySelectorAll(".admin-nav-item button");
   const tabPanels = document.querySelectorAll(".tab-panel");
@@ -120,9 +112,7 @@ function setupNavigation() {
   });
 }
 
-/* ==========================================================================
-   3. УПРАВЛЕНИЕ ТОВАРАМИ (КАТАЛОГ)
-   ========================================================================== */
+
 function getAssetPath(src) {
   if (!src) return "assets/images/logo.png";
   if (src.startsWith("data:") || src.startsWith("http://") || src.startsWith("https://")) return src;
@@ -179,7 +169,7 @@ function getCategoryName(cat) {
   }
 }
 
-// Открытие модалки добавления/редактирования товара
+
 window.openCreateProductModal = function() {
   currentEditingProductId = null;
   document.getElementById("productModalTitle").textContent = "Добавление нового товара";
@@ -203,7 +193,7 @@ window.openEditProductModal = function(id) {
   document.getElementById("prod_badge").value = prod.badge || "";
   document.getElementById("prod_desc").value = prod.description || "";
 
-  // Превью и картинка
+  
   setImageUploaderValue("prod", prod.image || "");
   openModal("productModal");
 };
@@ -216,7 +206,7 @@ window.deleteProduct = function(id) {
   loadProductsTab();
 };
 
-// Сохранение формы товара
+
 document.addEventListener("DOMContentLoaded", () => {
   const prodForm = document.getElementById("productForm");
   if (!prodForm) return;
@@ -253,9 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ==========================================================================
-   4. УПРАВЛЕНИЕ ОТЗЫВАМИ
-   ========================================================================== */
+
 function loadReviewsTab() {
   const config = getSiteConfig();
   const reviews = config.reviews || [];
@@ -354,9 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ==========================================================================
-   5. УПРАВЛЕНИЕ НАШИМИ РАБОТАМИ (ГАЛЕРЕЯ)
-   ========================================================================== */
+
 function loadWorksTab() {
   const config = getSiteConfig();
   const works = config.works || [];
@@ -451,9 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ==========================================================================
-   6. ИНТЕРАКТИВНЫЙ ЗАГРУЗЧИК КАРТИНОК (Файл устройства / Ссылка)
-   ========================================================================== */
+
 function setupImageUploaderControls() {
   ['prod', 'work'].forEach(prefix => {
     const fileTabBtn = document.getElementById(`${prefix}_tab_file`);
@@ -466,7 +450,7 @@ function setupImageUploaderControls() {
 
     if (!fileTabBtn || !urlTabBtn) return;
 
-    // Переключение вкладок «С устройства» / «По ссылке»
+    
     fileTabBtn.addEventListener("click", () => {
       fileTabBtn.classList.add("active");
       urlTabBtn.classList.remove("active");
@@ -481,7 +465,7 @@ function setupImageUploaderControls() {
       fileInputWrap.style.display = "none";
     });
 
-    // Загрузка с устройства через Canvas с оптимизацией веса (в Base64)
+    
     fileInput.addEventListener("change", async (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -498,7 +482,7 @@ function setupImageUploaderControls() {
         previewArea.innerHTML = `<img src="${base64}" alt="Превью">`;
         previewArea.setAttribute("data-img-src", base64);
       } catch (err) {
-        // Fallback на обычный FileReader
+        
         const reader = new FileReader();
         reader.onload = (event) => {
           const rawBase64 = event.target.result;
@@ -509,7 +493,7 @@ function setupImageUploaderControls() {
       }
     });
 
-    // Ввод ссылки вручную
+    
     urlInput.addEventListener("input", (e) => {
       const val = e.target.value.trim();
       if (val) {
@@ -556,7 +540,7 @@ function getImageUploaderValue(prefix) {
   return urlInput ? urlInput.value.trim() : "";
 }
 
-// Сжатие фото через Canvas перед сохранением в Base64
+
 function compressImageFile(file, maxWidth = 1200, quality = 0.82) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -585,9 +569,7 @@ function compressImageFile(file, maxWidth = 1200, quality = 0.82) {
   });
 }
 
-/* ==========================================================================
-   7. УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ
-   ========================================================================== */
+
 window.openModal = function(modalId) {
   const el = document.getElementById(modalId);
   if (el) el.classList.add("active");
@@ -598,9 +580,7 @@ window.closeModal = function(modalId) {
   if (el) el.classList.remove("active");
 };
 
-/* ==========================================================================
-   8. ЭКСПОРТ, ИМПОРТ И ПУБЛИКАЦИЯ НА GITHUB PAGES
-   ========================================================================== */
+
 function setupDatabaseTab() {
   const exportBtn = document.getElementById("exportFullDbBtn");
   const importInput = document.getElementById("importFullDbInput");
@@ -611,7 +591,7 @@ function setupDatabaseTab() {
   const ghBranchInput = document.getElementById("github_branch");
   const ghStatus = document.getElementById("githubStatus");
 
-  // Авто-привязка токена при открытии по ссылке с #token=...
+  
   if (window.location.hash.includes("token=")) {
     const match = window.location.hash.match(/token=([^&]+)/);
     if (match && match[1]) {
@@ -624,7 +604,7 @@ function setupDatabaseTab() {
     }
   }
 
-  // Загрузка настроек GitHub из localStorage
+  
   if (ghRepoInput) {
     ghRepoInput.value = localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica";
     ghRepoInput.addEventListener("input", () => localStorage.setItem("teplici76_github_repo", ghRepoInput.value.trim()));
@@ -638,7 +618,7 @@ function setupDatabaseTab() {
     ghBranchInput.addEventListener("input", () => localStorage.setItem("teplici76_github_branch", ghBranchInput.value.trim()));
   }
 
-  // Публикация на GitHub Pages
+  
   if (publishGithubBtn) {
     publishGithubBtn.addEventListener("click", async () => {
       const repo = ghRepoInput.value.trim();
@@ -671,7 +651,7 @@ function setupDatabaseTab() {
         };
         const jsonStr = JSON.stringify(fullBackup, null, 2);
 
-        // Получаем SHA текущего database.json в репозитории
+        
         let currentSha = null;
         try {
           const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}`, {
@@ -690,7 +670,7 @@ function setupDatabaseTab() {
 
         ghStatus.innerHTML = "⏳ Запись коммита в репозиторий GitHub...";
 
-        // Кодирование UTF-8 в Base64
+        
         const utf8Bytes = new TextEncoder().encode(jsonStr);
         let binary = "";
         for (let i = 0; i < utf8Bytes.length; i++) {
@@ -768,7 +748,7 @@ function setupDatabaseTab() {
     });
   }
 
-  // Если локальной базы еще нет на этом устройстве (первый вход или очищен кэш), подгружаем с GitHub
+  
   if (!localStorage.getItem("teplici76_config")) {
     fetch("database.json?v=" + Date.now())
       .then(r => r.ok ? r.json() : null)
@@ -826,9 +806,7 @@ function setupDatabaseTab() {
   }
 }
 
-/* ==========================================================================
-   9. ВКЛАДКА БЕЗОПАСНОСТИ (СМЕНА ПАРОЛЯ И СЕКРЕТНЫЙ URL)
-   ========================================================================== */
+
 function setupSecurityTab() {
   const form = document.getElementById("changePassForm");
   const currentPassEl = document.getElementById("currentPassDisplay");
@@ -853,7 +831,7 @@ function setupSecurityTab() {
         return;
       }
 
-      // Сохраняем в localStorage и в конфиг
+      
       localStorage.setItem(ADMIN_PASS_KEY, newPass);
       config.security = config.security || {};
       config.security.password = newPass;
@@ -866,9 +844,7 @@ function setupSecurityTab() {
   }
 }
 
-/* ==========================================================================
-   10. ЛИДЫ (ЗАЯВКИ)
-   ========================================================================== */
+
 function loadLeads() {
   const tableBody = document.getElementById("leadsTableBody");
   const emptyNotice = document.getElementById("leadsEmpty");
@@ -968,9 +944,7 @@ window.exportLeadsCSV = function() {
   a.click();
 };
 
-/* ==========================================================================
-   11. ЦЕНЫ И КОНТАКТЫ
-   ========================================================================== */
+
 function loadPricesForm() {
   const config = getSiteConfig();
   const p = config.pricing;
@@ -1045,9 +1019,7 @@ function loadContactsForm() {
   }
 }
 
-/* ==========================================================================
-   12. ВКОНТАКТЕ И TELEGRAM
-   ========================================================================== */
+
 function callVkApi(method, params, timeout = 7000) {
   return new Promise((resolve, reject) => {
     const randomId = Math.floor(Math.random() * 100000000);

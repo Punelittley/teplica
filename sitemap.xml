@@ -1,62 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://teplicy-tut.ru/</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/arch_3x4/1.jpg</image:loc>
+      <image:title>Теплицы из поликарбоната от производителя в Ярославле</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/arochnye.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/arch_3x4/1.jpg</image:loc>
+      <image:title>Арочная оцинкованная теплица 3х4 м</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/arch_3x6/1.jpg</image:loc>
+      <image:title>Арочная оцинкованная теплица 3х6 м</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/kaplevidnye.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/kapelka/1.jpg</image:loc>
+      <image:title>Каплевидная теплица Капелька со снегосбросом</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://teplicy-tut.ru/domikom.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/p2/2.jpg</image:loc>
+      <image:title>Прямостенная теплица Домиком</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/gryadki.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/gryadki/gryadki_3x6.jpg</image:loc>
+      <image:title>Комплект оцинкованных грядок для теплицы 3х6 м</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/gryadki/gryadki_3x4.jpg</image:loc>
+      <image:title>Комплект оцинкованных грядок для теплицы 3х4 м</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/polikarbonat.html</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/poly/eurotek_4mm.jpg</image:loc>
+      <image:title>Сотовый поликарбонат 4 мм Eurotek</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/poly/eurotek_6mm.jpg</image:loc>
+      <image:title>Сотовый поликарбонат 6 мм Eurotek</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/dostavka-sborka.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://teplicy-tut.ru/preimushchestva.html</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teplicy-tut.ru/assets/images/products/foundation/brus_1.jpg</image:loc>
+      <image:title>Фундамент для теплиц из бруса 100х100</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/nashi-raboty.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://teplicy-tut.ru/otzyvy.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://teplicy-tut.ru/preimushchestva.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://teplicy-tut.ru/kontakty.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

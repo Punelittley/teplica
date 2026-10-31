@@ -1,7 +1,4 @@
-/* ==========================================================================
-   Теплицы 76 — С заботой о вашем урожае
-   Светлый, лёгкий, воздушный стиль с заботой о садоводе
-   ========================================================================== */
+
 
 @import url('../fonts/fonts.css');
 
@@ -36,7 +33,7 @@
   --container-max: 1240px;
 }
 
-/* Режим увеличенного шрифта для людей старшего возраста */
+
 body.font-large {
   --base-font-size: 20px;
 }
@@ -103,9 +100,7 @@ button, input, select, textarea {
   padding-right: 20px;
 }
 
-/* ==========================================================================
-   TOP BAR & ACCESSIBILITY
-   ========================================================================== */
+
 .top-notice {
   background: #eaf4ed;
   border-bottom: 1px solid var(--color-border);
@@ -156,9 +151,7 @@ button, input, select, textarea {
   border-color: var(--color-primary);
 }
 
-/* ==========================================================================
-   HEADER — двухрядный, лого по центру
-   ========================================================================== */
+
 .site-header {
   background: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
@@ -171,7 +164,7 @@ button, input, select, textarea {
   box-shadow: 0 2px 14px rgba(45, 106, 79, 0.06);
 }
 
-/* Верхняя строка: логотип по центру */
+
 .header-top-row {
   display: flex;
   justify-content: center;
@@ -192,14 +185,14 @@ button, input, select, textarea {
   transform: translateY(-50%);
 }
 
-/* Нижняя строка: навигация по центру */
+
 .header-nav-row {
   border-top: 1px solid rgba(0,0,0,0.06);
   padding: 0;
 }
 
 .header-inner {
-  /* Оставляем для совместимости */
+  
 }
 
 .logo-wrapper {
@@ -327,7 +320,7 @@ button, input, select, textarea {
   display: none;
 }
 
-/* Dropdown */
+
 .nav-item-dropdown {
   position: relative;
   white-space: nowrap;
@@ -452,9 +445,7 @@ button, input, select, textarea {
 
 
 
-/* ==========================================================================
-   BUTTONS & BADGES
-   ========================================================================== */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -514,9 +505,7 @@ button, input, select, textarea {
   color: #d90429;
 }
 
-/* ==========================================================================
-   HERO SECTION
-   ========================================================================== */
+
 .hero-section {
   padding: 40px 0 50px;
   background: radial-gradient(circle at 80% 20%, rgba(167, 201, 87, 0.15) 0%, rgba(250, 249, 245, 0) 60%),
@@ -640,9 +629,7 @@ button, input, select, textarea {
   z-index: 2;
 }
 
-/* ==========================================================================
-   SCROLL ANIMATIONS (INTERSECTION OBSERVER)
-   ========================================================================== */
+
 [data-aos] {
   opacity: 0;
   transform: translateY(26px);
@@ -678,9 +665,7 @@ button, input, select, textarea {
 [data-aos-delay="400"] { transition-delay: 0.40s; }
 [data-aos-delay="500"] { transition-delay: 0.50s; }
 
-/* ==========================================================================
-   ADVANTAGES SECTION
-   ========================================================================== */
+
 .section-padding {
   padding: 70px 0;
 }
@@ -712,9 +697,7 @@ button, input, select, textarea {
   margin-top: 8px;
 }
 
-/* ==========================================================================
-   ADVANTAGES SECTION (COMPACT CARDS - MATCHING REFERENCE IMAGE 4)
-   ========================================================================== */
+
 .advantages-compact-section {
   padding: 35px 0 45px;
   background: #ffffff;
@@ -793,9 +776,7 @@ button, input, select, textarea {
   margin: 0;
 }
 
-/* ==========================================================================
-   SEASON URGENCY & PRODUCTION SCHEDULE ("УСПЕЙ К СЕЗОНУ" - СТИЛЬ WOWDOMA/ZELENINO)
-   ========================================================================== */
+
 .season-urgency-section {
   padding: 40px 0 55px;
 }
@@ -919,7 +900,7 @@ button, input, select, textarea {
   line-height: 1.25;
 }
 
-/* 1. Timer */
+
 .season-timer-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -962,7 +943,7 @@ button, input, select, textarea {
   margin: 0;
 }
 
-/* 2. Production Deadline & Queue */
+
 .season-queue-status {
   background: #ffffff;
   border-radius: 12px;
@@ -1014,7 +995,7 @@ button, input, select, textarea {
   border-radius: 6px;
 }
 
-/* 3. Logistics & Storage */
+
 .season-benefits-list {
   list-style: none;
   display: flex;
@@ -1039,7 +1020,7 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
-/* Bottom Bar */
+
 .season-bottom-bar {
   display: flex;
   justify-content: space-between;
@@ -1112,9 +1093,7 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
-/* ==========================================================================
-   POPULAR MODELS (CAROUSEL / PROJECT COLLECTION LIKE IMAGE 1)
-   ========================================================================== */
+
 .models-section-head {
   display: flex;
   justify-content: space-between;
@@ -1172,15 +1151,15 @@ button, input, select, textarea {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   padding: 10px 2px 22px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 .models-slider-track::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none; 
 }
 
-/* Карточка товара как в референсе 1 */
+
 .project-card-dark {
   flex: 0 0 350px;
   min-width: 350px;
@@ -1300,7 +1279,7 @@ button, input, select, textarea {
   border-color: #ffffff;
 }
 
-/* Карточка 4 - стилистика сохранена в точности как на скриншоте 3 */
+
 .wish-card-slot {
   flex: 0 0 350px;
   min-width: 350px;
@@ -1349,9 +1328,7 @@ button, input, select, textarea {
   margin-top: 14px;
 }
 
-/* ==========================================================================
-   PROMO BANNER WITH EXTERNAL VEGETABLES (СКИДКА 20% И ЛЬГОТНАЯ ДОСТАВКА)
-   ========================================================================== */
+
 .season-promo-section {
   padding: 50px 0 25px;
   background: var(--color-bg);
@@ -1365,7 +1342,7 @@ button, input, select, textarea {
   margin: 0 auto;
 }
 
-/* Овощи ВНЕ блока: большие, сочные, объемные */
+
 .promo-outer-veg {
   position: absolute;
   top: 6%;
@@ -1400,7 +1377,7 @@ button, input, select, textarea {
   filter: drop-shadow(0 32px 60px rgba(0, 0, 0, 0.26));
 }
 
-/* Белая карточка акции */
+
 .calc-promo-banner {
   background: #ffffff;
   border: 1px solid #d5e5db;
@@ -1513,7 +1490,7 @@ button, input, select, textarea {
   text-transform: lowercase;
 }
 
-/* Краткие тезисы из блока "График производства и высадки" */
+
 .promo-season-brief {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1574,7 +1551,7 @@ button, input, select, textarea {
   flex-wrap: wrap;
 }
 
-/* Адаптивность овощей и баннера */
+
 @media (max-width: 1700px) {
   .promo-outer-veg {
     top: 10%;
@@ -1731,9 +1708,7 @@ button, input, select, textarea {
   }
 }
 
-/* ==========================================================================
-   INTERACTIVE CALCULATOR
-   ========================================================================== */
+
 .calc-section {
   background: white;
   border-radius: var(--radius-xl);
@@ -1929,9 +1904,7 @@ button, input, select, textarea {
   line-height: 1.4;
 }
 
-/* ==========================================================================
-   TURNKEY ASSEMBLY & DELIVERY (Modern Zelenino / Wowdoma Style)
-   ========================================================================== */
+
 .turnkey-section {
   margin: 50px 0;
 }
@@ -2121,9 +2094,7 @@ button, input, select, textarea {
   line-height: 1.2;
 }
 
-/* ==========================================================================
-   SHOWCASE CATALOG SECTION (3 ТОВАРА / УСЛУГИ + КНОПКА В ПОЛНЫЙ КАТАЛОГ)
-   ========================================================================== */
+
 .showcase-catalog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2406,9 +2377,7 @@ button, input, select, textarea {
   }
 }
 
-/* ==========================================================================
-   POLYCARBONATE & REVIEWS
-   ========================================================================== */
+
 .poly-reviews-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -2526,9 +2495,7 @@ button, input, select, textarea {
   margin-top: 4px;
 }
 
-/* ==========================================================================
-   СВЕТЛЫЙ СОВРЕМЕННЫЙ ФУТЕР САЙТА (ЗАВОД ТЕПЛИЦЫ ТУТ)
-   ========================================================================== */
+
 .site-footer {
   background: #f7faf8;
   color: #4a5568;
@@ -2763,9 +2730,7 @@ button, input, select, textarea {
   font-weight: 700;
 }
 
-/* ==========================================================================
-   MODAL WINDOWS & FLOATING WIDGET
-   ========================================================================== */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -2867,7 +2832,7 @@ textarea {
   box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
 }
 
-/* Floating contacts button */
+
 .floating-contact-btn {
   position: fixed;
   bottom: 25px;
@@ -2895,9 +2860,7 @@ textarea {
   height: 28px;
 }
 
-/* ==========================================================================
-   FAQ CHATBOT WIDGET (MODERN TELEGRAM / INTERCOM STYLE)
-   ========================================================================== */
+
 .faq-chat-widget {
   position: fixed;
   bottom: 25px;
@@ -2906,7 +2869,7 @@ textarea {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Floating Trigger Button */
+
 .faq-chat-trigger-btn {
   width: 62px;
   height: 62px;
@@ -2981,7 +2944,7 @@ textarea {
   border-top: 1px solid #e5ede7;
 }
 
-/* Chat Window */
+
 .faq-chat-window {
   position: absolute;
   bottom: 76px;
@@ -3009,7 +2972,7 @@ textarea {
   transform: translateY(0) scale(1);
 }
 
-/* Header */
+
 .faq-chat-header {
   background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
   color: #ffffff;
@@ -3089,7 +3052,7 @@ textarea {
   transform: rotate(90deg);
 }
 
-/* Body / Messages */
+
 .faq-chat-body {
   flex: 1;
   padding: 18px 16px;
@@ -3163,7 +3126,7 @@ textarea {
   margin-bottom: 2px;
 }
 
-/* Quick Chips (Modern Tag Pills) */
+
 .faq-quick-chips {
   display: flex;
   flex-wrap: wrap;
@@ -3220,7 +3183,7 @@ textarea {
   box-shadow: 0 3px 8px rgba(45, 106, 79, 0.2);
 }
 
-/* Typing Indicator */
+
 .faq-chat-typing {
   display: inline-flex;
   align-items: center;
@@ -3249,7 +3212,7 @@ textarea {
   40% { transform: scale(1); opacity: 1; }
 }
 
-/* Footer / Input */
+
 .faq-chat-footer {
   padding: 12px 14px;
   background: #ffffff;
@@ -3299,7 +3262,7 @@ textarea {
   box-shadow: 0 5px 14px rgba(45, 106, 79, 0.35);
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 600px) {
   .faq-chat-widget {
     bottom: 16px;
@@ -3345,7 +3308,7 @@ textarea {
   }
 }
 
-/* Toast alert */
+
 .toast-msg {
   position: fixed;
   bottom: 25px;
@@ -3370,9 +3333,7 @@ textarea {
   opacity: 1;
 }
 
-/* ==========================================================================
-   PAGE HERO / SUBPAGE HEADER
-   ========================================================================== */
+
 .subpage-hero {
   background: #f7faf8;
   padding: 48px 0 36px;
@@ -3384,9 +3345,7 @@ textarea {
   display: none !important;
 }
 
-/* ==========================================================================
-   PRODUCT TABLE & CARDS IN SUBPAGES
-   ========================================================================== */
+
 .product-card-horizontal {
   background: white;
   border: 1px solid var(--color-border);
@@ -3446,9 +3405,7 @@ textarea {
   background: #fbfdfb;
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN (TABLET & MOBILE)
-   ========================================================================== */
+
 @media (max-width: 1080px) {
   .advantages-compact-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3779,9 +3736,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   Блок "О нас" — 3 анимированных круга
-   ========================================================================== */
+
 
 .about-circles-section {
   padding: 72px 0 80px;
@@ -3825,7 +3780,7 @@ textarea {
   flex: 1 1 220px;
 }
 
-/* Обёртка круга с анимированным кольцом */
+
 .about-circle-img-wrap {
   position: relative;
   width: 220px;
@@ -3846,7 +3801,7 @@ textarea {
   box-shadow: 0 8px 32px rgba(43, 106, 79, 0.18);
 }
 
-/* Анимированное кольцо вокруг круга */
+
 .about-circle-ring {
   position: absolute;
   inset: -8px;
@@ -3859,7 +3814,7 @@ textarea {
   opacity: 0.7;
 }
 
-/* Второе внутреннее кольцо через ::after псевдоэлемент */
+
 .about-circle-img-wrap::before {
   content: '';
   position: absolute;
@@ -3880,7 +3835,7 @@ textarea {
   100% { transform: rotate(-360deg); }
 }
 
-/* Hover: увеличить и усилить тень */
+
 .about-circle-item:hover .about-circle-img-wrap img {
   transform: scale(1.04);
   box-shadow: 0 14px 48px rgba(43, 106, 79, 0.28);
@@ -3906,7 +3861,7 @@ textarea {
   line-height: 1.65;
 }
 
-/* --- Адаптив --- */
+
 @media (max-width: 900px) {
   .about-circles-grid {
     gap: 36px;
@@ -3942,9 +3897,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   Блок отзывов — 3 карточки
-   ========================================================================== */
+
 
 .reviews-section {
   background: var(--color-bg-alt);
@@ -4087,7 +4040,7 @@ textarea {
   color: #fff;
 }
 
-/* Адаптив блока отзывов */
+
 @media (max-width: 900px) {
   .reviews-header {
     flex-direction: column;
@@ -4174,9 +4127,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   PRODUCT DETAIL MODAL & SLIDER
-   ========================================================================== */
+
 .prod-modal-overlay {
   position: fixed;
   inset: 0;
@@ -4249,7 +4200,7 @@ textarea {
   max-height: 90vh;
 }
 
-/* Slider Column */
+
 .prod-slider-col {
   background: #f7f8f6;
   padding: 24px;
@@ -4319,7 +4270,7 @@ textarea {
   letter-spacing: 0.5px;
 }
 
-/* Thumbnails */
+
 .prod-thumbs-row {
   display: flex;
   gap: 10px;
@@ -4357,7 +4308,7 @@ textarea {
   box-shadow: 0 2px 8px rgba(45, 106, 79, 0.3);
 }
 
-/* Info Column */
+
 .prod-info-col {
   padding: 32px 36px 36px;
   display: flex;
@@ -4483,7 +4434,7 @@ textarea {
   font-weight: 700;
 }
 
-/* Modal Responsive */
+
 @media (max-width: 820px) {
   .prod-modal-scroll {
     grid-template-columns: 1fr;
@@ -4506,11 +4457,9 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   КАПЛЕВИДНЫЕ ТЕПЛИЦЫ — УНИКАЛЬНЫЙ ДИЗАЙН СТРАНИЦЫ (kaplevidnye.html)
-   ========================================================================== */
 
-/* Hero Showcase */
+
+
 .kaplya-hero {
   background: linear-gradient(135deg, #0d281a 0%, #1b4332 50%, #2d6a4f 100%);
   color: #ffffff;
@@ -4618,7 +4567,7 @@ textarea {
   border-color: #ffffff;
 }
 
-/* Stats Strip */
+
 .kaplya-stats-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -4650,7 +4599,7 @@ textarea {
   line-height: 1.3;
 }
 
-/* Hero Showcase Image & Floating Badges */
+
 .kaplya-showcase-box {
   position: relative;
   border-radius: 24px;
@@ -4692,7 +4641,7 @@ textarea {
   left: -15px;
 }
 
-/* Сравнение Капелька vs Арочная */
+
 .kaplya-compare-wrap {
   display: grid;
   grid-template-columns: 1fr 1.08fr;
@@ -4806,7 +4755,7 @@ textarea {
   color: #15803d;
 }
 
-/* Интерактивный Калькулятор Капельки */
+
 .kaplya-calc-box {
   background: #ffffff;
   border-radius: 24px;
@@ -4916,7 +4865,7 @@ textarea {
 }
 
 
-/* Анатомия / Инженерные карточки */
+
 .kaplya-features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -4966,7 +4915,7 @@ textarea {
   color: var(--color-text-muted);
 }
 
-/* Модели Капельки */
+
 .kaplya-models-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5086,7 +5035,7 @@ textarea {
   gap: 10px;
 }
 
-/* FAQ Accordion */
+
 .kaplya-faq-list {
   max-width: 860px;
   margin: 36px auto 0;
@@ -5141,7 +5090,7 @@ textarea {
   display: block;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 992px) {
   .kaplya-hero-grid {
     grid-template-columns: 1fr;
@@ -5176,11 +5125,9 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   Стили страницы «Преимущества» (preimushchestva.html)
-   ========================================================================== */
 
-/* Общие контейнеры секций */
+
+
 .adv-section {
   padding: 40px 0;
 }
@@ -5215,7 +5162,7 @@ textarea {
   line-height: 1.55;
 }
 
-/* 1. Блок Bento Grid (как в референсах 3 и 4) */
+
 .bento-hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 1.9fr;
@@ -5342,7 +5289,7 @@ textarea {
   transform: translateY(-2px);
 }
 
-/* Сетка 2х2 карточек справа */
+
 .bento-quad-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -5400,7 +5347,7 @@ textarea {
   margin: 0;
 }
 
-/* 2. Блок «ПОЧЕМУ МЫ?» 03 (Современная горизонтальная процесс-сетка без нагромождений) */
+
 .arc-diagram-card {
   background: #ffffff;
   border-radius: 32px;
@@ -5538,7 +5485,7 @@ textarea {
   font-size: 0.95rem;
 }
 
-/* Сплит-сетка блока Зачем теплица */
+
 .pills-split-layout {
   display: grid;
   grid-template-columns: 340px 1fr;
@@ -5578,7 +5525,7 @@ textarea {
   margin: 0;
 }
 
-/* Фото для карточек инженерных стандартов */
+
 .tech-tab-img {
   width: 100%;
   height: 130px;
@@ -5589,7 +5536,7 @@ textarea {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* Мини-фото для Bento-карточек */
+
 .bento-card-thumb {
   width: 100%;
   height: 95px;
@@ -5610,7 +5557,7 @@ textarea {
   display: inline-block;
 }
 
-/* CTA Баннер с фото теплицы */
+
 .works-cta-banner-v2 {
   background: linear-gradient(135deg, #111111 0%, #1b4332 100%);
   border-radius: 28px;
@@ -5631,7 +5578,7 @@ textarea {
   display: block;
 }
 
-/* 3. Блок Bento-пилюль «Зачем необходима теплица?» 02 (мягкие благородные цвета) */
+
 .pills-block-wrapper {
   background: #ffffff;
   border-radius: 28px;
@@ -5715,7 +5662,7 @@ textarea {
   color: #ffffff;
 }
 
-/* 4. Блок горизонтальных карточек-табов (в стиле скриншота 5) */
+
 .tech-tabs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5783,7 +5730,7 @@ textarea {
   margin: 0;
 }
 
-/* Статистическая строка под табами (как на референсе 5) */
+
 .adv-stats-strip {
   display: flex;
   align-items: center;
@@ -5813,7 +5760,7 @@ textarea {
   font-weight: 600;
 }
 
-/* 5. Сравнение "Завод vs Рынок" */
+
 .compare-box-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -5891,7 +5838,7 @@ textarea {
   flex-shrink: 0;
 }
 
-/* Фикс цветов CTA-баннера */
+
 .works-cta-banner h2 {
   color: #ffffff !important;
 }
@@ -5899,9 +5846,7 @@ textarea {
   color: #d8f3dc !important;
 }
 
-/* ==========================================================================
-   USER TESTIMONIALS STYLE (Приятный зелёный цвет, без аватарок)
-   ========================================================================== */
+
 .testimonials-section {
   background: #f7faf8;
   padding: 55px 0 75px;
@@ -5957,7 +5902,7 @@ textarea {
   border-color: #95d5b2;
 }
 
-/* Stars */
+
 .testimonial-stars {
   color: #2d6a4f;
   font-size: 1.25rem;
@@ -5965,7 +5910,7 @@ textarea {
   margin-bottom: 14px;
 }
 
-/* Name and Subtitle */
+
 .testimonial-name {
   font-family: var(--font-heading);
   font-size: 1.35rem;
@@ -5981,7 +5926,7 @@ textarea {
   font-weight: 500;
 }
 
-/* Quote Icon */
+
 .testimonial-quote-icon {
   color: #2d6a4f;
   display: flex;
@@ -5995,7 +5940,7 @@ textarea {
   height: 28px;
 }
 
-/* Review Text */
+
 .testimonial-body {
   font-size: 0.93rem;
   line-height: 1.65;
@@ -6003,7 +5948,7 @@ textarea {
   flex: 1;
 }
 
-/* Featured Card (Приятный насыщенный зелёный цвет завода) */
+
 .testimonial-card-featured {
   background: linear-gradient(145deg, #1b4332 0%, #2d6a4f 100%);
   border-color: #2d6a4f;
@@ -6035,7 +5980,7 @@ textarea {
   color: #f7faf8;
 }
 
-/* Форма отзыва */
+
 .review-form-card {
   background: #ffffff;
   border: 1.5px solid #d8f3dc;
@@ -6085,7 +6030,7 @@ textarea {
   transform: scale(1.1);
 }
 
-/* CTA */
+
 .reviews-bottom-cta {
   background: #1b4332;
   border-radius: 16px;
@@ -6145,9 +6090,7 @@ textarea {
 }
 
 
-/* ==========================================================================
-   CONTACTS PAGE (Страница контактов) — Строгий корпоративный стиль
-   ========================================================================== */
+
 .contacts-header-section {
   background: #f7faf8;
   padding: 44px 0 32px;
@@ -6277,7 +6220,7 @@ textarea {
   display: block;
 }
 
-/* Реквизиты */
+
 .contacts-requisites-box {
   background: #f8faf9;
   border: 1px solid #e2ece5;
@@ -6293,7 +6236,7 @@ textarea {
   color: #1b4332;
 }
 
-/* Адаптивность */
+
 @media (max-width: 991px) {
   .reviews-text-grid { grid-template-columns: repeat(2, 1fr); }
   .contacts-main-grid { grid-template-columns: 1fr; }
@@ -6306,9 +6249,7 @@ textarea {
   .review-form-card, .contacts-form-card, .contacts-info-card { padding: 22px 18px; }
 }
 
-/* ==========================================================================
-   Интерактивный витринный блок услуг (с анимациями и эффектом блика)
-   ========================================================================== */
+
 .tabbed-showcase-section {
   padding: 50px 0 60px;
   background: var(--color-bg);
@@ -6377,7 +6318,7 @@ textarea {
   box-shadow: 0 16px 40px rgba(27, 67, 50, 0.22);
 }
 
-.tabbed-showcase-section .card::before { /* мягкий световой блик */
+.tabbed-showcase-section .card::before { 
   content: "";
   position: absolute;
   width: 60%;
@@ -6502,7 +6443,7 @@ textarea {
 
 
 
-/* Изображение внутри карточки */
+
 .tabbed-showcase-section .card-img-wrap {
   position: absolute;
   right: 36px;
@@ -6536,7 +6477,7 @@ textarea {
   filter: blur(4px);
 }
 
-/* Адаптивность для планшетов */
+
 @media (max-width: 991px) and (min-width: 769px) {
   .tabbed-showcase-section .card {
     padding: 36px 28px 30px;
@@ -6552,7 +6493,7 @@ textarea {
   }
 }
 
-/* Адаптивность для мобильных телефонов */
+
 @media (max-width: 768px) {
   .tabbed-showcase-section {
     padding: 36px 0 44px;
@@ -6649,9 +6590,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   АДАПТИВНОСТЬ СТРАНИЦЫ ПРЕИМУЩЕСТВ (preimushchestva.html)
-   ========================================================================== */
+
 @media (max-width: 992px) {
   .bento-hero-grid {
     grid-template-columns: 1fr;
@@ -6688,7 +6627,7 @@ textarea {
 }
 
 @media (max-width: 640px) {
-  /* 1. Bento Grid: 0 ₽ предоплаты */
+  
   .bento-card-featured {
     padding: 28px 20px;
     border-radius: 20px;
@@ -6740,7 +6679,7 @@ textarea {
     font-size: 1.2rem;
   }
 
-  /* 2. Блок «ПОЧЕМУ МЫ?» */
+  
   .arc-diagram-card {
     padding: 24px 16px 28px;
     border-radius: 20px;
@@ -6793,7 +6732,7 @@ textarea {
     font-size: 0.88rem;
   }
 
-  /* 3. Блок «ЗАЧЕМ НЕОБХОДИМА ТЕПЛИЦА?» */
+  
   .pills-block-wrapper {
     padding: 24px 16px;
     border-radius: 20px;
@@ -6836,7 +6775,7 @@ textarea {
     border-radius: 16px;
   }
 
-  /* 4. Технические табы и статистика */
+  
   .tech-tabs-grid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -6853,7 +6792,7 @@ textarea {
     margin-bottom: 36px;
   }
 
-  /* 5. Сравнение "Завод vs Рынок" */
+  
   .compare-box-wrapper {
     margin-bottom: 36px;
   }
@@ -6871,7 +6810,7 @@ textarea {
     font-size: 0.9rem;
   }
 
-  /* 6. CTA баннер */
+  
   .works-cta-banner-v2 {
     flex-direction: column;
     padding: 30px 20px;
@@ -6884,7 +6823,7 @@ textarea {
   }
 }
 
-/* Глобальное выделение цен в карточках товаров */
+
 .cat-card-size {
   display: flex !important;
   align-items: baseline !important;
@@ -6913,7 +6852,7 @@ textarea {
   z-index: 2500 !important;
 }
 
-/* Фолбек для старой разметки футера (кэш браузера) */
+
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -6938,9 +6877,7 @@ textarea {
   gap: 8px;
 }
 
-/* ==========================================================================
-   НОВЫЙ ТОПБАР ШАПКИ (АКТИВНЫЙ ТЕЛЕФОН + ЛОЗУНГ + РУКОПИСНЫЙ АКЦЕНТ)
-   ========================================================================== */
+
 .header-topbar {
   background: #183b2c;
   color: #ffffff;
@@ -7125,9 +7062,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   БЛОК 3 ГЛАВНЫХ ПРЕИМУЩЕСТВ (УСИЛЕННЫЕ ДВЕРИ, ПОЛИКАРБОНАТ С УФ, СБОРКА И ГАРАНТИЯ)
-   ========================================================================== */
+
 .about-features-section {
   padding: 60px 0;
   background: #f7faf8;
@@ -7257,9 +7192,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   ПОПУЛЯРНЫЕ ПРЕДЛОЖЕНИЯ: 2 КЛЮЧЕВЫХ ТОВАРА (АРОЧНАЯ И КАПЕЛЬКА 3х4)
-   ========================================================================== */
+
 .showcase-catalog-grid--two {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -7452,9 +7385,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   ИНТЕРАКТИВНАЯ ГАЛЕРЕЯ ТЕПЛИЦ (ДЛЯ СТРАНИЦ АРОЧНЫЕ, КАПЛЕВИДНЫЕ, ДОМИКОМ)
-   ========================================================================== */
+
 .greenhouse-detail-hero {
   background: linear-gradient(180deg, #edf5ef 0%, #ffffff 100%);
   padding: 40px 0 30px;
@@ -7619,9 +7550,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   КАРТОЧКИ ЦЕН ТЕПЛИЦ ПО РАЗМЕРАМ
-   ========================================================================== */
+
 .greenhouse-prices-section {
   padding-bottom: 60px;
 }
@@ -7761,9 +7690,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   ПОЛИКАРБОНАТ: 3 ВИДА И КОМПЛЕКТУЮЩИЕ
-   ========================================================================== */
+
 .poly-types-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7879,9 +7806,7 @@ textarea {
   }
 }
 
-/* ==========================================================================
-   КАРТА ДОСТАВКИ (ДЛЯ СТРАНИЦЫ ДОСТАВКА-СБОРКА)
-   ========================================================================== */
+
 .delivery-regions-box {
   background: #ffffff;
   border-radius: 24px;
@@ -7971,7 +7896,7 @@ textarea {
 
 
 
-/* Аккуратные маркеры без галочек */
+
 .showcase-spec-list li::before,
 .price-card-specs li::before {
   content: "";
@@ -7990,10 +7915,7 @@ textarea {
 }
 
 
-/* ==========================================================================
-   СОВРЕМЕННАЯ КАРТОЧКА ТОВАРА (ТЕПЛИЦЫ: АРОЧНАЯ, КАПЕЛЬКА, ДОМИКОМ)
-   Референсы: teplitsastore.ru и teplitsa-rus.ru
-   ========================================================================== */
+
 .prod-hero-wrap {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
@@ -8432,7 +8354,7 @@ textarea {
   .prod-nav-arrow.prev { left: 8px; }
   .prod-nav-arrow.next { right: 8px; }
   
-  /* Плавный touch-скролл миниатюр без скроллбара (как в мобильном приложении) */
+  
   .prod-thumbs-strip {
     gap: 8px;
     padding: 10px 2px 4px;
@@ -8469,13 +8391,13 @@ textarea {
     font-size: 0.74rem;
     padding: 3px 8px;
   }
-  /* Кнопки выбора длины в 2 колонки */
+  
   .prod-select-buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
-  /* Кнопки шага дуг - длинные пояснения, на всю ширину (1 колонка) */
+  
   .prod-select-btn[data-arch-step],
   .prod-select-btn[data-drop-step],
   .prod-select-btn[data-house-step] {
@@ -8512,7 +8434,7 @@ textarea {
     font-size: 0.75rem;
     justify-content: space-between;
   }
-  /* Блок 4 преимуществ формы: в 1 колонку на смартфонах, чтобы ничего не вылезало вправо */
+  
   .greenhouse-features-bar {
     grid-template-columns: 1fr !important;
     gap: 10px !important;

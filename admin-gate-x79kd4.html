@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Экран входа по сложному паролю -->
+  
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
       <img src="assets/images/logo.png" alt="Теплицы ТУТ" style="width: 68px; height: 68px; border-radius: 14px; margin: 0 auto 15px; object-fit: cover;">
@@ -36,9 +36,9 @@
     </div>
   </div>
 
-  <!-- Главный интерфейс панели -->
+  
   <div class="admin-layout" id="adminLayout">
-    <!-- Боковое меню -->
+    
     <aside class="admin-sidebar">
       <div class="admin-brand">
         <img src="assets/images/logo.png" alt="Теплицы ТУТ" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
@@ -105,10 +105,10 @@
       </div>
     </aside>
 
-    <!-- Основная рабочая область -->
+    
     <main class="admin-content">
 
-      <!-- Вкладка 1: Заявки (Лиды) -->
+      
       <section class="tab-panel active" id="tabLeads">
         <div class="admin-header">
           <div>
@@ -146,7 +146,7 @@
         </div>
       </section>
 
-      <!-- Вкладка 2: Товары (Каталог) -->
+      
       <section class="tab-panel" id="tabProducts">
         <div class="admin-header">
           <div>
@@ -162,7 +162,7 @@
         <div class="admin-items-grid" id="adminProductsGrid"></div>
       </section>
 
-      <!-- Вкладка 3: Отзывы -->
+      
       <section class="tab-panel" id="tabReviews">
         <div class="admin-header">
           <div>
@@ -178,7 +178,7 @@
         <div id="adminReviewsList"></div>
       </section>
 
-      <!-- Вкладка 4: Наши работы -->
+      
       <section class="tab-panel" id="tabWorks">
         <div class="admin-header">
           <div>
@@ -194,7 +194,7 @@
         <div class="admin-items-grid" id="adminWorksGrid"></div>
       </section>
 
-      <!-- Вкладка 5: Цены калькулятора -->
+      
       <section class="tab-panel" id="tabPricing">
         <div class="admin-header">
           <div>
@@ -270,7 +270,7 @@
 
 
 
-      <!-- Вкладка 9: База данных и синхронизация с GitHub -->
+      
       <section class="tab-panel" id="tabBackup">
         <div class="admin-header">
           <div>
@@ -281,7 +281,7 @@
           </div>
         </div>
 
-        <!-- 1. Публикация на GitHub Pages -->
+        
         <div class="admin-card" style="border: 2px solid #52b788; background: #fafdfb;">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
             <span style="font-size: 1.8rem;">🚀</span>
@@ -324,7 +324,7 @@
           <div id="githubStatus" style="margin-top: 14px; font-size: 0.92rem; display: none; padding: 10px 14px; border-radius: 8px; background: #ffffff; border: 1px solid #d8f3dc;"></div>
         </div>
 
-        <!-- 2. Памятка по домену .com с Reg.ru -->
+        
         <div class="admin-card">
           <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 10px;">🌐 Привязка домена .com из Reg.ru к GitHub Pages</h2>
           <p style="font-size: 0.9rem; color: var(--admin-muted); margin-bottom: 14px;">
@@ -350,7 +350,7 @@
           </div>
         </div>
 
-        <!-- 3. Ручной бэкап -->
+        
         <div class="admin-card">
           <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 8px;">📥 3. Скачать полную базу данных (.json) на компьютер</h2>
           <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
@@ -361,7 +361,7 @@
           </button>
         </div>
 
-        <!-- 4. Ручной импорт -->
+        
         <div class="admin-card">
           <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 8px;">📤 4. Загрузить базу данных из файла</h2>
           <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
@@ -370,7 +370,7 @@
           <input type="file" id="importFullDbInput" accept=".json" class="form-input-admin" style="max-width: 450px;">
         </div>
 
-        <!-- 5. Сброс -->
+        
         <div class="admin-card" style="border-color: #ffadad;">
           <h2 style="font-size: 1.25rem; color: #dc3545; margin-bottom: 8px;">⚠️ 5. Сброс к заводским настройкам</h2>
           <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
@@ -382,7 +382,7 @@
         </div>
       </section>
 
-      <!-- Вкладка 10: Безопасность -->
+      
       <section class="tab-panel" id="tabSecurity">
         <div class="admin-header">
           <div>
@@ -431,7 +431,7 @@
     </main>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ / РЕДАКТИРОВАНИЕ ТОВАРА -->
+  
   <div class="admin-modal-overlay" id="productModal">
     <div class="admin-modal-card">
       <div class="admin-modal-header">
@@ -482,7 +482,7 @@
           <textarea id="prod_desc" class="form-input-admin" rows="3" placeholder="Описание характеристик, дуг, оцинковки"></textarea>
         </div>
 
-        <!-- Загрузчик фото для товара -->
+        
         <div class="form-group-admin">
           <label>Изображение товара:</label>
           <div class="image-uploader-box">
@@ -514,7 +514,7 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ / РЕДАКТИРОВАНИЕ ОТЗЫВА -->
+  
   <div class="admin-modal-overlay" id="reviewModal">
     <div class="admin-modal-card">
       <div class="admin-modal-header">
@@ -560,7 +560,7 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ / РЕДАКТИРОВАНИЕ РАБОТЫ -->
+  
   <div class="admin-modal-overlay" id="workModal">
     <div class="admin-modal-card">
       <div class="admin-modal-header">
@@ -579,7 +579,7 @@
           <small style="color: var(--admin-muted);">Доступные теги: arch (Арочные), drop (Каплевидные), usil (Усиленные), timber (На брусе).</small>
         </div>
 
-        <!-- Загрузчик фото для работы -->
+        
         <div class="form-group-admin">
           <label>Фотография работы:</label>
           <div class="image-uploader-box">

@@ -1,7 +1,4 @@
-/**
- * Теплицы 76 — Единая база данных каталога, отзывов, выполненных работ и настроек
- * Поддерживает 100% автономную работу, экспорт/импорт базы данных в JSON (включая фото в Base64)
- */
+
 
 const DEFAULT_PRODUCTS = [
   {
@@ -248,7 +245,7 @@ const DEFAULT_WORKS = [
 
 const DEFAULT_CONFIG = {
   security: {
-    // Надежный пароль по умолчанию (можно менять прямо в админке)
+    
     password: "TepL!ca#76_Yar2026!"
   },
   company: {
@@ -349,7 +346,7 @@ const DEFAULT_CONFIG = {
   }
 };
 
-// Загрузка актуальной базы данных из localStorage или по умолчанию
+
 function getSiteConfig() {
   try {
     const saved = localStorage.getItem("teplici76_config");
@@ -382,11 +379,11 @@ function getSiteConfig() {
   return DEFAULT_CONFIG;
 }
 
-// Сохранение базы данных в localStorage
+
 function saveSiteConfig(newConfig) {
   try {
     localStorage.setItem("teplici76_config", JSON.stringify(newConfig));
-    // Оповещаем открытые вкладки или страницы
+    
     window.dispatchEvent(new CustomEvent("teplica:data-updated", { detail: newConfig }));
     return true;
   } catch (e) {
@@ -395,7 +392,7 @@ function saveSiteConfig(newConfig) {
   }
 }
 
-// Экспорт всей базы в JSON (включая картинки)
+
 function exportFullDatabase() {
   const config = getSiteConfig();
   const leads = JSON.parse(localStorage.getItem("teplici76_leads") || "[]");
@@ -421,7 +418,7 @@ function exportFullDatabase() {
   URL.revokeObjectURL(url);
 }
 
-// Импорт базы из JSON строки
+
 function importFullDatabase(jsonString) {
   try {
     const data = JSON.parse(jsonString);
@@ -431,10 +428,10 @@ function importFullDatabase(jsonString) {
       throw new Error("Неверная структура файла базы данных");
     }
 
-    // Сохраняем конфигурацию
+    
     saveSiteConfig(db);
 
-    // Если есть лиды в бэкапе
+    
     if (Array.isArray(data.leads)) {
       localStorage.setItem("teplici76_leads", JSON.stringify(data.leads));
     }
@@ -445,7 +442,7 @@ function importFullDatabase(jsonString) {
   }
 }
 
-// Сброс до начальных настроек
+
 function resetDatabaseToDefaults() {
   localStorage.removeItem("teplici76_config");
   return DEFAULT_CONFIG;

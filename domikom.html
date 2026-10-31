@@ -7,7 +7,7 @@
   <meta name="description" content="Купить теплицу «Домиком» с прямыми стенами из оцинкованной трубы от завода «Теплицы ТУТ». 100% полезного пространства, вертикальные стены 1.7 м, двускатная крыша. Доставка и сборка без предоплаты.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=2.7">
+  <link rel="stylesheet" href="assets/css/style.css?v=2.8">
 </head>
 <body>
 
@@ -561,9 +561,11 @@
     </button>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=2.5"></script>
-  <script src="assets/js/main.js?v=2.5"></script>
+  <script src="assets/js/catalog-data.js?v=2.8"></script>
+  <script src="assets/js/main.js?v=2.8"></script>
 
+  
+  
   
   
   <!-- Интерактивная галерея и конфигуратор Теплицы «Домиком» -->
@@ -601,6 +603,25 @@
 
       if (prevBtn) prevBtn.addEventListener('click', () => setSlide(currentIdx - 1));
       if (nextBtn) nextBtn.addEventListener('click', () => setSlide(currentIdx + 1));
+
+      // Поддержка Touch Swipe для мобильных устройств
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const mainView = mainImg.closest('.prod-main-view');
+      if (mainView) {
+        mainView.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].clientX;
+          touchStartY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        mainView.addEventListener('touchend', (e) => {
+          const diffX = touchStartX - e.changedTouches[0].clientX;
+          const diffY = touchStartY - e.changedTouches[0].clientY;
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+            if (diffX > 0) setSlide(currentIdx + 1);
+            else setSlide(currentIdx - 1);
+          }
+        }, { passive: true });
+      }
 
       // Конфигуратор цен
       const priceEl = document.getElementById('housePriceVal');

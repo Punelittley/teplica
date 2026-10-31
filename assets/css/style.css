@@ -8293,6 +8293,7 @@ textarea {
     grid-template-columns: 1fr;
     padding: 24px 20px;
     gap: 24px;
+    margin-bottom: 28px;
   }
   .prod-gallery-col {
     position: static;
@@ -8302,32 +8303,133 @@ textarea {
   }
   .prod-main-view {
     aspect-ratio: 4 / 3;
-    max-height: 420px;
+    border-radius: 18px;
   }
   .prod-title {
     font-size: 1.55rem;
   }
 }
+
 @media (max-width: 580px) {
+  .catalog-page {
+    padding-top: 16px !important;
+    padding-bottom: 40px !important;
+  }
   .prod-hero-wrap {
-    padding: 18px 14px;
+    padding: 14px 12px;
     border-radius: 18px;
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+  .prod-gallery-col {
+    max-width: 100%;
   }
   .prod-main-view {
     aspect-ratio: 4 / 3;
     border-radius: 14px;
-    max-height: 300px;
+    touch-action: pan-y;
+  }
+  .prod-badge-overlay {
+    top: 10px;
+    left: 10px;
+    gap: 6px;
+  }
+  .prod-badge-pill {
+    font-size: 0.68rem;
+    padding: 4px 9px;
+  }
+  .prod-counter-pill {
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.74rem;
+    padding: 4px 10px;
+  }
+  .prod-nav-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(4px);
+  }
+  .prod-nav-arrow.prev { left: 8px; }
+  .prod-nav-arrow.next { right: 8px; }
+  
+  /* Плавный touch-скролл миниатюр без скроллбара (как в мобильном приложении) */
+  .prod-thumbs-strip {
+    gap: 8px;
+    padding: 10px 2px 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .prod-thumbs-strip::-webkit-scrollbar {
+    display: none;
   }
   .prod-thumb-item {
-    width: 60px;
-    height: 60px;
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+  }
+  
+  .prod-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin: 0 0 10px;
+  }
+  .prod-price-box {
+    padding: 12px 14px;
+    border-radius: 14px;
+    margin-bottom: 16px;
   }
   .prod-price-current {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
+  }
+  .prod-price-old {
+    font-size: 1.05rem;
+  }
+  .prod-price-badge {
+    font-size: 0.74rem;
+    padding: 3px 8px;
+  }
+  .prod-select-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .prod-select-btn {
+    padding: 10px 8px;
+    font-size: 0.86rem;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .prod-specs-bullets {
+    margin: 12px 0 16px;
+    gap: 6px;
+    font-size: 0.85rem;
+  }
+  .prod-btn-primary {
+    padding: 15px 18px;
+    font-size: 1.05rem;
+    border-radius: 12px;
+  }
+  .prod-btn-primary:active {
+    transform: scale(0.98);
+  }
+  .prod-trust-pills {
+    gap: 8px;
+    font-size: 0.75rem;
+    justify-content: space-between;
   }
   .prod-details-box {
-    padding: 20px 14px;
-    border-radius: 18px;
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+  .prod-details-title {
+    font-size: 1.3rem;
+  }
+  .prod-table-specs td {
+    padding: 9px 8px;
+    font-size: 0.86rem;
   }
 }

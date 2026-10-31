@@ -7,14 +7,14 @@ const DEFAULT_PRODUCTS = [
   {
     id: "prod-1",
     category: "arch",
-    name: "Теплицы от производителя",
+    name: "Арочная теплица 3×4 м",
     price: 25500,
-    oldPrice: 28900,
+    oldPrice: 28500,
     size: "3х4...3х10 м",
-    badge: "От производителя",
+    badge: "Хит продаж",
     badgeType: "hit",
-    image: "assets/images/products/p1/1.jpg",
-    description: "Надежный каркас из оцинкованной трубы ГОСТ. Двойная горячая оцинковка защищает от ржавчины на 15+ лет."
+    image: "assets/images/products/arch_3x4/1.jpg",
+    description: "Оцинкованный каркас 30×20 мм (труба на ребро, сталь 1.0 мм). Поликарбонат 4 мм (520 г/м²), 2 двери с укосами, 2 форточки и вся фурнитура в комплекте."
   },
   {
     id: "prod-2",

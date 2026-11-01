@@ -3490,15 +3490,8 @@ textarea {
   .logo-text-title {
     font-size: 1.25rem;
   }
-  body.mobile-nav-open {
-    overflow: hidden !important;
-    touch-action: none;
-  }
-  body.mobile-nav-open .site-header {
-    z-index: 10005 !important;
-  }
-  body.mobile-nav-open .faq-chat-widget {
-    display: none !important;
+  .site-header {
+    z-index: 1010;
   }
   .site-nav {
     display: none;
@@ -3507,19 +3500,17 @@ textarea {
     left: 0;
     right: 0;
     background: #ffffff;
-    padding: 10px 16px 50px;
+    padding: 10px 16px 40px;
     box-shadow: 0 16px 36px rgba(18, 43, 31, 0.16);
     flex-direction: column;
     align-items: stretch;
     gap: 2px;
-    z-index: 1005;
-    max-height: calc(100dvh - 100%);
-    max-height: calc(100vh - 85px);
-    max-height: calc(100dvh - 85px);
+    z-index: 1015;
+    max-height: 80vh;
+    max-height: calc(100dvh - 80px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    touch-action: pan-y;
     border-bottom: 2px solid #52b788;
   }
   .site-nav.mobile-open {

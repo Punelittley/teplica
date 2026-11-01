@@ -204,7 +204,9 @@ function setupMobileNav() {
   toggleBtn.addEventListener("click", (e) => {
     e.preventDefault();
     nav.classList.toggle("mobile-open");
-    toggleBtn.textContent = nav.classList.contains("mobile-open") ? "✕" : "☰";
+    const isOpen = nav.classList.contains("mobile-open");
+    toggleBtn.textContent = isOpen ? "✕" : "☰";
+    document.body.classList.toggle("mobile-menu-active", isOpen);
   });
 
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
@@ -224,6 +226,7 @@ function setupMobileNav() {
     anchor.addEventListener("click", () => {
       nav.classList.remove("mobile-open");
       toggleBtn.textContent = "☰";
+      document.body.classList.remove("mobile-menu-active");
     });
   });
 }

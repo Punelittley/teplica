@@ -2699,25 +2699,34 @@ button, input, select, textarea {
 .footer-vk-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   background: #0077ff;
-  border: 1.5px solid #0077ff;
+  background: linear-gradient(135deg, #0077ff 0%, #0062d9 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #ffffff !important;
-  padding: 10px 18px;
-  border-radius: var(--radius-md);
+  padding: 11px 20px;
+  border-radius: 12px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
   transition: all 0.25s ease;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 119, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 119, 255, 0.28);
 }
 
 .footer-vk-btn:hover {
-  background: #0066dc;
-  border-color: #0066dc;
+  background: linear-gradient(135deg, #006be6 0%, #0056bf 100%);
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 18px rgba(0, 119, 255, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.42);
+}
+
+.footer-vk-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .footer-bottom-copy {
@@ -3278,22 +3287,32 @@ textarea {
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .faq-chat-widget {
-    bottom: 16px;
-    right: 16px;
+    bottom: max(75px, calc(65px + env(safe-area-inset-bottom, 0px)));
+    right: 18px;
+    z-index: 999;
+  }
+  .faq-chat-trigger-btn {
+    width: 58px;
+    height: 58px;
+    box-shadow: 0 8px 24px rgba(27, 67, 50, 0.45);
+  }
+  .faq-chat-trigger-btn svg {
+    width: 26px;
+    height: 26px;
   }
   .faq-chat-window {
     position: fixed;
     top: auto;
-    bottom: 82px;
+    bottom: max(142px, calc(132px + env(safe-area-inset-bottom, 0px)));
     left: 12px;
     right: 12px;
     width: auto;
     max-width: 400px;
     margin: 0 auto;
     height: 480px;
-    max-height: min(480px, 70vh);
+    max-height: min(480px, calc(100dvh - 160px));
     border-radius: 20px;
     box-shadow: 0 16px 45px rgba(18, 43, 31, 0.25), 0 4px 16px rgba(0, 0, 0, 0.08);
   }
@@ -3321,6 +3340,17 @@ textarea {
   .faq-chat-tooltip {
     display: none;
   }
+  .footer-vk-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+body.mobile-menu-active .faq-chat-widget,
+body:has(.site-nav.mobile-open) .faq-chat-widget {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 

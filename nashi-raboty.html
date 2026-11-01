@@ -156,14 +156,14 @@
       inset: 0;
       background: rgba(10, 20, 15, 0.94);
       z-index: 99999;
-      display: none;
+      display: none !important;
       align-items: center;
       justify-content: center;
       padding: 20px;
       backdrop-filter: blur(8px);
     }
     .works-lightbox.active {
-      display: flex;
+      display: flex !important;
     }
     .works-lightbox-content {
       position: relative;
@@ -505,7 +505,7 @@
   </main>
 
   
-  <div class="works-lightbox" id="worksLightbox">
+  <div class="works-lightbox" id="worksLightbox" style="display: none;">
     <div class="works-lightbox-content">
       <button class="works-lightbox-close" id="lightboxCloseBtn" title="Закрыть (Esc)">✕</button>
       <img src="" alt="" class="works-lightbox-img" id="lightboxImg">
@@ -772,11 +772,13 @@
         lightboxImg.src = src;
         lightboxTitle.textContent = title;
         lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+        lightbox.style.display = "flex";
         lightbox.classList.add("active");
         document.body.style.overflow = "hidden";
       }
 
       function closeLightbox() {
+        lightbox.style.display = "none";
         lightbox.classList.remove("active");
         document.body.style.overflow = "";
       }

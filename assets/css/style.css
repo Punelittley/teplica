@@ -3424,8 +3424,8 @@ textarea {
 @media (max-width: 640px) {
   .pricing-table th,
   .pricing-table td {
-    padding: 9px 8px !important;
-    font-size: 0.84rem !important;
+    padding: 8px 6px !important;
+    font-size: 0.82rem !important;
   }
   .pricing-table th {
     white-space: nowrap !important;
@@ -3436,11 +3436,62 @@ textarea {
   .pricing-table td strong {
     white-space: nowrap !important;
   }
-  .gryadki-pricing-card {
-    padding: 14px 10px !important;
+  .gryadki-grid {
+    grid-template-columns: 1fr !important;
   }
   .prod-details-box {
-    padding: 18px 12px !important;
+    padding: 16px 8px !important;
+    border-radius: 16px !important;
+  }
+  .gryadki-pricing-card {
+    min-width: 0 !important;
+    padding: 14px 8px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+  }
+  .pricing-table-wrap {
+    margin: 6px 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    overflow-x: hidden !important;
+  }
+  .gryadki-table {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+  .gryadki-table th,
+  .gryadki-table td {
+    padding: 6px 3px !important;
+    font-size: 0.80rem !important;
+    white-space: nowrap !important;
+  }
+  .gryadki-table th:nth-child(1),
+  .gryadki-table td:nth-child(1) {
+    width: 34% !important;
+    text-align: left !important;
+  }
+  .gryadki-table th:nth-child(2),
+  .gryadki-table td:nth-child(2) {
+    width: 34% !important;
+    text-align: right !important;
+    font-weight: 800 !important;
+    color: #1b4332 !important;
+  }
+  .gryadki-table th:nth-child(3),
+  .gryadki-table td:nth-child(3) {
+    width: 32% !important;
+    text-align: right !important;
+  }
+  .gryadki-table .btn,
+  .gryadki-order-btn {
+    width: 100% !important;
+    padding: 5px 0 !important;
+    font-size: 0.74rem !important;
+    text-align: center !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
   }
 }
 

@@ -287,7 +287,8 @@ function setupCalculator(config) {
     assembly: true,
     beds: false,
     autovent: false,
-    tape: false
+    tape: false,
+    crab: false
   };
 
   const typeBtns = calcRoot.querySelectorAll("[data-calc-type]");
@@ -299,6 +300,7 @@ function setupCalculator(config) {
   const bedsCheckbox = document.getElementById("calcOptionBeds");
   const autoventCheckbox = document.getElementById("calcOptionAutovent");
   const tapeCheckbox = document.getElementById("calcOptionTape");
+  const crabCheckbox = document.getElementById("calcOptionCrab");
 
   const sumTotalEl = document.getElementById("calcSumTotal");
   const sumOldEl = document.getElementById("calcSumOld");
@@ -370,6 +372,14 @@ function setupCalculator(config) {
       oldTotal += tapeOldCost;
     }
 
+    let crabCost = 0;
+    if (state.crab) {
+      crabCost = p.crab?.price || 2000;
+      const crabOldCost = p.crab?.oldPrice || 2600;
+      total += crabCost;
+      oldTotal += crabOldCost;
+    }
+
     
     if (sumTotalEl) sumTotalEl.textContent = `${total.toLocaleString("ru-RU")} ₽`;
     if (sumOldEl) sumOldEl.textContent = `${oldTotal.toLocaleString("ru-RU")} ₽`;
@@ -399,6 +409,7 @@ function setupCalculator(config) {
       if (state.beds) extras.push(`Грядки (${bedsCost.toLocaleString("ru-RU")} ₽)`);
       if (state.autovent) extras.push(`Автопроветриватель (${autoventCost.toLocaleString("ru-RU")} ₽)`);
       if (state.tape) extras.push(`Оцинкованная лента (${tapeCost.toLocaleString("ru-RU")} ₽)`);
+      if (state.crab) extras.push(`Краб-система (${crabCost.toLocaleString("ru-RU")} ₽)`);
       breakdownExtraEl.textContent = extras.length ? extras.join(" + ") : "Без доп. услуг";
     }
 
@@ -409,6 +420,7 @@ function setupCalculator(config) {
       if (state.beds) extraList.push("Грядки");
       if (state.autovent) extraList.push("Автопроветриватель");
       if (state.tape) extraList.push("Стяжная лента");
+      if (state.crab) extraList.push("Краб-система");
       const extrasStr = extraList.length ? extraList.join(", ") : "нет";
 
       const typeName = state.type === "arch" ? "Арочная" : (state.type === "drop" ? "Каплевидная" : "Домиком");
@@ -464,6 +476,13 @@ function setupCalculator(config) {
   if (tapeCheckbox) {
     tapeCheckbox.addEventListener("change", (e) => {
       state.tape = e.target.checked;
+      update();
+    });
+  }
+
+  if (crabCheckbox) {
+    crabCheckbox.addEventListener("change", (e) => {
+      state.crab = e.target.checked;
       update();
     });
   }

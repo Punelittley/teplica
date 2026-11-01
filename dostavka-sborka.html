@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -10,9 +10,100 @@
   <link rel="canonical" href="https://teplicy-tut.ru/dostavka-sborka.html">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=3.3">
+  <link rel="stylesheet" href="assets/css/style.css?v=3.5">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <style>
+    .dest-chips-grid {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 10px !important;
+      margin: 18px 0 24px !important;
+    }
+    .dest-chip {
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+      background: #f4f7f4 !important;
+      border: 1.5px solid #d0ded4 !important;
+      border-radius: 999px !important;
+      padding: 9px 18px !important;
+      font-size: 0.9rem !important;
+      font-weight: 700 !important;
+      color: #1b4332 !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      user-select: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+    .dest-chip:hover {
+      background: #e2ede5 !important;
+      border-color: #2d6a4f !important;
+    }
+    .dest-chip.active {
+      background: #235d43 !important;
+      border-color: #235d43 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(35, 93, 67, 0.25) !important;
+    }
+    @media (max-width: 640px) {
+      .dest-chip {
+        padding: 8px 14px !important;
+        font-size: 0.82rem !important;
+      }
+    }
+    .del-steps-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+      gap: 16px !important;
+      margin-bottom: 40px !important;
+    }
+    .del-step-item {
+      background: #ffffff !important;
+      border: 1.5px solid #e1ece4 !important;
+      border-radius: 18px !important;
+      padding: 20px 22px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 16px !important;
+      box-shadow: 0 4px 14px rgba(45,106,79,0.07) !important;
+    }
+    .del-step-num {
+      width: 42px !important;
+      height: 42px !important;
+      min-width: 42px !important;
+      border-radius: 50% !important;
+      background: #235d43 !important;
+      color: #ffffff !important;
+      font-weight: 900 !important;
+      font-size: 1.25rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-family: var(--font-heading) !important;
+    }
+    .foundation-price-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      background: #f0f7f2;
+      border-radius: 18px;
+      padding: 24px;
+    }
+    @media (max-width: 768px) {
+      .foundation-price-block {
+        grid-template-columns: 1fr !important;
+        padding: 20px 16px !important;
+        gap: 20px !important;
+      }
+    }
+  </style>
 
   <meta property="og:locale" content="ru_RU">
   <meta property="og:type" content="website">
@@ -1187,25 +1278,25 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; background: #f0f7f2; border-radius: 18px; padding: 24px;" class="del-steps-grid">
+        <div class="foundation-price-block">
           <div>
             <h3 style="font-size: 1.25rem; font-weight: 800; color: #1b4332; margin-bottom: 12px;">Стоимость фундамента из бруса 100×100:</h3>
             <ul style="list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem;">
               <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #c3decb; padding-bottom: 4px;">
                 <span>Фундамент под теплицу 3×4 м:</span>
-                <strong style="color: #1b4332;">6 000 ₽</strong>
+                <strong style="color: #1b4332; white-space: nowrap;">6 000 ₽</strong>
               </li>
               <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #c3decb; padding-bottom: 4px;">
                 <span>Фундамент под теплицу 3×6 м:</span>
-                <strong style="color: #1b4332;">6 500 ₽</strong>
+                <strong style="color: #1b4332; white-space: nowrap;">6 500 ₽</strong>
               </li>
               <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #c3decb; padding-bottom: 4px;">
                 <span>Фундамент под теплицу 3×8 м:</span>
-                <strong style="color: #1b4332;">7 500 ₽</strong>
+                <strong style="color: #1b4332; white-space: nowrap;">7 500 ₽</strong>
               </li>
               <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #c3decb; padding-bottom: 4px;">
                 <span>Фундамент под теплицу 3×10 м:</span>
-                <strong style="color: #1b4332;">9 000 ₽</strong>
+                <strong style="color: #1b4332; white-space: nowrap;">9 000 ₽</strong>
               </li>
             </ul>
             <button type="button" class="btn btn-primary" data-open-modal data-title="Заказать теплицу с фундаментом" data-subtitle="Подберем нужный размер бруса и рассчитаем стоимость с доставкой" data-subject="Заказ: Фундамент под теплицу из бруса">
@@ -1529,8 +1620,8 @@
     </button>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=2.5"></script>
-  <script src="assets/js/main.js?v=2.5"></script>
+  <script src="assets/js/catalog-data.js?v=3.5"></script>
+  <script src="assets/js/main.js?v=3.5"></script>
 
   <script>
     (function() {

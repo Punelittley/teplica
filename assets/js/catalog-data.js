@@ -311,6 +311,11 @@ const DEFAULT_CONFIG = {
       price: 1800,
       oldPrice: 2400
     },
+    crab: {
+      name: "Краб-система (дуги и стяжки в одной плоскости)",
+      price: 2000,
+      oldPrice: 2600
+    },
     beds: {
       set3x4: {
         name: "Комплект грядок в теплицу 3х4 м (3 ряда)",

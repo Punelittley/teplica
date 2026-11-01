@@ -47,6 +47,7 @@ body.font-large {
 html {
   scroll-behavior: smooth;
   font-size: var(--base-font-size);
+  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -71,6 +72,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -3656,18 +3658,28 @@ textarea {
     padding: 38px 0 80px;
   }
   .footer-links-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 16px 8px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px 14px !important;
   }
   .footer-social-col {
-    grid-column: span 3 !important;
+    grid-column: span 2 !important;
     padding-top: 18px;
     border-top: 1px dashed #d8e8dc;
   }
   .footer-col-title {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     margin-bottom: 10px;
-    white-space: nowrap;
+    white-space: normal !important;
+    word-break: break-word;
+  }
+  @media (max-width: 440px) {
+    .footer-links-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+    .footer-social-col {
+      grid-column: span 1 !important;
+    }
   }
   .footer-col-title::after {
     width: 22px;
@@ -8814,22 +8826,37 @@ textarea {
     }
 
     .dest-chip {
-      background: #f8faf8;
-      border: 1.5px solid #e0e0e0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: #f4f7f4;
+      border: 1.5px solid #d0ded4;
       border-radius: 999px;
       padding: 9px 18px;
       font-size: 0.9rem;
       font-weight: 700;
-      color: #333;
+      color: #1b4332;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .dest-chip:hover,
+    .dest-chip:hover {
+      background: #e2ede5;
+      border-color: #2d6a4f;
+    }
+
     .dest-chip.active {
-      background: #eaf4ed;
-      border-color: var(--color-primary);
-      color: var(--color-primary-dark);
+      background: #235d43;
+      border-color: #235d43;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(35, 93, 67, 0.25);
     }
 
     .dest-info-panel {

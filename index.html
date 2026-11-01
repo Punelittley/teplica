@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -475,12 +475,12 @@
             
             <div class="calc-field-group">
               <label class="calc-label">1. Форма теплицы:</label>
-              <div class="calc-options-grid">
+              <div class="calc-options-grid calc-options-grid--3">
                 <button type="button" class="calc-option-btn active" data-calc-type="arch">
                   Арочная
                 </button>
                 <button type="button" class="calc-option-btn" data-calc-type="drop">
-                  Каплевидная
+                  Капелька
                 </button>
                 <button type="button" class="calc-option-btn" data-calc-type="house">
                   Домиком
@@ -491,7 +491,7 @@
             
             <div class="calc-field-group">
               <label class="calc-label">2. Длина (ширина 3 м):</label>
-              <div class="calc-options-grid">
+              <div class="calc-options-grid calc-options-grid--4">
                 <button type="button" class="calc-option-btn" data-calc-length="4m">3 × 4 м</button>
                 <button type="button" class="calc-option-btn active" data-calc-length="6m">3 × 6 м (Хит)</button>
                 <button type="button" class="calc-option-btn" data-calc-length="8m">3 × 8 м</button>
@@ -502,7 +502,7 @@
             
             <div class="calc-field-group">
               <label class="calc-label">3. Шаг дуг:</label>
-              <div class="calc-options-grid">
+              <div class="calc-options-grid calc-options-grid--2">
                 <button type="button" class="calc-option-btn active" data-calc-step="100">Стандарт (1 м)</button>
                 <button type="button" class="calc-option-btn" data-calc-step="65">Усиленный (0.65 м)</button>
               </div>
@@ -511,7 +511,7 @@
             
             <div class="calc-field-group">
               <label class="calc-label">4. Поликарбонат:</label>
-              <div class="calc-options-grid">
+              <div class="calc-options-grid calc-options-grid--3">
                 <button type="button" class="calc-option-btn active" data-calc-poly="eco4">4 мм Стандарт</button>
                 <button type="button" class="calc-option-btn" data-calc-poly="prem4">4 мм Премиум</button>
                 <button type="button" class="calc-option-btn" data-calc-poly="prem6">6 мм Зимний</button>
@@ -520,31 +520,33 @@
 
             
             <div class="calc-field-group">
-              <label class="calc-label">5. Дополнительно:</label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionTimber">
-                <span>Фундамент из бруса 100×100</span>
-              </label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionAssembly" checked>
-                <span>Сборка нашими мастерами</span>
-              </label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionBeds">
-                <span>Оцинкованные грядки в теплицу (+4 500 ₽)</span>
-              </label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionAutovent">
-                <span>Автопроветриватель форточки (термопривод) (+2 400 ₽)</span>
-              </label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionTape">
-                <span>Стяжная оцинкованная лента (+1 800 ₽)</span>
-              </label>
-              <label class="calc-checkbox-label">
-                <input type="checkbox" id="calcOptionCrab">
-                <span>Краб-система (дуги и стяжки в одной плоскости) (+2 000 ₽)</span>
-              </label>
+              <label class="calc-label">5. Дополнительные опции:</label>
+              <div class="calc-checkboxes-grid">
+                <label class="calc-checkbox-label">
+                  <input type="checkbox" id="calcOptionTimber">
+                  <span>Фундамент из бруса 100×100</span>
+                </label>
+                <label class="calc-checkbox-label">
+                  <input type="checkbox" id="calcOptionAssembly" checked>
+                  <span>Сборка мастерами</span>
+                </label>
+                <label class="calc-checkbox-label">
+                  <input type="checkbox" id="calcOptionBeds">
+                  <span>Оцинкованные грядки (+4 500 ₽)</span>
+                </label>
+                <label class="calc-checkbox-label">
+                  <input type="checkbox" id="calcOptionAutovent">
+                  <span>Автопроветриватель (+2 400 ₽)</span>
+                </label>
+                <label class="calc-checkbox-label">
+                  <input type="checkbox" id="calcOptionTape">
+                  <span>Стяжная оцинкованная лента (+1 800 ₽)</span>
+                </label>
+                <label class="calc-checkbox-label">
+                  <input type="checkbox" id="calcOptionCrab">
+                  <span>Краб-система (+2 000 ₽)</span>
+                </label>
+              </div>
             </div>
           </div>
 

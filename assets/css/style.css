@@ -1767,6 +1767,12 @@ button, input, select, textarea {
   color: var(--color-primary-dark);
 }
 
+.calc-checkboxes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .calc-checkbox-label {
   display: flex;
   align-items: center;
@@ -3639,6 +3645,94 @@ textarea {
 }
 
 @media (max-width: 640px) {
+  .calc-section {
+    padding: 20px 14px;
+    margin: 20px 0;
+    border-radius: 20px;
+  }
+  .calc-grid {
+    gap: 18px;
+  }
+  .calc-field-group {
+    margin-bottom: 12px;
+  }
+  .calc-label {
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+  }
+  .calc-options-grid {
+    gap: 6px;
+  }
+  .calc-options-grid--3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .calc-options-grid--4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .calc-options-grid--2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .calc-option-btn {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .calc-checkboxes-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .calc-checkbox-label {
+    margin-bottom: 0 !important;
+    padding: 8px 10px !important;
+    font-size: 0.78rem !important;
+    line-height: 1.25 !important;
+    border-radius: 10px !important;
+    gap: 6px !important;
+    align-items: flex-start !important;
+  }
+  .calc-checkbox-label input[type="checkbox"] {
+    width: 16px !important;
+    height: 16px !important;
+    margin-top: 1px !important;
+    flex-shrink: 0 !important;
+  }
+  .calc-summary-card {
+    padding: 18px 16px;
+    border-radius: 18px;
+    gap: 12px;
+  }
+  .calc-summary-title {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+  .calc-breakdown-list {
+    margin-bottom: 12px;
+  }
+  .calc-breakdown-item {
+    padding: 6px 0;
+    font-size: 0.84rem;
+  }
+  .calc-total-box {
+    padding-top: 10px;
+  }
+  .calc-total-label {
+    font-size: 0.82rem;
+  }
+  .calc-total-old {
+    font-size: 1rem;
+  }
+  .calc-total-sum {
+    font-size: 1.65rem;
+  }
+  .calc-submit-btn {
+    padding: 13px 18px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
   .advantages-compact-grid {
     grid-template-columns: 1fr;
     gap: 12px;

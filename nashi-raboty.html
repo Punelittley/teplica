@@ -34,6 +34,244 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://teplicy-tut.ru/"},{"@type":"ListItem","position":2,"name":"О компании","item":"https://teplicy-tut.ru/"},{"@type":"ListItem","position":3,"name":"Наши работы","item":"https://teplicy-tut.ru/nashi-raboty.html"}]}
   </script>
+
+<style>
+    
+    .works-header {
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+    .works-title {
+      font-family: var(--font-heading);
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-bottom: 12px;
+    }
+    .works-subtitle {
+      font-size: 1.15rem;
+      color: var(--color-text-muted);
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+
+    
+    .works-filter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+    .works-filter-btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1.5px solid var(--color-border);
+      background: #fff;
+      color: var(--color-text-main);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .works-filter-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    .works-filter-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+    }
+
+    
+    .works-gallery-grid {
+      column-count: 3;
+      column-gap: 22px;
+      margin-bottom: 55px;
+    }
+
+    .works-item {
+      break-inside: avoid;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 22px;
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      border: 1.5px solid #e3ede5;
+    }
+    .works-item:hover {
+      transform: none;
+      border-color: #2d6a4f;
+      box-shadow: 0 10px 28px rgba(45, 106, 79, 0.16);
+    }
+
+    .works-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .works-item:hover img {
+      transform: scale(1.025);
+    }
+
+    
+    .works-cta-banner {
+      background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+      border-radius: 20px;
+      padding: 45px 40px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+      box-shadow: 0 12px 30px rgba(27, 67, 50, 0.25);
+    }
+    .works-cta-banner h2 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .works-cta-banner p {
+      font-size: 1.05rem;
+      color: #d8f3dc;
+      max-width: 550px;
+      margin: 0;
+    }
+
+    
+    .works-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 15, 0.94);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .works-lightbox.active {
+      display: flex;
+    }
+    .works-lightbox-content {
+      position: relative;
+      max-width: 92vw;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .works-lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      animation: lightboxZoom 0.25s ease;
+    }
+    @keyframes lightboxZoom {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .works-lightbox-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 15px;
+      color: #fff;
+      gap: 15px;
+    }
+    .works-lightbox-counter {
+      font-size: 0.95rem;
+      color: #d8f3dc;
+      font-weight: 600;
+    }
+    .works-lightbox-order-btn {
+      padding: 8px 18px;
+      background: var(--color-accent-gold, #ffb703);
+      color: #1a1a1a;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .works-lightbox-order-btn:hover {
+      background: #ffa200;
+    }
+
+    .works-lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .works-lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .works-lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .works-lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    .works-lightbox-prev { left: 20px; }
+    .works-lightbox-next { right: 20px; }
+
+    @media (max-width: 900px) {
+      .works-gallery-grid { column-count: 2; column-gap: 16px; }
+    }
+    @media (max-width: 768px) {
+      .works-title { font-size: 2rem; }
+      .works-lightbox-nav { width: 40px; height: 40px; font-size: 1.4rem; }
+      .works-lightbox-prev { left: 10px; }
+      .works-lightbox-next { right: 10px; }
+      .works-cta-banner { padding: 30px 20px; flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 560px) {
+      .works-gallery-grid { column-count: 1; }
+    }
+  </style>
 </head>
 <body>
   

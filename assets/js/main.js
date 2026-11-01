@@ -201,12 +201,47 @@ function setupMobileNav() {
   const nav = document.getElementById("siteNav");
   if (!toggleBtn || !nav) return;
 
-  toggleBtn.addEventListener("click", () => {
-    nav.classList.toggle("mobile-open");
-    toggleBtn.textContent = nav.classList.contains("mobile-open") ? "✕" : "☰";
+  function closeMenu() {
+    nav.classList.remove("mobile-open");
+    document.body.classList.remove("mobile-nav-open");
+    toggleBtn.textContent = "☰";
+    toggleBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    nav.classList.add("mobile-open");
+    document.body.classList.add("mobile-nav-open");
+    toggleBtn.textContent = "✕";
+    toggleBtn.setAttribute("aria-expanded", "true");
+  }
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (nav.classList.contains("mobile-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
-  
+  document.addEventListener("click", (e) => {
+    if (nav.classList.contains("mobile-open") && !nav.contains(e.target) && !toggleBtn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  nav.querySelectorAll(".nav-link:not(.dropdown-toggle), .dropdown-item").forEach(link => {
+    link.addEventListener("click", () => {
+      closeMenu();
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("mobile-open")) {
+      closeMenu();
+    }
+  });
+
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener("click", (e) => {

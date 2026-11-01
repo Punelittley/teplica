@@ -217,69 +217,7 @@
       </div>
 
       
-      <div class="review-form-card" id="leave-review">
-        <div class="review-form-title">Оставить свой отзыв</div>
-        <p class="review-form-sub">
-          Поделитесь опытом использования теплицы завода «Теплицы ТУТ» — ваше мнение важно для нас и других покупателей!
-        </p>
 
-        <form class="js-lead-form">
-          <input type="hidden" name="subject" value="Новый отзыв с сайта">
-          <input type="hidden" name="rating" id="reviewRatingInput" value="5">
-
-          <div style="text-align: center;">
-            <div class="review-star-rating" id="starRatingSelect">
-              <button type="button" class="review-star-btn active" data-rate="1">★</button>
-              <button type="button" class="review-star-btn active" data-rate="2">★</button>
-              <button type="button" class="review-star-btn active" data-rate="3">★</button>
-              <button type="button" class="review-star-btn active" data-rate="4">★</button>
-              <button type="button" class="review-star-btn active" data-rate="5">★</button>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-            <div>
-              <label class="form-label">Ваше имя:</label>
-              <input type="text" name="name" class="form-input" placeholder="Например: Надежда Ивановна" required>
-            </div>
-            <div>
-              <label class="form-label">Город / СНТ:</label>
-              <input type="text" name="city" class="form-input" placeholder="Например: Ярославль, Заволжье" required>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-            <div>
-              <label class="form-label">Телефон для связи (не публикуется):</label>
-              <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
-            </div>
-            <div>
-              <label class="form-label">Модель теплицы:</label>
-              <select name="model" class="form-input" style="height: 48px;">
-                <option value="Арочная 3х4">Арочная 3×4 м</option>
-                <option value="Арочная 3х6" selected>Арочная 3×6 м (Хит)</option>
-                <option value="Арочная 3х8">Арочная 3×8 м</option>
-                <option value="Каплевидная 3х4">Каплевидная 3×4 м</option>
-                <option value="Каплевидная 3х6">Каплевидная 3×6 м</option>
-                <option value="Каплевидная 3х8">Каплевидная 3×8 м</option>
-                <option value="Другая модель">Другая модель / Оцинкованные грядки</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group" style="margin-bottom: 16px;">
-            <label class="form-label">Текст отзыва:</label>
-            <textarea name="comment" class="form-textarea" rows="4" placeholder="Расскажите о качестве каркаса, сборке и перезимовке теплицы..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 13px 20px; font-size: 1rem;">
-            Опубликовать отзыв →
-          </button>
-          <div style="font-size: 0.78rem; color: #718096; text-align: center; margin-top: 8px;">
-            🔒 Ваши контактные данные защищены и не передаются третьим лицам.
-          </div>
-        </form>
-      </div>
 
       
       <div class="reviews-bottom-cta">
@@ -301,29 +239,7 @@
   </section>
 
   
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      
-      const starBtns = document.querySelectorAll(".review-star-btn");
-      const ratingInput = document.getElementById("reviewRatingInput");
 
-      starBtns.forEach(star => {
-        star.addEventListener("click", () => {
-          const score = parseInt(star.getAttribute("data-rate"), 10);
-          if (ratingInput) ratingInput.value = score;
-
-          starBtns.forEach(s => {
-            const sScore = parseInt(s.getAttribute("data-rate"), 10);
-            if (sScore <= score) {
-              s.classList.add("active");
-            } else {
-              s.classList.remove("active");
-            }
-          });
-        });
-      });
-    });
-  </script>
 
   
   <footer class="site-footer">

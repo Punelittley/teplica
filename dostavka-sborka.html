@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -57,6 +57,18 @@
         font-size: 0.82rem !important;
       }
     }
+    .del-steps-card {
+      background: #ffffff !important;
+      border-radius: 24px !important;
+      padding: 32px 34px !important;
+      border: 1.5px solid #e3ede5 !important;
+      margin-bottom: 45px !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.03) !important;
+    }
+    .del-steps-header {
+      text-align: center !important;
+      margin-bottom: 24px !important;
+    }
     .del-steps-grid {
       display: grid !important;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
@@ -86,6 +98,30 @@
       align-items: center !important;
       justify-content: center !important;
       font-family: var(--font-heading) !important;
+    }
+    .del-step-text strong {
+      display: block !important;
+      font-family: var(--font-heading) !important;
+      font-size: 1rem !important;
+      color: #1b4332 !important;
+      margin-bottom: 4px !important;
+    }
+    .del-step-text span {
+      font-size: 0.85rem !important;
+      color: var(--color-text-muted) !important;
+      line-height: 1.45 !important;
+      display: block !important;
+    }
+    @media (max-width: 600px) {
+      .del-steps-card {
+        padding: 24px 16px !important;
+      }
+      .del-steps-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .del-step-item {
+        padding: 16px 16px !important;
+      }
     }
     .foundation-price-block {
       display: grid;

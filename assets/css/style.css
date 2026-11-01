@@ -47,7 +47,6 @@ body.font-large {
 html {
   scroll-behavior: smooth;
   font-size: var(--base-font-size);
-  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -72,7 +71,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 

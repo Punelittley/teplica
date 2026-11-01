@@ -5150,11 +5150,12 @@ textarea {
 }
 .adv-section-title {
   font-family: var(--font-heading);
-  font-size: 2.3rem;
+  font-size: clamp(1.35rem, 5vw, 2.2rem);
   font-weight: 800;
   color: var(--color-primary-dark);
   margin-bottom: 12px;
   line-height: 1.25;
+  word-wrap: break-word;
 }
 .adv-section-sub {
   font-size: 1.1rem;

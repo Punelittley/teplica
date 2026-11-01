@@ -9431,6 +9431,7 @@ textarea {
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 16px;
       transition: transform 0.35s ease;
     }
     .works-item:hover img {

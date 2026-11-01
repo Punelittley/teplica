@@ -3672,15 +3672,6 @@ textarea {
     white-space: normal !important;
     word-break: break-word;
   }
-  @media (max-width: 440px) {
-    .footer-links-grid {
-      grid-template-columns: 1fr !important;
-      gap: 20px !important;
-    }
-    .footer-social-col {
-      grid-column: span 1 !important;
-    }
-  }
   .footer-col-title::after {
     width: 22px;
     height: 2px;
@@ -3745,6 +3736,16 @@ textarea {
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
+}
+
+@media (max-width: 440px) {
+  .footer-links-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .footer-social-col {
+    grid-column: span 1 !important;
   }
 }
 

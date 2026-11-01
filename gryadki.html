@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://teplicy-tut.ru/gryadki.html">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=3.9">
+  <link rel="stylesheet" href="assets/css/style.css?v=4.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
@@ -343,58 +343,62 @@
         <h2 style="font-size: 1.5rem; font-weight: 800; color: #1b4332; margin-bottom: 8px;">Прайс на оцинкованные грядки</h2>
         <p style="font-size: 0.95rem; color: #556b62; margin-bottom: 24px;">Размеры указаны: длина × ширина × высота борта. Через каждый метр установлена перемычка для жесткости. Поставляются в удобной компактной коробке.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin-bottom: 28px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 28px;">
           
           
-          <div style="background: #f8faf8; border: 1.5px solid #e1ece4; border-radius: 18px; padding: 22px;">
+          <div class="gryadki-pricing-card" style="background: #f8faf8; border: 1.5px solid #e1ece4; border-radius: 18px; padding: 22px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
               <h3 style="font-size: 1.25rem; font-weight: 800; color: #1b4332; margin: 0;">Высота борта 150 мм</h3>
               <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;">Компакт</span>
             </div>
-            <table class="pricing-table" style="width: 100%; font-size: 0.92rem;">
-              <thead>
-                <tr>
-                  <th style="padding: 8px 12px; text-align: left;">Размер (Д × Ш × В)</th>
-                  <th style="padding: 8px 12px; text-align: right;">Цена</th>
-                  <th style="padding: 8px 12px; text-align: center;">Заказ</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>3000 × 800 × 150 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">1 700 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 3000х800х150 (1 700 ₽)">Заказать</button></td></tr>
-                <tr><td>4000 × 800 × 150 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 100 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 4000х800х150 (2 100 ₽)">Заказать</button></td></tr>
-                <tr><td>5000 × 800 × 150 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 490 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 5000х800х150 (2 490 ₽)">Заказать</button></td></tr>
-                <tr><td>3000 × 1000 × 150 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">1 780 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 3000х1000х150 (1 780 ₽)">Заказать</button></td></tr>
-                <tr><td>4000 × 1000 × 150 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 200 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 4000х1000х150 (2 200 ₽)">Заказать</button></td></tr>
-                <tr><td>5000 × 1000 × 150 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 580 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 5000х1000х150 (2 580 ₽)">Заказать</button></td></tr>
-              </tbody>
-            </table>
+            <div class="pricing-table-wrap">
+              <table class="pricing-table gryadki-table" style="width: 100%; font-size: 0.92rem;">
+                <thead>
+                  <tr>
+                    <th style="padding: 8px 10px; text-align: left; white-space: nowrap;">Размер (Д × Ш)</th>
+                    <th style="padding: 8px 10px; text-align: right; white-space: nowrap;">Цена</th>
+                    <th style="padding: 8px 10px; text-align: center; white-space: nowrap;">Заказ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">3 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">1&nbsp;700&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 3000х800х150 (1 700 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">4 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;100&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 4000х800х150 (2 100 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">5 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;490&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 5000х800х150 (2 490 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">3 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">1&nbsp;780&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 3000х1000х150 (1 780 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">4 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;200&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 4000х1000х150 (2 200 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">5 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;580&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 5000х1000х150 (2 580 ₽)">Заказать</button></td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           
-          <div style="background: #f8faf8; border: 1.5px solid #e1ece4; border-radius: 18px; padding: 22px;">
+          <div class="gryadki-pricing-card" style="background: #f8faf8; border: 1.5px solid #e1ece4; border-radius: 18px; padding: 22px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
               <h3 style="font-size: 1.25rem; font-weight: 800; color: #1b4332; margin: 0;">Высота борта 200 мм</h3>
               <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;">Хит продаж</span>
             </div>
-            <table class="pricing-table" style="width: 100%; font-size: 0.92rem;">
-              <thead>
-                <tr>
-                  <th style="padding: 8px 12px; text-align: left;">Размер (Д × Ш × В)</th>
-                  <th style="padding: 8px 12px; text-align: right;">Цена</th>
-                  <th style="padding: 8px 12px; text-align: center;">Заказ</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>2000 × 800 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">1 550 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 2000х800х200 (1 550 ₽)">Заказать</button></td></tr>
-                <tr><td>3000 × 800 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 000 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 3000х800х200 (2 000 ₽)">Заказать</button></td></tr>
-                <tr><td>4000 × 800 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 500 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 4000х800х200 (2 500 ₽)">Заказать</button></td></tr>
-                <tr><td>5000 × 800 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 950 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 5000х800х200 (2 950 ₽)">Заказать</button></td></tr>
-                <tr><td>2000 × 1000 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">1 640 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 2000х1000х200 (1 640 ₽)">Заказать</button></td></tr>
-                <tr><td>3000 × 1000 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 090 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 3000х1000х200 (2 090 ₽)">Заказать</button></td></tr>
-                <tr><td>4000 × 1000 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">2 590 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 4000х1000х200 (2 590 ₽)">Заказать</button></td></tr>
-                <tr><td>5000 × 1000 × 200 мм</td><td style="text-align: right; font-weight: 700; color: #1b4332;">3 140 ₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" data-open-modal data-subject="Грядка 5000х1000х200 (3 140 ₽)">Заказать</button></td></tr>
-              </tbody>
-            </table>
+            <div class="pricing-table-wrap">
+              <table class="pricing-table gryadki-table" style="width: 100%; font-size: 0.92rem;">
+                <thead>
+                  <tr>
+                    <th style="padding: 8px 10px; text-align: left; white-space: nowrap;">Размер (Д × Ш)</th>
+                    <th style="padding: 8px 10px; text-align: right; white-space: nowrap;">Цена</th>
+                    <th style="padding: 8px 10px; text-align: center; white-space: nowrap;">Заказ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">2 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">1&nbsp;550&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 2000х800х200 (1 550 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">3 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;000&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 3000х800х200 (2 000 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">4 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;500&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 4000х800х200 (2 500 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">5 × 0.8 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;950&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 5000х800х200 (2 950 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">2 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">1&nbsp;640&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 2000х1000х200 (1 640 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">3 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;090&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 3000х1000х200 (2 090 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">4 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">2&nbsp;590&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 4000х1000х200 (2 590 ₽)">Заказать</button></td></tr>
+                  <tr><td style="white-space: nowrap; font-weight: 600;">5 × 1.0 м</td><td style="text-align: right; font-weight: 800; color: #1b4332; white-space: nowrap;">3&nbsp;140&nbsp;₽</td><td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.82rem; white-space: nowrap;" data-open-modal data-subject="Грядка 5000х1000х200 (3 140 ₽)">Заказать</button></td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
         </div>
@@ -640,7 +644,7 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=3.9"></script>
-  <script src="assets/js/main.js?v=3.9"></script>
+  <script src="assets/js/catalog-data.js?v=4.0"></script>
+  <script src="assets/js/main.js?v=4.0"></script>
 </body>
 </html>

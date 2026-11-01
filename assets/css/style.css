@@ -8310,6 +8310,35 @@ textarea {
     margin: 0 auto;
     width: 100%;
   }
+  .prod-specs-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+  .poly-features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+    align-items: center;
+  }
+  .poly-parts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .prod-specs-grid-2col,
+    .poly-features-grid,
+    .poly-parts-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+  }
+
   .prod-main-view {
     aspect-ratio: 4 / 3;
     border-radius: 18px;

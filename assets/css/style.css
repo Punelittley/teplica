@@ -3454,17 +3454,33 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
 @media (max-width: 640px) {
   .pricing-table th,
   .pricing-table td {
-    padding: 8px 6px !important;
-    font-size: 0.82rem !important;
+    padding: 7px 4px !important;
+    font-size: 0.80rem !important;
+    text-align: center !important;
+  }
+  .pricing-table th:first-child,
+  .pricing-table td:first-child {
+    text-align: left !important;
+    padding-left: 6px !important;
   }
   .pricing-table th {
-    white-space: nowrap !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    vertical-align: middle !important;
+    word-break: normal !important;
   }
   .pricing-table td {
     white-space: nowrap !important;
   }
   .pricing-table td strong {
     white-space: nowrap !important;
+    font-size: 0.80rem !important;
+  }
+  .pricing-table td .btn {
+    padding: 5px 8px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    border-radius: 6px !important;
   }
   .gryadki-grid {
     grid-template-columns: 1fr !important;
@@ -3480,6 +3496,15 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
     box-sizing: border-box !important;
   }
   .pricing-table-wrap {
+    margin: 10px 0 !important;
+    border: 1px solid var(--color-border) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .gryadki-pricing-card .pricing-table-wrap {
     margin: 6px 0 !important;
     border: none !important;
     box-shadow: none !important;

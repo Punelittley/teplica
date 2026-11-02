@@ -822,6 +822,14 @@ window.publishToGithub = publishToGithub;
 window.testGithubConnection = testGithubConnection;
 window.updateSidebarPublishState = updateSidebarPublishState;
 window.showAdminToast = showAdminToast;
+window.saveAndPublishPrices = function() {
+  const form = document.getElementById("pricesForm");
+  if (!form) return;
+  form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+  setTimeout(() => {
+    publishToGithub("pricing");
+  }, 300);
+};
 
 function setupDatabaseTab() {
   const exportBtn = document.getElementById("exportFullDbBtn");

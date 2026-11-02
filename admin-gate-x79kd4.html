@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Защищенная панель управления — Теплицы ТУТ</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="admin/admin.css?v=5.0">
+  <link rel="stylesheet" href="admin/admin.css?v=5.1">
 </head>
 <body>
 
@@ -274,9 +274,14 @@
               </div>
             </div>
 
-            <button type="submit" class="btn-admin btn-admin-primary" style="margin-top: 15px; padding: 12px 24px;">
-              💾 Сохранить цены калькулятора
-            </button>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px;">
+              <button type="submit" class="btn-admin btn-admin-primary" style="padding: 12px 24px;">
+                💾 Сохранить цены
+              </button>
+              <button type="button" class="btn-admin" onclick="window.saveAndPublishPrices ? window.saveAndPublishPrices() : null" style="background: #1b4332; color: #ffffff; padding: 12px 24px; font-weight: 800; border-radius: 8px; border: none; cursor: pointer;">
+                🚀 Сохранить и сразу опубликовать
+              </button>
+            </div>
           </div>
         </form>
       </section>
@@ -295,117 +300,88 @@
         </div>
 
         
-        <div class="admin-card" style="border: 2px solid #52b788; background: #fafdfb;">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="font-size: 1.8rem;">🚀</span>
-            <div>
-              <h2 style="font-size: 1.3rem; color: #1b4332; margin: 0;">Публикация на GitHub Pages в 1 клик</h2>
-              <small style="color: var(--admin-muted);">Изменения автоматически обновятся на вашем .com домене за 20–30 секунд</small>
-            </div>
-          </div>
+        <div class="admin-card publish-hero-card">
+          <div class="publish-status-badge">✅ Связь с сайтом настроена (Punelittley/teplica)</div>
+          <h2 style="font-size: 1.35rem; color: #1b4332; margin: 6px 0 6px;">Публикация изменений на сайт в 1 клик</h2>
+          <p style="color: var(--admin-muted); font-size: 0.9rem; margin: 0 0 16px;">
+            Нажмите кнопку, чтобы все изменённые цены, товары, отзывы и фотографии сразу появились у посетителей сайта.
+          </p>
 
-          <div style="background: #edf7ee; border-radius: 8px; padding: 14px 16px; margin-bottom: 18px; font-size: 0.88rem; color: #1b4332; line-height: 1.55;">
-            <strong>✅ Синхронизация с GitHub настроена автоматически!</strong>
-            <p style="margin-top: 6px; margin-bottom: 0;">Ваш репозиторий <code>Punelittley/teplica</code> и ключ доступа уже привязаны. При любых изменениях товаров, цен, отзывов или фото просто нажмите кнопку <strong>«Опубликовать изменения на сайт»</strong> — GitHub Pages автоматически обновит ваш сайт за 20–30 секунд.</p>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group-admin">
-              <label>Репозиторий GitHub (username/repo):</label>
-              <input type="text" id="github_repo" class="form-input-admin" value="Punelittley/teplica">
-            </div>
-            <div class="form-group-admin">
-              <label>Ветка (branch):</label>
-              <input type="text" id="github_branch" class="form-input-admin" value="main">
-            </div>
-          </div>
-
-          <div class="form-group-admin">
-            <label>GitHub Personal Access Token (PAT):</label>
-            <input type="password" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-            <div style="margin-top: 8px; font-size: 0.86rem; color: #375344; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-              <span>🔑 Нужен токен? <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">Создать токен в 1 клик на GitHub →</a></span>
-              <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" onclick="window.testGithubConnection ? window.testGithubConnection() : null" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
-            </div>
-          </div>
-
-          <div style="background: #f8fbf9; border: 1px dashed #52b788; border-radius: 8px; padding: 12px 16px; margin-top: 14px; margin-bottom: 14px; font-size: 0.86rem; color: #1b4332; line-height: 1.55;">
-            <strong>📋 Как получить токен за 1 минуту:</strong>
-            <ol style="margin-left: 20px; margin-top: 6px; margin-bottom: 0;">
-              <li>Нажмите ссылку <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">«Создать токен на GitHub»</a> (откроется сайт GitHub с уже отмеченными правами).</li>
-              <li>Пролистайте страницу вниз и нажмите зелёную кнопку <strong>«Generate token»</strong>.</li>
-              <li>Скопируйте ключ (начинается на <code>ghp_...</code>), вставьте в поле выше и нажмите <strong>«Проверить подключение»</strong>. Токен сохранится в вашем браузере!</li>
-            </ol>
-          </div>
-
-          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
-            <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" onclick="window.publishToGithub ? window.publishToGithub('tab') : null" style="padding: 14px 28px; font-size: 1.05rem;">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" onclick="window.publishToGithub ? window.publishToGithub('tab') : null" style="padding: 13px 26px; font-size: 1.05rem;">
               🚀 Опубликовать изменения на сайт (GitHub)
             </button>
-            <button type="button" class="btn-admin btn-admin-light" id="pullGithubBtn" style="padding: 14px 22px; font-size: 0.95rem; font-weight: 600;" title="Загрузить опубликованную с сайта базу">
-              🔄 Загрузить свежую базу с сайта / GitHub
+            <button type="button" class="btn-admin btn-admin-light" id="pullGithubBtn" style="padding: 13px 20px; font-size: 0.95rem; font-weight: 600;" title="Загрузить опубликованную с сайта базу">
+              🔄 Загрузить свежую базу с сайта
             </button>
           </div>
 
           <div id="githubStatus" style="margin-top: 14px; font-size: 0.92rem; display: none; padding: 10px 14px; border-radius: 8px; background: #ffffff; border: 1px solid #d8f3dc;"></div>
         </div>
 
-        
-        <div class="admin-card">
-          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 10px;">🌐 Привязка домена .com из Reg.ru к GitHub Pages</h2>
-          <p style="font-size: 0.9rem; color: var(--admin-muted); margin-bottom: 14px;">
-            Пошаговая инструкция для подключения купленного домена на Reg.ru:
-          </p>
-          <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; font-size: 0.88rem; line-height: 1.6;">
-            <p><strong>1. В личном кабинете Reg.ru в разделе «DNS-серверы и управление зоной»:</strong></p>
+        <details class="admin-details-card">
+          <summary>⚙️ Настройки подключения GitHub (токен и ветка)</summary>
+          <div style="padding-top: 16px;">
+            <div class="form-grid-2">
+              <div class="form-group-admin">
+                <label>Репозиторий GitHub:</label>
+                <input type="text" id="github_repo" class="form-input-admin" value="Punelittley/teplica">
+              </div>
+              <div class="form-group-admin">
+                <label>Ветка (branch):</label>
+                <input type="text" id="github_branch" class="form-input-admin" value="main">
+              </div>
+            </div>
+            <div class="form-group-admin">
+              <label>GitHub Personal Access Token (PAT):</label>
+              <input type="password" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+              <div style="margin-top: 8px; font-size: 0.86rem; color: #375344; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                <span>🔑 <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">Создать новый токен на GitHub →</a></span>
+                <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" onclick="window.testGithubConnection ? window.testGithubConnection() : null" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="admin-details-card">
+          <summary>🌐 Привязка домена .com из Reg.ru к GitHub Pages</summary>
+          <div style="padding-top: 14px; font-size: 0.88rem; line-height: 1.6; color: #495057;">
+            <p><strong>1. В личном кабинете Reg.ru (DNS-серверы и управление зоной):</strong></p>
             <ul style="margin-left: 20px; margin-bottom: 10px;">
-              <li>Добавьте 4 <strong>A-записи</strong> для вашего домена (с именем <code>@</code>):<br>
-                <code>185.199.108.153</code><br>
-                <code>185.199.109.153</code><br>
-                <code>185.199.110.153</code><br>
-                <code>185.199.111.153</code>
+              <li>Добавьте 4 <strong>A-записи</strong> для домена <code>@</code>:<br>
+                <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code>
               </li>
               <li>Добавьте 1 <strong>CNAME-запись</strong> для поддомена <code>www</code>:<br>
-                значение: <code>ваш_логин.github.io.</code> (с точкой на конце)
+                значение: <code>Punelittley.github.io.</code> (с точкой на конце)
               </li>
             </ul>
             <p><strong>2. В репозитории GitHub:</strong></p>
             <ul style="margin-left: 20px;">
-              <li>В репозитории сайта откройте <strong>Settings → Pages → Custom domain</strong>, введите купленный домен <code>ваш-домен.com</code> и включите галочку <em>Enforce HTTPS</em>.</li>
+              <li>В репозитории сайта откройте <strong>Settings → Pages → Custom domain</strong>, введите купленный домен и включите <em>Enforce HTTPS</em>.</li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        
-        <div class="admin-card">
-          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 8px;">📥 3. Скачать полную базу данных (.json) на компьютер</h2>
-          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
-            Создает единый файл <code>teplica_full_database.json</code> со всеми товарами, ценами, отзывами, выполненными работами и всеми загруженными фотографиями (в Base64).
-          </p>
-          <button class="btn-admin btn-admin-light" id="exportFullDbBtn" style="padding: 12px 24px; font-weight: 700;">
-            📥 Скачать файл базы данных (.json)
-          </button>
-        </div>
-
-        
-        <div class="admin-card">
-          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 8px;">📤 4. Загрузить базу данных из файла</h2>
-          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
-            Выберите ранее сохраненный JSON-файл базы для восстановления товаров и фотографий.
-          </p>
-          <input type="file" id="importFullDbInput" accept=".json" class="form-input-admin" style="max-width: 450px;">
-        </div>
-
-        
-        <div class="admin-card" style="border-color: #ffadad;">
-          <h2 style="font-size: 1.25rem; color: #dc3545; margin-bottom: 8px;">⚠️ 5. Сброс к заводским настройкам</h2>
-          <p style="font-size: 0.92rem; color: var(--admin-muted); margin-bottom: 16px;">
-            Стереть все локальные изменения и вернуть исходную базу данных сайта.
-          </p>
-          <button class="btn-admin btn-admin-danger" id="resetDbBtn">
-            Сбросить базу данных
-          </button>
-        </div>
+        <details class="admin-details-card">
+          <summary>💾 Резервные копии и экспорт базы (.json)</summary>
+          <div style="padding-top: 14px; font-size: 0.88rem;">
+            <p style="margin-bottom: 12px; color: var(--admin-muted);">
+              Скачать полную базу или восстановить товары и фотографии из ранее сохраненного файла:
+            </p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 16px;">
+              <button type="button" class="btn-admin btn-admin-light" id="exportFullDbBtn" style="padding: 10px 18px; font-weight: 700;">
+                📥 Скачать файл базы (.json)
+              </button>
+              <input type="file" id="importFullDbInput" accept=".json" class="form-input-admin" style="max-width: 300px;">
+            </div>
+            <hr style="margin: 16px 0; border: none; border-top: 1px solid #dee2e6;">
+            <div>
+              <button type="button" class="btn-admin btn-admin-danger" id="resetDbBtn" style="padding: 8px 16px; font-size: 0.85rem;">
+                ⚠️ Сбросить к заводским настройкам
+              </button>
+            </div>
+          </div>
+        </details>
       </section>
 
       
@@ -637,7 +613,7 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=5.0"></script>
-  <script src="admin/admin.js?v=5.0"></script>
+  <script src="assets/js/catalog-data.js?v=5.1"></script>
+  <script src="admin/admin.js?v=5.1"></script>
 </body>
 </html>

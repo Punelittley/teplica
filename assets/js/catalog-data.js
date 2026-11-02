@@ -257,7 +257,7 @@ const DEFAULT_CONFIG = {
     workHours: "Ежедневно с 8:00 до 20:00",
     address: "г. Ярославль, ул. Промышленная, д. 12 (Выставочная площадка)",
     email: "info@teplici76.ru",
-    vkUrl: "https://vk.ru/tepliciotproizvoditelya76",
+    vkUrl: "https://vk.ru/club241898656",
     telegramUsername: "teplici76_yar",
     promoText: "Весенняя акция: бесплатное хранение теплицы на складе до начала сезона!"
   },
@@ -271,7 +271,8 @@ const DEFAULT_CONFIG = {
     drop: {
       "4m": { name: "3х4 метра", price: 26500, oldPrice: 29900 },
       "6m": { name: "3х6 метров", price: 32500, oldPrice: 36500 },
-      "8m": { name: "3х8 метров", price: 38500, oldPrice: 43500 }
+      "8m": { name: "3х8 метров", price: 38500, oldPrice: 43500 },
+      "10m": { name: "3х10 метров", price: 44500, oldPrice: 49900 }
     },
     house: {
       "4m": { name: "3х4 метра", price: 29500, oldPrice: 33500 },

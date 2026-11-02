@@ -449,3 +449,114 @@ body {
   font-size: 1.1rem;
 }
 
+.sidebar-publish-box {
+  margin-bottom: 22px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(82, 183, 136, 0.35);
+  text-align: center;
+}
+
+.btn-sidebar-publish {
+  width: 100%;
+  padding: 12px 14px;
+  background: #52b788;
+  color: #081c15;
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.btn-sidebar-publish:hover {
+  background: #74c69d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-sidebar-publish:active {
+  transform: translateY(0);
+}
+
+.btn-sidebar-publish:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sidebar-publish-status {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+/* Floating Toast Notifications */
+.admin-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.admin-toast {
+  pointer-events: auto;
+  background: #1b4332;
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 300px;
+  max-width: 460px;
+  border-left: 4px solid #52b788;
+  animation: toastFadeIn 0.3s ease;
+}
+
+.admin-toast.error {
+  background: #842029;
+  border-left-color: #f8d7da;
+}
+
+.admin-toast.warning {
+  background: #664d03;
+  border-left-color: #ffc107;
+}
+
+.admin-toast-btn {
+  background: #52b788;
+  color: #081c15;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.admin-toast-btn:hover {
+  background: #74c69d;
+}
+
+@keyframes toastFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

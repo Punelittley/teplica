@@ -204,6 +204,7 @@ window.deleteProduct = function(id) {
   config.products = (config.products || []).filter(p => p.id !== id);
   saveSiteConfig(config);
   loadProductsTab();
+  showAdminToast("Товар удален!", "Опубликовать на сайт", () => publishToGithub("toast"));
 };
 
 
@@ -240,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveSiteConfig(config);
     closeModal("productModal");
     loadProductsTab();
+    showAdminToast("Товар сохранён!", "Опубликовать на сайт", () => publishToGithub("toast"));
   });
 });
 
@@ -309,6 +311,7 @@ window.deleteReview = function(id) {
   config.reviews = (config.reviews || []).filter(r => r.id !== id);
   saveSiteConfig(config);
   loadReviewsTab();
+  showAdminToast("Отзыв удален!", "Опубликовать на сайт", () => publishToGithub("toast"));
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -339,6 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveSiteConfig(config);
     closeModal("reviewModal");
     loadReviewsTab();
+    showAdminToast("Отзыв сохранён!", "Опубликовать на сайт", () => publishToGithub("toast"));
   });
 });
 
@@ -404,6 +408,7 @@ window.deleteWork = function(id) {
   config.works = (config.works || []).filter(w => w.id !== id);
   saveSiteConfig(config);
   loadWorksTab();
+  showAdminToast("Работа удалена!", "Опубликовать на сайт", () => publishToGithub("toast"));
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -434,6 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveSiteConfig(config);
     closeModal("workModal");
     loadWorksTab();
+    showAdminToast("Работа сохранена!", "Опубликовать на сайт", () => publishToGithub("toast"));
   });
 });
 
@@ -581,17 +587,247 @@ window.closeModal = function(modalId) {
 };
 
 
+function showAdminToast(msg, btnText, btnCallback, isError = false) {
+  let container = document.getElementById("adminToastContainer");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "adminToastContainer";
+    container.className = "admin-toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `admin-toast ${isError ? 'error' : ''}`;
+  toast.innerHTML = `<span>${msg}</span>`;
+
+  if (btnText && btnCallback) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "admin-toast-btn";
+    btn.textContent = `🚀 ${btnText}`;
+    btn.addEventListener("click", () => {
+      toast.remove();
+      btnCallback();
+    });
+    toast.appendChild(btn);
+  }
+
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(10px)";
+    toast.style.transition = "all 0.3s ease";
+    setTimeout(() => toast.remove(), 300);
+  }, 6500);
+}
+
+function updateSidebarPublishState() {
+  const token = (localStorage.getItem("teplici76_github_token") || "").trim();
+  const statusEl = document.getElementById("sidebarPublishStatus");
+  if (!statusEl) return;
+
+  if (!token) {
+    statusEl.innerHTML = `<span style="color:#ffd166;">⚠️ Токен не настроен</span>`;
+  } else {
+    statusEl.innerHTML = `✅ Готово к публикации`;
+  }
+}
+
+async function publishToGithub(triggerSource = "button") {
+  const ghRepoInput = document.getElementById("github_repo");
+  const ghTokenInput = document.getElementById("github_token");
+  const ghBranchInput = document.getElementById("github_branch");
+  const ghStatus = document.getElementById("githubStatus");
+  const sidebarBtn = document.getElementById("sidebarPublishBtn");
+  const publishGithubBtn = document.getElementById("publishGithubBtn");
+  const sidebarStatus = document.getElementById("sidebarPublishStatus");
+
+  const repo = (ghRepoInput?.value || localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica").trim();
+  const branch = (ghBranchInput?.value || localStorage.getItem("teplici76_github_branch") || "main").trim();
+  let token = (ghTokenInput?.value || localStorage.getItem("teplici76_github_token") || "").trim();
+
+  if (!token) {
+    const tabBtn = document.querySelector('[data-tab="tabBackup"]');
+    if (tabBtn) tabBtn.click();
+    if (ghTokenInput) {
+      ghTokenInput.focus();
+      ghTokenInput.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    showAdminToast("⚠️ Укажите GitHub Token для публикации на сайт (см. инструкцию внизу)", null, null, true);
+    return;
+  }
+
+  localStorage.setItem("teplici76_github_repo", repo);
+  localStorage.setItem("teplici76_github_token", token);
+  localStorage.setItem("teplici76_github_branch", branch);
+
+  if (sidebarBtn) { sidebarBtn.disabled = true; sidebarBtn.innerHTML = `<span>⏳</span> Публикация...`; }
+  if (publishGithubBtn) { publishGithubBtn.disabled = true; publishGithubBtn.innerHTML = `⏳ Публикация на GitHub...`; }
+  if (sidebarStatus) sidebarStatus.innerHTML = `⏳ Отправка в GitHub...`;
+  if (ghStatus) {
+    ghStatus.style.display = "block";
+    ghStatus.style.color = "#1b4332";
+    ghStatus.innerHTML = `⏳ Подключение к GitHub API (${repo})...`;
+  }
+
+  try {
+    const config = getSiteConfig();
+    const leads = JSON.parse(localStorage.getItem("teplici76_leads") || "[]");
+    const fullBackup = {
+      exportedAt: new Date().toISOString(),
+      version: "2.0",
+      site: "Теплицы ТУТ",
+      database: config,
+      leads: leads
+    };
+    const jsonStr = JSON.stringify(fullBackup, null, 2);
+
+    let currentSha = null;
+    try {
+      const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}`, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Accept": "application/vnd.github+json"
+        }
+      });
+      if (getRes.status === 401 || getRes.status === 403) {
+        throw new Error("Неверный GitHub Token или нет прав на запись (нужно право repo/contents).");
+      }
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        currentSha = fileData.sha;
+      }
+    } catch (e) {
+      if (e.message.includes("Token") || e.message.includes("прав")) throw e;
+      console.warn("Файл database.json создается впервые или ошибка чтения SHA:", e);
+    }
+
+    if (ghStatus) ghStatus.innerHTML = "⏳ Запись коммита в репозиторий GitHub...";
+
+    const utf8Bytes = new TextEncoder().encode(jsonStr);
+    let binary = "";
+    for (let i = 0; i < utf8Bytes.length; i++) {
+      binary += String.fromCharCode(utf8Bytes[i]);
+    }
+    const base64Content = btoa(binary);
+
+    const putBody = {
+      message: "Обновление данных сайта через панель управления (каталог, цены, отзывы)",
+      content: base64Content,
+      branch: branch
+    };
+    if (currentSha) {
+      putBody.sha = currentSha;
+    }
+
+    const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(putBody)
+    });
+
+    const putData = await putRes.json();
+
+    if (putRes.ok) {
+      const commitSha = (putData.commit && putData.commit.sha) ? putData.commit.sha.slice(0, 7) : "";
+      if (ghStatus) {
+        ghStatus.style.color = "#2b9348";
+        ghStatus.innerHTML = `✅ <strong>Успешно опубликовано на GitHub!</strong><br>Коммит: <code>${commitSha}</code>.<br>GitHub Pages автоматически обновляет сайт. Через 1–2 минуты новые данные появятся у всех посетителей.`;
+      }
+      if (sidebarStatus) sidebarStatus.innerHTML = `✅ Опубликовано (${commitSha})`;
+      showAdminToast(`✅ Успешно опубликовано на GitHub (коммит ${commitSha})! Сайт обновится через 1 минуту.`);
+    } else {
+      throw new Error(putData.message || "Ошибка записи в GitHub API");
+    }
+  } catch (err) {
+    if (ghStatus) {
+      ghStatus.style.color = "#dc3545";
+      ghStatus.innerHTML = `❌ Ошибка публикации: ${err.message}`;
+    }
+    if (sidebarStatus) sidebarStatus.innerHTML = `❌ Ошибка отправки`;
+    showAdminToast(`❌ Ошибка: ${err.message}`, null, null, true);
+  } finally {
+    if (sidebarBtn) {
+      sidebarBtn.disabled = false;
+      sidebarBtn.innerHTML = `<span>🚀</span> Опубликовать на сайт`;
+    }
+    if (publishGithubBtn) {
+      publishGithubBtn.disabled = false;
+      publishGithubBtn.innerHTML = `🚀 Опубликовать изменения на сайт (GitHub)`;
+    }
+  }
+}
+
+async function testGithubConnection() {
+  const ghRepoInput = document.getElementById("github_repo");
+  const ghTokenInput = document.getElementById("github_token");
+  const ghStatus = document.getElementById("githubStatus");
+  const repo = (ghRepoInput?.value || localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica").trim();
+  const token = (ghTokenInput?.value || localStorage.getItem("teplici76_github_token") || "").trim();
+
+  if (!token) {
+    alert("Сначала вставьте токен в поле ввода!");
+    if (ghTokenInput) ghTokenInput.focus();
+    return;
+  }
+
+  if (ghStatus) {
+    ghStatus.style.display = "block";
+    ghStatus.style.color = "#1b4332";
+    ghStatus.innerHTML = `⏳ Проверка токена и прав доступа к ${repo}...`;
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json"
+      }
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      localStorage.setItem("teplici76_github_token", token);
+      localStorage.setItem("teplici76_github_repo", repo);
+      if (ghStatus) {
+        ghStatus.style.color = "#2b9348";
+        ghStatus.innerHTML = `✅ <strong>Связь установлена!</strong> Доступ к репозиторию <code>${data.full_name}</code> подтвержден. Можно публиковать.`;
+      }
+      updateSidebarPublishState();
+      showAdminToast("✅ Токен GitHub валиден и сохранен!");
+    } else {
+      const err = await res.json();
+      if (ghStatus) {
+        ghStatus.style.color = "#dc3545";
+        ghStatus.innerHTML = `❌ Ошибка проверки (${res.status}): ${err.message}. Убедитесь, что токен создан с правами <code>repo</code>.`;
+      }
+      showAdminToast("❌ Ошибка проверки токена", null, null, true);
+    }
+  } catch (e) {
+    if (ghStatus) {
+      ghStatus.style.color = "#dc3545";
+      ghStatus.innerHTML = `❌ Ошибка сети: ${e.message}`;
+    }
+    showAdminToast(`❌ Ошибка сети: ${e.message}`, null, null, true);
+  }
+}
+
 function setupDatabaseTab() {
   const exportBtn = document.getElementById("exportFullDbBtn");
   const importInput = document.getElementById("importFullDbInput");
   const resetBtn = document.getElementById("resetDbBtn");
   const publishGithubBtn = document.getElementById("publishGithubBtn");
+  const sidebarPublishBtn = document.getElementById("sidebarPublishBtn");
+  const testGithubBtn = document.getElementById("testGithubBtn");
   const ghRepoInput = document.getElementById("github_repo");
   const ghTokenInput = document.getElementById("github_token");
   const ghBranchInput = document.getElementById("github_branch");
   const ghStatus = document.getElementById("githubStatus");
 
-  
   if (window.location.hash.includes("token=")) {
     const match = window.location.hash.match(/token=([^&]+)/);
     if (match && match[1]) {
@@ -604,115 +840,37 @@ function setupDatabaseTab() {
     }
   }
 
-  
   if (ghRepoInput) {
     ghRepoInput.value = localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica";
-    ghRepoInput.addEventListener("input", () => localStorage.setItem("teplici76_github_repo", ghRepoInput.value.trim()));
+    ghRepoInput.addEventListener("input", () => {
+      localStorage.setItem("teplici76_github_repo", ghRepoInput.value.trim());
+      updateSidebarPublishState();
+    });
   }
   if (ghTokenInput) {
     ghTokenInput.value = localStorage.getItem("teplici76_github_token") || "";
-    ghTokenInput.addEventListener("input", () => localStorage.setItem("teplici76_github_token", ghTokenInput.value.trim()));
+    ghTokenInput.addEventListener("input", () => {
+      localStorage.setItem("teplici76_github_token", ghTokenInput.value.trim());
+      updateSidebarPublishState();
+    });
   }
   if (ghBranchInput) {
     ghBranchInput.value = localStorage.getItem("teplici76_github_branch") || "main";
     ghBranchInput.addEventListener("input", () => localStorage.setItem("teplici76_github_branch", ghBranchInput.value.trim()));
   }
 
-  
+  updateSidebarPublishState();
+
   if (publishGithubBtn) {
-    publishGithubBtn.addEventListener("click", async () => {
-      const repo = ghRepoInput.value.trim();
-      const token = ghTokenInput.value.trim();
-      const branch = ghBranchInput.value.trim() || "main";
+    publishGithubBtn.addEventListener("click", () => publishToGithub("tab"));
+  }
 
-      if (!repo || !token) {
-        alert("Пожалуйста, укажите репозиторий (например: your-name/teplica-main) и GitHub Token!");
-        return;
-      }
+  if (sidebarPublishBtn) {
+    sidebarPublishBtn.addEventListener("click", () => publishToGithub("sidebar"));
+  }
 
-      localStorage.setItem("teplici76_github_repo", repo);
-      localStorage.setItem("teplici76_github_token", token);
-      localStorage.setItem("teplici76_github_branch", branch);
-
-      publishGithubBtn.disabled = true;
-      ghStatus.style.display = "block";
-      ghStatus.style.color = "#1b4332";
-      ghStatus.innerHTML = "⏳ Подключение к GitHub API...";
-
-      try {
-        const config = getSiteConfig();
-        const leads = JSON.parse(localStorage.getItem("teplici76_leads") || "[]");
-        const fullBackup = {
-          exportedAt: new Date().toISOString(),
-          version: "2.0",
-          site: "Теплицы ТУТ",
-          database: config,
-          leads: leads
-        };
-        const jsonStr = JSON.stringify(fullBackup, null, 2);
-
-        
-        let currentSha = null;
-        try {
-          const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}`, {
-            headers: {
-              "Authorization": `Bearer ${token}`,
-              "Accept": "application/vnd.github+json"
-            }
-          });
-          if (getRes.ok) {
-            const fileData = await getRes.json();
-            currentSha = fileData.sha;
-          }
-        } catch (e) {
-          console.warn("Файл database.json создается впервые");
-        }
-
-        ghStatus.innerHTML = "⏳ Запись коммита в репозиторий GitHub...";
-
-        
-        const utf8Bytes = new TextEncoder().encode(jsonStr);
-        let binary = "";
-        for (let i = 0; i < utf8Bytes.length; i++) {
-          binary += String.fromCharCode(utf8Bytes[i]);
-        }
-        const base64Content = btoa(binary);
-
-        const putBody = {
-          message: "Обновление базы данных (каталог, отзывы, фото) [skip ci]",
-          content: base64Content,
-          branch: branch
-        };
-        if (currentSha) {
-          putBody.sha = currentSha;
-        }
-
-        const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json`, {
-          method: "PUT",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Accept": "application/vnd.github+json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(putBody)
-        });
-
-        const putData = await putRes.json();
-
-        if (putRes.ok) {
-          ghStatus.style.color = "#2b9348";
-          ghStatus.innerHTML = `✅ <strong>Успешно опубликовано на GitHub!</strong><br>Коммит: <code>${putData.commit.sha.slice(0, 7)}</code>. GitHub Pages обновит сайт на вашем домене через 20–30 секунд.`;
-        } else {
-          ghStatus.style.color = "#dc3545";
-          ghStatus.innerHTML = `❌ Ошибка GitHub API: ${putData.message || 'Проверьте токен и название репозитория'}`;
-        }
-      } catch (err) {
-        ghStatus.style.color = "#dc3545";
-        ghStatus.innerHTML = `❌ Ошибка отправки: ${err.message}`;
-      } finally {
-        publishGithubBtn.disabled = false;
-      }
-    });
+  if (testGithubBtn) {
+    testGithubBtn.addEventListener("click", () => testGithubConnection());
   }
 
   const pullGithubBtn = document.getElementById("pullGithubBtn");
@@ -960,6 +1118,8 @@ function loadPricesForm() {
     document.getElementById("p_drop_4m").value = p.drop["4m"]?.price || 24900;
     document.getElementById("p_drop_6m").value = p.drop["6m"]?.price || 30900;
     document.getElementById("p_drop_8m").value = p.drop["8m"]?.price || 37400;
+    const drop10 = document.getElementById("p_drop_10m");
+    if (drop10) drop10.value = p.drop["10m"]?.price || 44500;
 
     document.getElementById("p_step_65").value = p.step["65"]?.price || 2500;
     document.getElementById("p_poly_prem4").value = p.poly["prem4"]?.price || 3200;
@@ -978,13 +1138,17 @@ function loadPricesForm() {
       p.drop["4m"].price = parseInt(document.getElementById("p_drop_4m").value, 10);
       p.drop["6m"].price = parseInt(document.getElementById("p_drop_6m").value, 10);
       p.drop["8m"].price = parseInt(document.getElementById("p_drop_8m").value, 10);
+      if (document.getElementById("p_drop_10m")) {
+        if (!p.drop["10m"]) p.drop["10m"] = { name: "3х10 метров", price: 44500, oldPrice: 49900 };
+        p.drop["10m"].price = parseInt(document.getElementById("p_drop_10m").value, 10);
+      }
 
       p.step["65"].price = parseInt(document.getElementById("p_step_65").value, 10);
       p.poly["prem4"].price = parseInt(document.getElementById("p_poly_prem4").value, 10);
       p.poly["prem6"].price = parseInt(document.getElementById("p_poly_prem6").value, 10);
 
       saveSiteConfig(config);
-      alert("Цены калькулятора успешно обновлены на сайте!");
+      showAdminToast("Цены калькулятора сохранены локально!", "Опубликовать на сайт", () => publishToGithub("toast"));
     });
   }
 }
@@ -1014,7 +1178,7 @@ function loadContactsForm() {
       c.promoText = document.getElementById("c_promo").value;
 
       saveSiteConfig(config);
-      alert("Контакты и рекламный баннер успешно обновлены на сайте!");
+      showAdminToast("Контакты сохранены локально!", "Опубликовать на сайт", () => publishToGithub("toast"));
     });
   }
 }

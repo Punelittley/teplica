@@ -48,6 +48,15 @@
         </div>
       </div>
 
+      <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.08); border-radius: 10px; border: 1px solid rgba(82,183,136,0.35);">
+        <button type="button" id="sidebarPublishBtn" style="width: 100%; padding: 11px 14px; background: #52b788; color: #081c15; border: none; border-radius: 8px; font-weight: 800; font-size: 0.92rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.15s, background 0.15s;">
+          <span>🚀</span> Опубликовать на сайт
+        </button>
+        <div id="sidebarPublishStatus" style="font-size: 0.76rem; color: rgba(255,255,255,0.85); text-align: center; margin-top: 6px; line-height: 1.3;">
+          Синхронизация с GitHub
+        </div>
+      </div>
+
       <ul class="admin-nav">
         <li class="admin-nav-item">
           <button type="button" class="active" data-tab="tabLeads">
@@ -83,8 +92,8 @@
 
         <li class="admin-nav-item">
           <button type="button" data-tab="tabBackup">
-            <span>💾</span>
-            <span>База данных (JSON)</span>
+            <span>🚀</span>
+            <span>Публикация и база</span>
           </button>
         </li>
         <li class="admin-nav-item">
@@ -241,6 +250,10 @@
                 <label>Каплевидная 3х8 м (руб):</label>
                 <input type="number" id="p_drop_8m" class="form-input-admin" required>
               </div>
+              <div class="form-group-admin">
+                <label>Каплевидная 3х10 м (руб):</label>
+                <input type="number" id="p_drop_10m" class="form-input-admin" required>
+              </div>
             </div>
           </div>
 
@@ -310,6 +323,19 @@
           <div class="form-group-admin">
             <label>GitHub Personal Access Token (PAT):</label>
             <input type="password" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+            <div style="margin-top: 8px; font-size: 0.86rem; color: #375344; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <span>🔑 Нужен токен? <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">Создать токен в 1 клик на GitHub →</a></span>
+              <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
+            </div>
+          </div>
+
+          <div style="background: #f8fbf9; border: 1px dashed #52b788; border-radius: 8px; padding: 12px 16px; margin-top: 14px; margin-bottom: 14px; font-size: 0.86rem; color: #1b4332; line-height: 1.55;">
+            <strong>📋 Как получить токен за 1 минуту:</strong>
+            <ol style="margin-left: 20px; margin-top: 6px; margin-bottom: 0;">
+              <li>Нажмите ссылку <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">«Создать токен на GitHub»</a> (откроется сайт GitHub с уже отмеченными правами).</li>
+              <li>Пролистайте страницу вниз и нажмите зелёную кнопку <strong>«Generate token»</strong>.</li>
+              <li>Скопируйте ключ (начинается на <code>ghp_...</code>), вставьте в поле выше и нажмите <strong>«Проверить подключение»</strong>. Токен сохранится в вашем браузере!</li>
+            </ol>
           </div>
 
           <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
@@ -611,7 +637,7 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=4.8"></script>
+  <script src="assets/js/catalog-data.js?v=4.9"></script>
   <script src="admin/admin.js"></script>
 </body>
 </html>

@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (db && (db.products || db.company || db.pricing)) {
         applyCompanyContacts(db);
         renderDatabaseContent(db);
+        updatePricingTables(db);
+        window.dispatchEvent(new CustomEvent("teplica:data-updated", { detail: db }));
       }
     })
     .catch(() => {
@@ -65,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const updated = e.detail || getSiteConfig();
     applyCompanyContacts(updated);
     renderDatabaseContent(updated);
+    updatePricingTables(updated);
   });
 });
 
@@ -174,6 +177,41 @@ function renderDatabaseContent(config) {
 
   
   initScrollAnimations();
+}
+
+
+function updatePricingTables(config) {
+  if (!config || !config.pricing) return;
+  const p = config.pricing;
+  let type = null;
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes("arochnye")) type = "arch";
+  else if (path.includes("kaplevidnye")) type = "drop";
+  else if (path.includes("domikom")) type = "house";
+  else return;
+
+  const typePricing = p[type];
+  if (!typePricing) return;
+
+  const table = document.querySelector(".pricing-table");
+  if (!table) return;
+
+  const step65Price = (p.step && p.step["65"]) ? (p.step["65"].price || 0) : 2500;
+  const rows = table.querySelectorAll("tbody tr");
+  const sizeKeys = ["4m", "6m", "8m", "10m"];
+
+  rows.forEach((tr, index) => {
+    const key = sizeKeys[index];
+    if (!key || !typePricing[key]) return;
+    const basePrice = typePricing[key].price;
+    const reinforcedPrice = basePrice + step65Price;
+
+    const cells = tr.querySelectorAll("td");
+    if (cells.length >= 3) {
+      cells[1].innerHTML = `${basePrice.toLocaleString("ru-RU")}&nbsp;₽`;
+      cells[2].innerHTML = `${reinforcedPrice.toLocaleString("ru-RU")}&nbsp;₽`;
+    }
+  });
 }
 
 
@@ -321,8 +359,16 @@ function setupCalculator(config) {
   const breakdownExtraEl = document.getElementById("calcBreakdownExtra");
   const submitBtn = document.getElementById("calcSubmitBtn");
 
+  let activePricing = config.pricing;
+  window.addEventListener("teplica:data-updated", (e) => {
+    if (e.detail && e.detail.pricing) {
+      activePricing = e.detail.pricing;
+      update();
+    }
+  });
+
   function update() {
-    const p = config.pricing;
+    const p = activePricing || config.pricing;
     const typePricing = p[state.type] || p.arch;
     const baseItem = typePricing[state.length] || typePricing["6m"];
 

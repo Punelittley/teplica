@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Защищенная панель управления — Теплицы ТУТ</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="admin/admin.css">
+  <link rel="stylesheet" href="admin/admin.css?v=5.0">
 </head>
 <body>
 
@@ -49,7 +49,7 @@
       </div>
 
       <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.08); border-radius: 10px; border: 1px solid rgba(82,183,136,0.35);">
-        <button type="button" id="sidebarPublishBtn" style="width: 100%; padding: 11px 14px; background: #52b788; color: #081c15; border: none; border-radius: 8px; font-weight: 800; font-size: 0.92rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.15s, background 0.15s;">
+        <button type="button" id="sidebarPublishBtn" onclick="window.publishToGithub ? window.publishToGithub('sidebar') : null" style="width: 100%; padding: 11px 14px; background: #52b788; color: #081c15; border: none; border-radius: 8px; font-weight: 800; font-size: 0.92rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.15s, background 0.15s;">
           <span>🚀</span> Опубликовать на сайт
         </button>
         <div id="sidebarPublishStatus" style="font-size: 0.76rem; color: rgba(255,255,255,0.85); text-align: center; margin-top: 6px; line-height: 1.3;">
@@ -325,7 +325,7 @@
             <input type="password" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
             <div style="margin-top: 8px; font-size: 0.86rem; color: #375344; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
               <span>🔑 Нужен токен? <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">Создать токен в 1 клик на GitHub →</a></span>
-              <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
+              <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" onclick="window.testGithubConnection ? window.testGithubConnection() : null" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
             </div>
           </div>
 
@@ -339,7 +339,7 @@
           </div>
 
           <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
-            <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" style="padding: 14px 28px; font-size: 1.05rem;">
+            <button type="button" class="btn-admin btn-admin-primary" id="publishGithubBtn" onclick="window.publishToGithub ? window.publishToGithub('tab') : null" style="padding: 14px 28px; font-size: 1.05rem;">
               🚀 Опубликовать изменения на сайт (GitHub)
             </button>
             <button type="button" class="btn-admin btn-admin-light" id="pullGithubBtn" style="padding: 14px 22px; font-size: 0.95rem; font-weight: 600;" title="Загрузить опубликованную с сайта базу">
@@ -637,7 +637,7 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=4.9"></script>
-  <script src="admin/admin.js"></script>
+  <script src="assets/js/catalog-data.js?v=5.0"></script>
+  <script src="admin/admin.js?v=5.0"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@ function setupAuth() {
   const errorMsg = document.getElementById("loginError");
   const submitBtn = loginForm.querySelector("button[type='submit']");
 
-  const isAuth = sessionStorage.getItem("teplici76_logged_in") === "true";
+  const isAuth = sessionStorage.getItem("teplici76_logged_in") === "true" || localStorage.getItem("teplici76_logged_in") === "true";
   if (isAuth) {
     loginScreen.style.display = "none";
     adminLayout.classList.add("active");
@@ -52,6 +52,7 @@ function setupAuth() {
     if (passInput === realPass) {
       failedAttempts = 0;
       sessionStorage.setItem("teplici76_logged_in", "true");
+      localStorage.setItem("teplici76_logged_in", "true");
       loginScreen.style.display = "none";
       adminLayout.classList.add("active");
       errorMsg.style.display = "none";
@@ -86,6 +87,7 @@ function setupAuth() {
 
   logoutBtn.addEventListener("click", () => {
     sessionStorage.removeItem("teplici76_logged_in");
+    localStorage.removeItem("teplici76_logged_in");
     adminLayout.classList.remove("active");
     loginScreen.style.display = "flex";
     document.getElementById("passwordInput").value = "";
@@ -815,6 +817,11 @@ async function testGithubConnection() {
     showAdminToast(`❌ Ошибка сети: ${e.message}`, null, null, true);
   }
 }
+
+window.publishToGithub = publishToGithub;
+window.testGithubConnection = testGithubConnection;
+window.updateSidebarPublishState = updateSidebarPublishState;
+window.showAdminToast = showAdminToast;
 
 function setupDatabaseTab() {
   const exportBtn = document.getElementById("exportFullDbBtn");

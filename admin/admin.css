@@ -609,7 +609,7 @@ body {
 }
 
 /* Responsive Mobile Layout (Easy on phone) */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .admin-layout {
     flex-direction: column;
     min-height: 100vh;
@@ -636,11 +636,9 @@ body {
 
   .admin-nav {
     flex-direction: row;
-    overflow-x: auto;
+    flex-wrap: wrap;
     padding-bottom: 4px;
     gap: 6px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
   }
 
   .admin-nav::-webkit-scrollbar {

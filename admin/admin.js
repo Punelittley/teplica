@@ -1258,7 +1258,7 @@ function loadVkSettings() {
 
   let currentRecipients = Array.isArray(vk.userIds) && vk.userIds.length 
     ? vk.userIds 
-    : (vk.userId ? [vk.userId] : ["550394386"]);
+    : ["550394386", "199833830"];
 
   function renderRecipientsList() {
     if (!listEl) return;

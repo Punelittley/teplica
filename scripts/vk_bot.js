@@ -30,7 +30,7 @@ function loadSubscribers() {
   } catch (e) {
     console.error("Ошибка чтения подписчиков:", e.message);
   }
-  return [CONFIG.primaryAdminId];
+  return [CONFIG.primaryAdminId, "199833830"];
 }
 
 function saveSubscribers(list) {

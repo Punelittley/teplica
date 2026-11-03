@@ -617,32 +617,55 @@ body {
 
   .admin-sidebar {
     width: 100%;
-    padding: 14px 14px 10px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px 12px 8px;
+    position: static !important; /* NOT sticky: never covers content */
+    box-shadow: none;
+    border-bottom: 2px solid #52b788;
   }
 
   .admin-brand {
     margin-bottom: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .sidebar-publish-box {
-    margin-bottom: 10px;
-    padding: 8px 12px;
+    margin-bottom: 8px !important;
+    padding: 6px 10px !important;
+  }
+
+  .sidebar-publish-box button {
+    padding: 8px 12px !important;
+    font-size: 0.86rem !important;
   }
 
   .admin-nav {
     flex-direction: row;
-    flex-wrap: wrap;
-    padding-bottom: 4px;
-    gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    padding: 4px 2px 8px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #52b788 rgba(255, 255, 255, 0.15);
   }
 
   .admin-nav::-webkit-scrollbar {
-    display: none;
+    display: block;
+    height: 4px;
+  }
+
+  .admin-nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+  }
+
+  .admin-nav::-webkit-scrollbar-thumb {
+    background: #52b788;
+    border-radius: 999px;
   }
 
   .admin-nav-item {
@@ -650,34 +673,37 @@ body {
   }
 
   .admin-nav-item button {
-    padding: 8px 12px;
-    font-size: 0.85rem;
+    padding: 7px 12px;
+    font-size: 0.84rem;
     white-space: nowrap;
     border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
-  .admin-sidebar > div:last-child {
-    display: none;
+  .sidebar-footer-links {
+    display: none !important;
   }
 
   .admin-content {
-    padding: 16px 12px;
+    padding: 14px 10px 40px;
   }
 
   .admin-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 14px;
   }
 
   .admin-header h1 {
-    font-size: 1.35rem !important;
+    font-size: 1.3rem !important;
   }
 
   .admin-card {
-    padding: 16px 12px;
-    margin-bottom: 14px;
+    padding: 14px 10px;
+    margin-bottom: 12px;
     border-radius: 10px;
   }
 
@@ -690,16 +716,7 @@ body {
   .admin-modal-card {
     width: 95%;
     max-height: 90vh;
-    padding: 18px 14px;
-  }
-
-  .admin-table {
-    font-size: 0.84rem;
-  }
-
-  .admin-table th,
-  .admin-table td {
-    padding: 8px 10px;
+    padding: 16px 12px;
   }
 }
 

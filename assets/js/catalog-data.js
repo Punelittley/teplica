@@ -243,7 +243,18 @@ const DEFAULT_WORKS = [
   }
 ];
 
+const DEFAULT_HOMEPAGE_PHOTOS = {
+  hero: "assets/images/teplica.png",
+  feat1: "assets/images/products/p3/2.jpg",
+  feat2: "assets/images/works/work_5_polikarbonat.png",
+  feat3: "assets/images/works/work_2_ustanovka.png",
+  showcaseArch: "assets/images/products/p1/2.jpg",
+  showcaseDrop: "assets/images/products/p6/1.jpg",
+  showcaseHouse: "assets/images/products/p2/5.jpg"
+};
+
 const DEFAULT_CONFIG = {
+  homepagePhotos: DEFAULT_HOMEPAGE_PHOTOS,
   security: {
     
     password: "TepL!ca#76_Yar2026!"
@@ -362,6 +373,7 @@ function getSiteConfig() {
         ...DEFAULT_CONFIG,
         ...parsed,
         security: { ...DEFAULT_CONFIG.security, ...(parsed.security || {}) },
+        homepagePhotos: { ...DEFAULT_CONFIG.homepagePhotos, ...(parsed.homepagePhotos || {}) },
         company: { ...DEFAULT_CONFIG.company, ...(parsed.company || {}) },
         pricing: { ...DEFAULT_CONFIG.pricing, ...(parsed.pricing || {}) },
         products: Array.isArray(parsed.products) && parsed.products.length ? parsed.products : DEFAULT_PRODUCTS,

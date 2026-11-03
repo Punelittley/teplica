@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Защищенная панель управления — Теплицы ТУТ</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="admin/admin.css?v=5.2">
+  <link rel="stylesheet" href="admin/admin.css?v=5.3">
 </head>
 <body>
 
@@ -289,6 +289,211 @@
 
 
       
+      <!-- 🖼️ Управление фото на главной странице -->
+      <section class="tab-panel" id="tabPhotos">
+        <div class="admin-header">
+          <div>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Фотографии главной страницы</h1>
+            <p style="color: var(--admin-muted); font-size: 0.9rem;">
+              Замена фото в шапке (первый экран), в 3 карточках преимуществ и в интерактивной витрине теплиц
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" class="btn-admin btn-admin-light" id="btnResetHomepagePhotos">
+              🔄 Сбросить к заводским фото
+            </button>
+          </div>
+        </div>
+
+        <form id="homepagePhotosForm">
+          <!-- 1. Главная теплица (Hero баннер первого экрана) -->
+          <div class="admin-card">
+            <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 6px;">1. Главная теплица (Первый экран в шапке)</h2>
+            <p style="color: var(--admin-muted); font-size: 0.88rem; margin-bottom: 16px;">
+              Большое фото теплицы в самом верху главной страницы рядом с заголовком «Ваш урожай начинается здесь!».
+            </p>
+            <div class="image-uploader-box">
+              <div class="image-source-tabs">
+                <button type="button" class="image-source-tab-btn active" id="hp_hero_tab_file">📁 С устройства (телефон/ПК)</button>
+                <button type="button" class="image-source-tab-btn" id="hp_hero_tab_url">🔗 По ссылке</button>
+              </div>
+              <div id="hp_hero_wrap_file">
+                <input type="file" id="hp_hero_input_file" accept="image/*" class="form-input-admin">
+                <small style="color: var(--admin-muted); display: block; margin-top: 4px;">Файл автоматически оптимизируется для быстрой загрузки.</small>
+              </div>
+              <div id="hp_hero_wrap_url" style="display: none;">
+                <input type="text" id="hp_hero_input_url" class="form-input-admin" placeholder="assets/images/teplica.png или https://...">
+              </div>
+              <div class="image-preview-area" id="hp_hero_preview" style="height: 220px;">
+                <span>Предпросмотр фото</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Три карточки преимуществ -->
+          <div class="admin-card">
+            <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 6px;">2. Три карточки преимуществ завода</h2>
+            <p style="color: var(--admin-muted); font-size: 0.88rem; margin-bottom: 16px;">
+              Блок «Три главных преимущества наших теплиц» под шапкой сайта.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+              <!-- Карточка 1 -->
+              <div>
+                <label style="font-size: 0.9rem; font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                  1. Усиленные двери и форточки:
+                </label>
+                <div class="image-uploader-box">
+                  <div class="image-source-tabs">
+                    <button type="button" class="image-source-tab-btn active" id="hp_feat1_tab_file">📁 Файл</button>
+                    <button type="button" class="image-source-tab-btn" id="hp_feat1_tab_url">🔗 Ссылка</button>
+                  </div>
+                  <div id="hp_feat1_wrap_file">
+                    <input type="file" id="hp_feat1_input_file" accept="image/*" class="form-input-admin">
+                  </div>
+                  <div id="hp_feat1_wrap_url" style="display: none;">
+                    <input type="text" id="hp_feat1_input_url" class="form-input-admin" placeholder="assets/images/products/p3/2.jpg">
+                  </div>
+                  <div class="image-preview-area" id="hp_feat1_preview" style="height: 140px;">
+                    <span>Предпросмотр</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Карточка 2 -->
+              <div>
+                <label style="font-size: 0.9rem; font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                  2. Поликарбонат с УФ-защитой:
+                </label>
+                <div class="image-uploader-box">
+                  <div class="image-source-tabs">
+                    <button type="button" class="image-source-tab-btn active" id="hp_feat2_tab_file">📁 Файл</button>
+                    <button type="button" class="image-source-tab-btn" id="hp_feat2_tab_url">🔗 Ссылка</button>
+                  </div>
+                  <div id="hp_feat2_wrap_file">
+                    <input type="file" id="hp_feat2_input_file" accept="image/*" class="form-input-admin">
+                  </div>
+                  <div id="hp_feat2_wrap_url" style="display: none;">
+                    <input type="text" id="hp_feat2_input_url" class="form-input-admin" placeholder="assets/images/works/work_5_polikarbonat.png">
+                  </div>
+                  <div class="image-preview-area" id="hp_feat2_preview" style="height: 140px;">
+                    <span>Предпросмотр</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Карточка 3 -->
+              <div>
+                <label style="font-size: 0.9rem; font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                  3. Сами собираем и даём гарантию:
+                </label>
+                <div class="image-uploader-box">
+                  <div class="image-source-tabs">
+                    <button type="button" class="image-source-tab-btn active" id="hp_feat3_tab_file">📁 Файл</button>
+                    <button type="button" class="image-source-tab-btn" id="hp_feat3_tab_url">🔗 Ссылка</button>
+                  </div>
+                  <div id="hp_feat3_wrap_file">
+                    <input type="file" id="hp_feat3_input_file" accept="image/*" class="form-input-admin">
+                  </div>
+                  <div id="hp_feat3_wrap_url" style="display: none;">
+                    <input type="text" id="hp_feat3_input_url" class="form-input-admin" placeholder="assets/images/works/work_2_ustanovka.png">
+                  </div>
+                  <div class="image-preview-area" id="hp_feat3_preview" style="height: 140px;">
+                    <span>Предпросмотр</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Интерактивная витрина теплиц -->
+          <div class="admin-card">
+            <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 6px;">3. Фото в интерактивной витрине (выбор форм теплиц)</h2>
+            <p style="color: var(--admin-muted); font-size: 0.88rem; margin-bottom: 16px;">
+              Фотографии, отображающиеся в блоке интерактивного каталога на главной странице при переключении кнопок.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+              <!-- Арочная -->
+              <div>
+                <label style="font-size: 0.9rem; font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                  Вкладка «Арочные теплицы»:
+                </label>
+                <div class="image-uploader-box">
+                  <div class="image-source-tabs">
+                    <button type="button" class="image-source-tab-btn active" id="hp_show_arch_tab_file">📁 Файл</button>
+                    <button type="button" class="image-source-tab-btn" id="hp_show_arch_tab_url">🔗 Ссылка</button>
+                  </div>
+                  <div id="hp_show_arch_wrap_file">
+                    <input type="file" id="hp_show_arch_input_file" accept="image/*" class="form-input-admin">
+                  </div>
+                  <div id="hp_show_arch_wrap_url" style="display: none;">
+                    <input type="text" id="hp_show_arch_input_url" class="form-input-admin" placeholder="assets/images/products/p1/2.jpg">
+                  </div>
+                  <div class="image-preview-area" id="hp_show_arch_preview" style="height: 140px;">
+                    <span>Предпросмотр</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Каплевидная -->
+              <div>
+                <label style="font-size: 0.9rem; font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                  Вкладка «Каплевидные теплицы»:
+                </label>
+                <div class="image-uploader-box">
+                  <div class="image-source-tabs">
+                    <button type="button" class="image-source-tab-btn active" id="hp_show_drop_tab_file">📁 Файл</button>
+                    <button type="button" class="image-source-tab-btn" id="hp_show_drop_tab_url">🔗 Ссылка</button>
+                  </div>
+                  <div id="hp_show_drop_wrap_file">
+                    <input type="file" id="hp_show_drop_input_file" accept="image/*" class="form-input-admin">
+                  </div>
+                  <div id="hp_show_drop_wrap_url" style="display: none;">
+                    <input type="text" id="hp_show_drop_input_url" class="form-input-admin" placeholder="assets/images/products/p6/1.jpg">
+                  </div>
+                  <div class="image-preview-area" id="hp_show_drop_preview" style="height: 140px;">
+                    <span>Предпросмотр</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Домиком -->
+              <div>
+                <label style="font-size: 0.9rem; font-weight: 700; color: #1b4332; display: block; margin-bottom: 6px;">
+                  Вкладка «Теплицы Домиком»:
+                </label>
+                <div class="image-uploader-box">
+                  <div class="image-source-tabs">
+                    <button type="button" class="image-source-tab-btn active" id="hp_show_house_tab_file">📁 Файл</button>
+                    <button type="button" class="image-source-tab-btn" id="hp_show_house_tab_url">🔗 Ссылка</button>
+                  </div>
+                  <div id="hp_show_house_wrap_file">
+                    <input type="file" id="hp_show_house_input_file" accept="image/*" class="form-input-admin">
+                  </div>
+                  <div id="hp_show_house_wrap_url" style="display: none;">
+                    <input type="text" id="hp_show_house_input_url" class="form-input-admin" placeholder="assets/images/products/p2/5.jpg">
+                  </div>
+                  <div class="image-preview-area" id="hp_show_house_preview" style="height: 140px;">
+                    <span>Предпросмотр</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Кнопки сохранения -->
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--admin-border);">
+              <button type="submit" class="btn-admin btn-admin-primary" style="padding: 12px 24px;">
+                💾 Сохранить фото
+              </button>
+              <button type="button" class="btn-admin" id="btnSavePublishPhotos" style="background: #1b4332; color: #ffffff; padding: 12px 24px; font-weight: 800; border-radius: 8px; border: none; cursor: pointer;">
+                🚀 Сохранить и сразу опубликовать
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+
       <section class="tab-panel" id="tabBackup">
         <div class="admin-header">
           <div>
@@ -613,7 +818,7 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=5.2"></script>
-  <script src="admin/admin.js?v=5.2"></script>
+  <script src="assets/js/catalog-data.js?v=5.3"></script>
+  <script src="admin/admin.js?v=5.3"></script>
 </body>
 </html>

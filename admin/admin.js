@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadContactsForm();
   loadVkSettings();
   loadTelegramSettings();
+  loadHomepagePhotosTab();
+  setupHomepagePhotosForm();
   setupDatabaseTab();
   setupSecurityTab();
   setupImageUploaderControls();
@@ -447,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function setupImageUploaderControls() {
-  ['prod', 'work'].forEach(prefix => {
+  ['prod', 'work', 'hp_hero', 'hp_feat1', 'hp_feat2', 'hp_feat3', 'hp_show_arch', 'hp_show_drop', 'hp_show_house'].forEach(prefix => {
     const fileTabBtn = document.getElementById(`${prefix}_tab_file`);
     const urlTabBtn = document.getElementById(`${prefix}_tab_url`);
     const fileInputWrap = document.getElementById(`${prefix}_wrap_file`);
@@ -1403,3 +1405,96 @@ function loadTelegramSettings() {
     });
   }
 }
+
+
+function loadHomepagePhotosTab() {
+  const config = getSiteConfig();
+  const hp = config.homepagePhotos || (typeof DEFAULT_HOMEPAGE_PHOTOS !== "undefined" ? DEFAULT_HOMEPAGE_PHOTOS : {});
+
+  setImageUploaderValue('hp_hero', hp.hero || 'assets/images/teplica.png');
+  setImageUploaderValue('hp_feat1', hp.feat1 || 'assets/images/products/p3/2.jpg');
+  setImageUploaderValue('hp_feat2', hp.feat2 || 'assets/images/works/work_5_polikarbonat.png');
+  setImageUploaderValue('hp_feat3', hp.feat3 || 'assets/images/works/work_2_ustanovka.png');
+  setImageUploaderValue('hp_show_arch', hp.showcaseArch || 'assets/images/products/p1/2.jpg');
+  setImageUploaderValue('hp_show_drop', hp.showcaseDrop || 'assets/images/products/p6/1.jpg');
+  setImageUploaderValue('hp_show_house', hp.showcaseHouse || 'assets/images/products/p2/5.jpg');
+}
+
+function saveHomepagePhotosData(publishNow = false) {
+  const config = getSiteConfig();
+
+  config.homepagePhotos = {
+    hero: getImageUploaderValue('hp_hero') || 'assets/images/teplica.png',
+    feat1: getImageUploaderValue('hp_feat1') || 'assets/images/products/p3/2.jpg',
+    feat2: getImageUploaderValue('hp_feat2') || 'assets/images/works/work_5_polikarbonat.png',
+    feat3: getImageUploaderValue('hp_feat3') || 'assets/images/works/work_2_ustanovka.png',
+    showcaseArch: getImageUploaderValue('hp_show_arch') || 'assets/images/products/p1/2.jpg',
+    showcaseDrop: getImageUploaderValue('hp_show_drop') || 'assets/images/products/p6/1.jpg',
+    showcaseHouse: getImageUploaderValue('hp_show_house') || 'assets/images/products/p2/5.jpg'
+  };
+
+  const ok = saveSiteConfig(config);
+  if (!ok) {
+    alert("Ошибка сохранения настроек фото в браузере.");
+    return;
+  }
+
+  if (publishNow) {
+    if (typeof publishToGithub === "function") {
+      publishToGithub("photos");
+    }
+  } else {
+    showAdminToast("Фото главной сохранены!", "Опубликовать на сайт", () => {
+      if (typeof publishToGithub === "function") publishToGithub("toast");
+    });
+  }
+}
+
+function setupHomepagePhotosForm() {
+  const form = document.getElementById("homepagePhotosForm");
+  const publishBtn = document.getElementById("btnSavePublishPhotos");
+  const resetBtn = document.getElementById("btnResetHomepagePhotos");
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      saveHomepagePhotosData(false);
+    });
+  }
+
+  if (publishBtn) {
+    publishBtn.addEventListener("click", () => {
+      saveHomepagePhotosData(true);
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      if (!confirm("Сбросить все фото главной страницы к исходным заводским изображениям?")) return;
+      const defaults = typeof DEFAULT_HOMEPAGE_PHOTOS !== "undefined" ? DEFAULT_HOMEPAGE_PHOTOS : {
+        hero: "assets/images/teplica.png",
+        feat1: "assets/images/products/p3/2.jpg",
+        feat2: "assets/images/works/work_5_polikarbonat.png",
+        feat3: "assets/images/works/work_2_ustanovka.png",
+        showcaseArch: "assets/images/products/p1/2.jpg",
+        showcaseDrop: "assets/images/products/p6/1.jpg",
+        showcaseHouse: "assets/images/products/p2/5.jpg"
+      };
+
+      setImageUploaderValue('hp_hero', defaults.hero);
+      setImageUploaderValue('hp_feat1', defaults.feat1);
+      setImageUploaderValue('hp_feat2', defaults.feat2);
+      setImageUploaderValue('hp_feat3', defaults.feat3);
+      setImageUploaderValue('hp_show_arch', defaults.showcaseArch);
+      setImageUploaderValue('hp_show_drop', defaults.showcaseDrop);
+      setImageUploaderValue('hp_show_house', defaults.showcaseHouse);
+
+      saveHomepagePhotosData(false);
+      showAdminToast("Установлены исходные фото главной!", "Опубликовать на сайт", () => {
+        if (typeof publishToGithub === "function") publishToGithub("toast");
+      });
+    });
+  }
+}
+window.loadHomepagePhotosTab = loadHomepagePhotosTab;
+window.saveHomepagePhotosData = saveHomepagePhotosData;

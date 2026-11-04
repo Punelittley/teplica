@@ -1509,15 +1509,60 @@ window.saveHomepagePhotosData = saveHomepagePhotosData;
 
 
 async function autoSyncLatestDatabase() {
+  const repo = localStorage.getItem("teplici76_github_repo") || DEFAULT_GH_REPO;
+  const token = localStorage.getItem("teplici76_github_token") || DEFAULT_GH_TOKEN;
+  const branch = localStorage.getItem("teplici76_github_branch") || DEFAULT_GH_BRANCH;
+
   try {
-    const res = await fetch("database.json?v=" + Date.now());
-    if (!res.ok) return;
-    const remoteData = await res.json();
+    let remoteData = null;
+
+    // 1. Direct GitHub API fetch for instantaneous 0-second multi-device sync
+    if (token && repo) {
+      try {
+        const ghRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_t=${Date.now()}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/vnd.github+json"
+          }
+        });
+        if (ghRes.ok) {
+          const ghFile = await ghRes.json();
+          const cleanB64 = ghFile.content.replace(/\s/g, "");
+          const binStr = atob(cleanB64);
+          const bytes = new Uint8Array(binStr.length);
+          for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
+          const utf8Text = new TextDecoder().decode(bytes);
+          remoteData = JSON.parse(utf8Text);
+        }
+      } catch (e) {
+        console.warn("Direct GH API sync failed, falling back to static file:", e);
+      }
+    }
+
+    // 2. Fallback to static database.json
+    if (!remoteData) {
+      const res = await fetch("database.json?v=" + Date.now());
+      if (res.ok) remoteData = await res.json();
+    }
+
+    if (!remoteData) return;
     const remoteDb = remoteData.database || remoteData;
     if (!remoteDb) return;
 
     const localExportedAt = localStorage.getItem("teplici76_db_exported_at");
-    const isNewer = !localExportedAt || (remoteData.exportedAt && remoteData.exportedAt !== localExportedAt);
+    let isNewer = false;
+
+    if (!localExportedAt) {
+      isNewer = true;
+    } else if (remoteData.exportedAt) {
+      const remoteTime = new Date(remoteData.exportedAt).getTime();
+      const localTime = new Date(localExportedAt).getTime();
+      if (!isNaN(remoteTime) && !isNaN(localTime)) {
+        isNewer = remoteTime > localTime;
+      } else {
+        isNewer = remoteData.exportedAt !== localExportedAt;
+      }
+    }
 
     if (isNewer) {
       if (remoteData.exportedAt) {
@@ -1535,7 +1580,7 @@ async function autoSyncLatestDatabase() {
       if (typeof loadHomepagePhotosTab === "function") loadHomepagePhotosTab();
       loadLeads();
       updateSidebarPublishState();
-      console.log("Database successfully auto-synced from remote database.json");
+      console.log("Database successfully auto-synced from GitHub (exportedAt: " + remoteData.exportedAt + ")");
     }
   } catch (err) {
     console.warn("Auto-sync database failed:", err);

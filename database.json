@@ -1,8 +1,17 @@
 {
-  "exportedAt": "2026-11-02T18:14:32.932Z",
+  "exportedAt": "2026-11-04T07:16:04.121Z",
   "version": "2.0",
   "site": "Теплицы ТУТ",
   "database": {
+    "homepagePhotos": {
+      "hero": "assets/images/teplica.png",
+      "feat1": "assets/images/products/p3/2.jpg",
+      "feat2": "assets/images/works/work_5_polikarbonat.png",
+      "feat3": "assets/images/works/work_2_ustanovka.png",
+      "showcaseArch": "assets/images/products/p1/2.jpg",
+      "showcaseDrop": "assets/images/products/p6/1.jpg",
+      "showcaseHouse": "assets/images/products/p2/5.jpg"
+    },
     "security": {
       "password": "TepL!ca#76_Yar2026!"
     },
@@ -15,7 +24,7 @@
       "workHours": "Ежедневно с 8:00 до 20:00",
       "address": "г. Ярославль, ул. Промышленная, д. 12 (Выставочная площадка)",
       "email": "info@teplici76.ru",
-      "vkUrl": "https://vk.ru/club241898656",
+      "vkUrl": "https://vk.ru/tepliciotproizvoditelya76",
       "telegramUsername": "teplici76_yar",
       "promoText": "Весенняя акция: бесплатное хранение теплицы на складе до начала сезона!"
     },
@@ -305,6 +314,14 @@
     ],
     "reviews": [
       {
+        "id": "rev-1793776563120",
+        "name": "s",
+        "role": "s",
+        "stars": 5,
+        "text": "s",
+        "featured": false
+      },
+      {
         "id": "rev-1",
         "name": "Наталья Петровна",
         "role": "г. Ярославль, СНТ «Садовод-1» • Арочная 3×6 м",
@@ -427,97 +444,14 @@
       "groupToken": "vk1.a.xRWV8ieGHWaPOgj1-i0khjmtKvYXST0ETsbS9D-i0VlulXupgmBDJcN2TnGzLpux-p1pQTLEl6sa1OArZKdHc7IVL9hBpmW4u40G2u3m731-uT43jh0LFHucdqRhPN70MXWrRTECz-aJfowJUCdMpr7_Ja817EIO2n77upSKuLiAOj5CRJSZOIRxpC7mAnGhJkr-9CUQHdzbz67zPTBN2A",
       "userId": "550394386",
       "userIds": [
-        "550394386",
-        "199833830"
+        "550394386"
       ]
     },
     "telegramNotify": {
       "enabled": false,
       "botToken": "",
       "chatId": ""
-    },
-    "homepagePhotos": {
-      "hero": "assets/images/teplica.png",
-      "feat1": "assets/images/products/p3/2.jpg",
-      "feat2": "assets/images/works/work_5_polikarbonat.png",
-      "feat3": "assets/images/works/work_2_ustanovka.png",
-      "showcaseArch": "assets/images/products/p1/2.jpg",
-      "showcaseDrop": "assets/images/products/p6/1.jpg",
-      "showcaseHouse": "assets/images/products/p2/5.jpg"
     }
   },
-  "leads": [
-    {
-      "id": "lead_1793452884072",
-      "date": "31.10.2026, 18:21:24",
-      "name": "фыв",
-      "phone": "123",
-      "comment": "",
-      "subject": "Заказ: Оцинкованные грядки поштучно",
-      "status": "new"
-    },
-    {
-      "id": "lead_1793452872933",
-      "date": "31.10.2026, 18:21:12",
-      "name": "фывф",
-      "phone": "фывфыв",
-      "comment": "фыв",
-      "subject": "Заказ звонка из шапки",
-      "status": "new"
-    },
-    {
-      "id": "lead_1792580241842",
-      "date": "21.10.2026, 15:57:21",
-      "name": "фыв",
-      "phone": "фывфыв",
-      "comment": "фывфыв",
-      "subject": "Услуга: Сборка теплиц (6 500–8 000 ₽)",
-      "status": "new"
-    },
-    {
-      "id": "lead_1790841081688",
-      "date": "01.10.2026, 12:51:21",
-      "name": "фыв",
-      "phone": "фывф",
-      "comment": "ыв",
-      "subject": "Акция: Скидка 20% и льготная доставка",
-      "status": "new"
-    },
-    {
-      "id": "lead_1790841060205",
-      "date": "01.10.2026, 12:51:00",
-      "name": "фыв",
-      "phone": "фывфыв",
-      "comment": "фыв",
-      "subject": "Акция: Скидка 20% и льготная доставка",
-      "status": "new"
-    },
-    {
-      "id": "lead_1790840372024",
-      "date": "01.10.2026, 12:39:32",
-      "name": "zxczxczcz",
-      "phone": "cxzzczxczcz",
-      "comment": "xcxccxzczxcxzcxzcxz",
-      "subject": "Акция: Скидка 20% и льготная доставка",
-      "status": "new"
-    },
-    {
-      "id": "lead_1790840357701",
-      "date": "01.10.2026, 12:39:17",
-      "name": "as",
-      "phone": "sad",
-      "comment": "asd",
-      "subject": "Акция: Скидка 20% и льготная доставка",
-      "status": "new"
-    },
-    {
-      "id": "lead_1790840339182",
-      "date": "01.10.2026, 12:38:59",
-      "name": "asd",
-      "phone": "asd",
-      "comment": "asd",
-      "subject": "Акция: Скидка 20% и льготная доставка",
-      "status": "new"
-    }
-  ]
+  "leads": []
 }

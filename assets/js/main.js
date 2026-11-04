@@ -99,7 +99,7 @@ function renderDatabaseContent(config) {
   
   const testimonialsGrid = document.querySelector(".testimonials-cards-grid");
   if (testimonialsGrid && Array.isArray(config.reviews) && config.reviews.length) {
-    const validReviews = config.reviews.filter(r => r.name && r.name.toLowerCase() !== "asd" && r.text && r.text.length > 5);
+    const validReviews = config.reviews.filter(r => r.name && r.text && r.text.trim().length > 0);
     testimonialsGrid.innerHTML = validReviews.map(rev => `
       <div class="testimonial-card ${rev.featured ? 'testimonial-card-featured' : ''}">
         <div class="testimonial-stars">${'★'.repeat(rev.stars || 5)}${'☆'.repeat(5 - (rev.stars || 5))}</div>
@@ -118,7 +118,7 @@ function renderDatabaseContent(config) {
   
   const indexReviewsGrid = document.querySelector(".reviews-grid");
   if (indexReviewsGrid && Array.isArray(config.reviews) && config.reviews.length) {
-    const validReviews = config.reviews.filter(r => r.name && r.name.toLowerCase() !== "asd" && r.text && r.text.length > 5);
+    const validReviews = config.reviews.filter(r => r.name && r.text && r.text.trim().length > 0);
     const topReviews = validReviews.slice(0, 3);
     if (topReviews.length > 0) {
       indexReviewsGrid.innerHTML = topReviews.map((r, idx) => `
@@ -176,6 +176,25 @@ function renderDatabaseContent(config) {
   }
 
   
+  // 4. Фото главной страницы (hero, преимущества, витрина)
+  if (config.homepagePhotos) {
+    const hp = config.homepagePhotos;
+    if (hp.hero) {
+      const heroImg = document.querySelector(".hero-image-card img");
+      if (heroImg) heroImg.src = hp.hero;
+    }
+    const advImgs = document.querySelectorAll(".advantage-cards-grid .advantage-card .advantage-card-media img");
+    if (advImgs && advImgs.length >= 3) {
+      if (hp.feat1 && advImgs[0]) advImgs[0].src = hp.feat1;
+      if (hp.feat2 && advImgs[1]) advImgs[1].src = hp.feat2;
+      if (hp.feat3 && advImgs[2]) advImgs[2].src = hp.feat3;
+    }
+    const cardImgEl = document.getElementById("cardImg");
+    if (cardImgEl && !cardImgEl.dataset.userSwitched && hp.showcaseArch) {
+      cardImgEl.src = hp.showcaseArch;
+    }
+  }
+
   initScrollAnimations();
 }
 

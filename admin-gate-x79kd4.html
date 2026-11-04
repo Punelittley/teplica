@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Защищенная панель управления — Теплицы ТУТ</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="admin/admin.css?v=6.1">
+  <link rel="stylesheet" href="admin/admin.css?v=6.2">
 </head>
 <body>
 
@@ -530,29 +530,34 @@
           <div id="githubStatus" style="margin-top: 14px; font-size: 0.92rem; display: none; padding: 10px 14px; border-radius: 8px; background: #ffffff; border: 1px solid #d8f3dc;"></div>
         </div>
 
-        <details class="admin-details-card">
-          <summary>⚙️ Настройки подключения GitHub (токен и ветка)</summary>
-          <div style="padding-top: 16px;">
-            <div class="form-grid-2">
-              <div class="form-group-admin">
-                <label>Репозиторий GitHub:</label>
-                <input type="text" id="github_repo" class="form-input-admin" value="Punelittley/teplica">
-              </div>
-              <div class="form-group-admin">
-                <label>Ветка (branch):</label>
-                <input type="text" id="github_branch" class="form-input-admin" value="main">
-              </div>
+        <div class="admin-card">
+          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 6px;">⚙️ Подключение к GitHub (токен и репозиторий)</h2>
+          <p style="color: var(--admin-muted); font-size: 0.88rem; margin-bottom: 14px;">
+            Ключ доступа уже привязан к вашему репозиторию Punelittley/teplica.
+          </p>
+
+          <div class="form-grid-2">
+            <div class="form-group-admin">
+              <label>Репозиторий GitHub:</label>
+              <input type="text" id="github_repo" class="form-input-admin" value="Punelittley/teplica">
             </div>
             <div class="form-group-admin">
-              <label>GitHub Personal Access Token (PAT):</label>
-              <input type="text" id="github_token" class="form-input-admin" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-              <div style="margin-top: 8px; font-size: 0.86rem; color: #375344; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-                <span>🔑 <a href="https://github.com/settings/tokens/new?scopes=repo&description=Teplica+Site+Admin" target="_blank" rel="noopener" style="color: #2d6a4f; font-weight: 700; text-decoration: underline;">Создать новый токен на GitHub →</a></span>
-                <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" onclick="window.testGithubConnection ? window.testGithubConnection() : null" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
-              </div>
+              <label>Ветка (branch):</label>
+              <input type="text" id="github_branch" class="form-input-admin" value="main">
             </div>
           </div>
-        </details>
+          <div class="form-group-admin">
+            <label>GitHub Personal Access Token (PAT):</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="github_token" class="form-input-admin" style="font-family: monospace; font-size: 0.88rem;" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+              <button type="button" class="btn-admin btn-admin-light" id="copyTokenBtn" onclick="navigator.clipboard.writeText(document.getElementById('github_token').value); alert('Токен скопирован в буфер обмена!');" style="white-space: nowrap;">📋 Скопировать</button>
+            </div>
+            <div style="margin-top: 8px; font-size: 0.86rem; color: #375344; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <span style="color: #2b9348; font-weight: 700;">✅ Токен активен для Punelittley/teplica</span>
+              <button type="button" class="btn-admin btn-admin-light" id="testGithubBtn" onclick="window.testGithubConnection ? window.testGithubConnection() : null" style="padding: 6px 14px; font-size: 0.84rem;">🔍 Проверить подключение</button>
+            </div>
+          </div>
+        </div>
 
         <details class="admin-details-card">
           <summary>🌐 Привязка домена .com из Reg.ru к GitHub Pages</summary>
@@ -827,7 +832,7 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=6.1"></script>
-  <script src="admin/admin.js?v=6.1"></script>
+  <script src="assets/js/catalog-data.js?v=6.2"></script>
+  <script src="admin/admin.js?v=6.2"></script>
 </body>
 </html>

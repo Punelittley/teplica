@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Защищенная панель управления — Теплицы ТУТ</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="admin/admin.css?v=5.9">
+  <link rel="stylesheet" href="admin/admin.css?v=6.0">
 </head>
 <body>
 
@@ -721,7 +721,8 @@
 
         <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
           <button type="button" class="btn-admin btn-admin-light" onclick="closeModal('productModal')">Отмена</button>
-          <button type="submit" class="btn-admin btn-admin-primary">Сохранить товар</button>
+          <button type="submit" class="btn-admin btn-admin-primary">💾 Сохранить</button>
+          <button type="button" class="btn-admin" id="prodSaveAndPublishBtn" style="background: #1b4332; color: #ffffff; font-weight: 800;">🚀 Сохранить и сразу опубликовать</button>
         </div>
       </form>
     </div>
@@ -767,7 +768,8 @@
 
         <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
           <button type="button" class="btn-admin btn-admin-light" onclick="closeModal('reviewModal')">Отмена</button>
-          <button type="submit" class="btn-admin btn-admin-primary">Сохранить отзыв</button>
+          <button type="submit" class="btn-admin btn-admin-primary">💾 Сохранить</button>
+          <button type="button" class="btn-admin" id="revSaveAndPublishBtn" style="background: #1b4332; color: #ffffff; font-weight: 800;">🚀 Сохранить и сразу опубликовать</button>
         </div>
       </form>
     </div>
@@ -818,13 +820,14 @@
 
         <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
           <button type="button" class="btn-admin btn-admin-light" onclick="closeModal('workModal')">Отмена</button>
-          <button type="submit" class="btn-admin btn-admin-primary">Сохранить работу</button>
+          <button type="submit" class="btn-admin btn-admin-primary">💾 Сохранить</button>
+          <button type="button" class="btn-admin" id="workSaveAndPublishBtn" style="background: #1b4332; color: #ffffff; font-weight: 800;">🚀 Сохранить и сразу опубликовать</button>
         </div>
       </form>
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=5.9"></script>
-  <script src="admin/admin.js?v=5.9"></script>
+  <script src="assets/js/catalog-data.js?v=6.0"></script>
+  <script src="admin/admin.js?v=6.0"></script>
 </body>
 </html>

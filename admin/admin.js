@@ -504,6 +504,12 @@ function setupImageUploaderControls() {
     });
 
     
+    previewArea.style.cursor = "pointer";
+    previewArea.setAttribute("title", "Нажмите, чтобы загрузить фото с устройства");
+    previewArea.addEventListener("click", () => {
+      fileInput.click();
+    });
+
     urlInput.addEventListener("input", (e) => {
       const val = e.target.value.trim();
       if (val) {
@@ -626,7 +632,7 @@ function showAdminToast(msg, btnText, btnCallback, isError = false) {
 }
 
 function updateSidebarPublishState() {
-  const token = (localStorage.getItem("teplici76_github_token") || "").trim();
+  const token = (localStorage.getItem("teplici76_github_token") || DEFAULT_GH_TOKEN).trim();
   const statusEl = document.getElementById("sidebarPublishStatus");
   if (!statusEl) return;
 
@@ -646,9 +652,9 @@ async function publishToGithub(triggerSource = "button") {
   const publishGithubBtn = document.getElementById("publishGithubBtn");
   const sidebarStatus = document.getElementById("sidebarPublishStatus");
 
-  const repo = (ghRepoInput?.value || localStorage.getItem("teplici76_github_repo") || "Punelittley/teplica").trim();
-  const branch = (ghBranchInput?.value || localStorage.getItem("teplici76_github_branch") || "main").trim();
-  let token = (ghTokenInput?.value || localStorage.getItem("teplici76_github_token") || "").trim();
+  const repo = (ghRepoInput?.value || localStorage.getItem("teplici76_github_repo") || DEFAULT_GH_REPO).trim();
+  const branch = (ghBranchInput?.value || localStorage.getItem("teplici76_github_branch") || DEFAULT_GH_BRANCH).trim();
+  let token = (ghTokenInput?.value || localStorage.getItem("teplici76_github_token") || DEFAULT_GH_TOKEN).trim();
 
   if (!token) {
     const tabBtn = document.querySelector('[data-tab="tabBackup"]');

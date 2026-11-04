@@ -444,6 +444,129 @@
       "enabled": false,
       "botToken": "",
       "chatId": ""
+    },
+    "pages": {
+      "glavnaya": {
+        "id": "glavnaya",
+        "name": "Главная страница",
+        "file": "index.html",
+        "category": "Главная",
+        "title": "Теплицы от завода-производителя в Ярославле",
+        "badge": "Акция сезона",
+        "priceText": "от 21 900 ₽",
+        "bannerImage": "assets/images/teplica.png",
+        "description": "Главная витрина: каталог моделей, калькулятор, преимущества, фото работ и отзывы."
+      },
+      "arochnye": {
+        "id": "arochnye",
+        "name": "Арочные теплицы",
+        "file": "arochnye.html",
+        "category": "Каталог теплиц",
+        "title": "Арочная теплица 3 м из оцинкованной трубы ГОСТ",
+        "badge": "Скидка 20% до конца недели",
+        "priceText": "от 21 900 ₽",
+        "bannerImage": "assets/images/products/arch_3x4/1.jpg",
+        "description": "Классическая арочная форма с максимальной ветроустойчивостью и равномерным распределением света."
+      },
+      "kaplevidnye": {
+        "id": "kaplevidnye",
+        "name": "Каплевидные («Стрела»)",
+        "file": "kaplevidnye.html",
+        "category": "Каталог теплиц",
+        "title": "Теплица «Капелька» 3 м (оцинкованный профиль 30×20 мм)",
+        "badge": "Снегосброс 100%",
+        "priceText": "от 24 900 ₽",
+        "bannerImage": "assets/images/products/p2/2.jpg",
+        "description": "Стрельчатый свод не дает снегу задерживаться на крыше. Идеально для снежных зим без чистки."
+      },
+      "domikom": {
+        "id": "domikom",
+        "name": "Теплицы «Домиком»",
+        "file": "domikom.html",
+        "category": "Каталог теплиц",
+        "title": "Прямостенная теплица «Домиком» 3 м (100% полезного объема)",
+        "badge": "Хит для высокорослых",
+        "priceText": "от 27 900 ₽",
+        "bannerImage": "assets/images/products/p2/5.jpg",
+        "description": "Прямые вертикальные стены позволяют высаживать высокорослые культуры у самого края теплицы."
+      },
+      "polikarbonat": {
+        "id": "polikarbonat",
+        "name": "Сотовый поликарбонат",
+        "file": "polikarbonat.html",
+        "category": "Материалы",
+        "title": "Сотовый поликарбонат с честной УФ-защитой",
+        "badge": "Гарантия завода 15 лет",
+        "priceText": "от 3 200 ₽ / лист",
+        "bannerImage": "assets/images/products/poly/eurotek_4mm.jpg",
+        "description": "Премиальный поликарбонат Eurotek 4 и 6 мм высокой плотности с эффективным слоем УФ-стабилизации."
+      },
+      "gryadki": {
+        "id": "gryadki",
+        "name": "Оцинкованные грядки",
+        "file": "gryadki.html",
+        "category": "Оснащение",
+        "title": "Оцинкованные грядки и клумбы от производителя",
+        "badge": "Безопасные завальцованные края",
+        "priceText": "от 1 550 ₽",
+        "bannerImage": "assets/images/products/p8/clean_p8.png",
+        "description": "Оцинкованный металл 0.5–0.7 мм, легкая сборка за 15 минут, чистые проходы и защита спины от перегрузок."
+      },
+      "dostavka": {
+        "id": "dostavka",
+        "name": "Доставка и сборка",
+        "file": "dostavka-sborka.html",
+        "category": "Сервис",
+        "title": "Доставка и сборка теплиц под ключ",
+        "badge": "Монтаж за 3-4 часа",
+        "priceText": "Сборка от 4 000 ₽",
+        "bannerImage": "assets/images/products/p4/2.jpg",
+        "description": "Собственный грузовой автопарк по всей Ярославской области и профессиональные штатные бригады монтажников."
+      },
+      "preimushchestva": {
+        "id": "preimushchestva",
+        "name": "Преимущества завода",
+        "file": "preimushchestva.html",
+        "category": "О компании",
+        "title": "Каждая деталь продумана до мелочей",
+        "badge": "Заводской ГОСТ",
+        "priceText": "Честная гарантия",
+        "bannerImage": "assets/images/teplica.png",
+        "description": "Двойная горячая оцинковка, цельные торцы, проверенная краб-система и надежная фурнитура."
+      },
+      "raboty": {
+        "id": "raboty",
+        "name": "Наши работы (Галерея)",
+        "file": "nashi-raboty.html",
+        "category": "Галерея",
+        "title": "Фотографии наших теплиц на участках клиентов",
+        "badge": "140+ установок в области",
+        "priceText": "Портфолио",
+        "bannerImage": "assets/images/works/work_2_ustanovka.png",
+        "description": "Реальные фотографии собранных арочных, каплевидных и прямостенных теплиц в Ярославле и области."
+      },
+      "otzyvy": {
+        "id": "otzyvy",
+        "name": "Отзывы клиентов",
+        "file": "otzyvy.html",
+        "category": "Доверие",
+        "title": "Честные отзывы садоводов и дачников",
+        "badge": "Рейтинг 4.9 ★",
+        "priceText": "100% реальные покупатели",
+        "bannerImage": "assets/images/works/work_1_prodazha.png",
+        "description": "Мнения реальных дачников Ярославской области о надежности конструкций и качестве монтажа."
+      },
+      "kontakty": {
+        "id": "kontakty",
+        "name": "Контакты и площадка",
+        "file": "kontakty.html",
+        "category": "Контакты",
+        "title": "Выставочная площадка и производство",
+        "badge": "Без выходных 8:00 - 20:00",
+        "priceText": "г. Ярославль",
+        "bannerImage": "assets/images/teplica.png",
+        "description": "г. Ярославль, ул. Промышленная, д. 12. Приезжайте посмотреть образцы теплиц вживую!"
+      }
     }
   },
   "leads": []

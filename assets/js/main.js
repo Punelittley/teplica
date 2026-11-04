@@ -220,6 +220,49 @@ function renderDatabaseContent(config) {
     }
   }
 
+  // 5. Динамическое обновление контента конкретной открытой страницы (H1, бейджи, баннеры, подзаголовки)
+  if (config.pages) {
+    const rawPath = window.location.pathname.toLowerCase();
+    let currentKey = null;
+    if (rawPath.includes("arochnye")) currentKey = "arochnye";
+    else if (rawPath.includes("kaplevidnye")) currentKey = "kaplevidnye";
+    else if (rawPath.includes("domikom")) currentKey = "domikom";
+    else if (rawPath.includes("polikarbonat")) currentKey = "polikarbonat";
+    else if (rawPath.includes("gryadki")) currentKey = "gryadki";
+    else if (rawPath.includes("dostavka-sborka")) currentKey = "dostavka";
+    else if (rawPath.includes("preimushchestva")) currentKey = "preimushchestva";
+    else if (rawPath.includes("nashi-raboty")) currentKey = "raboty";
+    else if (rawPath.includes("otzyvy")) currentKey = "otzyvy";
+    else if (rawPath.includes("kontakty")) currentKey = "kontakty";
+    else if (rawPath.endsWith("/") || rawPath.endsWith("index.html") || rawPath.endsWith("teplica/") || rawPath.endsWith("teplica-main/")) currentKey = "glavnaya";
+
+    if (currentKey && config.pages[currentKey]) {
+      const page = config.pages[currentKey];
+      // 1. Заголовок первого экрана
+      const h1El = document.querySelector(".prod-title") || document.querySelector("h1");
+      if (h1El && page.title) {
+        h1El.textContent = page.title;
+      }
+      // 2. Бейдж акции / спецпредложения
+      const badgeEl = document.querySelector(".prod-price-badge") || document.querySelector(".hero-badge");
+      if (badgeEl && page.badge) {
+        badgeEl.textContent = page.badge;
+      }
+      // 3. Главный баннер / фото галереи
+      if (page.bannerImage) {
+        const bannerImg = document.querySelector(".prod-gallery-main img") || document.querySelector(".hero-image-card img");
+        if (bannerImg) {
+          bannerImg.src = page.bannerImage;
+        }
+      }
+      // 4. Описание / подзаголовок страницы
+      const descEl = document.querySelector(".prod-desc-text") || document.querySelector(".hero-subtitle");
+      if (descEl && page.description) {
+        descEl.textContent = page.description;
+      }
+    }
+  }
+
   initScrollAnimations();
 }
 

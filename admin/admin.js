@@ -1,4 +1,15 @@
 
+function uint8ToBase64(bytes) {
+  let binary = "";
+  const len = bytes.byteLength;
+  const chunkSize = 16384;
+  for (let i = 0; i < len; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunkSize, len)));
+  }
+  return btoa(binary);
+}
+
+
 
 const ADMIN_PASS_KEY = "teplici76_admin_pass";
 const DEFAULT_PASS = "TepL!ca#76_Yar2026!"; 
@@ -653,33 +664,44 @@ async function publishToGithub(triggerSource = "button") {
   const publishGithubBtn = document.getElementById("publishGithubBtn");
   const sidebarStatus = document.getElementById("sidebarPublishStatus");
 
+  // Immediate visual feedback
+  if (sidebarBtn) {
+    sidebarBtn.disabled = true;
+    sidebarBtn.innerHTML = "<span>⏳</span> Публикация...";
+    sidebarBtn.style.opacity = "0.75";
+  }
+  if (publishGithubBtn) {
+    publishGithubBtn.disabled = true;
+    publishGithubBtn.innerHTML = "⏳ Публикация на GitHub...";
+  }
+  if (sidebarStatus) {
+    sidebarStatus.innerHTML = "⏳ Идет отправка на сайт...";
+    sidebarStatus.style.color = "#ffd166";
+  }
+  if (ghStatus) {
+    ghStatus.style.display = "block";
+    ghStatus.style.color = "#1b4332";
+    ghStatus.innerHTML = "⏳ Подключение к GitHub API...";
+  }
+
   const repo = (ghRepoInput?.value || localStorage.getItem("teplici76_github_repo") || DEFAULT_GH_REPO).trim();
   const branch = (ghBranchInput?.value || localStorage.getItem("teplici76_github_branch") || DEFAULT_GH_BRANCH).trim();
   let token = (ghTokenInput?.value || localStorage.getItem("teplici76_github_token") || DEFAULT_GH_TOKEN).trim();
 
   if (!token) {
-    const tabBtn = document.querySelector('[data-tab="tabBackup"]');
-    if (tabBtn) tabBtn.click();
-    if (ghTokenInput) {
-      ghTokenInput.focus();
-      ghTokenInput.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (sidebarBtn) {
+      sidebarBtn.disabled = false;
+      sidebarBtn.innerHTML = "<span>🚀</span> Опубликовать на сайт";
+      sidebarBtn.style.opacity = "1";
     }
-    showAdminToast("⚠️ Укажите GitHub Token для публикации на сайт (см. инструкцию внизу)", null, null, true);
+    if (sidebarStatus) sidebarStatus.innerHTML = "⚠️ Токен не найден";
+    alert("⚠️ Ошибка: не найден GitHub токен. Пожалуйста, проверьте настройки во вкладке 'Публикация и база'.");
     return;
   }
 
   localStorage.setItem("teplici76_github_repo", repo);
   localStorage.setItem("teplici76_github_token", token);
   localStorage.setItem("teplici76_github_branch", branch);
-
-  if (sidebarBtn) { sidebarBtn.disabled = true; sidebarBtn.innerHTML = `<span>⏳</span> Публикация...`; }
-  if (publishGithubBtn) { publishGithubBtn.disabled = true; publishGithubBtn.innerHTML = `⏳ Публикация на GitHub...`; }
-  if (sidebarStatus) sidebarStatus.innerHTML = `⏳ Отправка в GitHub...`;
-  if (ghStatus) {
-    ghStatus.style.display = "block";
-    ghStatus.style.color = "#1b4332";
-    ghStatus.innerHTML = `⏳ Подключение к GitHub API (${repo})...`;
-  }
 
   try {
     const config = getSiteConfig();
@@ -695,33 +717,29 @@ async function publishToGithub(triggerSource = "button") {
 
     let currentSha = null;
     try {
-      const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}`, {
+      const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_t=${Date.now()}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Accept": "application/vnd.github+json"
         }
       });
       if (getRes.status === 401 || getRes.status === 403) {
-        throw new Error("Неверный GitHub Token или нет прав на запись (нужно право repo/contents).");
+        throw new Error("Неверный токен GitHub или истек срок его действия.");
       }
       if (getRes.ok) {
         const fileData = await getRes.json();
         currentSha = fileData.sha;
       }
     } catch (e) {
-      if (e.message.includes("Token") || e.message.includes("прав")) throw e;
+      if (e.message.includes("токен") || e.message.includes("срок")) throw e;
       console.warn("Файл database.json создается впервые или ошибка чтения SHA:", e);
     }
 
-    if (ghStatus) ghStatus.innerHTML = "⏳ Запись коммита в репозиторий GitHub...";
+    if (ghStatus) ghStatus.innerHTML = "⏳ Запись данных в репозиторий GitHub...";
 
     localStorage.setItem("teplici76_db_exported_at", fullBackup.exportedAt);
     const utf8Bytes = new TextEncoder().encode(jsonStr);
-    let binary = "";
-    for (let i = 0; i < utf8Bytes.length; i++) {
-      binary += String.fromCharCode(utf8Bytes[i]);
-    }
-    const base64Content = btoa(binary);
+    const base64Content = uint8ToBase64(utf8Bytes);
 
     const putBody = {
       message: "Обновление данных сайта через панель управления (каталог, цены, отзывы)",
@@ -746,12 +764,28 @@ async function publishToGithub(triggerSource = "button") {
 
     if (putRes.ok) {
       const commitSha = (putData.commit && putData.commit.sha) ? putData.commit.sha.slice(0, 7) : "";
+      const nowTime = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
       if (ghStatus) {
         ghStatus.style.color = "#2b9348";
-        ghStatus.innerHTML = `✅ <strong>Успешно опубликовано на GitHub!</strong><br>Коммит: <code>${commitSha}</code>.<br>GitHub Pages автоматически обновляет сайт. Через 1–2 минуты новые данные появятся у всех посетителей.`;
+        ghStatus.innerHTML = `✅ <strong>Успешно опубликовано на GitHub в ${nowTime}!</strong><br>Коммит: <code>${commitSha}</code>.<br>GitHub Pages обновляет сайт. Через 20–30 секунд изменения появятся у всех посетителей.`;
       }
-      if (sidebarStatus) sidebarStatus.innerHTML = `✅ Опубликовано (${commitSha})`;
-      showAdminToast(`✅ Успешно опубликовано на GitHub (коммит ${commitSha})! Сайт обновится через 1 минуту.`);
+      if (sidebarStatus) {
+        sidebarStatus.innerHTML = `✅ Опубликовано в ${nowTime}`;
+        sidebarStatus.style.color = "#d8f3dc";
+      }
+      if (sidebarBtn) {
+        sidebarBtn.style.background = "#2b9348";
+        sidebarBtn.style.color = "#ffffff";
+        sidebarBtn.innerHTML = `<span>✅</span> Опубликовано в ${nowTime}!`;
+        setTimeout(() => {
+          sidebarBtn.style.background = "#52b788";
+          sidebarBtn.style.color = "#081c15";
+          sidebarBtn.innerHTML = "<span>🚀</span> Опубликовать на сайт";
+        }, 6000);
+      }
+      showAdminToast(`✅ Успешно опубликовано в ${nowTime}!`);
+      alert(`✅ Изменения успешно отправлены на сайт (в ${nowTime})!\n\nGitHub Pages обновит сайт в течение 20–30 секунд.`);
     } else {
       throw new Error(putData.message || "Ошибка записи в GitHub API");
     }
@@ -760,16 +794,20 @@ async function publishToGithub(triggerSource = "button") {
       ghStatus.style.color = "#dc3545";
       ghStatus.innerHTML = `❌ Ошибка публикации: ${err.message}`;
     }
-    if (sidebarStatus) sidebarStatus.innerHTML = `❌ Ошибка отправки`;
+    if (sidebarStatus) {
+      sidebarStatus.innerHTML = "❌ Ошибка отправки";
+      sidebarStatus.style.color = "#ffadad";
+    }
     showAdminToast(`❌ Ошибка: ${err.message}`, null, null, true);
+    alert(`❌ Ошибка публикации:\n${err.message}`);
   } finally {
     if (sidebarBtn) {
       sidebarBtn.disabled = false;
-      sidebarBtn.innerHTML = `<span>🚀</span> Опубликовать на сайт`;
+      sidebarBtn.style.opacity = "1";
     }
     if (publishGithubBtn) {
       publishGithubBtn.disabled = false;
-      publishGithubBtn.innerHTML = `🚀 Опубликовать изменения на сайт (GitHub)`;
+      publishGithubBtn.innerHTML = "🚀 Опубликовать изменения на сайт (GitHub)";
     }
   }
 }
@@ -873,6 +911,8 @@ function setupDatabaseTab() {
     });
   }
   if (ghTokenInput) {
+    if (!ghTokenInput.value) ghTokenInput.value = DEFAULT_GH_TOKEN;
+    localStorage.setItem("teplici76_github_token", DEFAULT_GH_TOKEN);
     ghTokenInput.value = localStorage.getItem("teplici76_github_token") || "";
     ghTokenInput.addEventListener("input", () => {
       localStorage.setItem("teplici76_github_token", ghTokenInput.value.trim());

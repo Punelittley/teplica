@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-11-04T07:16:04.121Z",
+  "exportedAt": "2026-11-04T07:22:10.161Z",
   "version": "2.0",
   "site": "Теплицы ТУТ",
   "database": {
@@ -313,14 +313,6 @@
       }
     ],
     "reviews": [
-      {
-        "id": "rev-1793776563120",
-        "name": "s",
-        "role": "s",
-        "stars": 5,
-        "text": "s",
-        "featured": false
-      },
       {
         "id": "rev-1",
         "name": "Наталья Петровна",

@@ -44,23 +44,48 @@ document.addEventListener("DOMContentLoaded", () => {
   renderDatabaseContent(config);
 
   
-  fetch("database.json?v=" + Date.now())
-    .then(res => {
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json();
-    })
-    .then(data => {
-      const db = data.database || data;
-      if (db && (db.products || db.company || db.pricing)) {
-        applyCompanyContacts(db);
-        renderDatabaseContent(db);
-        updatePricingTables(db);
-        window.dispatchEvent(new CustomEvent("teplica:data-updated", { detail: db }));
-      }
-    })
-    .catch(() => {
-      
-    });
+    // Мгновенная динамическая синхронизация с GitHub (0 секунд задержки для всех посетителей)
+  const applyLatestData = (db) => {
+    if (!db) return;
+    try {
+      localStorage.setItem("teplici76_config", JSON.stringify(db));
+    } catch (e) {}
+    applyCompanyContacts(db);
+    renderDatabaseContent(db);
+    updatePricingTables(db);
+    window.dispatchEvent(new CustomEvent("teplica:data-updated", { detail: db }));
+  };
+
+  const loadLiveSiteDatabase = () => {
+    // Прямой запрос к GitHub raw без CDN-кэша — обновляется моментально при публикации с любого устройства
+    const liveUrl = "https://raw.githubusercontent.com/Punelittley/teplica/main/database.json?_t=" + Date.now();
+    fetch(liveUrl)
+      .then(res => {
+        if (!res.ok) throw new Error("GitHub raw status: " + res.status);
+        return res.json();
+      })
+      .then(data => {
+        const db = data.database || data;
+        applyLatestData(db);
+      })
+      .catch(() => {
+        // Резервный запрос к локальному database.json
+        fetch("database.json?v=" + Date.now())
+          .then(res => res.ok ? res.json() : null)
+          .then(data => {
+            if (!data) return;
+            const db = data.database || data;
+            applyLatestData(db);
+          })
+          .catch(() => {});
+      });
+  };
+
+  loadLiveSiteDatabase();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") loadLiveSiteDatabase();
+  });
+  window.addEventListener("focus", () => loadLiveSiteDatabase());
 
   
   window.addEventListener("teplica:data-updated", (e) => {

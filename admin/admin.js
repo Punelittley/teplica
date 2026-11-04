@@ -731,18 +731,8 @@ async function publishToGithub(triggerSource = "button") {
   localStorage.setItem("teplici76_github_branch", branch);
 
   try {
-    const config = getSiteConfig();
-    const leads = JSON.parse(localStorage.getItem("teplici76_leads") || "[]");
-    const fullBackup = {
-      exportedAt: new Date().toISOString(),
-      version: "2.0",
-      site: "Теплицы ТУТ",
-      database: config,
-      leads: leads
-    };
-    const jsonStr = JSON.stringify(fullBackup, null, 2);
-
     let currentSha = null;
+    let remoteDb = null;
     try {
       const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_t=${Date.now()}`, {
         headers: {
@@ -756,11 +746,46 @@ async function publishToGithub(triggerSource = "button") {
       if (getRes.ok) {
         const fileData = await getRes.json();
         currentSha = fileData.sha;
+        if (fileData.content) {
+          try {
+            const raw = atob(fileData.content.replace(/\s/g, ""));
+            const bytes = new Uint8Array(raw.length);
+            for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+            const parsed = JSON.parse(new TextDecoder().decode(bytes));
+            remoteDb = parsed.database || parsed;
+          } catch(e) {}
+        }
       }
     } catch (e) {
       if (e.message.includes("токен") || e.message.includes("срок")) throw e;
       console.warn("Файл database.json создается впервые или ошибка чтения SHA:", e);
     }
+
+    let config = getSiteConfig();
+    const leads = JSON.parse(localStorage.getItem("teplici76_leads") || "[]");
+    // Слияние с удаленной базой: сохраняем правки с телефона и ПК без перезаписи чужих полей
+    if (remoteDb) {
+      config = {
+        ...remoteDb,
+        ...config,
+        homepagePhotos: { ...(remoteDb.homepagePhotos || {}), ...(config.homepagePhotos || {}) },
+        company: { ...(remoteDb.company || {}), ...(config.company || {}) },
+        pricing: { ...(remoteDb.pricing || {}), ...(config.pricing || {}) },
+        products: (Array.isArray(config.products) && config.products.length) ? config.products : (remoteDb.products || []),
+        reviews: (Array.isArray(config.reviews) && config.reviews.length) ? config.reviews : (remoteDb.reviews || []),
+        works: (Array.isArray(config.works) && config.works.length) ? config.works : (remoteDb.works || [])
+      };
+      saveSiteConfig(config);
+    }
+
+    const fullBackup = {
+      exportedAt: new Date().toISOString(),
+      version: "2.0",
+      site: "Теплицы ТУТ",
+      database: config,
+      leads: leads
+    };
+    const jsonStr = JSON.stringify(fullBackup, null, 2);
 
     if (ghStatus) ghStatus.innerHTML = "⏳ Запись данных в репозиторий GitHub...";
 
@@ -1583,7 +1608,7 @@ window.loadHomepagePhotosTab = loadHomepagePhotosTab;
 window.saveHomepagePhotosData = saveHomepagePhotosData;
 
 
-async function autoSyncLatestDatabase() {
+async function autoSyncLatestDatabase(force = false) {
   const repo = localStorage.getItem("teplici76_github_repo") || DEFAULT_GH_REPO;
   const token = localStorage.getItem("teplici76_github_token") || DEFAULT_GH_TOKEN;
   const branch = localStorage.getItem("teplici76_github_branch") || DEFAULT_GH_BRANCH;
@@ -1614,7 +1639,15 @@ async function autoSyncLatestDatabase() {
       }
     }
 
-    // 2. Fallback to static database.json
+    // 2. Fallback to raw.githubusercontent.com
+    if (!remoteData) {
+      try {
+        const rawRes = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/database.json?_t=${Date.now()}`);
+        if (rawRes.ok) remoteData = await rawRes.json();
+      } catch (e) {}
+    }
+
+    // 3. Fallback to static database.json
     if (!remoteData) {
       const res = await fetch("database.json?v=" + Date.now());
       if (res.ok) remoteData = await res.json();
@@ -1625,21 +1658,9 @@ async function autoSyncLatestDatabase() {
     if (!remoteDb) return;
 
     const localExportedAt = localStorage.getItem("teplici76_db_exported_at");
-    let isNewer = false;
+    let shouldSync = force || !localExportedAt || (remoteData.exportedAt && remoteData.exportedAt !== localExportedAt);
 
-    if (!localExportedAt) {
-      isNewer = true;
-    } else if (remoteData.exportedAt) {
-      const remoteTime = new Date(remoteData.exportedAt).getTime();
-      const localTime = new Date(localExportedAt).getTime();
-      if (!isNaN(remoteTime) && !isNaN(localTime)) {
-        isNewer = remoteTime > localTime;
-      } else {
-        isNewer = remoteData.exportedAt !== localExportedAt;
-      }
-    }
-
-    if (isNewer) {
+    if (shouldSync) {
       if (remoteData.exportedAt) {
         localStorage.setItem("teplici76_db_exported_at", remoteData.exportedAt);
       }
@@ -1655,6 +1676,15 @@ async function autoSyncLatestDatabase() {
       if (typeof loadHomepagePhotosTab === "function") loadHomepagePhotosTab();
       loadLeads();
       updateSidebarPublishState();
+
+      const timeStr = remoteData.exportedAt ? new Date(remoteData.exportedAt).toLocaleTimeString("ru-RU", { hour: '2-digit', minute: '2-digit' }) : "";
+      const statusEl = document.getElementById("sidebarPublishStatus");
+      if (statusEl) {
+        statusEl.innerHTML = `✅ Синхронизировано ${timeStr ? '(' + timeStr + ')' : ''}`;
+      }
+      if (force) {
+        showAdminToast("Данные успешно синхронизированы с сайтом!");
+      }
       console.log("Database successfully auto-synced from GitHub (exportedAt: " + remoteData.exportedAt + ")");
     }
   } catch (err) {
@@ -1662,3 +1692,10 @@ async function autoSyncLatestDatabase() {
   }
 }
 window.autoSyncLatestDatabase = autoSyncLatestDatabase;
+
+// Фоновая синхронизация между ПК и телефоном: при возврате на вкладку или каждые 30 секунд
+window.addEventListener("focus", () => autoSyncLatestDatabase());
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") autoSyncLatestDatabase();
+});
+setInterval(() => autoSyncLatestDatabase(), 30000);

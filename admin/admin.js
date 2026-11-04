@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDatabaseTab();
   setupSecurityTab();
   setupImageUploaderControls();
+  autoSyncLatestDatabase();
 });
 
 
@@ -714,6 +715,7 @@ async function publishToGithub(triggerSource = "button") {
 
     if (ghStatus) ghStatus.innerHTML = "⏳ Запись коммита в репозиторий GitHub...";
 
+    localStorage.setItem("teplici76_db_exported_at", fullBackup.exportedAt);
     const utf8Bytes = new TextEncoder().encode(jsonStr);
     let binary = "";
     for (let i = 0; i < utf8Bytes.length; i++) {
@@ -1504,3 +1506,39 @@ function setupHomepagePhotosForm() {
 }
 window.loadHomepagePhotosTab = loadHomepagePhotosTab;
 window.saveHomepagePhotosData = saveHomepagePhotosData;
+
+
+async function autoSyncLatestDatabase() {
+  try {
+    const res = await fetch("database.json?v=" + Date.now());
+    if (!res.ok) return;
+    const remoteData = await res.json();
+    const remoteDb = remoteData.database || remoteData;
+    if (!remoteDb) return;
+
+    const localExportedAt = localStorage.getItem("teplici76_db_exported_at");
+    const isNewer = !localExportedAt || (remoteData.exportedAt && remoteData.exportedAt !== localExportedAt);
+
+    if (isNewer) {
+      if (remoteData.exportedAt) {
+        localStorage.setItem("teplici76_db_exported_at", remoteData.exportedAt);
+      }
+      saveSiteConfig(remoteDb);
+      if (Array.isArray(remoteData.leads) && remoteData.leads.length) {
+        localStorage.setItem("teplici76_leads", JSON.stringify(remoteData.leads));
+      }
+      loadProductsTab();
+      loadReviewsTab();
+      loadWorksTab();
+      loadPricesForm();
+      loadContactsForm();
+      if (typeof loadHomepagePhotosTab === "function") loadHomepagePhotosTab();
+      loadLeads();
+      updateSidebarPublishState();
+      console.log("Database successfully auto-synced from remote database.json");
+    }
+  } catch (err) {
+    console.warn("Auto-sync database failed:", err);
+  }
+}
+window.autoSyncLatestDatabase = autoSyncLatestDatabase;

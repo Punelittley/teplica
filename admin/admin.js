@@ -1755,14 +1755,20 @@ setInterval(() => autoSyncLatestDatabase(), 30000);
 
 
 // --- Управление страницами сайта (11 страниц) ---
-function loadPagesTab() {
+function loadPagesTab(selectedKey = null) {
   const config = typeof getSiteConfig === "function" ? getSiteConfig() : {};
   const pagesGrid = document.getElementById("adminPagesGrid");
-  if (!pagesGrid) return;
+  const dropdown = document.getElementById("pageSelectorDropdown");
 
   const pages = config.pages || (typeof DEFAULT_PAGES !== "undefined" ? DEFAULT_PAGES : {}) || {};
   const pageKeys = Object.keys(pages);
 
+  const currentKey = selectedKey || (dropdown ? dropdown.value : null) || "glavnaya";
+  if (typeof renderPageEditor === "function") {
+    renderPageEditor(currentKey);
+  }
+
+  if (!pagesGrid) return;
   if (pageKeys.length === 0) {
     pagesGrid.innerHTML = '<div style="grid-column: 1/-1; padding: 20px; text-align: center; color: #64748b;">Страницы сайта загружаются...</div>';
     return;
@@ -1770,51 +1776,34 @@ function loadPagesTab() {
 
   pagesGrid.innerHTML = pageKeys.map(key => {
     const p = pages[key];
-    let specialBtn = '';
-    if (key === 'otzyvy') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabReviews')">⭐ Перейти в список отзывов (${(config.reviews || []).length})</button>`;
-    else if (key === 'raboty') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabWorks')">📷 Перейти в галерею работ (${(config.works || []).length})</button>`;
-    else if (key === 'kontakty') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabPricing')">📞 Настроить телефоны и адрес</button>`;
-    else if (key === 'glavnaya') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="openPageEditModal('glavnaya')">🖼 Фото и баннер главной</button>`;
-
+    const isSelected = key === currentKey;
     return `
-      <div class="admin-item-card" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 14px; border: 1.5px solid #e2e8f0; background: #fff; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s;">
+      <div class="admin-item-card" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 12px; border: ${isSelected ? '2.5px solid #2d6a4f' : '1.5px solid #e2e8f0'}; background: #fff; overflow: hidden; box-shadow: ${isSelected ? '0 6px 18px rgba(45,106,79,0.15)' : '0 2px 8px rgba(0,0,0,0.03)'};">
         <div>
-          <div style="position: relative; height: 160px; background: #eef2f5; overflow: hidden;">
+          <div style="position: relative; height: 130px; background: #eef2f5; overflow: hidden;">
             <img src="${p.bannerImage || 'assets/images/teplica.png'}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/teplica.png'">
-            <div style="position: absolute; top: 10px; left: 10px; background: rgba(8,28,21,0.85); color: #b7e4c7; padding: 3px 8px; border-radius: 6px; font-size: 0.74rem; font-weight: 700; backdrop-filter: blur(4px);">
+            <div style="position: absolute; top: 8px; left: 8px; background: rgba(8,28,21,0.85); color: #b7e4c7; padding: 2px 7px; border-radius: 5px; font-size: 0.72rem; font-weight: 700;">
               ${p.category || 'Страница'}
             </div>
-            ${p.badge ? `<div style="position: absolute; bottom: 10px; left: 10px; background: #52b788; color: #081c15; padding: 3px 8px; border-radius: 6px; font-size: 0.74rem; font-weight: 800;">${p.badge}</div>` : ''}
+            ${p.badge ? `<div style="position: absolute; bottom: 8px; left: 8px; background: #52b788; color: #081c15; padding: 2px 7px; border-radius: 5px; font-size: 0.72rem; font-weight: 800;">${p.badge}</div>` : ''}
           </div>
 
-          <div style="padding: 16px 16px 10px;">
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
-              <div>
-                <h3 style="font-size: 1.05rem; font-weight: 800; color: #1b4332; margin: 0 0 2px;">${p.name}</h3>
-                <code style="font-size: 0.76rem; color: #64748b; background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">${p.file}</code>
-              </div>
-              ${p.priceText ? `<span style="font-weight: 800; font-size: 0.92rem; color: #2d6a4f; white-space: nowrap;">${p.priceText}</span>` : ''}
+          <div style="padding: 12px 14px 8px;">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 6px;">
+              <h3 style="font-size: 0.98rem; font-weight: 800; color: #1b4332; margin: 0 0 2px;">${p.name}</h3>
+              ${p.priceText ? `<span style="font-weight: 800; font-size: 0.85rem; color: #2d6a4f; white-space: nowrap;">${p.priceText}</span>` : ''}
             </div>
-
-            <p style="font-size: 0.86rem; color: #334155; margin: 10px 0 6px; line-height: 1.4; font-weight: 700;">
-              ${p.title}
-            </p>
-            <p style="font-size: 0.8rem; color: #64748b; margin: 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-              ${p.description || ''}
-            </p>
+            <code style="font-size: 0.74rem; color: #64748b; background: #f1f5f9; padding: 1px 5px; border-radius: 4px;">${p.file}</code>
           </div>
         </div>
 
-        <div style="padding: 12px 16px 16px; border-top: 1px solid #f1f5f9; display: flex; flex-direction: column; gap: 8px; background: #fafbfc;">
-          <div style="display: flex; gap: 8px;">
-            <a href="${p.file}" target="_blank" class="btn-admin btn-admin-light" style="flex: 1; text-align: center; text-decoration: none; padding: 8px; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px;">
-              <span>👁</span> Открыть
-            </a>
-            <button type="button" class="btn-admin btn-admin-primary" style="flex: 1.3; padding: 8px; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px;" onclick="openPageEditModal('${key}')">
-              <span>✏️</span> Настроить
-            </button>
-          </div>
-          ${specialBtn ? `<div>${specialBtn}</div>` : ''}
+        <div style="padding: 10px 14px 14px; border-top: 1px solid #f1f5f9; display: flex; gap: 6px;">
+          <a href="${p.file}" target="_blank" class="btn-admin btn-admin-light" style="flex: 1; text-align: center; text-decoration: none; padding: 7px; font-size: 0.78rem; font-weight: 700;">
+            👁 Открыть
+          </a>
+          <button type="button" class="btn-admin ${isSelected ? 'btn-admin-primary' : 'btn-admin-light'}" style="flex: 1.6; padding: 7px; font-size: 0.78rem; font-weight: 700;" onclick="selectAndScrollToPage('${key}')">
+            ✏️ ${isSelected ? '✓ Выбрана' : 'Выбрать'}
+          </button>
         </div>
       </div>
     `;

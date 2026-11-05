@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Защищенная панель управления — Теплицы ТУТ</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="admin/admin.css?v=6.8">
+  <link rel="stylesheet" href="admin/admin.css?v=6.9">
 </head>
 <body>
 
@@ -181,15 +181,13 @@
 
         <div style="margin-bottom: 12px; font-weight: 700; color: #1b4332;" id="adminProductsCount"></div>
         <div class="admin-items-grid" id="adminProductsGrid"></div>
-      </section>
-
-      <!-- Вкладка: Страницы сайта (Все 11 страниц) -->
+      </section>      <!-- Вкладка: Страницы сайта (Выбор страницы и замена фото) -->
       <section class="tab-panel" id="tabPages">
         <div class="admin-header">
           <div>
-            <h1 style="font-size: 1.8rem; color: #1b4332;">Управление страницами сайта</h1>
+            <h1 style="font-size: 1.8rem; color: #1b4332;">Страницы сайта и фотографии</h1>
             <p style="color: var(--admin-muted); font-size: 0.9rem;">
-              Быстрый доступ, предпросмотр и настройка контента для всех 11 страниц сайта
+              Выберите страницу из списка ниже — откроются все её фотографии, заголовки и цены с возможностью моментальной замены с телефона или ПК
             </p>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -199,27 +197,46 @@
           </div>
         </div>
 
-        <!-- Статистические мини-плашки -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px;">
-          <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
-            <div style="font-size: 0.78rem; color: #6c757d; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">Всего страниц</div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: #1b4332; margin: 2px 0;">11 страниц</div>
-            <div style="font-size: 0.76rem; color: #2b9348;">✓ Все активны и доступны онлайн</div>
-          </div>
-          <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
-            <div style="font-size: 0.78rem; color: #6c757d; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">Редактирование</div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: #2d6a4f; margin: 2px 0;">Заголовки, фото, цены</div>
-            <div style="font-size: 0.76rem; color: #555;">Загрузка фото с телефона и ПК</div>
-          </div>
-          <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
-            <div style="font-size: 0.78rem; color: #6c757d; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">Синхронизация</div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: #1b4332; margin: 2px 0;">0 секунд</div>
-            <div style="font-size: 0.76rem; color: #2b9348;">Мгновенно для всех посетителей</div>
+        <!-- БЛОК ВЫБОРА СТРАНИЦЫ -->
+        <div class="admin-card" style="background: linear-gradient(135deg, #f8fafc 0%, #eefbf3 100%); border: 2px solid #52b788; border-radius: 16px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 14px rgba(45,106,79,0.08);">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="pageSelectorDropdown" style="font-size: 1.05rem; font-weight: 800; color: #1b4332; display: flex; align-items: center; gap: 8px;">
+              <span>📑</span> Выберите страницу для редактирования фото и контента:
+            </label>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+              <select id="pageSelectorDropdown" class="form-input-admin" style="flex: 1; min-width: 260px; font-size: 1rem; font-weight: 700; padding: 12px 16px; border-radius: 10px; border: 2px solid #2d6a4f; background: #fff; cursor: pointer; color: #1b4332;" onchange="onPageSelectorChange(this.value)">
+                <option value="glavnaya">🏠 Главная страница (первый экран, преимущества, витрина)</option>
+                <option value="arochnye">🌿 Арочные теплицы (arochnye.html)</option>
+                <option value="kaplevidnye">💧 Каплевидные теплицы / Стрела (kaplevidnye.html)</option>
+                <option value="domikom">🏡 Теплицы «Домиком» прямостенные (domikom.html)</option>
+                <option value="polikarbonat">🛡️ Сотовый поликарбонат (polikarbonat.html)</option>
+                <option value="gryadki">🌱 Оцинкованные грядки и клумбы (gryadki.html)</option>
+                <option value="dostavka">🚚 Доставка и сборка (dostavka-sborka.html)</option>
+                <option value="preimushchestva">⭐ Преимущества завода (preimushchestva.html)</option>
+                <option value="raboty">📷 Галерея «Наши работы» (nashi-raboty.html)</option>
+                <option value="otzyvy">💬 Отзывы покупателей (otzyvy.html)</option>
+                <option value="kontakty">📞 Контакты и выставочная площадка (kontakty.html)</option>
+              </select>
+              <a id="pageSelectorOpenBtn" href="index.html" target="_blank" class="btn-admin btn-admin-light" style="padding: 12px 18px; font-weight: 700; border-radius: 10px; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                <span>👁</span> Открыть страницу на сайте
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Сетка карточек страниц -->
-        <div id="adminPagesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;"></div>
+        <!-- ДИНАМИЧЕСКИЙ РЕДАКТОР ВЫБРАННОЙ СТРАНИЦЫ -->
+        <div id="pageEditorContainer"></div>
+
+        <!-- РАЗДЕЛИТЕЛЬ И КАТАЛОГ ВСЕХ СТРАНИЦ КАРТОЧКАМИ -->
+        <div style="margin-top: 36px; padding-top: 24px; border-top: 1.5px dashed #cbd5e1;">
+          <h2 style="font-size: 1.25rem; color: #1b4332; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+            <span>🗂️</span> Все 11 страниц сайта списком
+          </h2>
+          <p style="color: var(--admin-muted); font-size: 0.86rem; margin-bottom: 16px;">
+            Кликните «✏️ Выбрать и изменить» на любой карточке, чтобы открыть её фотографии и параметры в редакторе выше
+          </p>
+          <div id="adminPagesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px;"></div>
+        </div>
       </section>
 
 
@@ -670,69 +687,9 @@
     </div>
   </div>
 
-  <script src="assets/js/catalog-data.js?v=6.8"></script>
-  <script src="admin/admin.js?v=6.8"></script>
-
-  <!-- Модальное окно редактирования страницы -->
-  <div class="admin-modal" id="pageEditModal" style="display: none; position: fixed; inset: 0; z-index: 99999; align-items: center; justify-content: center;">
-    <div class="admin-modal-backdrop" onclick="closePageEditModal()" style="position: absolute; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(3px);"></div>
-    <div class="admin-modal-card" style="position: relative; max-width: 650px; width: 92%; max-height: 90vh; overflow-y: auto; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-      <div class="admin-modal-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
-        <div>
-          <h3 id="pageEditModalTitle" style="color: #1b4332; margin: 0 0 4px; font-size: 1.3rem; font-weight: 800;">Редактирование страницы</h3>
-          <div id="pageEditModalSub" style="font-size: 0.82rem; color: #6c757d;"></div>
-        </div>
-        <button type="button" class="admin-modal-close" onclick="closePageEditModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
-      </div>
-
-      <form id="pageEditForm" onsubmit="savePageEditForm(event)">
-        <input type="hidden" id="editPageKey">
-
-        <div class="form-group-admin" style="margin-bottom: 14px;">
-          <label style="display: block; font-weight: 700; margin-bottom: 4px; color: #1b4332; font-size: 0.9rem;">Заголовок первого экрана (H1):</label>
-          <input type="text" id="editPageTitle" class="form-input-admin" style="width: 100%; padding: 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;" required>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-          <div class="form-group-admin">
-            <label style="display: block; font-weight: 700; margin-bottom: 4px; color: #1b4332; font-size: 0.9rem;">Бейдж / Акция:</label>
-            <input type="text" id="editPageBadge" class="form-input-admin" style="width: 100%; padding: 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;" placeholder="Скидка 20%, Хит продаж...">
-          </div>
-          <div class="form-group-admin">
-            <label style="display: block; font-weight: 700; margin-bottom: 4px; color: #1b4332; font-size: 0.9rem;">Текст цены / срока:</label>
-            <input type="text" id="editPagePriceText" class="form-input-admin" style="width: 100%; padding: 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;" placeholder="от 21 900 ₽">
-          </div>
-        </div>
-
-        <div class="form-group-admin" style="margin-bottom: 14px;">
-          <label style="display: block; font-weight: 700; margin-bottom: 4px; color: #1b4332; font-size: 0.9rem;">Краткое описание / подзаголовок страницы:</label>
-          <textarea id="editPageDesc" class="form-input-admin" rows="3" style="width: 100%; padding: 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;"></textarea>
-        </div>
-
-        <div class="form-group-admin" style="margin-bottom: 20px;">
-          <label style="display: block; font-weight: 700; margin-bottom: 4px; color: #1b4332; font-size: 0.9rem;">Главное фото / баннер страницы:</label>
-          <div class="image-uploader-card" id="pageBannerUploaderBox" style="margin-top: 6px; padding: 12px; background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 10px;">
-            <div class="image-uploader-preview" id="page_banner_preview_box" style="height: 150px; margin-bottom: 10px; border-radius: 8px; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; border: 1px solid #e2e8f0;">
-              <img id="page_banner_img" src="" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/teplica.png'">
-            </div>
-            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-              <label class="btn-admin btn-admin-light" style="flex: 1; text-align: center; cursor: pointer; padding: 9px; font-weight: 700; border-radius: 8px; background: #e2e8f0;">
-                📁 Загрузить с устройства (телефон/ПК)
-                <input type="file" id="page_banner_file" accept="image/*" style="display: none;" onchange="handlePageBannerFileChange(this)">
-              </label>
-            </div>
-            <input type="text" id="page_banner_url" class="form-input-admin" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem;" placeholder="Или путь/ссылка (assets/images/...)" oninput="handlePageBannerUrlInput(this.value)">
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap;">
-          <button type="button" class="btn-admin btn-admin-light" onclick="closePageEditModal()" style="padding: 10px 16px; border-radius: 8px;">Отмена</button>
-          <button type="submit" class="btn-admin btn-admin-primary" style="padding: 10px 18px; border-radius: 8px; font-weight: 800;">💾 Сохранить</button>
-          <button type="button" class="btn-admin" style="background: #2d6a4f; color: #fff; padding: 10px 18px; border-radius: 8px; font-weight: 800;" onclick="saveAndPublishPage(event)">🚀 Сохранить и сразу опубликовать</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <script src="assets/js/catalog-data.js?v=6.9"></script>
+  <script src="admin/admin.js?v=6.9"></script>
+  <script src="admin/page-editor.js?v=6.9"></script>
 
 </body>
 </html>

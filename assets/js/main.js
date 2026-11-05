@@ -1,4 +1,4 @@
-
+﻿
 
 document.addEventListener("DOMContentLoaded", () => {
   const config = typeof getSiteConfig === "function" ? getSiteConfig() : (window.DEFAULT_CONFIG || {});
@@ -250,7 +250,7 @@ function renderDatabaseContent(config) {
       }
       // 3. Главный баннер / фото галереи
       if (page.bannerImage) {
-        const bannerImg = document.querySelector(".prod-gallery-main img") || document.querySelector(".hero-image-card img");
+        const bannerImg = document.querySelector(".prod-main-view .prod-main-img") || document.querySelector(".prod-gallery-main img") || document.querySelector(".hero-image-card img");
         if (bannerImg) {
           bannerImg.src = page.bannerImage;
         }

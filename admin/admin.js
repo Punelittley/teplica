@@ -1898,9 +1898,6 @@ async function handlePageBannerFileChange(input) {
     };
     reader.readAsDataURL(file);
   }
-};
-    reader.readAsDataURL(file);
-  }
 }
 
 function savePageEditForm(e) {

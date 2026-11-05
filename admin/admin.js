@@ -1774,7 +1774,7 @@ function loadPagesTab() {
     if (key === 'otzyvy') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabReviews')">⭐ Перейти в список отзывов (${(config.reviews || []).length})</button>`;
     else if (key === 'raboty') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabWorks')">📷 Перейти в галерею работ (${(config.works || []).length})</button>`;
     else if (key === 'kontakty') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabPricing')">📞 Настроить телефоны и адрес</button>`;
-    else if (key === 'glavnaya') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="switchAdminTab('tabPhotos')">🖼 Фото главной (hero, витрина)</button>`;
+    else if (key === 'glavnaya') specialBtn = `<button type="button" class="btn-admin btn-admin-light" style="font-size: 0.78rem; padding: 5px 10px; width: 100%; justify-content: center;" onclick="openPageEditModal('glavnaya')">🖼 Фото и баннер главной</button>`;
 
     return `
       <div class="admin-item-card" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 14px; border: 1.5px solid #e2e8f0; background: #fff; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s;">
@@ -1875,17 +1875,30 @@ function handlePageBannerUrlInput(val) {
   }
 }
 
-function handlePageBannerFileChange(input) {
+async function handlePageBannerFileChange(input) {
   if (input.files && input.files[0]) {
     const file = input.files[0];
+    const img = document.getElementById("page_banner_img");
+    const urlInput = document.getElementById("page_banner_url");
+    try {
+      if (typeof compressImageFile === "function") {
+        const compressed = await compressImageFile(file, 1400, 0.85);
+        if (img) img.src = compressed;
+        if (urlInput) urlInput.value = compressed;
+        return;
+      }
+    } catch(err) {
+      console.warn("Banner compression failed, using fallback:", err);
+    }
     const reader = new FileReader();
     reader.onload = (e) => {
       const dataUrl = e.target.result;
-      const img = document.getElementById("page_banner_img");
-      const urlInput = document.getElementById("page_banner_url");
       if (img) img.src = dataUrl;
       if (urlInput) urlInput.value = dataUrl;
     };
+    reader.readAsDataURL(file);
+  }
+};
     reader.readAsDataURL(file);
   }
 }

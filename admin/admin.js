@@ -1,4 +1,4 @@
-
+﻿
 function uint8ToBase64(bytes) {
   let binary = "";
   const len = bytes.byteLength;
@@ -817,8 +817,8 @@ async function publishToGithub(triggerSource = "button") {
     let putData = await putRes.json();
 
     // Автоматическое разрешение конфликта 409 (если SHA устарел или были параллельные коммиты)
-    let maxRetries = 3;
-    while (!putRes.ok && maxRetries > 0 && (putRes.status === 409 || (putData.message && putData.message.includes("is at")))) {
+    let maxRetries = 5;
+    while (!putRes.ok && maxRetries > 0 && (putRes.status === 409 || putRes.status === 422 || (putData.message && (putData.message.includes("is at") || putData.message.includes("sha"))))) {
       maxRetries--;
       if (ghStatus) ghStatus.innerHTML = "⏳ Разрешение конфликта версий GitHub...";
 
@@ -890,7 +890,7 @@ async function publishToGithub(triggerSource = "button") {
         }, 6000);
       }
       showAdminToast(`✅ Успешно опубликовано в ${nowTime}!`);
-      alert(`✅ Изменения успешно отправлены на сайт (в ${nowTime})!\n\nGitHub Pages обновит сайт в течение 20–30 секунд.`);
+      // toast уже показан выше
     } else {
       throw new Error(putData.message || "Ошибка записи в GitHub API");
     }
@@ -904,7 +904,7 @@ async function publishToGithub(triggerSource = "button") {
       sidebarStatus.style.color = "#ffadad";
     }
     showAdminToast(`❌ Ошибка: ${err.message}`, null, null, true);
-    alert(`❌ Ошибка публикации:\n${err.message}`);
+    // alert removed - toast shown above
   } finally {
     if (sidebarBtn) {
       sidebarBtn.disabled = false;

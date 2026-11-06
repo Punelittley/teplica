@@ -260,10 +260,98 @@ function renderDatabaseContent(config) {
       if (descEl && page.description) {
         descEl.textContent = page.description;
       }
+      // 5. Видео-обзоры страницы (если добавлены видео 1 и 2)
+      renderPageVideos(page);
     }
   }
 
   initScrollAnimations();
+}
+
+function renderPageVideos(page) {
+  if (!page) return;
+  const video1 = (page.video1 || "").trim();
+  const video2 = (page.video2 || "").trim();
+  const hasVideo = !!(video1 || video2);
+
+  let videoSec = document.getElementById("pageVideoSection");
+  if (!hasVideo) {
+    if (videoSec) videoSec.style.display = "none";
+    return;
+  }
+
+  if (!videoSec) {
+    videoSec = document.createElement("section");
+    videoSec.id = "pageVideoSection";
+    videoSec.className = "page-videos-wrap";
+    videoSec.style.cssText = "margin: 35px 0 45px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 18px; padding: 26px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.04);";
+
+    const anchor = document.querySelector(".pricing-table-wrap") || document.querySelector(".greenhouse-features-bar") || document.querySelector("footer");
+    if (anchor && anchor.parentNode) {
+      anchor.parentNode.insertBefore(videoSec, anchor);
+    } else {
+      document.body.appendChild(videoSec);
+    }
+  }
+
+  videoSec.style.display = "block";
+
+  function makeVideoEmbed(src, title) {
+    if (!src || !src.trim()) return "";
+    const cleanSrc = src.trim();
+    let embedHtml = "";
+
+    const ytMatch = cleanSrc.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    if (ytMatch && ytMatch[1]) {
+      embedHtml = `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
+    } else if (cleanSrc.includes("vk.com/video_ext.php") || cleanSrc.includes("vkvideo.ru")) {
+      const vkUrl = cleanSrc.startsWith("http") ? cleanSrc : `https://${cleanSrc}`;
+      embedHtml = `<iframe src="${vkUrl}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
+    } else if (cleanSrc.includes("rutube.ru")) {
+      const rtMatch = cleanSrc.match(/rutube\.ru\/video\/([a-zA-Z0-9]+)/);
+      const rtId = rtMatch ? rtMatch[1] : cleanSrc.split("/").filter(Boolean).pop();
+      embedHtml = `<iframe src="https://rutube.ru/play/embed/${rtId}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
+    } else {
+      embedHtml = `<video src="${cleanSrc}" controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; background: #000;"></video>`;
+    }
+
+    return `
+      <div style="background: #fff; border-radius: 14px; overflow: hidden; border: 1.5px solid #cbd5e1; box-shadow: 0 4px 14px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
+        <div style="position: relative; width: 100%; padding-top: 56.25%; background: #081c15; overflow: hidden;">
+          <div style="position: absolute; inset: 0;">
+            ${embedHtml}
+          </div>
+        </div>
+        <div style="padding: 12px 16px; background: #ffffff;">
+          <div style="font-weight: 800; color: #1b4332; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+            <span>🎬</span> ${title}
+          </div>
+          <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">Короткий видеообзор и демонстрация вживую</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const v1Html = makeVideoEmbed(video1, page.videoTitle1 || "Видеообзор №1");
+  const v2Html = makeVideoEmbed(video2, page.videoTitle2 || "Видеообзор №2");
+
+  videoSec.innerHTML = `
+    <div style="text-align: center; margin-bottom: 20px;">
+      <div style="display: inline-block; background: #d8f3dc; color: #1b4332; font-size: 0.76rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;">
+        Видео вживую
+      </div>
+      <h2 style="font-size: 1.5rem; color: #1b4332; margin: 0 0 6px; font-weight: 800;">
+        🎬 Видеообзор: посмотрите теплицу в деталях
+      </h2>
+      <p style="color: #64748b; font-size: 0.88rem; margin: 0; max-width: 600px; margin: 0 auto;">
+        Реальные видео конструкции, толщины профиля, работы форточек и дверей на участке
+      </p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto;">
+      ${v1Html}
+      ${v2Html}
+    </div>
+  `;
 }
 
 

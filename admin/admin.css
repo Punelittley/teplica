@@ -1,4 +1,4 @@
-
+﻿
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 
 :root {
@@ -734,3 +734,44 @@ body {
   }
 }
 
+
+
+/* Fix mobile responsive wrapping */
+.admin-card {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+.page-banner-grid,
+.page-photo-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 18px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-banner-grid,
+  .page-photo-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .page-banner-grid .banner-preview-box,
+  .page-photo-row .banner-preview-box {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .btn-admin {
+    white-space: normal !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-items-grid,
+  #adminPagesGrid {
+    grid-template-columns: 1fr !important;
+  }
+}

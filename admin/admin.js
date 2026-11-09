@@ -702,8 +702,9 @@ async function publishToGithub(triggerSource = "button") {
     ghStatus.innerHTML = "⏳ Подключение к GitHub API...";
   }
 
-  // Auto-sync photos and prices into config before reading
-  if (typeof saveHomepagePhotosData === "function") {
+  // Auto-sync photos into config before reading ONLY if photos tab is active
+  const isPhotosTabActive = document.getElementById("tabHomepagePhotos")?.classList.contains("active");
+  if ((isPhotosTabActive || source === "photos") && typeof saveHomepagePhotosData === "function") {
     try { saveHomepagePhotosData(false); } catch(e) {}
   }
 
@@ -769,7 +770,21 @@ async function publishToGithub(triggerSource = "button") {
       config = {
         ...remoteDb,
         ...config,
-        homepagePhotos: { ...(remoteDb.homepagePhotos || {}), ...(config.homepagePhotos || {}) },
+        homepagePhotos: (() => {
+          const rem = remoteDb.homepagePhotos || {};
+          const loc = config.homepagePhotos || {};
+          const merged = { ...rem };
+          for (const k of ["hero","feat1","feat2","feat3","showcaseArch","showcaseDrop","showcaseHouse"]) {
+            if (loc[k] && loc[k].startsWith("data:image")) {
+              merged[k] = loc[k];
+            } else if (rem[k] && rem[k].startsWith("data:image")) {
+              merged[k] = rem[k];
+            } else if (loc[k]) {
+              merged[k] = loc[k];
+            }
+          }
+          return merged;
+        })(),
         company: { ...(remoteDb.company || {}), ...(config.company || {}) },
         pricing: { ...(remoteDb.pricing || {}), ...(config.pricing || {}) },
         products: (Array.isArray(config.products) && config.products.length) ? config.products : (remoteDb.products || []),
@@ -1583,15 +1598,29 @@ function loadHomepagePhotosTab() {
 
 function saveHomepagePhotosData(publishNow = false) {
   const config = getSiteConfig();
+  const existing = config.homepagePhotos || {};
+
+  const heroVal = getImageUploaderValue('hp_hero');
+  const feat1Val = getImageUploaderValue('hp_feat1');
+  const feat2Val = getImageUploaderValue('hp_feat2');
+  const feat3Val = getImageUploaderValue('hp_feat3');
+  const archVal = getImageUploaderValue('hp_show_arch');
+  const dropVal = getImageUploaderValue('hp_show_drop');
+  const houseVal = getImageUploaderValue('hp_show_house');
+
+  // Protect against uninitialized form overwriting existing photos
+  if (!heroVal && !feat1Val && !feat2Val && !feat3Val && !archVal && !dropVal && !houseVal) {
+    return;
+  }
 
   config.homepagePhotos = {
-    hero: getImageUploaderValue('hp_hero') || 'assets/images/teplica.png',
-    feat1: getImageUploaderValue('hp_feat1') || 'assets/images/products/p3/2.jpg',
-    feat2: getImageUploaderValue('hp_feat2') || 'assets/images/works/work_5_polikarbonat.png',
-    feat3: getImageUploaderValue('hp_feat3') || 'assets/images/works/work_2_ustanovka.png',
-    showcaseArch: getImageUploaderValue('hp_show_arch') || 'assets/images/products/p1/2.jpg',
-    showcaseDrop: getImageUploaderValue('hp_show_drop') || 'assets/images/products/p6/1.jpg',
-    showcaseHouse: getImageUploaderValue('hp_show_house') || 'assets/images/products/p2/5.jpg'
+    hero: heroVal || existing.hero || 'assets/images/teplica.png',
+    feat1: feat1Val || existing.feat1 || 'assets/images/products/p3/2.jpg',
+    feat2: feat2Val || existing.feat2 || 'assets/images/works/work_5_polikarbonat.png',
+    feat3: feat3Val || existing.feat3 || 'assets/images/works/work_2_ustanovka.png',
+    showcaseArch: archVal || existing.showcaseArch || 'assets/images/products/p1/2.jpg',
+    showcaseDrop: dropVal || existing.showcaseDrop || 'assets/images/products/p6/1.jpg',
+    showcaseHouse: houseVal || existing.showcaseHouse || 'assets/images/products/p2/5.jpg'
   };
 
   const ok = saveSiteConfig(config);

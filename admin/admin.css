@@ -1,4 +1,4 @@
-﻿
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 
 :root {
@@ -736,34 +736,49 @@ body {
 
 
 
-/* Fix mobile responsive wrapping */
-.admin-card {
-  box-sizing: border-box !important;
+/* Fix mobile responsive wrapping (Mobile-first) */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+.admin-layout,
+.admin-content,
+.admin-card,
+.tab-panel,
+#pageEditorContainer {
   max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+.banner-preview-box {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .page-banner-grid,
 .page-photo-row {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 18px;
-  align-items: center;
-  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 820px) {
+  .page-banner-grid,
+  .page-photo-row {
+    display: grid !important;
+    grid-template-columns: 260px 1fr !important;
+    gap: 18px !important;
+    align-items: center !important;
+  }
 }
 
 @media (max-width: 768px) {
-  .page-banner-grid,
-  .page-photo-row {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  .page-banner-grid .banner-preview-box,
-  .page-photo-row .banner-preview-box {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
   .btn-admin {
     white-space: normal !important;
     max-width: 100% !important;

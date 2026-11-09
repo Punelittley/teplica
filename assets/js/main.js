@@ -1,4 +1,4 @@
-﻿
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const config = typeof getSiteConfig === "function" ? getSiteConfig() : (window.DEFAULT_CONFIG || {});
@@ -300,20 +300,45 @@ function renderPageVideos(page) {
     if (!src || !src.trim()) return "";
     const cleanSrc = src.trim();
     let embedHtml = "";
+    let watchUrl = cleanSrc.startsWith("http") ? cleanSrc : "";
 
-    const ytMatch = cleanSrc.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    // 1. YouTube (standard, shorts, embed, watch?v=)
+    const ytMatch = cleanSrc.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|watch\?.+&v=))([\w-]{11})/);
+    // 2. VK Video and VK Clips (vk.com/clip-X_Y, vk.ru/clip-X_Y, vk.com/video-X_Y, vkvideo.ru/video-X_Y, etc.)
+    const vkClipMatch = cleanSrc.match(/(?:vk\.(?:com|ru)|vkvideo\.ru)\/(?:video|clip)(-?\d+)_(\d+)/);
+    // 3. Rutube (rutube.ru/video/ID, rutube.ru/play/embed/ID)
+    const rtMatch = cleanSrc.match(/rutube\.ru\/(?:video|play\/embed)\/([a-zA-Z0-9]+)/);
+
     if (ytMatch && ytMatch[1]) {
-      embedHtml = `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
-    } else if (cleanSrc.includes("vk.com/video_ext.php") || cleanSrc.includes("vkvideo.ru")) {
+      embedHtml = `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+      if (!watchUrl) watchUrl = `https://www.youtube.com/watch?v=${ytMatch[1]}`;
+    } else if (vkClipMatch && vkClipMatch[1] && vkClipMatch[2]) {
+      const oid = vkClipMatch[1];
+      const vid = vkClipMatch[2];
+      embedHtml = `<iframe src="https://vk.com/video_ext.php?oid=${oid}&id=${vid}&hd=2" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen loading="lazy"></iframe>`;
+      if (!watchUrl) watchUrl = cleanSrc;
+    } else if (cleanSrc.includes("video_ext.php")) {
       const vkUrl = cleanSrc.startsWith("http") ? cleanSrc : `https://${cleanSrc}`;
-      embedHtml = `<iframe src="${vkUrl}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
-    } else if (cleanSrc.includes("rutube.ru")) {
-      const rtMatch = cleanSrc.match(/rutube\.ru\/video\/([a-zA-Z0-9]+)/);
-      const rtId = rtMatch ? rtMatch[1] : cleanSrc.split("/").filter(Boolean).pop();
-      embedHtml = `<iframe src="https://rutube.ru/play/embed/${rtId}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
+      embedHtml = `<iframe src="${vkUrl}" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen loading="lazy"></iframe>`;
+      if (!watchUrl) watchUrl = vkUrl;
+    } else if (rtMatch && rtMatch[1]) {
+      embedHtml = `<iframe src="https://rutube.ru/play/embed/${rtMatch[1]}" style="width: 100%; height: 100%; border: none;" allow="clipboard-write; autoplay" allowfullscreen loading="lazy"></iframe>`;
+      if (!watchUrl) watchUrl = `https://rutube.ru/video/${rtMatch[1]}/`;
+    } else if (cleanSrc.startsWith("data:video/") || cleanSrc.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i)) {
+      embedHtml = `<video src="${cleanSrc}" controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>`;
+    } else if (cleanSrc.startsWith("http")) {
+      embedHtml = `<iframe src="${cleanSrc}" style="width: 100%; height: 100%; border: none;" allowfullscreen loading="lazy"></iframe>`;
     } else {
       embedHtml = `<video src="${cleanSrc}" controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; background: #000;"></video>`;
     }
+
+    const openLinkHtml = watchUrl ? `
+      <div style="margin-top: 8px; text-align: right;">
+        <a href="${watchUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #2d6a4f; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+          <span>↗</span> Открыть видео в источнике
+        </a>
+      </div>
+    ` : '';
 
     return `
       <div style="background: #fff; border-radius: 14px; overflow: hidden; border: 1.5px solid #cbd5e1; box-shadow: 0 4px 14px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
@@ -327,6 +352,7 @@ function renderPageVideos(page) {
             <span>🎬</span> ${title}
           </div>
           <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">Короткий видеообзор и демонстрация вживую</div>
+          ${openLinkHtml}
         </div>
       </div>
     `;

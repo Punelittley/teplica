@@ -185,6 +185,10 @@ function renderPageEditor(pageKey) {
   }
 
   // 2. РЕДАКТОР ЛЮБОЙ ДРУГОЙ СТРАНИЦЫ (Арочные, Капелька, Домиком и т.д.)
+  const defaultGal = (typeof DEFAULT_GALLERIES !== "undefined" && DEFAULT_GALLERIES[pageKey]) ? DEFAULT_GALLERIES[pageKey] : [];
+  window.currentEditingGallery = (Array.isArray(p.gallery) && p.gallery.length) ? [...p.gallery] : (defaultGal.length ? [...defaultGal] : (p.bannerImage ? [p.bannerImage] : []));
+  window.currentEditingPageKey = pageKey;
+
   const isVideoSupported = (pageKey === "arochnye" || pageKey === "kaplevidnye" || pageKey === "domikom");
   const videoCountLabel = pageKey === "arochnye" ? "Два видеообзора (Арочные)" : (pageKey === "kaplevidnye" ? "Одно или два видео (Капелька)" : "Видеообзоры");
 
@@ -218,6 +222,31 @@ function renderPageEditor(pageKey) {
             <input type="text" id="page_custom_url" class="form-input-admin" value="${p.bannerImage || 'assets/images/teplica.png'}" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;" oninput="document.getElementById('page_custom_img').src = this.value">
           </div>
         </div>
+      </div>
+
+      <!-- БЛОК ВСЕХ ФОТОГРАФИЙ КАРТОЧКИ ТОВАРА (ГАЛЕРЕЯ) -->
+      <div style="background: #f8fafc; border: 2px solid #2d6a4f; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-sizing: border-box;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+          <div>
+            <h3 style="font-size: 1.08rem; color: #1b4332; margin: 0 0 4px; display: flex; align-items: center; gap: 8px;">
+              <span>📸</span> Фотогалерея карточки товара (<span id="galleryCountBadge">${window.currentEditingGallery ? window.currentEditingGallery.length : 0}</span> фото)
+            </h3>
+            <p style="color: #64748b; font-size: 0.82rem; margin: 0;">
+              Все фотографии, которые покупатели листают в карточке теплицы. Первое фото (#1) — главное на обложке. Переставляйте стрелочками или удаляйте.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <label class="btn-admin btn-admin-primary" style="margin: 0; cursor: pointer; padding: 10px 14px; font-size: 0.88rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;">
+              <span>➕</span> Добавить фото с телефона / ПК
+              <input type="file" accept="image/*" multiple style="display: none;" onchange="onGalleryUploadFiles(this)">
+            </label>
+            <button type="button" class="btn-admin btn-admin-light" onclick="onGalleryAddUrlPrompt()" style="padding: 10px 14px; font-size: 0.88rem; font-weight: 700;">
+              🔗 По ссылке
+            </button>
+          </div>
+        </div>
+
+        <div id="galleryItemsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-top: 14px;"></div>
       </div>
 
       <!-- БЛОК ЗАГРУЗКИ КОРОТКИХ ВИДЕО -->
@@ -296,6 +325,8 @@ function renderPageEditor(pageKey) {
       </div>
     </div>
   `;
+
+  renderGalleryGridItems();
 }
 window.renderPageEditor = renderPageEditor;
 
@@ -367,6 +398,143 @@ async function handleSinglePhotoUpload(input, imgId, urlInputId) {
 }
 window.handleSinglePhotoUpload = handleSinglePhotoUpload;
 
+
+function renderGalleryGridItems() {
+  const grid = document.getElementById("galleryItemsGrid");
+  const countBadge = document.getElementById("galleryCountBadge");
+  if (!grid) return;
+
+  const list = window.currentEditingGallery || [];
+  if (countBadge) countBadge.textContent = list.length;
+
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 24px; text-align: center; color: #64748b; background: #fff; border: 1.5px dashed #cbd5e1; border-radius: 10px;">
+        В галерее пока нет фото. Нажмите <b>«➕ Добавить фото с телефона / ПК»</b>, чтобы загрузить первые снимки теплицы.
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = list.map((src, idx) => {
+    const isFirst = idx === 0;
+    const isLast = idx === list.length - 1;
+    return `
+      <div class="gallery-photo-card" style="background: #fff; border: 2px solid ${isFirst ? '#2d6a4f' : '#cbd5e1'}; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.06); box-sizing: border-box;">
+        ${isFirst ? 
+          '<div style="position: absolute; top: 6px; left: 6px; background: #2d6a4f; color: #fff; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">★ ОБЛОЖКА</div>' : 
+          `<div style="position: absolute; top: 6px; left: 6px; background: rgba(15,23,42,0.75); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; z-index: 2;">#${idx + 1}</div>`
+        }
+        <div style="width: 100%; height: 110px; background: #e2e8f0; overflow: hidden; position: relative;">
+          <img src="${src}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/teplica.png'" loading="lazy">
+        </div>
+        <div style="padding: 6px 4px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+          <button type="button" class="btn-admin btn-admin-light" title="Переместить левее (выше)" ${isFirst ? 'disabled style="opacity: 0.3; padding: 4px 6px; font-size: 0.85rem;"' : 'style="padding: 4px 6px; font-size: 0.85rem;"'} onclick="moveGalleryPhoto(${idx}, -1)">
+            ⬅️
+          </button>
+          <button type="button" class="btn-admin btn-admin-light" title="Переместить правее (ниже)" ${isLast ? 'disabled style="opacity: 0.3; padding: 4px 6px; font-size: 0.85rem;"' : 'style="padding: 4px 6px; font-size: 0.85rem;"'} onclick="moveGalleryPhoto(${idx}, 1)">
+            ➡️
+          </button>
+          <button type="button" class="btn-admin btn-admin-danger" title="Удалить это фото" style="padding: 4px 8px; font-size: 0.85rem; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;" onclick="deleteGalleryPhoto(${idx})">
+            🗑
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+window.renderGalleryGridItems = renderGalleryGridItems;
+
+function moveGalleryPhoto(idx, delta) {
+  if (!window.currentEditingGallery) return;
+  const list = window.currentEditingGallery;
+  const targetIdx = idx + delta;
+  if (targetIdx < 0 || targetIdx >= list.length) return;
+
+  const temp = list[idx];
+  list[idx] = list[targetIdx];
+  list[targetIdx] = temp;
+
+  // Если фото на первой позиции изменилось, обновим и предпросмотр главного баннера
+  if (idx === 0 || targetIdx === 0) {
+    const mainBannerImg = document.getElementById("page_custom_img");
+    const mainBannerUrl = document.getElementById("page_custom_url");
+    if (mainBannerImg && list[0]) mainBannerImg.src = list[0];
+    if (mainBannerUrl && list[0]) mainBannerUrl.value = list[0];
+  }
+
+  renderGalleryGridItems();
+}
+window.moveGalleryPhoto = moveGalleryPhoto;
+
+function deleteGalleryPhoto(idx) {
+  if (!window.currentEditingGallery) return;
+  const list = window.currentEditingGallery;
+  if (idx < 0 || idx >= list.length) return;
+
+  if (confirm(`Удалить фото #${idx + 1} из галереи?`)) {
+    list.splice(idx, 1);
+    if (idx === 0 && list[0]) {
+      const mainBannerImg = document.getElementById("page_custom_img");
+      const mainBannerUrl = document.getElementById("page_custom_url");
+      if (mainBannerImg) mainBannerImg.src = list[0];
+      if (mainBannerUrl) mainBannerUrl.value = list[0];
+    }
+    renderGalleryGridItems();
+  }
+}
+window.deleteGalleryPhoto = deleteGalleryPhoto;
+
+async function onGalleryUploadFiles(input) {
+  if (!input.files || !input.files.length) return;
+  if (!window.currentEditingGallery) window.currentEditingGallery = [];
+
+  const files = Array.from(input.files);
+  const statusBadge = document.getElementById("galleryCountBadge");
+  if (statusBadge) statusBadge.textContent = "⏳ Сжатие...";
+
+  for (const file of files) {
+    try {
+      if (typeof compressImageFile === "function") {
+        const compressed = await compressImageFile(file, 1200, 0.82);
+        window.currentEditingGallery.push(compressed);
+      } else {
+        const dUrl = await new Promise((res, rej) => {
+          const r = new FileReader();
+          r.onload = () => res(r.result);
+          r.onerror = rej;
+          r.readAsDataURL(file);
+        });
+        window.currentEditingGallery.push(dUrl);
+      }
+    } catch(e) {
+      console.warn("Upload file error:", e);
+    }
+  }
+
+  // Обновим баннер обложки, если он был стандартным
+  if (window.currentEditingGallery.length && !document.getElementById("page_custom_url")?.value) {
+    const mainBannerImg = document.getElementById("page_custom_img");
+    const mainBannerUrl = document.getElementById("page_custom_url");
+    if (mainBannerImg) mainBannerImg.src = window.currentEditingGallery[0];
+    if (mainBannerUrl) mainBannerUrl.value = window.currentEditingGallery[0];
+  }
+
+  input.value = "";
+  renderGalleryGridItems();
+}
+window.onGalleryUploadFiles = onGalleryUploadFiles;
+
+function onGalleryAddUrlPrompt() {
+  const url = prompt("Введите ссылку на фото (URL или assets/images/...):");
+  if (url && url.trim()) {
+    if (!window.currentEditingGallery) window.currentEditingGallery = [];
+    window.currentEditingGallery.push(url.trim());
+    renderGalleryGridItems();
+  }
+}
+window.onGalleryAddUrlPrompt = onGalleryAddUrlPrompt;
+
 async function saveCurrentPageAndPublish(pageKey) {
   const config = getSiteConfig();
   if (!config.pages) config.pages = { ...(typeof DEFAULT_PAGES !== "undefined" ? DEFAULT_PAGES : {}) };
@@ -403,6 +571,14 @@ async function saveCurrentPageAndPublish(pageKey) {
     p.description = document.getElementById("page_custom_desc")?.value || p.description;
     const imgVal = document.getElementById("page_custom_url")?.value;
     if (imgVal) p.bannerImage = imgVal;
+
+    // Сохранение фотогалереи
+    if (window.currentEditingGallery && window.currentEditingGallery.length) {
+      p.gallery = [...window.currentEditingGallery];
+      if (!imgVal && p.gallery[0]) {
+        p.bannerImage = p.gallery[0];
+      }
+    }
 
     // Сохранение видео
     const v1 = document.getElementById("page_video_url_1")?.value;

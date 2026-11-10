@@ -262,11 +262,98 @@ function renderDatabaseContent(config) {
       }
       // 5. Видео-обзоры страницы (если добавлены видео 1 и 2)
       renderPageVideos(page);
+      // 6. Динамическая фотогалерея всех снимков товара
+      if (Array.isArray(page.gallery) && page.gallery.length) {
+        renderProductGallery(page.gallery);
+      }
     }
   }
 
   initScrollAnimations();
 }
+
+function renderProductGallery(gallery) {
+  if (!Array.isArray(gallery) || !gallery.length) return;
+
+  const thumbsStrip = document.getElementById("archThumbs") || 
+                      document.getElementById("dropThumbs") || 
+                      document.getElementById("houseThumbs") || 
+                      document.querySelector(".prod-thumbs-strip");
+  const mainImg = document.getElementById("archMainImg") || 
+                  document.getElementById("dropMainImg") || 
+                  document.getElementById("houseMainImg") || 
+                  document.querySelector(".prod-main-view .prod-main-img") ||
+                  document.querySelector(".prod-main-img");
+  const counter = document.getElementById("archCounter") || 
+                  document.getElementById("dropCounter") || 
+                  document.getElementById("houseCounter") || 
+                  document.querySelector(".gallery-counter") ||
+                  document.querySelector(".prod-gallery-col .photo-counter");
+
+  if (!thumbsStrip) return;
+
+  const count = gallery.length;
+  let currentIdx = 0;
+
+  // 1. Отрисовка всех миниатюр галереи
+  thumbsStrip.innerHTML = gallery.map((src, idx) => `
+    <div class="prod-thumb-item ${idx === 0 ? 'active' : ''}" data-idx="${idx}" data-src="${src}" title="Фото ${idx + 1} из ${count}">
+      <img src="${src}" alt="Фото ${idx + 1}" loading="lazy" onerror="this.src='assets/images/teplica.png'">
+    </div>
+  `).join("");
+
+  // 2. Установка первого фото в главное окно
+  if (mainImg && gallery[0]) {
+    mainImg.src = gallery[0];
+  }
+
+  function setSlide(idx) {
+    if (idx < 0) idx = count - 1;
+    if (idx >= count) idx = 0;
+    currentIdx = idx;
+    const src = gallery[currentIdx];
+    if (mainImg && src) {
+      mainImg.style.opacity = '0.35';
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+      }, 90);
+    }
+    const allThumbs = thumbsStrip.querySelectorAll(".prod-thumb-item");
+    allThumbs.forEach((t, i) => t.classList.toggle("active", i === currentIdx));
+    if (allThumbs[currentIdx]) {
+      allThumbs[currentIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+    if (counter) {
+      counter.textContent = (currentIdx + 1) + ' / ' + count + ' • Листайте фото';
+    }
+  }
+
+  // 3. Обработчики клика на миниатюры
+  const thumbNodes = thumbsStrip.querySelectorAll(".prod-thumb-item");
+  thumbNodes.forEach((t, i) => {
+    t.onclick = (e) => {
+      e.preventDefault();
+      setSlide(i);
+    };
+  });
+
+  // 4. Стрелочки «Влево» и «Вправо»
+  const prevBtn = document.getElementById("archPrevBtn") || document.getElementById("dropPrevBtn") || document.getElementById("housePrevBtn") || document.querySelector(".prod-nav-arrow.prev");
+  const nextBtn = document.getElementById("archNextBtn") || document.getElementById("dropNextBtn") || document.getElementById("houseNextBtn") || document.querySelector(".prod-nav-arrow.next");
+
+  if (prevBtn) {
+    prevBtn.onclick = (e) => { e.preventDefault(); setSlide(currentIdx - 1); };
+  }
+  if (nextBtn) {
+    nextBtn.onclick = (e) => { e.preventDefault(); setSlide(currentIdx + 1); };
+  }
+
+  if (counter) {
+    counter.textContent = '1 / ' + count + ' • Листайте фото';
+  }
+}
+window.renderProductGallery = renderProductGallery;
 
 function renderPageVideos(page) {
   if (!page) return;

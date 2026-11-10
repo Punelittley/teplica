@@ -790,3 +790,13 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* Gallery photo card interactive styling */
+.gallery-photo-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.gallery-photo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+}

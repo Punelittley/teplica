@@ -1,3 +1,65 @@
+const DEFAULT_GALLERIES = {
+  arochnye: [
+    "assets/images/products/arch_3x6/1.jpg",
+    "assets/images/products/arch_3x6/2.jpg",
+    "assets/images/products/arch_3x6/3.jpg",
+    "assets/images/products/arch_3x6/4.jpg",
+    "assets/images/products/p1/arch_3x8.jpg",
+    "assets/images/products/arch_3x4/1.jpg",
+    "assets/images/products/arch_3x4/2.jpg",
+    "assets/images/products/arch_3x4/3.jpg",
+    "assets/images/products/arch_3x4/4.jpg",
+    "assets/images/products/arch_3x4/5.jpg",
+    "assets/images/products/arch_3x10/1.jpg",
+    "assets/images/products/arch_3x10/2.jpg",
+    "assets/images/products/arch_3x10/3.jpg",
+    "assets/images/products/p4/2.jpg",
+    "assets/images/products/p5/1.jpg",
+    "assets/images/products/p7/1.jpg",
+    "assets/images/products/p7/2.jpg",
+    "assets/images/products/p9/1.jpg",
+    "assets/images/works/work_2_ustanovka.png"
+  ],
+  kaplevidnye: [
+    "assets/images/products/kapelka/1.jpg",
+    "assets/images/products/kapelka/2.jpg",
+    "assets/images/products/kapelka/3.jpg",
+    "assets/images/products/kapelka/4.jpg",
+    "assets/images/products/kapelka/5.jpg",
+    "assets/images/products/p6/3.jpg",
+    "assets/images/products/p1/3.jpg",
+    "assets/images/products/p2/1.jpg",
+    "assets/images/products/p3/1.jpg",
+    "assets/images/products/p3/2.jpg",
+    "assets/images/products/p3/3.jpg",
+    "assets/images/products/p4/1.jpg",
+    "assets/images/products/p4/3.jpg",
+    "assets/images/products/p5/1.jpg",
+    "assets/images/products/p5/2.jpg",
+    "assets/images/products/p7/1.jpg",
+    "assets/images/products/p7/2.jpg"
+  ],
+  domikom: [
+    "assets/images/products/p7/2.jpg",
+    "assets/images/products/p2/5.jpg",
+    "assets/images/products/p1/4.jpg",
+    "assets/images/products/p3/2.jpg",
+    "assets/images/products/p3/3.jpg",
+    "assets/images/products/p1/1.jpg",
+    "assets/images/products/p1/2.jpg",
+    "assets/images/products/p2/1.jpg",
+    "assets/images/products/p2/4.jpg",
+    "assets/images/products/p3/1.jpg",
+    "assets/images/products/p4/2.jpg",
+    "assets/images/products/p4/3.jpg",
+    "assets/images/products/p5/1.jpg",
+    "assets/images/products/p5/3.jpg",
+    "assets/images/products/p6/1.jpg",
+    "assets/images/products/p7/1.jpg",
+    "assets/images/products/p8/1.jpg"
+  ]
+};
+
 
 
 const DEFAULT_PRODUCTS = [
@@ -267,6 +329,7 @@ const DEFAULT_PAGES = {
   },
   arochnye: {
     id: "arochnye",
+    gallery: DEFAULT_GALLERIES.arochnye,
     name: "Арочные теплицы",
     file: "arochnye.html",
     category: "Каталог теплиц",
@@ -278,6 +341,7 @@ const DEFAULT_PAGES = {
   },
   kaplevidnye: {
     id: "kaplevidnye",
+    gallery: DEFAULT_GALLERIES.kaplevidnye,
     name: "Каплевидные («Стрела»)",
     file: "kaplevidnye.html",
     category: "Каталог теплиц",
@@ -289,6 +353,7 @@ const DEFAULT_PAGES = {
   },
   domikom: {
     id: "domikom",
+    gallery: DEFAULT_GALLERIES.domikom,
     name: "Теплицы «Домиком»",
     file: "domikom.html",
     category: "Каталог теплиц",

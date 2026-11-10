@@ -419,26 +419,35 @@ function renderPageVideos(page) {
       embedHtml = `<video src="${cleanSrc}" controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; background: #000;"></video>`;
     }
 
+    const isVertical = cleanSrc.includes("/clip") || cleanSrc.includes("shorts/") || cleanSrc.includes("clip-");
+    const aspectPadding = isVertical ? "177.77%" : "56.25%";
+    const cardMaxWidth = isVertical ? "340px" : "580px";
+    const badgeLabel = isVertical ? "📱 VK Клип • Смотреть вертикально" : "🎬 Видеообзор";
+
     const openLinkHtml = watchUrl ? `
-      <div style="margin-top: 8px; text-align: right;">
-        <a href="${watchUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem; color: #2d6a4f; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
-          <span>↗</span> Открыть видео в источнике
+      <div style="margin-top: 10px; text-align: center;">
+        <a href="${watchUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; color: #2d6a4f; background: #eefbf3; border: 1px solid #52b788; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;">
+          <span>↗</span> Открыть видео в полный экран
         </a>
       </div>
     ` : '';
 
     return `
-      <div style="background: #fff; border-radius: 14px; overflow: hidden; border: 1.5px solid #cbd5e1; box-shadow: 0 4px 14px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
-        <div style="position: relative; width: 100%; padding-top: 56.25%; background: #081c15; overflow: hidden;">
+      <div style="background: #fff; border-radius: 20px; overflow: hidden; border: 2px solid ${isVertical ? '#2d6a4f' : '#cbd5e1'}; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column; width: 100%; max-width: ${cardMaxWidth}; margin: 0 auto; box-sizing: border-box;">
+        <div style="background: #1b4332; color: #fff; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-weight: 800; font-size: 0.82rem; letter-spacing: 0.02em;">${badgeLabel}</span>
+          <span style="font-size: 0.72rem; background: #52b788; color: #081c15; padding: 2px 8px; border-radius: 999px; font-weight: 800;">HD 1080p</span>
+        </div>
+        <div style="position: relative; width: 100%; padding-top: ${aspectPadding}; background: #000; overflow: hidden;">
           <div style="position: absolute; inset: 0;">
             ${embedHtml}
           </div>
         </div>
-        <div style="padding: 12px 16px; background: #ffffff;">
-          <div style="font-weight: 800; color: #1b4332; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
-            <span>🎬</span> ${title}
+        <div style="padding: 14px 16px; background: #ffffff;">
+          <div style="font-weight: 800; color: #1b4332; font-size: 1rem; display: flex; align-items: center; gap: 6px;">
+            <span>📹</span> ${title}
           </div>
-          <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">Короткий видеообзор и демонстрация вживую</div>
+          <div style="font-size: 0.8rem; color: #64748b; margin-top: 3px;">Реальный видеообзор конструкции на участке</div>
           ${openLinkHtml}
         </div>
       </div>
@@ -449,18 +458,18 @@ function renderPageVideos(page) {
   const v2Html = makeVideoEmbed(video2, page.videoTitle2 || "Видеообзор №2");
 
   videoSec.innerHTML = `
-    <div style="text-align: center; margin-bottom: 20px;">
-      <div style="display: inline-block; background: #d8f3dc; color: #1b4332; font-size: 0.76rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;">
-        Видео вживую
+    <div style="text-align: center; margin-bottom: 24px;">
+      <div style="display: inline-block; background: #d8f3dc; color: #1b4332; font-size: 0.76rem; font-weight: 800; padding: 4px 14px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;">
+        Видео в деталях
       </div>
-      <h2 style="font-size: 1.5rem; color: #1b4332; margin: 0 0 6px; font-weight: 800;">
-        🎬 Видеообзор: посмотрите теплицу в деталях
+      <h2 style="font-size: 1.6rem; color: #1b4332; margin: 0 0 6px; font-weight: 800;">
+        🎬 Посмотрите теплицу вживую на реальном участке
       </h2>
-      <p style="color: #64748b; font-size: 0.88rem; margin: 0; max-width: 600px; margin: 0 auto;">
-        Реальные видео конструкции, толщины профиля, работы форточек и дверей на участке
+      <p style="color: #64748b; font-size: 0.9rem; margin: 0; max-width: 620px; margin: 0 auto;">
+        Вертикальные видеоролики в формате Reels / Клипов: толщина каркаса, прочность дуг, двери и форточки
       </p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto;">
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; max-width: 960px; margin: 0 auto; box-sizing: border-box;">
       ${v1Html}
       ${v2Html}
     </div>

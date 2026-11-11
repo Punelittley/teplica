@@ -436,10 +436,11 @@ function renderPageVideos(page) {
     } else if (vkClipMatch && vkClipMatch[1] && vkClipMatch[2]) {
       const oid = vkClipMatch[1];
       const vid = vkClipMatch[2];
-      embedHtml = `<iframe src="https://vk.com/video_ext.php?oid=${oid}&id=${vid}&hd=2" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen loading="lazy"></iframe>`;
+      embedHtml = `<iframe src="https://vk.com/video_ext.php?oid=${oid}&id=${vid}&hd=2&autoplay=0" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen loading="lazy"></iframe>`;
       if (!watchUrl) watchUrl = cleanSrc;
     } else if (cleanSrc.includes("video_ext.php")) {
-      const vkUrl = cleanSrc.startsWith("http") ? cleanSrc : `https://${cleanSrc}`;
+      let vkUrl = cleanSrc.startsWith("http") ? cleanSrc : `https://${cleanSrc}`;
+      if (!vkUrl.includes("autoplay=")) vkUrl += (vkUrl.includes("?") ? "&" : "?") + "autoplay=0";
       embedHtml = `<iframe src="${vkUrl}" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen loading="lazy"></iframe>`;
       if (!watchUrl) watchUrl = vkUrl;
     } else if (rtMatch && rtMatch[1]) {

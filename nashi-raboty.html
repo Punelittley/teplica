@@ -526,6 +526,7 @@
     <div class="works-lightbox-content">
       <button class="works-lightbox-close" id="lightboxCloseBtn" title="Закрыть (Esc)">✕</button>
       <img src="" alt="" class="works-lightbox-img" id="lightboxImg">
+      <div id="lightboxVideoWrap" style="display: none; width: 100%; max-width: 480px; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; background: #000; margin: 0 auto;"></div>
       <div class="works-lightbox-bar">
         <div class="works-lightbox-counter" id="lightboxCounter">1 / 27</div>
         <div id="lightboxTitle" style="font-weight: 600; font-size: 0.95rem;"></div>
@@ -734,7 +735,7 @@
   </div>
 
   <script src="assets/js/catalog-data.js?v=6.6"></script>
-  <script src="assets/js/main.js?v=6.6"></script>
+  <script src="assets/js/main.js?v=7.5"></script>
 
   
   <script>
@@ -784,9 +785,29 @@
 
         const target = visibleItems[currentIndex];
         const src = target.getAttribute("data-src") || target.querySelector("img").src;
+        const video = target.getAttribute("data-video");
         const title = target.getAttribute("data-title") || "Теплица «Теплицы ТУТ»";
 
-        lightboxImg.src = src;
+        const videoWrap = document.getElementById("lightboxVideoWrap");
+        if (video && video.trim()) {
+          lightboxImg.style.display = "none";
+          if (videoWrap) {
+            videoWrap.style.display = "block";
+            if (typeof window.makeVideoEmbed === "function") {
+              videoWrap.innerHTML = window.makeVideoEmbed(video, title);
+            } else {
+              videoWrap.innerHTML = `<video src="${video}" controls autoplay playsinline style="width:100%;height:100%;background:#000;"></video>`;
+            }
+          }
+        } else {
+          lightboxImg.style.display = "block";
+          lightboxImg.src = src;
+          if (videoWrap) {
+            videoWrap.style.display = "none";
+            videoWrap.innerHTML = "";
+          }
+        }
+
         lightboxTitle.textContent = title;
         lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
         lightbox.style.setProperty("display", "flex", "important");
@@ -795,6 +816,11 @@
       }
 
       function closeLightbox() {
+        const videoWrap = document.getElementById("lightboxVideoWrap");
+        if (videoWrap) {
+          videoWrap.innerHTML = "";
+          videoWrap.style.display = "none";
+        }
         lightbox.style.setProperty("display", "none", "important");
         lightbox.classList.remove("active");
         document.body.style.overflow = "";

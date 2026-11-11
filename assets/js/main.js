@@ -165,8 +165,9 @@ function renderDatabaseContent(config) {
   const worksGrid = document.getElementById("worksGrid");
   if (worksGrid && Array.isArray(config.works) && config.works.length) {
     worksGrid.innerHTML = config.works.map(w => `
-      <div class="works-item" data-category="${w.category || 'arch'}" data-src="${w.image}" data-title="${w.title}">
+      <div class="works-item ${w.video ? 'has-video' : ''}" data-category="${w.category || 'arch'}" data-src="${w.image}" data-video="${w.video || ''}" data-title="${w.title}" style="position: relative; cursor: pointer;">
         <img src="${w.image}" alt="${w.title}" loading="lazy" onerror="this.src='assets/images/products/p1/2.jpg'">
+        ${w.video ? `<span class="works-video-badge" style="position: absolute; bottom: 10px; left: 10px; background: rgba(8,28,21,0.9); color: #fff; padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);"><span style="color:#52b788;">▶</span> Видео</span>` : ''}
       </div>
     `).join("");
   }
@@ -453,6 +454,7 @@ function renderPageVideos(page) {
       </div>
     `;
   }
+  window.makeVideoEmbed = makeVideoEmbed;
 
   const v1Html = makeVideoEmbed(video1, page.videoTitle1 || "Видеообзор №1");
   const v2Html = makeVideoEmbed(video2, page.videoTitle2 || "Видеообзор №2");

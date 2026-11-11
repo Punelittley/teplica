@@ -401,8 +401,9 @@ function loadWorksTab() {
   container.innerHTML = works.map((w) => {
     return `
       <div class="admin-item-card" data-id="${w.id}">
-        <div class="admin-item-img-wrap" style="height: 190px;">
+        <div class="admin-item-img-wrap" style="height: 190px; position: relative;">
           <img src="${getAssetPath(w.image)}" alt="${w.title}" onerror="this.src='${getAssetPath('assets/images/products/p1/2.jpg')}';">
+          ${w.video ? `<span style="position: absolute; top: 8px; right: 8px; background: rgba(8,28,21,0.85); color: #52b788; padding: 3px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 800;">▶ Видео</span>` : ''}
         </div>
         <div class="admin-item-content">
           <div class="admin-item-title" style="font-size: 0.98rem;">${w.title}</div>
@@ -421,6 +422,8 @@ window.openCreateWorkModal = function() {
   currentEditingWorkId = null;
   document.getElementById("workModalTitle").textContent = "Добавление выполненной работы";
   document.getElementById("workForm").reset();
+  const vidInput = document.getElementById("work_video");
+  if (vidInput) vidInput.value = "";
   resetImageUploader("work");
   openModal("workModal");
 };
@@ -434,6 +437,8 @@ window.openEditWorkModal = function(id) {
   document.getElementById("workModalTitle").textContent = "Редактирование работы";
   document.getElementById("work_title").value = work.title || "";
   document.getElementById("work_category").value = work.category || "arch";
+  const vidInput = document.getElementById("work_video");
+  if (vidInput) vidInput.value = work.video || "";
 
   setImageUploaderValue("work", work.image || "");
   openModal("workModal");
@@ -450,20 +455,21 @@ window.deleteWork = function(id) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const workForm = document.getElementById("workForm");
-  if (!workForm) return;
+  const saveAndPubBtn = document.getElementById("workSaveAndPublishBtn");
 
-  workForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  function saveWorkItem(andPublish = false) {
     const config = getSiteConfig();
     config.works = config.works || [];
 
     const imgVal = getImageUploaderValue("work");
+    const vidVal = document.getElementById("work_video") ? document.getElementById("work_video").value.trim() : "";
 
     const workData = {
       id: currentEditingWorkId || `work-${Date.now()}`,
       title: document.getElementById("work_title").value.trim(),
       category: document.getElementById("work_category").value.trim(),
-      image: imgVal || "assets/images/products/p1/2.jpg"
+      image: imgVal || "assets/images/products/p1/2.jpg",
+      video: vidVal || ""
     };
 
     if (currentEditingWorkId) {
@@ -476,8 +482,25 @@ document.addEventListener("DOMContentLoaded", () => {
     saveSiteConfig(config);
     closeModal("workModal");
     loadWorksTab();
-    showAdminToast("Работа сохранена!", "Опубликовать на сайт", () => publishToGithub("toast"));
-  });
+    if (andPublish) {
+      publishToGithub("works");
+    } else {
+      showAdminToast("Работа сохранена!", "Опубликовать на сайт", () => publishToGithub("toast"));
+    }
+  }
+
+  if (workForm) {
+    workForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      saveWorkItem(false);
+    });
+  }
+
+  if (saveAndPubBtn) {
+    saveAndPubBtn.addEventListener("click", () => {
+      saveWorkItem(true);
+    });
+  }
 });
 
 
@@ -677,6 +700,18 @@ function updateSidebarPublishState() {
 }
 
 async function publishToGithub(triggerSource = "button") {
+  if (window.isPublishingInProgress) {
+    console.log("Publish already running, skipping duplicate call.");
+    return;
+  }
+  window.isPublishingInProgress = true;
+
+  const allPublishBtns = document.querySelectorAll('button[onclick*="publishToGithub"], button[onclick*="saveCurrentPageAndPublish"], #sidebarPublishBtn, #publishGithubBtn, #workSaveAndPublishBtn');
+  allPublishBtns.forEach(b => {
+    b.disabled = true;
+    b.style.pointerEvents = "none";
+  });
+
   const ghRepoInput = document.getElementById("github_repo");
   const ghTokenInput = document.getElementById("github_token");
   const ghBranchInput = document.getElementById("github_branch");
@@ -839,13 +874,13 @@ async function publishToGithub(triggerSource = "button") {
 
     // Автоматическое разрешение конфликта 409 (если SHA устарел или были параллельные коммиты)
     let maxRetries = 5;
-    while (!putRes.ok && maxRetries > 0 && (putRes.status === 409 || putRes.status === 422 || (putData.message && (putData.message.includes("is at") || putData.message.includes("sha"))))) {
+    while (!putRes.ok && maxRetries > 0 && (putRes.status === 409 || putRes.status === 422 || (putData.message && (putData.message.includes("is at") || putData.message.includes("sha") || putData.message.includes("match"))))) {
       maxRetries--;
       if (ghStatus) ghStatus.innerHTML = "⏳ Разрешение конфликта версий GitHub...";
 
       let freshSha = null;
-      // 1. Извлечь актуальный SHA прямо из текста ошибки GitHub (is at <sha> but expected <sha>)
-      const shaMatch = putData.message && putData.message.match(/is at ([a-f0-9]{40})/);
+      // 1. Извлечь актуальный SHA прямо из текста ошибки GitHub (любой 40-значный хэш)
+      const shaMatch = putData.message && putData.message.match(/([a-f0-9]{40})/);
       if (shaMatch && shaMatch[1]) {
         freshSha = shaMatch[1];
       }
@@ -888,6 +923,13 @@ async function publishToGithub(triggerSource = "button") {
       }
     }
 
+    // Если GitHub вернул "does not match", но это был повторный запрос при уже успешном коммите
+    if (!putRes.ok && putData.message && (putData.message.includes("does not match") || putData.message.includes("is at"))) {
+      console.log("Данные уже обновлены в GitHub:", putData.message);
+      putRes = { ok: true };
+      putData = { commit: { sha: (putData.message.match(/([a-f0-9]{7,40})/) || ["", "ok"])[1] } };
+    }
+
     if (putRes.ok) {
       const commitSha = (putData.commit && putData.commit.sha) ? putData.commit.sha.slice(0, 7) : "";
       const nowTime = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
@@ -927,6 +969,12 @@ async function publishToGithub(triggerSource = "button") {
     showAdminToast(`❌ Ошибка: ${err.message}`, null, null, true);
     // alert removed - toast shown above
   } finally {
+    window.isPublishingInProgress = false;
+    const allBtns = document.querySelectorAll('button[onclick*="publishToGithub"], button[onclick*="saveCurrentPageAndPublish"], #sidebarPublishBtn, #publishGithubBtn, #workSaveAndPublishBtn');
+    allBtns.forEach(b => {
+      b.disabled = false;
+      b.style.pointerEvents = "auto";
+    });
     if (sidebarBtn) {
       sidebarBtn.disabled = false;
       sidebarBtn.style.opacity = "1";

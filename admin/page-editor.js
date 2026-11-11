@@ -687,7 +687,6 @@ window.syncCurrentPageToConfig = syncCurrentPageToConfig;
 
 async function saveCurrentPageAndPublish(pageKey) {
   syncCurrentPageToConfig(pageKey);
-  showAdminToast("Изменения страницы сохранены!", "Опубликовать на сайт", () => publishToGithub("toast"));
   await publishToGithub("pages");
 }
 window.saveCurrentPageAndPublish = saveCurrentPageAndPublish;

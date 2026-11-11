@@ -153,7 +153,7 @@ function setupNavigation() {
 function getAssetPath(src) {
   if (!src) return "assets/images/logo.png";
   if (src.startsWith("data:") || src.startsWith("http://") || src.startsWith("https://")) return src;
-  const isInSubdir = window.location.pathname.includes("/admin/");
+  const isInSubdir = (window.location?.pathname || "").includes("/admin/");
   if (isInSubdir && !src.startsWith("../") && !src.startsWith("/")) {
     return "../" + src;
   }
@@ -661,6 +661,8 @@ function showAdminToast(msg, btnText, btnCallback, isError = false) {
     container.className = "admin-toast-container";
     document.body.appendChild(container);
   }
+  // Clear previous toasts so success and error do not contradict or stack
+  container.innerHTML = "";
 
   const toast = document.createElement("div");
   toast.className = `admin-toast ${isError ? 'error' : ''}`;
@@ -697,6 +699,56 @@ function updateSidebarPublishState() {
   } else {
     statusEl.innerHTML = `✅ Готово к публикации`;
   }
+}
+
+async function fetchLatestDatabaseBlobSha(repo, branch, token) {
+  // 1. Поиск точного SHA блоба через коммит ветки и Git Tree API (без кэша CDN)
+  try {
+    const cRes = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}?_t=${Date.now()}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Cache-Control": "no-cache, no-store"
+      },
+      cache: "no-store"
+    });
+    if (cRes.ok) {
+      const commit = await cRes.json();
+      if (commit.commit && commit.commit.tree && commit.commit.tree.url) {
+        const treeRes = await fetch(`${commit.commit.tree.url}?_t=${Date.now()}`, {
+          headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
+        });
+        if (treeRes.ok) {
+          const treeData = await treeRes.json();
+          const dbFile = (treeData.tree || []).find(f => f.path === "database.json");
+          if (dbFile && dbFile.sha) return dbFile.sha;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Tree SHA lookup error:", e);
+  }
+
+  // 2. Fallback через contents API (только при 200 OK)
+  try {
+    const freshGet = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_nocache=${Date.now()}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Cache-Control": "no-cache, no-store",
+        "Pragma": "no-cache"
+      },
+      cache: "no-store"
+    });
+    if (freshGet.status === 200) {
+      const freshData = await freshGet.json();
+      if (freshData && freshData.sha) return freshData.sha;
+    }
+  } catch (e) {
+    console.warn("Contents SHA lookup error:", e);
+  }
+
+  return localStorage.getItem("teplici76_last_db_sha") || null;
 }
 
 async function publishToGithub(triggerSource = "button") {
@@ -774,7 +826,7 @@ async function publishToGithub(triggerSource = "button") {
   localStorage.setItem("teplici76_github_branch", branch);
 
   try {
-    let currentSha = null;
+    let currentSha = await fetchLatestDatabaseBlobSha(repo, branch, token);
     let remoteDb = null;
     try {
       const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_t=${Date.now()}`, {
@@ -791,7 +843,7 @@ async function publishToGithub(triggerSource = "button") {
       }
       if (getRes.status === 200) {
         const fileData = await getRes.json();
-        currentSha = fileData.sha;
+        if (fileData.sha) currentSha = fileData.sha;
         if (fileData.content) {
           try {
             const raw = atob(fileData.content.replace(/\s/g, ""));
@@ -801,47 +853,12 @@ async function publishToGithub(triggerSource = "button") {
             remoteDb = parsed.database || parsed;
           } catch(e) {}
         }
-      } else if (getRes.status === 304) {
-        const etag = getRes.headers.get("etag");
-        if (etag) currentSha = etag.replace(/[^a-f0-9]/gi, "");
       }
     } catch (e) {
       if (e.message.includes("токен") || e.message.includes("срок")) throw e;
       console.warn("Ошибка первичного запроса database.json:", e);
     }
 
-    // Fallback через Git Tree & Commits API если contents вернул 304 или пустой sha
-    if (!currentSha) {
-      try {
-        const cRes = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}?_t=${Date.now()}`, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Accept": "application/vnd.github+json",
-            "Cache-Control": "no-cache, no-store"
-          },
-          cache: "no-store"
-        });
-        if (cRes.ok) {
-          const commit = await cRes.json();
-          if (commit.commit && commit.commit.tree && commit.commit.tree.url) {
-            const treeRes = await fetch(commit.commit.tree.url, {
-              headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
-            });
-            if (treeRes.ok) {
-              const treeData = await treeRes.json();
-              const dbFile = (treeData.tree || []).find(f => f.path === "database.json");
-              if (dbFile && dbFile.sha) currentSha = dbFile.sha;
-            }
-          }
-        }
-      } catch (e) {
-        console.warn("Ошибка fallback через Tree API:", e);
-      }
-    }
-
-    if (!currentSha) {
-      currentSha = localStorage.getItem("teplici76_last_db_sha");
-    }
     if (currentSha) {
       localStorage.setItem("teplici76_last_db_sha", currentSha);
     }
@@ -921,48 +938,7 @@ async function publishToGithub(triggerSource = "button") {
       if (ghStatus) ghStatus.innerHTML = "⏳ Разрешение конфликта версий GitHub...";
 
       await new Promise(r => setTimeout(r, 600));
-      let freshSha = null;
-      try {
-        const freshGet = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_nocache=${Date.now()}`, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Accept": "application/vnd.github+json",
-            "Cache-Control": "no-cache, no-store, must-revalidate",
-            "Pragma": "no-cache"
-          },
-          cache: "no-store"
-        });
-        if (freshGet.status === 200) {
-          const freshData = await freshGet.json();
-          freshSha = freshData.sha;
-        } else if (freshGet.status === 304) {
-          const etag = freshGet.headers.get("etag");
-          if (etag) freshSha = etag.replace(/[^a-f0-9]/gi, "");
-        }
-      } catch (e) {
-        console.warn("Ошибка повторного запроса SHA через contents:", e);
-      }
-
-      if (!freshSha) {
-        try {
-          const cRes = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}?_t=${Date.now()}`, {
-            headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
-          });
-          if (cRes.ok) {
-            const commit = await cRes.json();
-            if (commit.commit?.tree?.url) {
-              const treeRes = await fetch(commit.commit.tree.url, {
-                headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
-              });
-              if (treeRes.ok) {
-                const treeData = await treeRes.json();
-                const dbFile = (treeData.tree || []).find(f => f.path === "database.json");
-                if (dbFile?.sha) freshSha = dbFile.sha;
-              }
-            }
-          }
-        } catch(e) {}
-      }
+      let freshSha = await fetchLatestDatabaseBlobSha(repo, branch, token);
 
       if (freshSha && freshSha !== putBody.sha) {
         putBody.sha = freshSha;
@@ -1826,12 +1802,14 @@ async function autoSyncLatestDatabase(force = false) {
         });
         if (ghRes.ok) {
           const ghFile = await ghRes.json();
-          const cleanB64 = ghFile.content.replace(/\s/g, "");
-          const binStr = atob(cleanB64);
-          const bytes = new Uint8Array(binStr.length);
-          for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
-          const utf8Text = new TextDecoder().decode(bytes);
-          remoteData = JSON.parse(utf8Text);
+          if (typeof ghFile.content === "string") {
+            const cleanB64 = ghFile.content.replace(/\s/g, "");
+            const binStr = atob(cleanB64);
+            const bytes = new Uint8Array(binStr.length);
+            for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
+            const utf8Text = new TextDecoder().decode(bytes);
+            remoteData = JSON.parse(utf8Text);
+          }
         }
       } catch (e) {
         console.warn("Direct GH API sync failed, falling back to static file:", e);

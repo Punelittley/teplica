@@ -656,3 +656,18 @@ function resetDatabaseToDefaults() {
   localStorage.removeItem("teplici76_config");
   return DEFAULT_CONFIG;
 }
+
+if (typeof window !== "undefined") {
+  window.DEFAULT_CONFIG = DEFAULT_CONFIG;
+  window.DEFAULT_GALLERIES = DEFAULT_GALLERIES;
+  window.DEFAULT_HOMEPAGE_PHOTOS = DEFAULT_HOMEPAGE_PHOTOS;
+  window.DEFAULT_PRODUCTS = DEFAULT_PRODUCTS;
+  window.DEFAULT_REVIEWS = DEFAULT_REVIEWS;
+  window.DEFAULT_WORKS = DEFAULT_WORKS;
+  window.DEFAULT_PAGES = DEFAULT_PAGES;
+  window.getSiteConfig = getSiteConfig;
+  window.saveSiteConfig = saveSiteConfig;
+  window.exportFullDatabase = exportFullDatabase;
+  window.importFullDatabase = importFullDatabase;
+  window.resetDatabaseToDefaults = resetDatabaseToDefaults;
+}

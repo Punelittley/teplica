@@ -789,7 +789,7 @@ async function publishToGithub(triggerSource = "button") {
       if (getRes.status === 401 || getRes.status === 403) {
         throw new Error("Неверный токен GitHub или истек срок его действия.");
       }
-      if (getRes.ok) {
+      if (getRes.status === 200) {
         const fileData = await getRes.json();
         currentSha = fileData.sha;
         if (fileData.content) {
@@ -801,10 +801,49 @@ async function publishToGithub(triggerSource = "button") {
             remoteDb = parsed.database || parsed;
           } catch(e) {}
         }
+      } else if (getRes.status === 304) {
+        const etag = getRes.headers.get("etag");
+        if (etag) currentSha = etag.replace(/[^a-f0-9]/gi, "");
       }
     } catch (e) {
       if (e.message.includes("токен") || e.message.includes("срок")) throw e;
-      console.warn("Файл database.json создается впервые или ошибка чтения SHA:", e);
+      console.warn("Ошибка первичного запроса database.json:", e);
+    }
+
+    // Fallback через Git Tree & Commits API если contents вернул 304 или пустой sha
+    if (!currentSha) {
+      try {
+        const cRes = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}?_t=${Date.now()}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/vnd.github+json",
+            "Cache-Control": "no-cache, no-store"
+          },
+          cache: "no-store"
+        });
+        if (cRes.ok) {
+          const commit = await cRes.json();
+          if (commit.commit && commit.commit.tree && commit.commit.tree.url) {
+            const treeRes = await fetch(commit.commit.tree.url, {
+              headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
+            });
+            if (treeRes.ok) {
+              const treeData = await treeRes.json();
+              const dbFile = (treeData.tree || []).find(f => f.path === "database.json");
+              if (dbFile && dbFile.sha) currentSha = dbFile.sha;
+            }
+          }
+        }
+      } catch (e) {
+        console.warn("Ошибка fallback через Tree API:", e);
+      }
+    }
+
+    if (!currentSha) {
+      currentSha = localStorage.getItem("teplici76_last_db_sha");
+    }
+    if (currentSha) {
+      localStorage.setItem("teplici76_last_db_sha", currentSha);
     }
 
     let config = getSiteConfig();
@@ -875,7 +914,7 @@ async function publishToGithub(triggerSource = "button") {
 
     let putData = await putRes.json();
 
-    // Автоматическое разрешение конфликта 409 (если SHA устарел или были параллельные коммиты)
+    // Автоматическое разрешение конфликта 409 или ошибки sha (422)
     let maxRetries = 3;
     while (!putRes.ok && maxRetries > 0 && (putRes.status === 409 || putRes.status === 422 || (putData.message && (putData.message.includes("is at") || putData.message.includes("sha") || putData.message.includes("match"))))) {
       maxRetries--;
@@ -893,16 +932,41 @@ async function publishToGithub(triggerSource = "button") {
           },
           cache: "no-store"
         });
-        if (freshGet.ok) {
+        if (freshGet.status === 200) {
           const freshData = await freshGet.json();
           freshSha = freshData.sha;
+        } else if (freshGet.status === 304) {
+          const etag = freshGet.headers.get("etag");
+          if (etag) freshSha = etag.replace(/[^a-f0-9]/gi, "");
         }
       } catch (e) {
-        console.warn("Ошибка повторного запроса SHA:", e);
+        console.warn("Ошибка повторного запроса SHA через contents:", e);
+      }
+
+      if (!freshSha) {
+        try {
+          const cRes = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}?_t=${Date.now()}`, {
+            headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
+          });
+          if (cRes.ok) {
+            const commit = await cRes.json();
+            if (commit.commit?.tree?.url) {
+              const treeRes = await fetch(commit.commit.tree.url, {
+                headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
+              });
+              if (treeRes.ok) {
+                const treeData = await treeRes.json();
+                const dbFile = (treeData.tree || []).find(f => f.path === "database.json");
+                if (dbFile?.sha) freshSha = dbFile.sha;
+              }
+            }
+          }
+        } catch(e) {}
       }
 
       if (freshSha && freshSha !== putBody.sha) {
         putBody.sha = freshSha;
+        localStorage.setItem("teplici76_last_db_sha", freshSha);
         await new Promise(r => setTimeout(r, 300));
         putRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json`, {
           method: "PUT",
@@ -927,6 +991,9 @@ async function publishToGithub(triggerSource = "button") {
     }
 
     if (putRes.ok) {
+      if (putData.content && putData.content.sha) {
+        localStorage.setItem("teplici76_last_db_sha", putData.content.sha);
+      }
       const commitSha = (putData.commit && putData.commit.sha) ? putData.commit.sha.slice(0, 7) : "";
       const nowTime = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 

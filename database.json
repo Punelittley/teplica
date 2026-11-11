@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-11-11T09:42:14.229Z",
+  "exportedAt": "2026-11-11T09:46:21.044Z",
   "version": "2.0",
   "site": "Теплицы ТУТ",
   "database": {
@@ -23,30 +23,24 @@
         "title": "Арочная теплица 3 м из оцинкованной трубы ГОСТ",
         "badge": "Скидка 20% до конца недели",
         "priceText": "от 21 900 ₽",
-        "bannerImage": "assets/images/products/arch_3x4/1.jpg",
+        "bannerImage": "assets/images/products/arch_3x6/3.jpg",
         "description": "Классическая арочная форма с максимальной ветроустойчивостью и равномерным распределением света.",
         "video1": "https://vk.ru/clip-238406282_456239047?c=1",
         "video2": "",
         "gallery": [
-          "assets/images/products/arch_3x6/1.jpg",
-          "assets/images/products/arch_3x6/2.jpg",
           "assets/images/products/arch_3x6/3.jpg",
-          "assets/images/products/arch_3x6/4.jpg",
-          "assets/images/products/p1/arch_3x8.jpg",
           "assets/images/products/arch_3x4/1.jpg",
+          "assets/images/products/arch_3x6/1.jpg",
+          "assets/images/products/p1/arch_3x8.jpg",
+          "assets/images/products/arch_3x6/2.jpg",
+          "assets/images/products/arch_3x10/2.jpg",
+          "assets/images/products/arch_3x10/1.jpg",
+          "assets/images/products/arch_3x6/4.jpg",
           "assets/images/products/arch_3x4/2.jpg",
           "assets/images/products/arch_3x4/3.jpg",
           "assets/images/products/arch_3x4/4.jpg",
           "assets/images/products/arch_3x4/5.jpg",
-          "assets/images/products/arch_3x10/1.jpg",
-          "assets/images/products/arch_3x10/2.jpg",
-          "assets/images/products/arch_3x10/3.jpg",
-          "assets/images/products/p4/2.jpg",
-          "assets/images/products/p5/1.jpg",
-          "assets/images/products/p7/1.jpg",
-          "assets/images/products/p7/2.jpg",
-          "assets/images/products/p9/1.jpg",
-          "assets/images/works/work_2_ustanovka.png"
+          "assets/images/products/p4/2.jpg"
         ]
       },
       "kaplevidnye": {

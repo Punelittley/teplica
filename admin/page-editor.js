@@ -204,22 +204,24 @@ function renderPageEditor(pageKey) {
         </div>
       </div>
 
-      <!-- Главное фото / баннер страницы (с адаптивным grid без вылезания) -->
+      <!-- Главное фото обложки (синхронизировано с фото #1 в галерее) -->
       <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-sizing: border-box;">
-        <h3 style="font-size: 1.05rem; color: #1b4332; margin: 0 0 4px;">🖼️ Главное фото / баннер страницы</h3>
-        <p style="color: #64748b; font-size: 0.84rem; margin: 0 0 14px;">Отображается вверху страницы как основная иллюстрация теплицы</p>
+        <h3 style="font-size: 1.05rem; color: #1b4332; margin: 0 0 4px;">🖼️ Главное фото (обложка карточки)</h3>
+        <p style="color: #64748b; font-size: 0.84rem; margin: 0 0 14px;">Отображается первым большим баннером на сайте. Всегда автоматически совпадает с <b>Фото #1 (★ ОБЛОЖКА)</b> из галереи ниже.</p>
         
         <div class="page-banner-grid">
           <div class="banner-preview-box" style="height: 150px; border-radius: 10px; overflow: hidden; border: 1.5px solid #cbd5e1; background: #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-            <img id="page_custom_img" src="${p.bannerImage || 'assets/images/teplica.png'}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/teplica.png'">
+            <img id="page_custom_img" src="${(window.currentEditingGallery && window.currentEditingGallery[0]) || p.bannerImage || 'assets/images/teplica.png'}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/teplica.png'">
           </div>
-          <div style="min-width: 0;">
-            <label class="btn-admin btn-admin-light" style="display: block; width: 100%; text-align: center; cursor: pointer; padding: 12px 14px; font-weight: 800; border-radius: 8px; margin-bottom: 10px; background: #e2e8f0; color: #1b4332; box-sizing: border-box;">
-              📁 Загрузить новое фото с телефона / ПК
-              <input type="file" accept="image/*" style="display: none;" onchange="handleSinglePhotoUpload(this, 'page_custom_img', 'page_custom_url')">
+          <div style="min-width: 0; display: flex; flex-direction: column; justify-content: center;">
+            <label class="btn-admin btn-admin-primary" style="display: block; width: 100%; text-align: center; cursor: pointer; padding: 12px 14px; font-weight: 800; border-radius: 8px; margin-bottom: 8px; box-sizing: border-box;">
+              📁 Загрузить новое фото сразу на обложку (#1)
+              <input type="file" accept="image/*" style="display: none;" onchange="handleCoverPhotoUpload(this)">
             </label>
-            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 6px;">Или укажите путь / ссылку на изображение:</div>
-            <input type="text" id="page_custom_url" class="form-input-admin" value="${p.bannerImage || 'assets/images/teplica.png'}" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;" oninput="document.getElementById('page_custom_img').src = this.value">
+            <div style="font-size: 0.78rem; color: #64748b;">
+              💡 Либо загрузите снимки в галерею ниже и стрелочками <b>⬅️ ➡️</b> переместите желаемое фото на 1-ю позицию.
+            </div>
+            <input type="hidden" id="page_custom_url" value="${(window.currentEditingGallery && window.currentEditingGallery[0]) || p.bannerImage || 'assets/images/teplica.png'}">
           </div>
         </div>
       </div>
@@ -498,13 +500,12 @@ function moveGalleryPhoto(idx, delta) {
   list[idx] = list[targetIdx];
   list[targetIdx] = temp;
 
-  // Если фото на первой позиции изменилось, обновим и предпросмотр главного баннера
-  if (idx === 0 || targetIdx === 0) {
-    const mainBannerImg = document.getElementById("page_custom_img");
-    const mainBannerUrl = document.getElementById("page_custom_url");
-    if (mainBannerImg && list[0]) mainBannerImg.src = list[0];
-    if (mainBannerUrl && list[0]) mainBannerUrl.value = list[0];
-  }
+  // Всегда синхронизируем обложку с первым фото
+  const mainBannerImg = document.getElementById("page_custom_img");
+  const mainBannerUrl = document.getElementById("page_custom_url");
+  const newCover = list[0] || 'assets/images/teplica.png';
+  if (mainBannerImg) mainBannerImg.src = newCover;
+  if (mainBannerUrl) mainBannerUrl.value = newCover;
 
   renderGalleryGridItems();
 }
@@ -517,16 +518,50 @@ function deleteGalleryPhoto(idx) {
 
   if (confirm(`Удалить фото #${idx + 1} из галереи?`)) {
     list.splice(idx, 1);
-    if (idx === 0 && list[0]) {
-      const mainBannerImg = document.getElementById("page_custom_img");
-      const mainBannerUrl = document.getElementById("page_custom_url");
-      if (mainBannerImg) mainBannerImg.src = list[0];
-      if (mainBannerUrl) mainBannerUrl.value = list[0];
-    }
+    // Всегда синхронизируем обложку с первым фото
+    const mainBannerImg = document.getElementById("page_custom_img");
+    const mainBannerUrl = document.getElementById("page_custom_url");
+    const newCover = list[0] || 'assets/images/teplica.png';
+    if (mainBannerImg) mainBannerImg.src = newCover;
+    if (mainBannerUrl) mainBannerUrl.value = newCover;
+
     renderGalleryGridItems();
   }
 }
 window.deleteGalleryPhoto = deleteGalleryPhoto;
+
+async function handleCoverPhotoUpload(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  if (!window.currentEditingGallery) window.currentEditingGallery = [];
+
+  let newUrl = null;
+  try {
+    if (typeof compressImageFile === "function") {
+      newUrl = await compressImageFile(file, 1400, 0.84);
+    }
+  } catch(e) {}
+  if (!newUrl) {
+    newUrl = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+  }
+
+  // Вставляем фото на ПЕРВУЮ позицию (обложка карточки)
+  window.currentEditingGallery.unshift(newUrl);
+
+  const mainBannerImg = document.getElementById("page_custom_img");
+  const mainBannerUrl = document.getElementById("page_custom_url");
+  if (mainBannerImg) mainBannerImg.src = newUrl;
+  if (mainBannerUrl) mainBannerUrl.value = newUrl;
+
+  input.value = "";
+  renderGalleryGridItems();
+}
+window.handleCoverPhotoUpload = handleCoverPhotoUpload;
 
 async function onGalleryUploadFiles(input) {
   if (!input.files || !input.files.length) return;
@@ -622,14 +657,16 @@ function syncCurrentPageToConfig(targetKey = null) {
     const descEl = document.getElementById("page_custom_desc");
     if (descEl) p.description = descEl.value.trim();
     const imgVal = document.getElementById("page_custom_url")?.value;
-    if (imgVal) p.bannerImage = imgVal;
 
     // Сохранение фотогалереи: берем массив из памяти
     if (Array.isArray(window.currentEditingGallery) && window.currentEditingPageKey === pageKey) {
       p.gallery = [...window.currentEditingGallery];
-      if (p.gallery.length > 0 && (!imgVal || imgVal.startsWith("data:"))) {
-        p.bannerImage = p.gallery[0];
-      }
+    }
+    // Главная обложка товара ВСЕГДА строго совпадает с первым фото (#1) галереи!
+    if (Array.isArray(p.gallery) && p.gallery.length > 0) {
+      p.bannerImage = p.gallery[0];
+    } else if (imgVal) {
+      p.bannerImage = imgVal;
     }
 
     // Сохранение видео

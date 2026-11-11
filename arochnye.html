@@ -881,7 +881,7 @@
   </div>
 
   <script src="assets/js/catalog-data.js?v=7.3"></script>
-  <script src="assets/js/main.js?v=7.3"></script>
+  <script src="assets/js/main.js?v=7.9"></script>
 
   
   
@@ -893,21 +893,27 @@
   
   <script>
     (function() {
+      function getThumbs() {
+        return document.querySelectorAll('#archThumbs .prod-thumb-item');
+      }
       const mainImg = document.getElementById('archMainImg');
       const counter = document.getElementById('archCounter');
       const prevBtn = document.getElementById('archPrevBtn');
       const nextBtn = document.getElementById('archNextBtn');
-      const thumbs = document.querySelectorAll('#archThumbs .prod-thumb-item');
-      if (!mainImg || !thumbs.length) return;
+      if (!mainImg) return;
 
       let currentIdx = 0;
-      const count = thumbs.length;
 
       function setSlide(idx) {
+        if (window.__galleryDynamicActive) return; // Управляется динамической галереей main.js
+        const thumbs = getThumbs();
+        const count = thumbs.length;
+        if (!count) return;
         if (idx < 0) idx = count - 1;
         if (idx >= count) idx = 0;
         currentIdx = idx;
         const targetThumb = thumbs[currentIdx];
+        if (!targetThumb) return;
         const src = targetThumb.getAttribute('data-src');
         mainImg.style.opacity = '0.4';
         setTimeout(() => {
@@ -919,23 +925,30 @@
         targetThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
 
-      thumbs.forEach((t, i) => {
-        t.addEventListener('click', () => setSlide(i));
+      getThumbs().forEach((t, i) => {
+        t.addEventListener('click', () => {
+          if (!window.__galleryDynamicActive) setSlide(i);
+        });
       });
 
-      if (prevBtn) prevBtn.addEventListener('click', () => setSlide(currentIdx - 1));
-      if (nextBtn) nextBtn.addEventListener('click', () => setSlide(currentIdx + 1));
+      if (prevBtn) prevBtn.addEventListener('click', () => {
+        if (!window.__galleryDynamicActive) setSlide(currentIdx - 1);
+      });
+      if (nextBtn) nextBtn.addEventListener('click', () => {
+        if (!window.__galleryDynamicActive) setSlide(currentIdx + 1);
+      });
 
-      
       let touchStartX = 0;
       let touchStartY = 0;
       const mainView = mainImg.closest('.prod-main-view');
       if (mainView) {
         mainView.addEventListener('touchstart', (e) => {
+          if (window.__galleryDynamicActive) return;
           touchStartX = e.changedTouches[0].clientX;
           touchStartY = e.changedTouches[0].clientY;
         }, { passive: true });
         mainView.addEventListener('touchend', (e) => {
+          if (window.__galleryDynamicActive) return;
           const diffX = touchStartX - e.changedTouches[0].clientX;
           const diffY = touchStartY - e.changedTouches[0].clientY;
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {

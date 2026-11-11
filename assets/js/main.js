@@ -249,11 +249,12 @@ function renderDatabaseContent(config) {
       if (badgeEl && page.badge) {
         badgeEl.textContent = page.badge;
       }
-      // 3. Главный баннер / фото галереи
-      if (page.bannerImage) {
+      // 3. Главный баннер / фото галереи (всегда синхронизировано с обложкой галереи)
+      const effectiveCover = (Array.isArray(page.gallery) && page.gallery.length > 0) ? page.gallery[0] : (page.bannerImage || "");
+      if (effectiveCover) {
         const bannerImg = document.querySelector(".prod-main-view .prod-main-img") || document.querySelector(".prod-gallery-main img") || document.querySelector(".hero-image-card img");
         if (bannerImg) {
-          bannerImg.src = page.bannerImage;
+          bannerImg.src = effectiveCover;
         }
       }
       // 4. Описание / подзаголовок страницы
@@ -275,6 +276,7 @@ function renderDatabaseContent(config) {
 
 function renderProductGallery(gallery) {
   if (!Array.isArray(gallery) || !gallery.length) return;
+  window.__galleryDynamicActive = true;
 
   const thumbsStrip = document.getElementById("archThumbs") || 
                       document.getElementById("dropThumbs") || 
@@ -339,15 +341,46 @@ function renderProductGallery(gallery) {
     };
   });
 
-  // 4. Стрелочки «Влево» и «Вправо»
+  // 4. Стрелочки «Влево» и «Вправо» — заменяем клонами, чтобы сбросить устаревшие inline-слушатели
   const prevBtn = document.getElementById("archPrevBtn") || document.getElementById("dropPrevBtn") || document.getElementById("housePrevBtn") || document.querySelector(".prod-nav-arrow.prev");
   const nextBtn = document.getElementById("archNextBtn") || document.getElementById("dropNextBtn") || document.getElementById("houseNextBtn") || document.querySelector(".prod-nav-arrow.next");
 
   if (prevBtn) {
-    prevBtn.onclick = (e) => { e.preventDefault(); setSlide(currentIdx - 1); };
+    const cleanPrev = prevBtn.cloneNode(true);
+    if (prevBtn.parentNode) prevBtn.parentNode.replaceChild(cleanPrev, prevBtn);
+    cleanPrev.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setSlide(currentIdx - 1);
+    });
   }
   if (nextBtn) {
-    nextBtn.onclick = (e) => { e.preventDefault(); setSlide(currentIdx + 1); };
+    const cleanNext = nextBtn.cloneNode(true);
+    if (nextBtn.parentNode) nextBtn.parentNode.replaceChild(cleanNext, nextBtn);
+    cleanNext.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setSlide(currentIdx + 1);
+    });
+  }
+
+  // 5. Сенсорный свайп на телефоне по главной фотографии
+  const mainView = mainImg ? mainImg.closest('.prod-main-view') : null;
+  if (mainView) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    mainView.ontouchstart = (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    };
+    mainView.ontouchend = (e) => {
+      const diffX = touchStartX - e.changedTouches[0].clientX;
+      const diffY = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+        if (diffX > 0) setSlide(currentIdx + 1);
+        else setSlide(currentIdx - 1);
+      }
+    };
   }
 
   if (counter) {

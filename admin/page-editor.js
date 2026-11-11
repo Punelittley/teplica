@@ -535,7 +535,9 @@ function onGalleryAddUrlPrompt() {
 }
 window.onGalleryAddUrlPrompt = onGalleryAddUrlPrompt;
 
-async function saveCurrentPageAndPublish(pageKey) {
+// Функция синхронизации текущей редактируемой страницы в config.pages
+function syncCurrentPageToConfig(targetKey = null) {
+  const pageKey = targetKey || window.currentEditingPageKey || document.getElementById("pageSelectorDropdown")?.value || "glavnaya";
   const config = getSiteConfig();
   if (!config.pages) config.pages = { ...(typeof DEFAULT_PAGES !== "undefined" ? DEFAULT_PAGES : {}) };
 
@@ -558,39 +560,51 @@ async function saveCurrentPageAndPublish(pageKey) {
     if (houseVal) config.homepagePhotos.showcaseHouse = houseVal;
 
     const p = config.pages["glavnaya"] || {};
-    p.title = document.getElementById("glav_title")?.value || p.title;
-    p.badge = document.getElementById("glav_badge")?.value || p.badge;
-    p.description = document.getElementById("glav_desc")?.value || p.description;
+    const titleEl = document.getElementById("glav_title");
+    if (titleEl) p.title = titleEl.value;
+    const badgeEl = document.getElementById("glav_badge");
+    if (badgeEl) p.badge = badgeEl.value;
+    const descEl = document.getElementById("glav_desc");
+    if (descEl) p.description = descEl.value;
     if (heroVal) p.bannerImage = heroVal;
     config.pages["glavnaya"] = p;
   } else {
     const p = config.pages[pageKey] || {};
-    p.title = document.getElementById("page_custom_title")?.value || p.title;
-    p.badge = document.getElementById("page_custom_badge")?.value || p.badge;
-    p.priceText = document.getElementById("page_custom_price")?.value || p.priceText;
-    p.description = document.getElementById("page_custom_desc")?.value || p.description;
+    const titleEl = document.getElementById("page_custom_title");
+    if (titleEl) p.title = titleEl.value.trim();
+    const badgeEl = document.getElementById("page_custom_badge");
+    if (badgeEl) p.badge = badgeEl.value.trim();
+    const priceEl = document.getElementById("page_custom_price");
+    if (priceEl) p.priceText = priceEl.value.trim();
+    const descEl = document.getElementById("page_custom_desc");
+    if (descEl) p.description = descEl.value.trim();
     const imgVal = document.getElementById("page_custom_url")?.value;
     if (imgVal) p.bannerImage = imgVal;
 
-    // Сохранение фотогалереи
-    if (window.currentEditingGallery && window.currentEditingGallery.length) {
+    // Сохранение фотогалереи: берем массив из памяти
+    if (Array.isArray(window.currentEditingGallery) && window.currentEditingPageKey === pageKey) {
       p.gallery = [...window.currentEditingGallery];
-      if (!imgVal && p.gallery[0]) {
+      if (p.gallery.length > 0 && (!imgVal || imgVal.startsWith("data:"))) {
         p.bannerImage = p.gallery[0];
       }
     }
 
     // Сохранение видео
-    const v1 = document.getElementById("page_video_url_1")?.value;
-    const v2 = document.getElementById("page_video_url_2")?.value;
-    if (typeof v1 !== "undefined") p.video1 = v1.trim();
-    if (typeof v2 !== "undefined") p.video2 = v2.trim();
+    const v1 = document.getElementById("page_video_url_1");
+    const v2 = document.getElementById("page_video_url_2");
+    if (v1) p.video1 = v1.value.trim();
+    if (v2) p.video2 = v2.value.trim();
 
     config.pages[pageKey] = p;
   }
 
   saveSiteConfig(config);
-  loadPagesTab(pageKey);
+  return config;
+}
+window.syncCurrentPageToConfig = syncCurrentPageToConfig;
+
+async function saveCurrentPageAndPublish(pageKey) {
+  syncCurrentPageToConfig(pageKey);
   showAdminToast("Изменения страницы сохранены!", "Опубликовать на сайт", () => publishToGithub("toast"));
   await publishToGithub("pages");
 }

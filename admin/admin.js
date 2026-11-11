@@ -1,10 +1,13 @@
-﻿
+
 function uint8ToBase64(bytes) {
   let binary = "";
   const len = bytes.byteLength;
-  const chunkSize = 16384;
+  const chunkSize = 8192;
   for (let i = 0; i < len; i += chunkSize) {
-    binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunkSize, len)));
+    const chunk = bytes.subarray(i, Math.min(i + chunkSize, len));
+    for (let j = 0; j < chunk.length; j++) {
+      binary += String.fromCharCode(chunk[j]);
+    }
   }
   return btoa(binary);
 }
@@ -702,9 +705,12 @@ async function publishToGithub(triggerSource = "button") {
     ghStatus.innerHTML = "⏳ Подключение к GitHub API...";
   }
 
-  // Auto-sync photos into config before reading ONLY if photos tab is active
+  // Auto-sync active editors before publishing
+  if (typeof syncCurrentPageToConfig === "function") {
+    try { syncCurrentPageToConfig(); } catch(e) { console.warn("syncCurrentPageToConfig failed:", e); }
+  }
   const isPhotosTabActive = document.getElementById("tabHomepagePhotos")?.classList.contains("active");
-  if ((isPhotosTabActive || source === "photos") && typeof saveHomepagePhotosData === "function") {
+  if ((isPhotosTabActive || triggerSource === "photos") && typeof saveHomepagePhotosData === "function") {
     try { saveHomepagePhotosData(false); } catch(e) {}
   }
 

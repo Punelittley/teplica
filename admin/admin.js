@@ -702,21 +702,22 @@ function updateSidebarPublishState() {
 }
 
 async function fetchLatestDatabaseBlobSha(repo, branch, token) {
-  // 1. Поиск точного SHA блоба через коммит ветки и Git Tree API (без кэша CDN)
+  // 1. Поиск точного SHA блоба через коммит ветки и Git Tree API (без кэша CDN, разрешенные CORS заголовки)
   try {
     const cRes = await fetch(`https://api.github.com/repos/${repo}/commits/${branch}?_t=${Date.now()}`, {
       headers: {
         "Authorization": `Bearer ${token}`,
-        "Accept": "application/vnd.github+json",
-        "Cache-Control": "no-cache, no-store"
-      },
-      cache: "no-store"
+        "Accept": "application/vnd.github+json"
+      }
     });
     if (cRes.ok) {
       const commit = await cRes.json();
       if (commit.commit && commit.commit.tree && commit.commit.tree.url) {
         const treeRes = await fetch(`${commit.commit.tree.url}?_t=${Date.now()}`, {
-          headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/vnd.github+json"
+          }
         });
         if (treeRes.ok) {
           const treeData = await treeRes.json();
@@ -734,11 +735,8 @@ async function fetchLatestDatabaseBlobSha(repo, branch, token) {
     const freshGet = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_nocache=${Date.now()}`, {
       headers: {
         "Authorization": `Bearer ${token}`,
-        "Accept": "application/vnd.github+json",
-        "Cache-Control": "no-cache, no-store",
-        "Pragma": "no-cache"
-      },
-      cache: "no-store"
+        "Accept": "application/vnd.github+json"
+      }
     });
     if (freshGet.status === 200) {
       const freshData = await freshGet.json();
@@ -832,11 +830,8 @@ async function publishToGithub(triggerSource = "button") {
       const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_t=${Date.now()}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
-          "Accept": "application/vnd.github+json",
-          "Cache-Control": "no-cache, no-store, must-revalidate",
-          "Pragma": "no-cache"
-        },
-        cache: "no-store"
+          "Accept": "application/vnd.github+json"
+        }
       });
       if (getRes.status === 401 || getRes.status === 403) {
         throw new Error("Неверный токен GitHub или истек срок его действия.");
@@ -915,6 +910,12 @@ async function publishToGithub(triggerSource = "button") {
       content: base64Content,
       branch: branch
     };
+    if (!currentSha) {
+      currentSha = localStorage.getItem("teplici76_last_db_sha");
+    }
+    if (!currentSha) {
+      currentSha = await fetchLatestDatabaseBlobSha(repo, branch, token);
+    }
     if (currentSha) {
       putBody.sha = currentSha;
     }

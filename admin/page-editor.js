@@ -259,40 +259,64 @@ function renderPageEditor(pageKey) {
           Загрузите короткое видео с телефона/ПК (MP4/WebM до 20 МБ) или вставьте ссылку на YouTube / Rutube / VK Видео. Видео появится на странице отдельным красивым блоком.
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
-          <!-- ВИДЕО 1 -->
-          <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; box-sizing: border-box;">
-            <div style="font-weight: 800; color: #1b4332; font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-              <span>📹</span> Видео 1 (основной обзор)
-            </div>
-            <label class="btn-admin btn-admin-light" style="display: block; width: 100%; text-align: center; cursor: pointer; padding: 9px; font-size: 0.82rem; font-weight: 700; border-radius: 8px; margin-bottom: 8px; box-sizing: border-box; background: #eef2f5;">
-              📁 Загрузить видеофайл с устройства
-              <input type="file" accept="video/mp4,video/webm,video/quicktime" style="display: none;" onchange="handleSingleVideoUpload(this, 'page_video_url_1', 'page_video_preview_1')">
-            </label>
-            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 4px;">Или ссылка (YouTube / VK / MP4):</div>
-            <input type="text" id="page_video_url_1" class="form-input-admin" value="${p.video1 || ''}" placeholder="https://youtube.com/... или путь" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.82rem; box-sizing: border-box;" oninput="updateVideoPreview('page_video_url_1', 'page_video_preview_1')">
-            <div id="page_video_preview_1" style="margin-top: 8px; font-size: 0.76rem; color: #2d6a4f; font-weight: 700;">
-              ${p.video1 ? '✓ Видео настроено' : 'Видео не загружено'}
-            </div>
-          </div>
+        ${(() => {
+          window.uploadedPageVideos = window.uploadedPageVideos || {};
+          const isV1File = (p.video1 || '').startsWith('data:video/');
+          const isV2File = (p.video2 || '').startsWith('data:video/');
+          window.uploadedPageVideos[1] = isV1File ? p.video1 : '';
+          window.uploadedPageVideos[2] = isV2File ? p.video2 : '';
+          const v1Url = isV1File ? '' : (p.video1 || '');
+          const v2Url = isV2File ? '' : (p.video2 || '');
+          const v1Size = isV1File ? (Math.round((p.video1.length * 0.75 / 1024 / 1024) * 10) / 10 || 0.5) : 0;
+          const v2Size = isV2File ? (Math.round((p.video2.length * 0.75 / 1024 / 1024) * 10) / 10 || 0.5) : 0;
 
-          <!-- ВИДЕО 2 -->
-          <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; box-sizing: border-box;">
-            <div style="font-weight: 800; color: #1b4332; font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-              <span>📹</span> Видео 2 (дополнительный обзор)
+          return `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
+            <!-- ВИДЕО 1 -->
+            <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; box-sizing: border-box;">
+              <div style="font-weight: 800; color: #1b4332; font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span>📹</span> Видео 1 (основной обзор)
+              </div>
+              <label class="btn-admin btn-admin-light" style="display: block; width: 100%; text-align: center; cursor: pointer; padding: 9px; font-size: 0.82rem; font-weight: 700; border-radius: 8px; margin-bottom: 8px; box-sizing: border-box; background: #eef2f5;">
+                📁 Загрузить видеофайл с устройства
+                <input type="file" accept="video/mp4,video/webm,video/quicktime" style="display: none;" onchange="handleSingleVideoUpload(this, 1)">
+              </label>
+
+              <div id="page_video_file_badge_1" style="${isV1File ? 'display: flex;' : 'display: none;'} align-items: center; justify-content: space-between; background: #ecfdf5; border: 1.5px solid #6ee7b7; border-radius: 8px; padding: 8px 12px; margin-bottom: 8px;">
+                <span style="font-size: 0.8rem; font-weight: 700; color: #065f46;">📁 Загружен видеофайл (<span id="page_video_size_1">${v1Size}</span> МБ)</span>
+                <button type="button" class="btn-admin" style="padding: 3px 8px; font-size: 0.75rem; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; border-radius: 4px;" onclick="clearUploadedVideo(1)">✕ Удалить</button>
+              </div>
+
+              <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 4px;">Или ссылка (YouTube / VK / MP4):</div>
+              <input type="text" id="page_video_url_1" class="form-input-admin" value="${v1Url}" placeholder="https://vk.ru/clip-... или YouTube" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.82rem; box-sizing: border-box;" oninput="updateVideoPreview(1)">
+              <div id="page_video_preview_1" style="margin-top: 8px; font-size: 0.76rem; color: #2d6a4f; font-weight: 700;">
+                ${(p.video1) ? '✓ Видео настроено' : 'Видео не загружено'}
+              </div>
             </div>
-            <label class="btn-admin btn-admin-light" style="display: block; width: 100%; text-align: center; cursor: pointer; padding: 9px; font-size: 0.82rem; font-weight: 700; border-radius: 8px; margin-bottom: 8px; box-sizing: border-box; background: #eef2f5;">
-              📁 Загрузить видеофайл с устройства
-              <input type="file" accept="video/mp4,video/webm,video/quicktime" style="display: none;" onchange="handleSingleVideoUpload(this, 'page_video_url_2', 'page_video_preview_2')">
-            </label>
-            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 4px;">Или ссылка (YouTube / VK / MP4):</div>
-            <input type="text" id="page_video_url_2" class="form-input-admin" value="${p.video2 || ''}" placeholder="https://youtube.com/... или путь" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.82rem; box-sizing: border-box;" oninput="updateVideoPreview('page_video_url_2', 'page_video_preview_2')">
-            <div id="page_video_preview_2" style="margin-top: 8px; font-size: 0.76rem; color: #2d6a4f; font-weight: 700;">
-              ${p.video2 ? '✓ Видео настроено' : 'Видео не загружено'}
+
+            <!-- ВИДЕО 2 -->
+            <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; box-sizing: border-box;">
+              <div style="font-weight: 800; color: #1b4332; font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span>📹</span> Видео 2 (дополнительный обзор)
+              </div>
+              <label class="btn-admin btn-admin-light" style="display: block; width: 100%; text-align: center; cursor: pointer; padding: 9px; font-size: 0.82rem; font-weight: 700; border-radius: 8px; margin-bottom: 8px; box-sizing: border-box; background: #eef2f5;">
+                📁 Загрузить видеофайл с устройства
+                <input type="file" accept="video/mp4,video/webm,video/quicktime" style="display: none;" onchange="handleSingleVideoUpload(this, 2)">
+              </label>
+
+              <div id="page_video_file_badge_2" style="${isV2File ? 'display: flex;' : 'display: none;'} align-items: center; justify-content: space-between; background: #ecfdf5; border: 1.5px solid #6ee7b7; border-radius: 8px; padding: 8px 12px; margin-bottom: 8px;">
+                <span style="font-size: 0.8rem; font-weight: 700; color: #065f46;">📁 Загружен видеофайл (<span id="page_video_size_2">${v2Size}</span> МБ)</span>
+                <button type="button" class="btn-admin" style="padding: 3px 8px; font-size: 0.75rem; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; border-radius: 4px;" onclick="clearUploadedVideo(2)">✕ Удалить</button>
+              </div>
+
+              <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 4px;">Или ссылка (YouTube / VK / MP4):</div>
+              <input type="text" id="page_video_url_2" class="form-input-admin" value="${v2Url}" placeholder="https://vk.ru/clip-... или YouTube" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.82rem; box-sizing: border-box;" oninput="updateVideoPreview(2)">
+              <div id="page_video_preview_2" style="margin-top: 8px; font-size: 0.76rem; color: #2d6a4f; font-weight: 700;">
+                ${(p.video2) ? '✓ Видео настроено' : 'Видео не загружено'}
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div>`;
+        })()}</div>
 
       <!-- Текстовые поля страницы -->
       <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-sizing: border-box;">
@@ -330,42 +354,61 @@ function renderPageEditor(pageKey) {
 }
 window.renderPageEditor = renderPageEditor;
 
-function updateVideoPreview(inputId, previewId) {
-  const input = document.getElementById(inputId);
-  const preview = document.getElementById(previewId);
+function clearUploadedVideo(num) {
+  window.uploadedPageVideos = window.uploadedPageVideos || {};
+  window.uploadedPageVideos[num] = '';
+  const badge = document.getElementById('page_video_file_badge_' + num);
+  if (badge) badge.style.display = 'none';
+  updateVideoPreview(num);
+}
+window.clearUploadedVideo = clearUploadedVideo;
+
+function updateVideoPreview(num) {
+  const urlInput = document.getElementById('page_video_url_' + num);
+  const preview = document.getElementById('page_video_preview_' + num);
   if (!preview) return;
-  const val = (input?.value || "").trim();
+  const val = (urlInput?.value || '').trim();
+  const hasFile = window.uploadedPageVideos && window.uploadedPageVideos[num];
   if (val) {
-    preview.innerHTML = "✓ Видео настроено: " + val.slice(0, 35) + "...";
-    preview.style.color = "#2d6a4f";
+    preview.innerHTML = '✓ Ссылка настроена: ' + (val.length > 35 ? val.slice(0, 35) + '...' : val);
+    preview.style.color = '#2d6a4f';
+  } else if (hasFile) {
+    preview.innerHTML = '✓ Видеофайл настроен';
+    preview.style.color = '#2d6a4f';
   } else {
-    preview.innerHTML = "Видео не загружено";
-    preview.style.color = "#64748b";
+    preview.innerHTML = 'Видео не загружено';
+    preview.style.color = '#64748b';
   }
 }
 window.updateVideoPreview = updateVideoPreview;
 
-async function handleSingleVideoUpload(input, urlInputId, previewId) {
+async function handleSingleVideoUpload(input, num) {
   if (!input.files || !input.files[0]) return;
   const file = input.files[0];
-  const urlEl = document.getElementById(urlInputId);
-  const previewEl = document.getElementById(previewId);
+  const previewEl = document.getElementById('page_video_preview_' + num);
+  const badgeEl = document.getElementById('page_video_file_badge_' + num);
+  const sizeEl = document.getElementById('page_video_size_' + num);
+  const urlInput = document.getElementById('page_video_url_' + num);
 
-  // Ограничение размера до 25 МБ для быстродействия
   if (file.size > 25 * 1024 * 1024) {
-    alert("⚠️ Размер видео превышает 25 МБ. Для длинных роликов рекомендуется использовать ссылку на YouTube или VK Видео.");
+    alert('⚠️ Размер видео превышает 25 МБ. Для длинных роликов рекомендуется использовать ссылку на YouTube или VK Видео.');
     return;
   }
 
-  if (previewEl) previewEl.innerHTML = "⏳ Обработка видеофайла...";
+  if (previewEl) previewEl.innerHTML = '⏳ Обработка видеофайла...';
 
   const reader = new FileReader();
   reader.onload = (e) => {
     const dataUrl = e.target.result;
-    if (urlEl) urlEl.value = dataUrl;
+    window.uploadedPageVideos = window.uploadedPageVideos || {};
+    window.uploadedPageVideos[num] = dataUrl;
+    if (urlInput) urlInput.value = '';
+    const mb = Math.round(file.size / 1024 / 1024 * 10) / 10 || 0.1;
+    if (sizeEl) sizeEl.textContent = mb;
+    if (badgeEl) badgeEl.style.display = 'flex';
     if (previewEl) {
-      previewEl.innerHTML = `✅ Видео загружено (${Math.round(file.size / 1024 / 1024 * 10) / 10} МБ)`;
-      previewEl.style.color = "#2d6a4f";
+      previewEl.innerHTML = `✅ Видео загружено (${mb} МБ)`;
+      previewEl.style.color = '#2d6a4f';
     }
   };
   reader.readAsDataURL(file);
@@ -590,10 +633,12 @@ function syncCurrentPageToConfig(targetKey = null) {
     }
 
     // Сохранение видео
-    const v1 = document.getElementById("page_video_url_1");
-    const v2 = document.getElementById("page_video_url_2");
-    if (v1) p.video1 = v1.value.trim();
-    if (v2) p.video2 = v2.value.trim();
+    const v1Url = document.getElementById("page_video_url_1")?.value.trim() || "";
+    const v2Url = document.getElementById("page_video_url_2")?.value.trim() || "";
+    const v1File = (window.uploadedPageVideos && window.uploadedPageVideos[1]) || "";
+    const v2File = (window.uploadedPageVideos && window.uploadedPageVideos[2]) || "";
+    p.video1 = v1Url || v1File || "";
+    p.video2 = v2Url || v2File || "";
 
     config.pages[pageKey] = p;
   }

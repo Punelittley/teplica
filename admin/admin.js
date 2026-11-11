@@ -780,8 +780,11 @@ async function publishToGithub(triggerSource = "button") {
       const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_t=${Date.now()}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
-          "Accept": "application/vnd.github+json"
-        }
+          "Accept": "application/vnd.github+json",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache"
+        },
+        cache: "no-store"
       });
       if (getRes.status === 401 || getRes.status === 403) {
         throw new Error("Неверный токен GitHub или истек срок его действия.");
@@ -873,39 +876,32 @@ async function publishToGithub(triggerSource = "button") {
     let putData = await putRes.json();
 
     // Автоматическое разрешение конфликта 409 (если SHA устарел или были параллельные коммиты)
-    let maxRetries = 5;
+    let maxRetries = 3;
     while (!putRes.ok && maxRetries > 0 && (putRes.status === 409 || putRes.status === 422 || (putData.message && (putData.message.includes("is at") || putData.message.includes("sha") || putData.message.includes("match"))))) {
       maxRetries--;
       if (ghStatus) ghStatus.innerHTML = "⏳ Разрешение конфликта версий GitHub...";
 
+      await new Promise(r => setTimeout(r, 600));
       let freshSha = null;
-      // 1. Извлечь актуальный SHA прямо из текста ошибки GitHub (любой 40-значный хэш)
-      const shaMatch = putData.message && putData.message.match(/([a-f0-9]{40})/);
-      if (shaMatch && shaMatch[1]) {
-        freshSha = shaMatch[1];
+      try {
+        const freshGet = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_nocache=${Date.now()}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/vnd.github+json",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache"
+          },
+          cache: "no-store"
+        });
+        if (freshGet.ok) {
+          const freshData = await freshGet.json();
+          freshSha = freshData.sha;
+        }
+      } catch (e) {
+        console.warn("Ошибка повторного запроса SHA:", e);
       }
 
-      // 2. Если в сообщении нет — запросить свежий SHA без кэша
-      if (!freshSha) {
-        await new Promise(r => setTimeout(r, 600));
-        try {
-          const freshGet = await fetch(`https://api.github.com/repos/${repo}/contents/database.json?ref=${branch}&_nocache=${Date.now()}`, {
-            headers: {
-              "Authorization": `Bearer ${token}`,
-              "Accept": "application/vnd.github+json",
-              "Cache-Control": "no-cache, no-store, must-revalidate",
-              "Pragma": "no-cache"
-            },
-            cache: "no-store"
-          });
-          if (freshGet.ok) {
-            const freshData = await freshGet.json();
-            freshSha = freshData.sha;
-          }
-        } catch (e) {}
-      }
-
-      if (freshSha) {
+      if (freshSha && freshSha !== putBody.sha) {
         putBody.sha = freshSha;
         await new Promise(r => setTimeout(r, 300));
         putRes = await fetch(`https://api.github.com/repos/${repo}/contents/database.json`, {

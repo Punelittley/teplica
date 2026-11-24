@@ -151,6 +151,7 @@ function renderDatabaseContent(config) {
           <div class="review-item-stars">${'★'.repeat(r.stars || 5)}${'☆'.repeat(5 - (r.stars || 5))}</div>
           <p class="review-item-text">«${r.text}»</p>
           <div class="review-item-author">
+            <img src="assets/images/avatars/avatar${(idx % 3) + 1}.jpg" alt="${r.name}" class="review-item-avatar" loading="lazy" decoding="async">
             <div>
               <div class="review-item-name">${r.name}</div>
               <div class="review-item-city">${r.role || ''}</div>
@@ -1361,7 +1362,7 @@ function setupFaqChatbot() {
     },
     {
       keywords: ["адрес", "где", "производств", "завод", "площадк", "самовывоз", "телефон", "посмотрет", "приехат", "режим", "работ"],
-      answer: "<strong>Контакты и производство:</strong><br>• Ярославль, ул. Промышленная, д. 12.<br>• Телефон: <strong>+7 (4852) 123-45-67</strong><br>• Работаем ежедневно с 8:00 до 20:00 без выходных.<br>На нашей выставочной площадке можно лично потрогать каркас и убедиться в прочности металла!",
+      answer: "<strong>Контакты и производство:</strong><br>• Ярославль, ул. Промышленная, д. 12.<br>• Телефон: <strong>8-901-046-44-46</strong><br>• Работаем ежедневно с 8:00 до 20:00 без выходных.<br>На нашей выставочной площадке можно лично потрогать каркас и убедиться в прочности металла!",
       action: { text: "Схема проезда", link: "kontakty.html" }
     },
     {

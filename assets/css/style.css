@@ -4311,11 +4311,13 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
 }
 
 .review-item-avatar {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  border: 2px solid #52b788;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .review-item-name {
@@ -6950,8 +6952,8 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
 
 .main-categories-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
 }
 
 .main-cat-card {

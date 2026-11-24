@@ -452,13 +452,13 @@ const DEFAULT_CONFIG = {
   company: {
     name: "Теплицы ТУТ",
     tagline: "С заботой о вашем урожае",
-    phone: "+7 (4852) 123-45-67",
-    phoneRaw: "+748521234567",
+    phone: "8-901-046-44-46",
+    phoneRaw: "+79010464446",
     phoneSecondary: "+7 (920) 140-50-60",
     workHours: "Ежедневно с 8:00 до 20:00",
     address: "г. Ярославль, ул. Промышленная, д. 12 (Выставочная площадка)",
     email: "info@teplici76.ru",
-    vkUrl: "https://vk.ru/club241898656",
+    vkUrl: "https://vk.ru/tepliciotproizvoditelya76",
     telegramUsername: "teplici76_yar",
     promoText: "Весенняя акция: бесплатное хранение теплицы на складе до начала сезона!"
   },

@@ -7588,22 +7588,14 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
 }
 
 .advantage-card-body {
-  padding: 24px 22px 28px;
+  padding: 18px 22px 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .advantage-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #eaf4ed;
-  color: #2d6a4f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 14px;
+  display: none;
 }
 
 .advantage-card-icon svg {

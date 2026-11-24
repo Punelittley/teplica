@@ -1869,7 +1869,7 @@ button, input, select, textarea {
 .calc-total-sum {
   font-size: 2.5rem;
   font-weight: 900;
-  color: #1b4332;
+  color: #d90429;
   font-family: var(--font-heading);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -2198,7 +2198,7 @@ button, input, select, textarea {
   font-family: var(--font-heading);
   font-size: 1.65rem;
   font-weight: 900;
-  color: var(--color-primary-dark);
+  color: #d90429;
   letter-spacing: -0.02em;
 }
 
@@ -7299,7 +7299,7 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
   font-family: var(--font-heading) !important;
   font-size: 1.32rem !important;
   font-weight: 900 !important;
-  color: #1b4332 !important;
+  color: #d90429 !important;
   display: inline-block !important;
   letter-spacing: -0.01em !important;
   line-height: 1.2 !important;
@@ -7732,7 +7732,7 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
   font-family: var(--font-heading);
   font-size: 1.85rem;
   font-weight: 900;
-  color: #1b4332;
+  color: #d90429;
 }
 
 .showcase-old-price {
@@ -8071,7 +8071,7 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
   font-family: var(--font-heading);
   font-size: 1.7rem;
   font-weight: 900;
-  color: #1b4332;
+  color: #d90429;
   line-height: 1.1;
 }
 
@@ -8577,7 +8577,7 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
 .prod-price-current {
   font-size: 2.1rem;
   font-weight: 900;
-  color: #1b4332;
+  color: #d90429;
 }
 .prod-price-old {
   font-size: 1.2rem;
@@ -10189,7 +10189,7 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
 
     .cat-card-price-val {
       font-weight: 900;
-      color: #1b4332;
+      color: #d90429;
       font-size: 1.35rem;
       letter-spacing: -0.01em;
       line-height: 1.15;
@@ -10204,7 +10204,7 @@ body:has(.site-nav.mobile-open) .faq-chat-widget {
     .cat-card-price {
       font-size: 1rem;
       font-weight: 800;
-      color: #1b4332;
+      color: #d90429;
       white-space: nowrap;
     }
 
